@@ -1,5 +1,6 @@
+import { Container, ThemeProvider, createTheme } from "@mui/material";
+import "./app.scss"
 
-import { Button, ThemeProvider, createTheme } from "@mui/material";
 function App() {
   const theme = createTheme({
     palette: {
@@ -19,7 +20,9 @@ function App() {
   })
   return (
     <ThemeProvider theme={theme}>
-      <Button variant="contained">lorem ispum</Button>
+      <Container>
+        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Similique, accusantium saepe numquam laborum perferendis ullam et nostrum neque? Nihil.
+      </Container>
     </ThemeProvider>
   );
 }
