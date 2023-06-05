@@ -1,15 +1,17 @@
 import React from 'react'
-import './Header.css'
-import language from '../assets/icons/language.png'
+import './header.scss'
+import language from '../../assets/icons/language.png'
 import { styled } from '@mui/material/styles';
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Switch from '@mui/material/Switch';
-import { Button, Tooltip } from '@mui/material';
+import { Button, Container, Tooltip } from '@mui/material';
+import telegram_icon from "../../assets/icons/telegram.png"
+import { Paragraph } from "../../ui/typography"
 
 const MaterialUISwitch = styled(Switch)(({ theme }) => ({
-    width: 62,
-    height: 34,
+    width: 70,
+    height: 40,
     padding: 7,
     '& .MuiSwitch-switchBase': {
         margin: 1,
@@ -30,9 +32,9 @@ const MaterialUISwitch = styled(Switch)(({ theme }) => ({
         },
     },
     '& .MuiSwitch-thumb': {
-        backgroundColor: theme.palette.mode === 'dark' ? '#003892' : '#001e3c',
-        width: 32,
-        height: 32,
+        backgroundColor: theme.palette.mode === 'dark' ? '#003892' : '#00a3ff',
+        width: 30,
+        height: 30,
         '&:before': {
             content: "''",
             position: 'absolute',
@@ -57,14 +59,12 @@ const MaterialUISwitch = styled(Switch)(({ theme }) => ({
 
 const Header = () => {
     return (
+        <Container>
         <div className='header'>
-
-
-            <Button variant="contained" disableElevation>
-                telegram
+            <Button variant="text" disableElevation sx={{ display: "flex", gap: "10px" }}>
+                <img src={telegram_icon} width="30px"/>
+                <Paragraph>Join telegram</Paragraph>
             </Button>
-
-
             <FormGroup sx={{ display:'flex', flexDirection:'row' }}>
                 <FormControlLabel
                     control={<MaterialUISwitch sx={{ m: 1 }} defaultChecked />}
@@ -75,8 +75,8 @@ const Header = () => {
                     </Button>
                 </Tooltip>
             </FormGroup>
-
         </div>
+        </Container>
     )
 }
 

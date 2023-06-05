@@ -1,6 +1,7 @@
 import { Container, ThemeProvider, createTheme } from "@mui/material";
 import "./app.scss"
 import Footer from "./components/footer/Footer";
+import Header from "./components/header/Header"
 import Home from "./components/Home";
 const { palette } = createTheme();
 const { augmentColor } = palette;
@@ -26,6 +27,7 @@ function App() {
   })
   return (
     <ThemeProvider theme={theme}>
+      <Header />
       <Container>
         <Home />
       </Container>
