@@ -19,7 +19,7 @@ function App() {
   })
   return (
     <ThemeProvider theme={theme}>
-      <Button variant="contained">lorem</Button>
+      <Button variant="contained">lorem ispum</Button>
     </ThemeProvider>
   );
 }
