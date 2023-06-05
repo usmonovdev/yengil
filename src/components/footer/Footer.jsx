@@ -23,14 +23,14 @@ const Footer = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.5, type: "spring" }}
           >
-            <H1>Focus on profit of your business with Brizo</H1>
+            <H1>Yengil-App bilan biznesingizning foydasiga e'tibor qarating</H1>
           </motion.div>
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1.5, y: 0 }}
             transition={{ duration: 1, type: "spring", delay: 0.2 }}
           >
-            <H3>Give your sales and performance a boost right now</H3>
+            <H3>Hozirda savdo va samaradorlikni oshiring</H3>
           </motion.div>
           <motion.div
             initial={{ opacity: 0, scale: 0.7 }}
@@ -53,14 +53,7 @@ const Footer = () => {
         </Container>
       </footer>
       <footer className="footer2">
-        <Container
-          sx={{
-            display: "flex",
-            alignItems: "center",
-            flexDirection: "row",
-            gap: "30px",
-          }}
-        >
+        <Container className="footercontainer">
           <Paragraph>Foydalanish shartlari</Paragraph>
           <Paragraph>Maxfiylik siyosati</Paragraph>
           <Paragraph>Sayt xaritasi</Paragraph>

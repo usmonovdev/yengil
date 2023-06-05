@@ -12,9 +12,21 @@ footer {
   padding-top: 25px;
 }
 
-.footer2{
+.footer2 {
   background-color: #161f30;
   margin-top: 0px;
   padding: 0;
   min-height: 50px;
+  .footercontainer {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    gap: 30px;
+    @media (max-width: 600px) {
+      flex-direction: column;
+      align-items: start;
+      padding: 15px;
+      gap: 10px;
+    }
+  }
 }
