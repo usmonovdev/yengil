@@ -1,0 +1,19 @@
+.section-box{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+    .box{
+        padding: 2rem 2rem;
+        img{
+            width: 25px;
+            height: 25px;
+            padding: 0;
+        }
+
+        // h4{
+        //     padding:10px;
+        // }
+        // h5{
+        //     padding:  10px 0;
+        // }
+    }
+}

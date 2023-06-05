@@ -11,10 +11,12 @@ export const H2 = styled("h2")(({ theme }) => ({
 
 export const H3 = styled("h3")(({ theme }) => ({
     fontSize: "20px",
-    fontWeight: "400"
+    fontWeight: "400",
+    padding: " 5px"
 }));
 
 export const Paragraph = styled("p")(({ theme }) => ({
     fontSize: "16px",
-    fontWeight: "400"
+    fontWeight: "400",
+    padding: " 5px 0"
 }));

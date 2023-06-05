@@ -3,6 +3,7 @@ import "./app.scss"
 import Footer from "./components/footer/Footer";
 import Header from "./components/header/Header"
 import Home from "./components/Home";
+import Section from "./components/section/Section";
 const { palette } = createTheme();
 const { augmentColor } = palette;
 
@@ -30,7 +31,9 @@ function App() {
       <Header />
       <Container>
         <Home />
+        <Section/>
       </Container>
+      
       <Footer />
     </ThemeProvider>
   );
