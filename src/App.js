@@ -1,8 +1,28 @@
+import { Button, ThemeProvider, createTheme } from "@mui/material";
+
 function App() {
+  const theme = createTheme({
+    palette: {
+      mode: 'light',
+      primary: {
+        main: '#212e48',
+      },
+      secondary: {
+        main: '#00a3ff',
+      },
+    },
+    shadows: ["none"],
+    typography: {
+      fontFamily: '"Montserrat", sans-serif',
+      fontWeightLight: 200,
+    },
+  })
   return (
+    <ThemeProvider theme={theme}>
     <div>
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. At cupiditate autem omnis veritatis nesciunt dolores nam est, minima voluptatem repellat aut ea veniam atque! Facilis blanditiis nostrum eum esse possimus!
+      <Button variant="contained">lorem</Button>
     </div>
+    </ThemeProvider>
   );
 }
 
