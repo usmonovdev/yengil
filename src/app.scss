@@ -1,7 +1,19 @@
+// Breakpoints
+// Extra large devices: 450px
+// Extra small devices (phones, 600px and down): 600px
+// Medium devices (landscape tablets, 768px and up): 768px
+// Large devices (laptops/desktops, 992px and up): 992px
+// Extra large devices (large laptops and desktops, 1200px and up): 1200px
+
 * {
     margin: 0;
     padding: 0;
     font-family: 'Raleway', sans-serif;
+}
+
+:root {
+    --main: #00a3ff;
+    --white--opacity: #ffffff6e;
 }
 
 body {
@@ -9,6 +21,14 @@ body {
     height: 100vh;
     color: #13131d;
     overflow-x: hidden;
+}
+
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--main); 
 }
 
 .text-center {

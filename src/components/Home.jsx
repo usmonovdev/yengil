@@ -1,7 +1,8 @@
 import React from "react";
-import { H1, H2, H3, Paragraph } from "../ui/typography";
+import { H1, H3, Paragraph } from "../ui/typography";
 import { Box, Button } from "@mui/material";
 import { motion } from "framer-motion";
+import "./home.scss"
 
 const Home = () => {
   return (
@@ -12,7 +13,7 @@ const Home = () => {
         flexDirection: "column",
         alignItems: "center",
         gap: "30px",
-        height: "400px",
+        height: "600px",
       }}
     >
       <motion.div
@@ -22,7 +23,7 @@ const Home = () => {
       >
         <H1 className="text-center">Moliyaviy va boshqaruv hisobiga ega CRM</H1>
       </motion.div>
-      <Box sx={{ width: "80%" }}>
+      <Box className="home-box">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}

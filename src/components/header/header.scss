@@ -1,11 +1,18 @@
-.header{
-    display: flex;
-    align-items: center;
-    padding: 1rem 0;
-    justify-content: space-between;
-    .language-thumb{
-        width: 30px;
-        height: 20px;
-        color: red;
+.header-box {
+    width: 100vw;
+    position: fixed;
+    background-color: var(--white--opacity);
+    backdrop-filter: blur(5px);
+    z-index: 10000;
+    .header{
+        display: flex;
+        align-items: center;
+        padding: 1rem 0;
+        justify-content: space-between;
+        .join-telegram {
+            @media (max-width: 600px) {
+                display: none;
+            }
+        }
     }
 }

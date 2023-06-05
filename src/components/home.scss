@@ -1,0 +1,6 @@
+.home-box {
+    width: 80%;
+    @media (max-width: 600px) {
+        width: 100%;
+    }
+}
