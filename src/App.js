@@ -1,5 +1,4 @@
 import { Button, ThemeProvider, createTheme } from "@mui/material";
-
 function App() {
   const theme = createTheme({
     palette: {
@@ -19,9 +18,7 @@ function App() {
   })
   return (
     <ThemeProvider theme={theme}>
-    <div>
       <Button variant="contained">lorem</Button>
-    </div>
     </ThemeProvider>
   );
 }
