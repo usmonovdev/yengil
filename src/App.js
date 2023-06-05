@@ -1,5 +1,6 @@
 import { Container, ThemeProvider, createTheme } from "@mui/material";
 import "./app.scss"
+import Footer from "./components/footer/Footer";
 
 function App() {
   const theme = createTheme({
