@@ -6,7 +6,7 @@ import Switch from "@mui/material/Switch";
 import telegram_icon from "../../assets/icons/telegram.png";
 import { styled } from "@mui/material/styles";
 import { Box, Button, Container } from "@mui/material";
-import { Paragraph } from "../../ui/typography";
+import { Paragraph, StyledAncor } from "../../ui/typography";
 import { motion } from "framer-motion";
 import "./header.scss";
 import ChangeLang from "./ChangeLang";
@@ -58,7 +58,7 @@ const MaterialUISwitch = styled(Switch)(({ theme }) => ({
 }));
 
 const Header = () => {
-  const [langOpen, setLangOpen] = useState(true);
+  const [langOpen, setLangOpen] = useState(false);
   return (
     <div className="header-box">
       <Container>
@@ -68,14 +68,20 @@ const Header = () => {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, type: "spring" }}
           >
-            <Button
-              variant="text"
-              disableElevation
-              sx={{ display: "flex", gap: "10px" }}
-            >
-              <img src={telegram_icon} width="30px" className="join-telegram" />
-              <Paragraph>Join telegram</Paragraph>
-            </Button>
+            <StyledAncor href="https://t.me/+50UxzsayyoxjY2Ey">
+              <Button
+                variant="text"
+                disableElevation
+                sx={{ display: "flex", gap: "10px" }}
+              >
+                <img
+                  src={telegram_icon}
+                  width="30px"
+                  className="join-telegram"
+                />
+                <Paragraph>Join telegram</Paragraph>
+              </Button>
+            </StyledAncor>
           </motion.div>
           <motion.div
             initial={{ opacity: 0, x: 40 }}
@@ -86,7 +92,14 @@ const Header = () => {
               <FormControlLabel
                 control={<MaterialUISwitch sx={{ m: 1 }} defaultChecked />}
               />
-              <Box sx={{ position: "relative", display: "flex", flexDirection: "column", justifyContent: "center" }}>
+              <Box
+                sx={{
+                  position: "relative",
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "center",
+                }}
+              >
                 <Button onClick={() => setLangOpen(!langOpen)}>
                   <img
                     src={language}

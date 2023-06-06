@@ -3,8 +3,10 @@ import { H1, H3, Paragraph } from "../ui/typography";
 import { Box, Button } from "@mui/material";
 import { motion } from "framer-motion";
 import "./home.scss"
+import { useTranslation } from "react-i18next";
 
 const Home = () => {
+  const { t } = useTranslation()
   return (
     <Box
       sx={{
@@ -21,7 +23,7 @@ const Home = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, type: "spring" }}
       >
-        <H1 className="text-center">Moliyaviy va boshqaruv hisobiga ega CRM</H1>
+        <H1 className="text-center">{t("welcome-title")}</H1>
       </motion.div>
       <Box className="home-box">
         <motion.div
