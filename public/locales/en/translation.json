@@ -6,10 +6,16 @@
     "section-selling":"Sales management",
     "section-financial":"Financial account",
     "section-analytics":"Analytics",
-    "footer-title": "Focus on the profits of your business with the Easy-App",
-    "footer-paragraph": "Increase sales and productivity now",
+    "footer-title": "Yengil-app",
+    "footer-title-city": "Tashkent r. Bekobod c.",
+    "footer-generelt": "lorem",
+    "footer-generelt-tab1": "lorem",
+    "footer-generelt-tab2": "lorem",
+    "footer-generelt-tab3": "lorem",
+    "footer-support":"Support",
     "footer-conditions": "Terms of use",
     "footer-confidentiality": "Privacy Policy",
     "footer-map": "Site map",
+    "footer-social": "Social",
     "join-telegram": "Telegram"
 }

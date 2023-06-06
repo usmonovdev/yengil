@@ -6,10 +6,16 @@
     "section-selling":"Sotish boshqaruvi",
     "section-financial":"Moliyaviy hisob",
     "section-analytics":"Analitika",
-    "footer-title": "Yengil-App bilan biznesingizning foydasiga e'tibor qarating",
-    "footer-paragraph": "Hozirda savdo va samaradorlikni oshiring",
+    "footer-title": "Yengil-App",
+    "footer-title-city": "Toshkent v. Bekobod sh.",
+    "footer-generelt": "lorem",
+    "footer-generelt-tab1": "lorem",
+    "footer-generelt-tab2": "lorem",
+    "footer-generelt-tab3": "lorem",
+    "footer-support":"Qo'llab-quvvatlash",
     "footer-conditions": "Foydalanish shartlari",
     "footer-confidentiality": "Maxfiylik siyosati",
     "footer-map": "Sayt xaritasi",
+    "footer-social": "Ijtimoiy",
     "join-telegram":"Telegram"
 }
