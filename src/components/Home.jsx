@@ -15,7 +15,7 @@ const Home = () => {
         flexDirection: "column",
         alignItems: "center",
         gap: "30px",
-        height: "500px",
+        height: "100vh",
       }}
     >
       <motion.div
