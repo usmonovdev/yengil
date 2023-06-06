@@ -3,8 +3,10 @@ import { Button, Container } from "@mui/material";
 import { H1, H3, Paragraph } from "../../ui/typography";
 import { motion } from "framer-motion";
 import "./footer.scss";
+import { useTranslation } from "react-i18next";
 
 const Footer = () => {
+  const { t } = useTranslation()
   return (
     <>
       <footer>
@@ -18,14 +20,14 @@ const Footer = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.5, type: "spring" }}
           >
-            <H3>Yengil-App bilan biznesingizning foydasiga e'tibor qarating</H3>
+            <H3>{t("footer-title")}</H3>
           </motion.div>
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1.5, y: 0 }}
             transition={{ duration: 1, type: "spring", delay: 0.2 }}
           >
-            <H3>Hozirda savdo va samaradorlikni oshiring</H3>
+            <H3>{t("footer-paragraph")}</H3>
           </motion.div>
           <motion.div
             initial={{ opacity: 0, scale: 0.7 }}
@@ -41,17 +43,17 @@ const Footer = () => {
                 marginTop: "40px",
               }}
             >
-              Bepul sinab ko'rish
+              {t("button")}
             </Button>
           </motion.div>
-          <Paragraph>30 kun davomida bepul</Paragraph>
+          <Paragraph>{t("button-title")}</Paragraph>
         </Container>
       </footer>
       <footer className="footer2">
         <Container className="footercontainer">
-          <Paragraph>Foydalanish shartlari</Paragraph>
-          <Paragraph>Maxfiylik siyosati</Paragraph>
-          <Paragraph>Sayt xaritasi</Paragraph>
+          <Paragraph>{t("footer-conditions")}</Paragraph>
+          <Paragraph>{t("footer-confidentiality")}</Paragraph>
+          <Paragraph>{t("footer-map")}</Paragraph>
         </Container>
       </footer>
     </>

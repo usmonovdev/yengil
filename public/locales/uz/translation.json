@@ -1,3 +1,15 @@
 {
-    "welcome-title": "Moliyaviy va boshqaruv hisobiga ega CRM"
+    "welcome-title": "Moliyaviy va boshqaruv hisobiga ega CRM",
+    "title": "Yengil App biznes jarayonlarini avtomatlashtiradi, moliyaviy ahvolingizni tartibga soladi, savdoni yaxshilashga yordam beradi va real daromadingizni ko'rsatadi.",
+    "button": "bepul sinab ko'rish",
+    "button-title": "30 kun davomida bepul",
+    "section-selling":"Sotish boshqaruvi",
+    "section-financial":"Moliyaviy hisob",
+    "section-analytics":"Analitika",
+    "footer-title": "Yengil-App bilan biznesingizning foydasiga e'tibor qarating",
+    "footer-paragraph": "Hozirda savdo va samaradorlikni oshiring",
+    "footer-conditions": "Foydalanish shartlari",
+    "footer-confidentiality": "Maxfiylik siyosati",
+    "footer-map": "Sayt xaritasi",
+    "join-telegram":"Telegram"
 }

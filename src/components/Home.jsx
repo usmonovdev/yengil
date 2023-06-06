@@ -2,11 +2,11 @@ import React from "react";
 import { H1, H3, Paragraph } from "../ui/typography";
 import { Box, Button } from "@mui/material";
 import { motion } from "framer-motion";
-import "./home.scss"
+import "./home.scss";
 import { useTranslation } from "react-i18next";
 
 const Home = () => {
-  const { t } = useTranslation()
+  const { t } = useTranslation();
   return (
     <Box
       sx={{
@@ -31,11 +31,7 @@ const Home = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, type: "spring", delay: 0.2 }}
         >
-          <H3 className="text-center">
-            Yengil App biznes jarayonlarini avtomatlashtiradi, moliyaviy
-            ahvolingizni tartibga soladi, savdoni yaxshilashga yordam beradi va
-            real daromadingizni ko'rsatadi.
-          </H3>
+          <H3 className="text-center">{t("title")}</H3>
         </motion.div>
       </Box>
       <motion.div
@@ -51,10 +47,10 @@ const Home = () => {
             boxShadow: "0px 15px 50px 0px rgba(0,12,33,0.2)",
           }}
         >
-          Bepul sinab ko'rish
+          {t("button")}
         </Button>
       </motion.div>
-      <Paragraph>30 kun davomida bepul</Paragraph>
+      <Paragraph>{t("button-title")}</Paragraph>
     </Box>
   );
 };

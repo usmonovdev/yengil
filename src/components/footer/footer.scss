@@ -1,6 +1,9 @@
 footer {
   width: 100%;
   min-height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background-color: #212e48;
   color: white;
   margin-top: 80px;
@@ -11,7 +14,7 @@ footer {
     justify-content: center;
     flex-direction: column;
     gap: 10px;
-    padding-left: 20px;
+    padding: 20px;
     @media (max-width: 600px) {
       text-align: center;
     }

@@ -10,6 +10,7 @@ import { Paragraph, StyledAncor } from "../../ui/typography";
 import { motion } from "framer-motion";
 import "./header.scss";
 import ChangeLang from "./ChangeLang";
+import { useTranslation } from "react-i18next";
 
 const MaterialUISwitch = styled(Switch)(({ theme }) => ({
   width: 70,
@@ -59,6 +60,7 @@ const MaterialUISwitch = styled(Switch)(({ theme }) => ({
 
 const Header = () => {
   const [langOpen, setLangOpen] = useState(false);
+  const { t } = useTranslation()
   return (
     <div className="header-box">
       <Container>
@@ -79,7 +81,7 @@ const Header = () => {
                   width="30px"
                   className="join-telegram"
                 />
-                <Paragraph>Join telegram</Paragraph>
+                <Paragraph>{t("join-telegram")}</Paragraph>
               </Button>
             </StyledAncor>
           </motion.div>

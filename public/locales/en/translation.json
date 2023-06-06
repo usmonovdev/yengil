@@ -1,3 +1,15 @@
 {
-    "welcome-title": "A CRM with financial and management accounting"
+    "welcome-title": "A CRM with financial and management accounting",
+    "title": "A lightweight App automates business processes, organizes your financial situation, helps improve sales and shows your real income.",
+    "button": "try it for free",
+    "button-title": "Free for 30 days",
+    "section-selling":"Sales management",
+    "section-financial":"Financial account",
+    "section-analytics":"Analytics",
+    "footer-title": "Focus on the profits of your business with the Easy-App",
+    "footer-paragraph": "Increase sales and productivity now",
+    "footer-conditions": "Terms of use",
+    "footer-confidentiality": "Privacy Policy",
+    "footer-map": "Site map",
+    "join-telegram": "Telegram"
 }
