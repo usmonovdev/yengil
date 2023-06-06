@@ -1,5 +1,8 @@
 .home-box {
     width: 80%;
+    Link{
+        text-decoration: none;
+    }
     @media (max-width: 600px) {
         width: 100%;
     }
