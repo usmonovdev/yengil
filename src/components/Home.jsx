@@ -55,8 +55,8 @@ const Home = () => {
         </motion.div>
         <Paragraph>{t("button-title")}</Paragraph>
       </Box>
-      <Section />
       <LocalRegister />
+      <Section />
     </>
   );
 };
