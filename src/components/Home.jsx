@@ -43,7 +43,7 @@ const Home = () => {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.6, type: "spring", delay: 0.4 }}
         >
-          <Link to={"/register"}>
+          <Link to={"/register"} style={{ textDecoration: "none" }}>
             <Button
               variant="contained"
               color="white"
