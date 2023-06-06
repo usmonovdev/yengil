@@ -8,14 +8,9 @@ const Footer = () => {
   return (
     <>
       <footer>
-        <Container
+        <Container className="Container"
           sx={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            flexDirection: "column",
-            gap: "20px",
-            paddingBottom: "20px",
+            
           }}
         >
           <motion.div
@@ -23,7 +18,7 @@ const Footer = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.5, type: "spring" }}
           >
-            <H1>Yengil-App bilan biznesingizning foydasiga e'tibor qarating</H1>
+            <H3>Yengil-App bilan biznesingizning foydasiga e'tibor qarating</H3>
           </motion.div>
           <motion.div
             initial={{ opacity: 0, y: 30 }}
