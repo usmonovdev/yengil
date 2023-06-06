@@ -3,7 +3,9 @@ import "./app.scss"
 import Footer from "./components/footer/Footer";
 import Header from "./components/header/Header"
 import Home from "./components/Home";
-import Section from "./components/section/Section";
+import { Route, Routes } from "react-router-dom";
+import Register from "./components/register/Register";
+import Login from "./components/login/Login";
 const { palette } = createTheme();
 const { augmentColor } = palette;
 
@@ -22,7 +24,7 @@ function App() {
     },
     shadows: ["none"],
     typography: {
-      fontFamily: '"Montserrat", sans-serif',
+      fontFamily: '"Raleway", sans-serif',
       fontWeightLight: 200,
     },
   })
@@ -30,10 +32,12 @@ function App() {
     <ThemeProvider theme={theme}>
       <Header />
       <Container>
-        <Home />
-        <Section/>
+        <Routes>
+          <Route path={"/"} element={<Home />}/>
+          <Route path={"/register"} element={<Register />}/>
+          <Route path={"/login"} element={<Login />}/>
+        </Routes>
       </Container>
-      
       <Footer />
     </ThemeProvider>
   );

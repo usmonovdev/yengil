@@ -6,6 +6,7 @@
     "section-selling":"Управление продажами",
     "section-financial":"Финансовый счет",
     "section-analytics":"Аналитика",
+<<<<<<< HEAD
     "footer-title": "Yengil-app",
     "footer-title-city": "Ташкент о. Бекабод г.",
     "footer-generelt": "lorem",
@@ -13,6 +14,10 @@
     "footer-generelt-tab2": "lorem",
     "footer-generelt-tab3": "lorem",
     "footer-support":"Поддерживать",
+=======
+    "footer-title": "Сосредоточьтесь на прибыли вашего бизнеса с Yengil-App",
+    "footer-paragraph": "Увеличьте продажи и производительность прямо сейчас",
+>>>>>>> 099a2a75d7e9693aba7782b07e052b13e399eafd
     "footer-conditions": "Условия эксплуатации",
     "footer-confidentiality": "политика конфиденциальности",
     "footer-map": "Карта сайта",

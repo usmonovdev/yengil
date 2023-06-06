@@ -4,54 +4,60 @@ import { Box, Button } from "@mui/material";
 import { motion } from "framer-motion";
 import "./home.scss";
 import { useTranslation } from "react-i18next";
+import Section from "./section/Section";
+import LocalRegister from "./localRegister/LocalRegister";
 
 const Home = () => {
   const { t } = useTranslation();
   return (
-    <Box
-      sx={{
-        display: "flex",
-        justifyContent: "center",
-        flexDirection: "column",
-        alignItems: "center",
-        gap: "30px",
-        height: "100vh",
-      }}
-    >
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, type: "spring" }}
+    <>
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          flexDirection: "column",
+          alignItems: "center",
+          gap: "30px",
+          height: "100vh",
+        }}
       >
-        <H1 className="text-center">{t("welcome-title")}</H1>
-      </motion.div>
-      <Box className="home-box">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, type: "spring", delay: 0.2 }}
+          transition={{ duration: 0.5, type: "spring" }}
         >
-          <H3 className="text-center">{t("title")}</H3>
+          <H1 className="text-center">{t("welcome-title")}</H1>
         </motion.div>
-      </Box>
-      <motion.div
-        initial={{ opacity: 0, scale: 0.7 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.6, type: "spring", delay: 0.4 }}
-      >
-        <Button
-          variant="contained"
-          color="white"
-          sx={{
-            color: "#fff",
-            boxShadow: "0px 15px 50px 0px rgba(0,12,33,0.2)",
-          }}
+        <Box className="home-box">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, type: "spring", delay: 0.2 }}
+          >
+            <H3 className="text-center">{t("title")}</H3>
+          </motion.div>
+        </Box>
+        <motion.div
+          initial={{ opacity: 0, scale: 0.7 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.6, type: "spring", delay: 0.4 }}
         >
-          {t("button")}
-        </Button>
-      </motion.div>
-      <Paragraph>{t("button-title")}</Paragraph>
-    </Box>
+          <Button
+            variant="contained"
+            color="white"
+            sx={{
+              color: "#fff",
+              boxShadow: "0px 15px 50px 0px rgba(0,12,33,0.2)",
+            }}
+          >
+            {t("button")}
+          </Button>
+        </motion.div>
+        <Paragraph>{t("button-title")}</Paragraph>
+      </Box>
+      <LocalRegister />
+      <Section />
+    </>
   );
 };
 
