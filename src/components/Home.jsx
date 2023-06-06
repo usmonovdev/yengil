@@ -58,8 +58,10 @@ const Home = () => {
         </motion.div>
         <Paragraph>{t("button-title")}</Paragraph>
       </Box>
-      <LocalRegister />
-      <Section />
+      <Box sx={{ display: "flex", flexDirection: "column", gap: "140px" }}>
+        <LocalRegister />
+        <Section />
+      </Box>
     </>
   );
 };

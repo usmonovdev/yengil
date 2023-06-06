@@ -1,7 +1,7 @@
 import { TextField } from "@mui/material";
 import React from "react";
 
-const InputComp = ({ value, setValue, placeholder, type = "text", label, required }) => {
+const InputComp = ({ value, setValue, placeholder, type = "text", label, required, inputProps = "" }) => {
   return (
     <>
       <TextField
@@ -14,6 +14,7 @@ const InputComp = ({ value, setValue, placeholder, type = "text", label, require
         color="white"
         fullWidth
         required={required}
+        inputProps={inputProps}
         onChange={(e) => setValue(e.target.value)}
       />
     </>
