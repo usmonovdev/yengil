@@ -2,12 +2,18 @@ import React, { useState } from 'react'
 import InputComp from '../../ui/InputComp'
 import './register.scss'
 import { Box, Button } from '@mui/material'
+import { motion } from "framer-motion";
 import { H1 } from '../../ui/typography'
 
 const Register = () => {
   const [name, setName] = useState("")
   const [phone, setPhone] = useState("")
   return (
+    <motion.div
+          initial={{ opacity: 0, scale: 0.7 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.6, type: "spring", delay: 0.4 }}
+        >
     <div className='register-box'>
       <H1 className='register-heading'>Register</H1>
       <Box
@@ -47,6 +53,7 @@ const Register = () => {
       </Box>
 
     </div>
+    </motion.div>
   )
 }
 
