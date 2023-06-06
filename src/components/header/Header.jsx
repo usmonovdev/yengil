@@ -1,26 +1,26 @@
-import React from "react";
-import "./header.scss";
+import React, { useState } from "react";
 import language from "../../assets/icons/language.png";
-import { styled } from "@mui/material/styles";
 import FormGroup from "@mui/material/FormGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Switch from "@mui/material/Switch";
-import { Button, Container } from "@mui/material";
 import telegram_icon from "../../assets/icons/telegram.png";
+import { styled } from "@mui/material/styles";
+import { Box, Button, Container } from "@mui/material";
 import { Paragraph } from "../../ui/typography";
 import { motion } from "framer-motion";
+import "./header.scss";
+import ChangeLang from "./ChangeLang";
 
 const MaterialUISwitch = styled(Switch)(({ theme }) => ({
-  width: 62,
-  height: 34,
-  padding: 7,
+  width: 70,
+  height: 50,
   "& .MuiSwitch-switchBase": {
-    margin: 1,
+    margin: 0,
     padding: 0,
-    transform: "translateX(6px)",
+    transform: "translate(12px, 11px)",
     "&.Mui-checked": {
       color: "#fff",
-      transform: "translateX(22px)",
+      transform: "translate(30px, 11px)",
       "& .MuiSwitch-thumb:before": {
         backgroundImage: `url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" height="20" width="20" viewBox="0 0 20 20"><path fill="${encodeURIComponent(
           "#fff"
@@ -34,8 +34,8 @@ const MaterialUISwitch = styled(Switch)(({ theme }) => ({
   },
   "& .MuiSwitch-thumb": {
     backgroundColor: theme.palette.mode === "dark" ? "#003892" : "#00a3ff",
-    width: 32,
-    height: 32,
+    width: 28,
+    height: 28,
     "&:before": {
       content: "''",
       position: "absolute",
@@ -53,11 +53,12 @@ const MaterialUISwitch = styled(Switch)(({ theme }) => ({
   "& .MuiSwitch-track": {
     opacity: 1,
     backgroundColor: theme.palette.mode === "dark" ? "#8796A5" : "#aab4be",
-    borderRadius: 20 / 2,
+    borderRadius: 50 / 2,
   },
 }));
 
 const Header = () => {
+  const [langOpen, setLangOpen] = useState(true);
   return (
     <div className="header-box">
       <Container>
@@ -85,14 +86,17 @@ const Header = () => {
               <FormControlLabel
                 control={<MaterialUISwitch sx={{ m: 1 }} defaultChecked />}
               />
-              <Button>
-                <img
-                  src={language}
-                  alt=""
-                  width="30px"
-                  style={{ opacity: "40%" }}
-                />
-              </Button>
+              <Box sx={{ position: "relative", display: "flex", flexDirection: "column", justifyContent: "center" }}>
+                <Button onClick={() => setLangOpen(!langOpen)}>
+                  <img
+                    src={language}
+                    alt=""
+                    width="30px"
+                    style={{ opacity: "40%" }}
+                  />
+                </Button>
+                <ChangeLang open={langOpen} />
+              </Box>
             </FormGroup>
           </motion.div>
         </div>

@@ -14,5 +14,30 @@
                 display: none;
             }
         }
+        .change-lang {
+            position: absolute;
+            top: 65px;
+            left: -10px;
+            width: 90px;
+            height: 90px;
+            box-shadow: 0px 15px 50px 0px rgba(0,12,33,0.2);
+            border-radius: 6px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            z-index: 10;
+            &::before {
+                content: "";
+                position: absolute;
+                top: -5px;
+                width: 10px;
+                height: 10px;
+                background-color: white;
+                transform: rotate(45deg);
+                z-index: 1;
+            }
+        }
     }
 }
