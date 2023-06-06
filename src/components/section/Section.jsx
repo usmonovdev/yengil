@@ -1,6 +1,6 @@
 import React from "react";
 import "./section.scss";
-import sales from "../../assets/icons/salesicon.png";
+import sales from "../../assets/icons/sotish.png";
 import Financial from "../../assets/icons/Financial.png";
 import Analytics from "../../assets/icons/Analytics.png";
 import { H1, H3, H2, Paragraph } from "../../ui/typography";

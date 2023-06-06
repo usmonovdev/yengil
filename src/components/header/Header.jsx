@@ -110,7 +110,7 @@ const Header = () => {
                     style={{ opacity: "40%" }}
                   />
                 </Button>
-                <ChangeLang open={langOpen} />
+                <ChangeLang open={langOpen} setOpen={setLangOpen} />
               </Box>
             </FormGroup>
           </motion.div>

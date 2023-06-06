@@ -3,25 +3,31 @@ import { motion } from "framer-motion";
 import { Paragraph } from "../../ui/typography";
 import { useTranslation } from "react-i18next";
 
-const ChangeLang = ({ open }) => {
-  const { i18n } = useTranslation()
+const ChangeLang = ({ open, setOpen }) => {
+  const { i18n } = useTranslation();
   const languages = [
     {
       language: "uz",
       title: "Uzbek",
-      id: 1
+      id: 1,
     },
     {
       language: "en",
       title: "English",
-      id: 2
+      id: 2,
     },
     {
       language: "ru",
       title: "Russian",
-      id: 3
-    }
-  ]
+      id: 3,
+    },
+  ];
+
+  const handleChangeLng = (e) => {
+    i18n.changeLanguage(e)
+    setOpen(false)
+  }
+
   return (
     <>
       {open && (
@@ -33,8 +39,17 @@ const ChangeLang = ({ open }) => {
         >
           {languages.map((lng) => {
             return (
-              <Paragraph key={lng.id} onClick={() => i18n.changeLanguage(lng.language)}>{lng.title}</Paragraph>
-            )
+              <Paragraph
+                key={lng.id}
+                onClick={() => handleChangeLng(lng.language)}
+              >
+                {i18n.language == lng.language ? (
+                  <b>{lng.title}</b>
+                ) : (
+                  <p>{lng.title}</p>
+                )}
+              </Paragraph>
+            );
           })}
         </motion.div>
       )}

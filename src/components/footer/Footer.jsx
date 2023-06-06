@@ -9,10 +9,10 @@ const Footer = () => {
   const { t } = useTranslation()
   return (
     <>
-      <footer>
+      <footer className="footer1">
         <Container className="Container"
           sx={{
-            
+            padding: "10px 0"
           }}
         >
           <motion.div
@@ -40,7 +40,7 @@ const Footer = () => {
               sx={{
                 color: "#fff",
                 boxShadow: "0px 15px 50px 0px rgba(0,12,33,0.2)",
-                marginTop: "40px",
+                marginTop: "30px",
               }}
             >
               {t("button")}
