@@ -6,6 +6,7 @@ import "./home.scss";
 import { useTranslation } from "react-i18next";
 import Section from "./section/Section";
 import LocalRegister from "./localRegister/LocalRegister";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   const { t } = useTranslation();
@@ -42,16 +43,18 @@ const Home = () => {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.6, type: "spring", delay: 0.4 }}
         >
-          <Button
-            variant="contained"
-            color="white"
-            sx={{
-              color: "#fff",
-              boxShadow: "0px 15px 50px 0px rgba(0,12,33,0.2)",
-            }}
-          >
-            {t("button")}
-          </Button>
+          <Link to={"/register"}>
+            <Button
+              variant="contained"
+              color="white"
+              sx={{
+                color: "#fff",
+                boxShadow: "0px 15px 50px 0px rgba(0,12,33,0.2)",
+              }}
+            >
+              {t("button")}
+            </Button>
+          </Link>
         </motion.div>
         <Paragraph>{t("button-title")}</Paragraph>
       </Box>
