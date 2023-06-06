@@ -9,11 +9,6 @@
         align-items: center;
         padding: 1rem 0;
         justify-content: space-between;
-        .join-telegram {
-            @media (max-width: 600px) {
-                display: none;
-            }
-        }
         .change-lang {
             position: absolute;
             top: 65px;

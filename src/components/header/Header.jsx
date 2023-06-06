@@ -79,7 +79,6 @@ const Header = () => {
                 <img
                   src={telegram_icon}
                   width="30px"
-                  className="join-telegram"
                 />
                 <Paragraph>{t("join-telegram")}</Paragraph>
               </Button>
