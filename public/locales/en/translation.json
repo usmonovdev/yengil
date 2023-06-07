@@ -17,5 +17,9 @@
     "footer-confidentiality": "Privacy Policy",
     "footer-map": "Site map",
     "footer-social": "Social",
-    "join-telegram": "Telegram"
+    "join-telegram": "Telegram",
+    "register-title": "Register for using",
+    "register-label-name": "Name",
+    "register-label-phone": "Phone",
+    "register-button":"Register"
 }
