@@ -9,7 +9,7 @@ const InputComp = ({ value, setValue, placeholder, type = "text", label, require
         value={value}
         placeholder={placeholder}
         type={type}
-        variant="outlined"
+        variant="outlined"   
         color="white"
         fullWidth
         required={required}

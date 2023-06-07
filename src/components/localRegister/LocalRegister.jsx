@@ -42,7 +42,7 @@ const LocalRegister = () => {
           placeholder="+998 78 777 11 00"
           value={phone}
           setValue={setPhone}
-          label={t('register-label-phone')}
+          label={t("register-label-phone")}
           required={true}
           type={"number"}
           inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }}
