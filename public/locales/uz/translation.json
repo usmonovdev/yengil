@@ -17,5 +17,9 @@
     "footer-confidentiality": "Maxfiylik siyosati",
     "footer-map": "Sayt xaritasi",
     "footer-social": "Ijtimoiy",
-    "join-telegram":"Telegram"
+    "join-telegram":"Telegram",
+    "register-title": "Foydalanish uchun ro'yxatdan o'ting",
+    "register-label-name": "Ism",
+    "register-label-phone": "Telefon",
+    "register-button": "Roʻyxatdan oʻtish"
 }

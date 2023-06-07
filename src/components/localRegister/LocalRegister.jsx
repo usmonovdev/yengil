@@ -3,10 +3,9 @@ import React, { useEffect, useRef, useState } from "react";
 import InputComp from "../../ui/InputComp";
 import { H1, Paragraph } from "../../ui/typography";
 import "./localregister.scss";
-import { useInView } from "framer-motion";
-import { Link } from "react-router-dom";
 
 const LocalRegister = () => {
+  const { t } = useTranslation();
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const ref = useRef();
@@ -26,23 +25,24 @@ const LocalRegister = () => {
       }}
     >
       <H1 className="text-center" style={{ marginBottom: "20px" }}>
-        Register for using
+        {t("register-title")}
       </H1>
       <form className="form-local">
         <InputComp
           placeholder="Usmonov Azizbek"
           value={name}
           setValue={setName}
-          label={"Name"}
+          label={t("register-label-name")}
           required={true}
         />
         <InputComp
           placeholder="+998 78 777 11 00"
           value={phone}
           setValue={setPhone}
-          label={"Phone"}
+          label={t('register-label-phone')}
           required={true}
           type={"number"}
+          inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }}
         />
         <Button
           variant="contained"
@@ -53,7 +53,7 @@ const LocalRegister = () => {
             boxShadow: "0px 15px 50px 0px rgba(0,12,33,0.2)",
           }}
         >
-          Register
+          {t("register-button")}
         </Button>
       </form>
       <Paragraph className="text-center" style={{ marginTop: "20px" }}>Akauntingiz bormi? <Link to={"/login"} style={{ textDecoration: "none" }}>Kirish</Link></Paragraph>
