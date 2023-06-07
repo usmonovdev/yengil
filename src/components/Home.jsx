@@ -47,7 +47,7 @@ const Home = () => {
           <Link to={"/register"} style={{ textDecoration: "none" }}>
             <Button
               variant="contained"
-              color="white"
+              color="blue"
               sx={{
                 color: "#fff",
                 boxShadow: "0px 15px 50px 0px rgba(0,12,33,0.2)",

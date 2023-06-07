@@ -1,12 +1,12 @@
-import { Container, ThemeProvider, createTheme } from "@mui/material";
-import "./app.scss"
 import Footer from "./components/footer/Footer";
 import Header from "./components/header/Header"
 import Home from "./components/Home";
-import { Route, Routes } from "react-router-dom";
 import Register from "./components/register/Register";
 import Login from "./components/login/Login";
-import Error from "./components/Error page/Error";
+import Error from "./components/errorPage/Error";
+import { Container, ThemeProvider, createTheme } from "@mui/material";
+import { Route, Routes } from "react-router-dom";
+import "./app.scss"
 const { palette } = createTheme();
 const { augmentColor } = palette;
 
@@ -15,7 +15,8 @@ function App() {
   const theme = createTheme({
     palette: {
       mode: 'light',
-      white: createColor('#00a3ff'),
+      blue: createColor('#00a3ff'),
+      white: createColor('#fff'),
       primary: {
         main: '#212e48',
       },

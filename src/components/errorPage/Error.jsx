@@ -1,6 +1,6 @@
 import React from "react";
 import "./Error.scss";
-import { H1, H2, H3, StyledLink } from "../../ui/typography";
+import { H1, H2, StyledLink } from "../../ui/typography";
 import { Button } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
@@ -18,7 +18,7 @@ const Error = () => {
         <H1>404</H1>
         <H2>{t("Error-404")}</H2>
         <StyledLink to="/">
-          <Button variant="contained" color="white">
+          <Button variant="contained" color="blue" sx={{ color: "#fff" }}>
             {t("Back-to-home")}
           </Button>
         </StyledLink>

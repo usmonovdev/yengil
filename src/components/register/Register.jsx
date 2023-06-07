@@ -41,7 +41,7 @@ const Register = () => {
           />
           <Button
             variant="contained"
-            color="white"
+            color="blue"
             sx={{
               color: "#fff",
               width: "100%",
