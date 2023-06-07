@@ -25,5 +25,6 @@
     "register-button": "Yuborish",
     "have-an-account": "Akauntingiz bormi? Kirish",
     "Error-404": "Sahifa topilmadi",
-    "Back-to-home":"Asosiy sahifaga qaytish"
+    "Back-to-home":"Asosiy sahifaga qaytish",
+    "success":"Muvaffaqiyatli bajarildi"
 }
