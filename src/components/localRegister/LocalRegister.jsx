@@ -1,7 +1,10 @@
-import { Box, Button } from "@mui/material";
 import React, { useEffect, useRef, useState } from "react";
 import InputComp from "../../ui/InputComp";
+import { Button } from "@mui/material";
 import { H1, Paragraph } from "../../ui/typography";
+import { useInView } from "framer-motion";
+import { useTranslation } from "react-i18next";
+import { Link } from "react-router-dom";
 import "./localregister.scss";
 
 const LocalRegister = () => {
