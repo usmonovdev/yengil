@@ -6,6 +6,7 @@ import Home from "./components/Home";
 import { Route, Routes } from "react-router-dom";
 import Register from "./components/register/Register";
 import Login from "./components/login/Login";
+import Error from "./components/Error page/Error";
 const { palette } = createTheme();
 const { augmentColor } = palette;
 
@@ -36,6 +37,7 @@ function App() {
           <Route path={"/"} element={<Home />}/>
           <Route path={"/register"} element={<Register />}/>
           <Route path={"/login"} element={<Login />}/>
+          <Route path={"*"} element={<Error />}/>
         </Routes>
       </Container>
       <Footer />

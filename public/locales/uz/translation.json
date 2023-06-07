@@ -23,5 +23,7 @@
     "register-label-name": "Ism",
     "register-label-phone": "Telefon",
     "register-button": "Yuborish",
-    "have-an-account": "Akauntingiz bormi? Kirish"
+    "have-an-account": "Akauntingiz bormi? Kirish",
+    "Error-404": "Sahifa topilmadi",
+    "Back-to-home":"Asosiy sahifaga qaytish"
 }

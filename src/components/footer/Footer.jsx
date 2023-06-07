@@ -19,30 +19,24 @@ const Footer = () => {
             padding: "10px 0",
           }}
         >
-          <div className="info">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1.5, type: "spring" }}
-            >
-              <H3>{t("footer-title")}</H3>
-              <Span>+998 78 777 11 00</Span>
-              <Span>{t("footer-title-city")}</Span>
-            </motion.div>
+          <div>
+            <H3>{t("footer-title")}</H3>
+            <Span>+998 78 777 11 00</Span>
+            <Span>{t("footer-title-city")}</Span>
           </div>
-          <div className="footer-links">
+          <div>
             <H2>{t("footer-generelt")}</H2>
             <Span>{t("footer-generelt-tab1")}</Span>
             <Span>{t("footer-generelt-tab2")}</Span>
             <Span>{t("footer-generelt-tab3")}</Span>
           </div>
-          <div className="footer-support">
+          <div>
             <H3>{t("footer-support")}</H3>
             <Span>{t("footer-conditions")}</Span>
             <Span>{t("footer-confidentiality")}</Span>
             <Span>{t("footer-map")}</Span>
           </div>
-          <div className="support-social">
+          <div>
             <H3>{t("footer-social")}</H3>
             <StyledAncor href="https://t.me/+50UxzsayyoxjY2Ey">
               <Span

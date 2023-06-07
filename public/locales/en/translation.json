@@ -23,5 +23,7 @@
     "register-label-name": "Name",
     "register-label-phone": "Phone",
     "register-button":"Submit",
-    "have-an-account": "Have an account? Log In"
+    "have-an-account": "Have an account? Log In",
+    "Error-404": "Page not found",
+    "Back-to-home":"Back to home"
 }

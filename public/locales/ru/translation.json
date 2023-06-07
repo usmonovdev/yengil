@@ -24,5 +24,7 @@
     "register-label-name": "имя",
     "register-label-phone": "Телефон",
     "register-button": "Отправка",
-    "have-an-account": "У тебя есть аккаунт? Входить"
+    "have-an-account": "У тебя есть аккаунт? Входить",
+    "Error-404": "Страница не найдена",
+    "Back-to-home": "Вернуться домой"
 }
