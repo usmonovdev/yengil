@@ -1,15 +1,30 @@
 import { Box, Button } from "@mui/material";
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import InputComp from "../../ui/InputComp";
-import { H1 } from "../../ui/typography";
+import { H1, Paragraph } from "../../ui/typography";
 import "./localregister.scss";
+import { useInView } from "framer-motion";
+import { Link } from "react-router-dom";
 
 const LocalRegister = () => {
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
-  console.log(name);
+  const ref = useRef();
+  const isInView = useInView(ref, { once: true });
+
+  useEffect(() => {
+    console.log("is in view", isInView);
+  }, [isInView]);
+
   return (
-    <div>
+    <div
+      ref={ref}
+      style={{
+        transform: isInView ? "none" : "translateY(200px)",
+        opacity: isInView ? 1 : 0,
+        transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1)",
+      }}
+    >
       <H1 className="text-center" style={{ marginBottom: "20px" }}>
         Register for using
       </H1>
@@ -28,7 +43,6 @@ const LocalRegister = () => {
           label={"Phone"}
           required={true}
           type={"number"}
-          inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }}
         />
         <Button
           variant="contained"
@@ -42,6 +56,7 @@ const LocalRegister = () => {
           Register
         </Button>
       </form>
+      <Paragraph className="text-center" style={{ marginTop: "20px" }}>Akauntingiz bormi? <Link to={"/login"} style={{ textDecoration: "none" }}>Kirish</Link></Paragraph>
     </div>
   );
 };
