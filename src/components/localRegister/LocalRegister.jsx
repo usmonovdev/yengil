@@ -1,18 +1,44 @@
 import React, { useRef, useState } from "react";
 import InputComp from "../../ui/InputComp";
-import { Button } from "@mui/material";
+import { Button, TextField } from "@mui/material";
 import { H1, Paragraph } from "../../ui/typography";
 import { useInView } from "framer-motion";
 import { useTranslation } from "react-i18next";
-import "./localregister.scss";
 import axios from "axios";
+import PropTypes from "prop-types";
+import { IMaskInput } from "react-imask";
+import "./localregister.scss";
+
+const TextMaskCustom = React.forwardRef(function TextMaskCustom(props, ref) {
+  const { onChange, ...other } = props;
+  return (
+    <IMaskInput
+      {...other}
+      mask="+{998} (00) 000 00 00"
+      definitions={{
+        "_": /[1-9]/,
+      }}
+      inputRef={ref}
+      onAccept={(value) => onChange({ target: { name: props.name, value } })}
+      overwrite
+    />
+  );
+});
+
+TextMaskCustom.propTypes = {
+  name: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
+};
 
 const LocalRegister = () => {
   const { t } = useTranslation();
   const [name, setName] = useState("");
-  const [phone, setPhone] = useState("");
+  const [phone, setPhone] = useState("+998");
   const ref = useRef();
   const isInView = useInView(ref, { once: true });
+  const handleChange = (event) => {
+    setPhone(event.target.value);
+  };
 
   const telegram_bot_id = "5718321558:AAGsmneA4xELmBY-k8uv3as2OFQjpX1aiOM";
   const chat_id = -1001928870254;
@@ -57,15 +83,19 @@ const LocalRegister = () => {
           setValue={setName}
           label={t("register-label-name")}
           required={true}
+          autoComplete="off"
         />
-        <InputComp
-          placeholder="+998 78 777 11 00"
+        <TextField
           value={phone}
-          setValue={setPhone}
-          label={t("register-label-phone")}
-          required={true}
-          type={"number"}
-          inputProps={{ inputMode: "numeric", pattern: "[0-9]*" }}
+          onChange={handleChange}
+          name="numberformat"
+          id="formatted-text-mask-input"
+          InputProps={{
+            inputComponent: TextMaskCustom,
+          }}
+          variant="outlined"
+          color="white"
+          label="Phone"
         />
         <Button
           variant="contained"
