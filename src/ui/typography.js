@@ -31,3 +31,8 @@ export const StyledLink = styled(Link)(({ theme }) => ({
 export const ColoredSpan = styled("span")(({ theme }) => ({
     color: theme.palette.secondary.main
 }))
+
+export const Span = styled("span")(({ theme }) => ({
+    fontSize: "14px",
+    fontWeight: "200"
+}))
