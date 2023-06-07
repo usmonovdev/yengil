@@ -1,17 +1,11 @@
 import React, { useRef, useState } from "react";
 import InputComp from "../../ui/InputComp";
 import { Button } from "@mui/material";
-import {
-  ColoredSpan,
-  H1,
-  Paragraph,
-  StyledAncor,
-  StyledLink,
-} from "../../ui/typography";
+import { H1, Paragraph } from "../../ui/typography";
 import { useInView } from "framer-motion";
-import { Trans, useTranslation } from "react-i18next";
-import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import "./localregister.scss";
+import axios from "axios";
 
 const LocalRegister = () => {
   const { t } = useTranslation();
@@ -19,6 +13,30 @@ const LocalRegister = () => {
   const [phone, setPhone] = useState("");
   const ref = useRef();
   const isInView = useInView(ref, { once: true });
+
+  const telegram_bot_id = "5718321558:AAGsmneA4xELmBY-k8uv3as2OFQjpX1aiOM";
+  const chat_id = -1001928870254;
+  const sendMessage = async () => {
+    if (name.length > 7 && phone.length > 7) {
+      const message = `Ismi: ${name} + \nRaqam: ${phone}`;
+      try {
+        const response = await axios.get(
+          `https://api.telegram.org/bot${telegram_bot_id}/sendMessage`,
+          {
+            params: {
+              chat_id: chat_id,
+              text: message,
+            },
+          }
+        );
+        console.log(response);
+      } catch (error) {
+        console.log(error);
+      }
+    } else {
+      console.log("error");
+    }
+  };
 
   return (
     <div
@@ -52,6 +70,7 @@ const LocalRegister = () => {
         <Button
           variant="contained"
           color="white"
+          onClick={sendMessage}
           sx={{
             color: "#fff",
             width: "100%",

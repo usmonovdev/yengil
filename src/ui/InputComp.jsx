@@ -12,6 +12,7 @@ const InputComp = ({ value, setValue, placeholder, type = "text", label, require
         variant="outlined"   
         color="white"
         fullWidth
+        autoComplete="off"
         required={required}
         onChange={(e) => setValue(e.target.value)}
       />
