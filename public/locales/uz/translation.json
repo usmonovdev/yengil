@@ -18,8 +18,10 @@
     "footer-map": "Sayt xaritasi",
     "footer-social": "Ijtimoiy",
     "join-telegram":"Telegram",
-    "register-title": "Foydalanish uchun ro'yxatdan o'ting",
+    "register-title": "Bog'lanish uchun",
+    "register-info": "Bog'lanish uchun ma'lumotlarni to'ldiring va yuborish tugmasini bosing. Biz siz bilan 24 soat ichida bog'lanamiz.",
     "register-label-name": "Ism",
     "register-label-phone": "Telefon",
-    "register-button": "Roʻyxatdan oʻtish"
+    "register-button": "Yuborish",
+    "have-an-account": "Akauntingiz bormi? Kirish"
 }

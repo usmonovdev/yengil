@@ -18,8 +18,10 @@
     "footer-map": "Site map",
     "footer-social": "Social",
     "join-telegram": "Telegram",
-    "register-title": "Register for using",
+    "register-title": "Contact",
+    "register-info": "Fill in the contact information and click the send button. We will contact you within 24 hours.",
     "register-label-name": "Name",
     "register-label-phone": "Phone",
-    "register-button":"Register"
+    "register-button":"Submit",
+    "have-an-account": "Have an account? Log In"
 }

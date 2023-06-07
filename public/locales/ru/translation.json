@@ -19,8 +19,10 @@
     "footer-map": "Карта сайта",
     "footer-social": "Социальное",
     "join-telegram":"Телеграм",
-    "register-title": "Зарегистрируйтесь, чтобы использовать",
+    "register-title": "Связаться",
+    "register-info": "Заполните контактную информацию и нажмите кнопку отправить. Мы свяжемся с вами в течение 24 часов.",
     "register-label-name": "имя",
     "register-label-phone": "Телефон",
-    "register-button": "Зарегистрироваться"
+    "register-button": "Отправка",
+    "have-an-account": "У тебя есть аккаунт? Входить"
 }

@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { Link } from "react-router-dom";
 
 export const H1 = styled("h1")(({ theme }) => ({
     fontSize: "36px"
@@ -21,4 +22,12 @@ export const Paragraph = styled("p")(({ theme }) => ({
 
 export const StyledAncor = styled("a")(({ theme }) => ({
     textDecoration: "none"
+}))
+
+export const StyledLink = styled(Link)(({ theme }) => ({
+    textDecoration: "none",
+}))
+
+export const ColoredSpan = styled("span")(({ theme }) => ({
+    color: theme.palette.secondary.main
 }))
