@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import "./home.scss";
 import { useTranslation } from "react-i18next";
 import Section from "./section/Section";
+import Comment from "./comment/Comment";
 import LocalRegister from "./localRegister/LocalRegister";
 import { Link } from "react-router-dom";
 
@@ -61,6 +62,7 @@ const Home = () => {
       </Box>
       <Box sx={{ display: "flex", flexDirection: "column", gap: "140px" }}>
         <LocalRegister />
+        <Comment/>
         <Section />
       </Box>
     </>
