@@ -1,16 +1,17 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import language from "../../assets/icons/language.png";
 import FormGroup from "@mui/material/FormGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Switch from "@mui/material/Switch";
 import telegram_icon from "../../assets/icons/telegram.png";
-import { styled } from "@mui/material/styles";
+import { styled, useTheme } from "@mui/material/styles";
 import { Box, Button, Container } from "@mui/material";
 import { Paragraph, StyledAncor } from "../../ui/typography";
 import { motion } from "framer-motion";
 import "./header.scss";
 import ChangeLang from "./ChangeLang";
 import { useTranslation } from "react-i18next";
+import { ColorModeContext } from "../../context/theme";
 
 const MaterialUISwitch = styled(Switch)(({ theme }) => ({
   width: 70,
@@ -59,6 +60,7 @@ const MaterialUISwitch = styled(Switch)(({ theme }) => ({
 }));
 
 const Header = () => {
+  const colorMode = useContext(ColorModeContext);
   const [langOpen, setLangOpen] = useState(false);
   const { t } = useTranslation()
   return (
@@ -90,8 +92,8 @@ const Header = () => {
             transition={{ duration: 0.5, type: "spring" }}
           >
             <FormGroup sx={{ display: "flex", flexDirection: "row" }}>
-              <FormControlLabel
-                control={<MaterialUISwitch sx={{ m: 1 }} defaultChecked />}
+              <FormControlLabel onClick={colorMode.toggleColorMode}
+                control={<MaterialUISwitch sx={{ m: 1 }} />}
               />
               <Box
                 sx={{

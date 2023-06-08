@@ -1,12 +1,10 @@
 import React from "react";
-import { Box, Button, Container } from "@mui/material";
-import { H1, H2, H3, Paragraph, Span, StyledAncor } from "../../ui/typography";
-import { motion } from "framer-motion";
+import { Container } from "@mui/material";
+import { H2, H3, Span, StyledAncor } from "../../ui/typography";
 import telegramicon from "../../assets/icons/telegramicon.png";
 import instagramicon from "../../assets/icons/instagramicon.png";
-import "./footer.scss";
 import { useTranslation } from "react-i18next";
-import { Link } from "react-router-dom";
+import "./footer.scss";
 
 const Footer = () => {
   const { t } = useTranslation();
@@ -25,10 +23,10 @@ const Footer = () => {
             <Span>{t("footer-title-city")}</Span>
           </div>
           <div>
-            <H2>{t("footer-generelt")}</H2>
-            <Span>{t("footer-generelt-tab1")}</Span>
-            <Span>{t("footer-generelt-tab2")}</Span>
-            <Span>{t("footer-generelt-tab3")}</Span>
+            <H2>{t("footer-page")}</H2>
+            <Span>{t("footer-page-tab1")}</Span>
+            <Span>{t("footer-page-tab2")}</Span>
+            <Span>{t("footer-page-tab3")}</Span>
           </div>
           <div>
             <H3>{t("footer-support")}</H3>

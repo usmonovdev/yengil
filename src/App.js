@@ -7,14 +7,25 @@ import Error from "./components/errorPage/Error";
 import { Container, ThemeProvider, createTheme } from "@mui/material";
 import { Route, Routes } from "react-router-dom";
 import "./app.scss"
+import { ColorModeContext } from "./context/theme";
+import { useMemo, useState } from "react";
 const { palette } = createTheme();
 const { augmentColor } = palette;
 
 function App() {
+  const [mode, setMode] = useState(localStorage.getItem("THEME") || 'light');
+  const colorMode = useMemo(
+    () => ({
+      toggleColorMode: () => {
+        setMode((prevMode) => (prevMode === 'light' ? 'dark' : 'light'));
+      },
+    }),
+    [],
+  );
   const createColor = (mainColor) => augmentColor({ color: { main: mainColor } });
   const theme = createTheme({
     palette: {
-      mode: 'light',
+      mode,
       blue: createColor('#00a3ff'),
       white: createColor('#fff'),
       primary: {
@@ -29,20 +40,22 @@ function App() {
       fontFamily: '"Raleway", sans-serif',
       fontWeightLight: 200,
     },
-  })
+  }, [mode])
   return (
-    <ThemeProvider theme={theme}>
-      <Header />
-      <Container>
-        <Routes>
-          <Route path={"/"} element={<Home />}/>
-          <Route path={"/register"} element={<Register />}/>
-          <Route path={"/login"} element={<Login />}/>
-          <Route path={"*"} element={<Error />}/>
-        </Routes>
-      </Container>
-      <Footer />
-    </ThemeProvider>
+    <ColorModeContext.Provider value={colorMode}>
+      <ThemeProvider theme={theme}>
+        <Header />
+        <Container>
+          <Routes>
+            <Route path={"/"} element={<Home />} />
+            <Route path={"/register"} element={<Register />} />
+            <Route path={"/login"} element={<Login />} />
+            <Route path={"*"} element={<Error />} />
+          </Routes>
+        </Container>
+        <Footer />
+      </ThemeProvider>
+    </ColorModeContext.Provider>
   );
 }
 

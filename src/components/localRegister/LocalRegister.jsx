@@ -1,12 +1,6 @@
 import React, { useRef, useState } from "react";
 import InputComp from "../../ui/InputComp";
-import {
-  Alert,
-  Button,
-  CircularProgress,
-  Snackbar,
-  TextField,
-} from "@mui/material";
+import { Alert, Button, CircularProgress, Snackbar } from "@mui/material";
 import { H1, Paragraph } from "../../ui/typography";
 import { useInView } from "framer-motion";
 import { useTranslation } from "react-i18next";
@@ -115,19 +109,16 @@ const LocalRegister = () => {
             label={t("register-label-name")}
             required={true}
             autoComplete="off"
+            name={"name"}
           />
-          <TextField
-            value={phone}
-            onChange={(e) => setPhone(e.target.value)}
-            name="numberformat"
-            id="formatted-text-mask-input"
-            InputProps={{
-              inputComponent: TextMaskCustom,
-            }}
-            variant="outlined"
-            color="blue"
-            label={t("register-label-phone")}
+          <InputComp
             error={phoneError}
+            value={phone}
+            setValue={setPhone}
+            label={t("register-label-phone")}
+            required={true}
+            inputProps={TextMaskCustom}
+            name={"phone"}
           />
           <Button
             variant="contained"
