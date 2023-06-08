@@ -45,7 +45,7 @@ const LocalRegister = () => {
   const chat_id = -1001928870254;
   const sendMessage = async () => {
     if (name.length > 5 && phone.length > 7) {
-      const message = `Yangi foydalanuvchi\n<b>Ismi:</b> <code>${name}</code> + \n<b>Raqam:</b> <code>${phone}</code>`;
+      const message = `👤Yangi foydalanuvchi\n<b>Ismi:</b> <i>${name}</i>  \n<b>Raqam:</b> <code>${phone}</code>`;
       setLoading(true);
       try {
         await axios.get(
@@ -54,6 +54,7 @@ const LocalRegister = () => {
             params: {
               chat_id: chat_id,
               text: message,
+              parse_mode: "html"
             },
           }
         );
