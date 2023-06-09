@@ -1,13 +1,27 @@
 import styled from "@emotion/styled";
 
-export const Div = styled('div')(({theme}) => ({
+export const Div = styled('div')(({ theme }) => ({
     width: "100%",
-    display:"flex",
-    flexDirection:"row",
-    gap: "10px"
+    display: "grid",
+    justifyItems: "end"
 }))
 
-export const Img = styled('img')(({theme}) => ({
-    width: "50px",
-    height: "50px"
+export const RegisterBox = styled('div')(({ theme }) => ({
+    width: {xs: "800px"},
+    margin: "0 auto",
+    height: "100vh",
+    position: "relative",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    flexDirection: "column",
+}))
+
+export const Img = styled('img')(({ theme }) => ({
+    width: "15px",
+    height: "15px",
+    display: "flex",
+    marginRight: "20px",
+    marginTop: "-35px",
+    zIndex: "1"
 }))
