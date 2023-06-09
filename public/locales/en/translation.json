@@ -31,5 +31,6 @@
     "register-paswword": "Paswword",
     "register-provided": "Enter the password provided",
     "register-name": "School name",
-    "register": "Register"
+    "register": "Register",
+    "login": "Log In"
 }

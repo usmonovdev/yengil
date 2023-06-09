@@ -7,7 +7,7 @@ import Switch from "@mui/material/Switch";
 import telegram_icon from "../../assets/icons/telegram.png";
 import { styled, useTheme } from "@mui/material/styles";
 import { Box, Button, Container } from "@mui/material";
-import { Paragraph, StyledAncor } from "../../ui/typography";
+import { Paragraph, StyledAncor, StyledLink } from "../../ui/typography";
 import { motion } from "framer-motion";
 import "./header.scss";
 import ChangeLang from "./ChangeLang";
@@ -71,7 +71,6 @@ const HaederBox = styled("div")(({ theme }) => ({
 
 const Header = () => {
   const theme = useTheme();
-  console.log(theme, "theme");
   const state = useSelector((state) => state.isDarkMode);
   const dispatch = useDispatch();
   const [langOpen, setLangOpen] = useState(false);
@@ -92,7 +91,7 @@ const Header = () => {
                 sx={{ display: "flex", gap: "10px" }}
               >
                 <img src={telegram_icon} width="30px" />
-                <Paragraph>{t("join-telegram")}</Paragraph>
+                <Paragraph className="telegram-text">{t("join-telegram")}</Paragraph>
               </Button>
             </StyledAncor>
           </motion.div>
@@ -101,11 +100,11 @@ const Header = () => {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5, type: "spring" }}
           >
-            <FormGroup sx={{ display: "flex", flexDirection: "row" }}>
+            <FormGroup sx={{ display: "flex", flexDirection: "row", alignItems: "center" }}>
               <FormControlLabel
                 checked={state}
                 onClick={() => dispatch(asyncToggleTheme())}
-                control={<MaterialUISwitch sx={{ m: 1 }} />}
+                control={<MaterialUISwitch />}
               />
               <Box
                 sx={{
@@ -125,6 +124,14 @@ const Header = () => {
                 </Button>
                 <ChangeLang open={langOpen} setOpen={setLangOpen} />
               </Box>
+              <StyledLink to="/login">
+              <Button
+                variant="text"
+                disableElevation
+                >
+                <Paragraph>{t("login")}</Paragraph>
+              </Button>
+                </StyledLink>
             </FormGroup>
           </motion.div>
         </div>

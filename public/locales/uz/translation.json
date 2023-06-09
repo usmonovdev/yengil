@@ -31,5 +31,6 @@
     "register-paswword": "Parol",
     "register-provided": "Taqdim etilgan parolni kiriting",
     "register-name": "Maktab nomi",
-    "register": "Roʻyxatdan oʻtish"
+    "register": "Roʻyxatdan oʻtish",
+    "login": "Kirish"
 }

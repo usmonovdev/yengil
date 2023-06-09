@@ -32,5 +32,6 @@
     "register-paswword": "Пароль",
     "register-provided": "Введите предоставленный пароль",
     "register-name":"Название школы",
-    "register": "Зарегистрироваться"
+    "register": "Зарегистрироваться",
+    "login": "Входить"
 }
