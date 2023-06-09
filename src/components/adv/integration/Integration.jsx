@@ -1,13 +1,14 @@
 import React from 'react'
 import Right from './Right'
 import Left from './Left'
+import { Box } from '@mui/material'
 
 const Integration = () => {
   return (
-    <div>
+    <Box sx={{ display: "flex", flexDirection: { xs: "column", md: "row" } }}>
       <Right />
       <Left />
-    </div>
+    </Box>
   )
 }
 

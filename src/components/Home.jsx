@@ -64,8 +64,8 @@ const Home = () => {
       <Box sx={{ display: "flex", flexDirection: "column", gap: "140px" }}>
         <LocalRegister />
         <Comment/>
-        <Section />
         <Advertising />
+        <Section />
       </Box>
     </>
   );

@@ -13,12 +13,6 @@ import { useTheme } from "@mui/material";
 
 const Section = () => {
   const theme = useTheme()
-  // console.log(theme.palette.mode);
-  if(theme.palette.mode == "light"){
-    console.log("abrordan salom")
-  }else{
-    console.log(false)
-  }
   const ref = useRef();
   const isInView = useInView(ref, { once: true });
   const { t } = useTranslation();

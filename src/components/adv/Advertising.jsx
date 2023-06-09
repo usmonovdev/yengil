@@ -5,11 +5,11 @@ import Statistics from './statistics/Statistics'
 
 const Advertising = () => {
   return (
-    <div>
+    <>
         <Integration />
         <Import />
         <Statistics />
-    </div>
+    </>
   )
 }
 

@@ -12,11 +12,14 @@ const Right = () => {
         transform: isInView ? "none" : "translateX(200px)",
         opacity: isInView ? 1 : 0,
         transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1)",
+        display: "flex",
+        alignItems: "center",
+        justifyContent:"center"
       }}
       ref={ref}
     >
       <img
-        style={{ width: "100%" }}
+        width="80%"
         src="https://static.tildacdn.com/tild3636-3337-4330-a237-383330613938/excel_to_brizo.svg"
         alt=""
       />
