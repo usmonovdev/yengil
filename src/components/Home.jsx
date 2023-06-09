@@ -8,6 +8,7 @@ import Section from "./section/Section";
 import Comment from "./comment/Comment";
 import LocalRegister from "./localRegister/LocalRegister";
 import { Link } from "react-router-dom";
+import Advertising from "./adv/Advertising";
 
 const Home = () => {
   const { t } = useTranslation();
@@ -64,6 +65,7 @@ const Home = () => {
         <LocalRegister />
         <Comment/>
         <Section />
+        <Advertising />
       </Box>
     </>
   );

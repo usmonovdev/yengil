@@ -38,17 +38,13 @@ const Comment = () => {
       }}
       ref={ref}
     >
-      <Swiper
-        className="mySwiper"
-      >
+      <Swiper className="mySwiper">
         {Data.map((data) => {
           return (
-            <SwiperSlide
-              key={data.id}
-            >
-                <StyledImgBox>
-                  <img src={data.image} width="60%" />
-                </StyledImgBox>
+            <SwiperSlide key={data.id}>
+              <StyledImgBox>
+                <img src={data.image} width="60%" />
+              </StyledImgBox>
               <H2>
                 {data.name} <Paragraph>{data.jobs}</Paragraph>
               </H2>
