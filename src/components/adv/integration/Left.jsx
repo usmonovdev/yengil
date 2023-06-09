@@ -23,12 +23,9 @@ const Left = () => {
       }}
       ref={ref}
     >
-      <H1>Website integration</H1>
+      <H1>{t("integration-title")}</H1>
       <Paragraph>
-        Integrate your web site with Brizo CRM and receive leads directly into
-        the system in real time. With the simple web form design tool in just a
-        few minutes, you'll be able to create any form you need, place it on
-        your web site and start automatically collect leads in Brizo CRM.
+        {t("integration-info")}
       </Paragraph>
     </Box>
   );

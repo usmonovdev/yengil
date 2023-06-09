@@ -23,5 +23,6 @@ export const Img = styled('img')(({ theme }) => ({
     display: "flex",
     marginRight: "20px",
     marginTop: "-35px",
-    zIndex: "1"
+    zIndex: "1",
+    color: "red"
 }))

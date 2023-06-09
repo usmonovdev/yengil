@@ -2,9 +2,11 @@ import React, { useRef } from "react";
 import { H1, Paragraph } from "../../../ui/typography";
 import { Box } from "@mui/system";
 import { useInView } from "framer-motion";
+import { useTranslation } from "react-i18next";
 
 const Left = () => {
   const ref = useRef();
+  const { t } = useTranslation()
   const isInView = useInView(ref, { once: true });
   return (
     <Box
@@ -16,12 +18,9 @@ const Left = () => {
       }}
       ref={ref}
     >
-      <H1>Import and exportQuick</H1>
+      <H1>{t("import-title")}</H1>
       <Paragraph>
-        and easy data import from MS Excel. Pull transactions, deals, and
-        client’s information into Brizo in a few clicks. If needed, you can also
-        export data back to Excel to create backup copies, client segmentation,
-        specialized reports, charts, and more.
+        {t('import-info')}
       </Paragraph>
     </Box>
   );

@@ -35,5 +35,9 @@
     "register": "Register",
     "login": "Log In",
     "heading": "Financial statistics",
-    "title1": "Filter transactions by manager, funnel stage or any other parameter, and you'll be able to see all financial summary information for the filtered transactions."
+    "title1": "Filter transactions by manager, funnel stage or any other parameter, and you'll be able to see all financial summary information for the filtered transactions.",
+    "integration-title": "Website integration",
+    "integration-info": "Integrate your web site with Brizo CRM and receive leads directly into the system in real time. With the simple web form design tool in just a few minutes, you'll be able to create any form you need, place it on your web site and start automatically collect leads in Brizo CRM.",
+    "import-title": "Import and exportQuick",
+    "import-info": " and easy data import from MS Excel. Pull transactions, deals, and client’s information into Brizo in a few clicks. If needed, you can also export data back to Excel to create backup copies, client segmentation, specialized reports, charts, and more."
 }
