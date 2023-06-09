@@ -26,5 +26,10 @@
     "have-an-account": "Akauntingiz bormi? Kirish",
     "Error-404": "Sahifa topilmadi",
     "Back-to-home":"Asosiy sahifaga qaytish",
-    "success":"Muvaffaqiyatli bajarildi"
+    "success":"Muvaffaqiyatli bajarildi",
+    "register-phone": "telefon raqami",
+    "register-paswword": "Parol",
+    "register-provided": "Taqdim etilgan parolni kiriting",
+    "register-name": "Maktab nomi",
+    "register": "Roʻyxatdan oʻtish"
 }

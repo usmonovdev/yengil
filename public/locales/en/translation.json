@@ -26,5 +26,10 @@
     "have-an-account": "Have an account? Log In",
     "Error-404": "Page not found",
     "Back-to-home": "Back to home",
-    "success": "Completed successfully"
+    "success": "Completed successfully",
+    "register-phone": "Phone number",
+    "register-paswword": "Paswword",
+    "register-provided": "Enter the password provided",
+    "register-name": "School name",
+    "register": "Register"
 }

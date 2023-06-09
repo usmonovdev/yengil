@@ -34,7 +34,9 @@ const getTokens = (mode) => ({
         },
         custom: {
           background: grey[50],
-          headerOpacity: "#ffffff6e"
+          headerOpacity: "#ffffff6e",
+          bunting: "#212e48",
+          midnight: "#182236"
         }
       } : {
         blue: createColor(lightBlue[600]),
@@ -47,7 +49,9 @@ const getTokens = (mode) => ({
         },
         custom: {
           background: grey[900],
-          headerOpacity: "#21212155"
+          headerOpacity: "#21212155",
+          bunting: "#212e48",
+          midnight: "#182236"
         }
       })
   },

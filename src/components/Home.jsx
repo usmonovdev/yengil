@@ -21,7 +21,7 @@ const Home = () => {
           alignItems: "center",
           gap: "30px",
           height: "100vh",
-          marginBottom: "10px"
+          marginBottom: "10px",
         }}
       >
         <motion.div
