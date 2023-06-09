@@ -3,8 +3,15 @@ import React, { useRef, useState } from "react";
 import { Data } from "../../localData/data";
 import arrow from "../../assets/icons/arrow-right.png";
 import { H2, Paragraph } from "../../ui/typography";
-import "./Comment.scss";
 import { useInView } from "framer-motion";
+import "./Comment.scss";
+import styled from "@emotion/styled";
+
+const StyledImgBox = styled("div")(({ theme }) => ({
+  width: "100px",
+  height: "100px",
+  background: theme.palette.white.main
+}))
 
 const Comment = () => {
   const [index, setIndex] = useState(1);
@@ -45,12 +52,12 @@ const Comment = () => {
     >
       <Button
         variant="contained"
-        color="white"
+        color="blue"
         className="Buttoncomment"
-        sx={{ borderRadius: "50%" }}
+        sx={{ borderRadius: "50%", transform: "rotateY(180deg)" }}
         onClick={handlesubtract}
       >
-        <img src={buttonRight} style={{width: "26px"}}/>
+        <img src={arrow} style={{width: "26px"}}/>
       </Button>
       {Data.map((data) => {
         return (
@@ -67,7 +74,7 @@ const Comment = () => {
       })}
       <Button
         variant="contained"
-        color="white"
+        color="blue"
         className="Buttoncomment"
         sx={{ borderRadius: "56%" }}
         onClick={handleAdd}
