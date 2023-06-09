@@ -1,8 +1,7 @@
 import { Button, Container } from "@mui/material";
 import React, { useState } from "react";
 import { Data } from "../../localData/data";
-import buttonLeft from "../../assets/icons/buttonLeft.png";
-import buttonRight from "../../assets/icons/buttonRight.png";
+import arrow from "../../assets/icons/arrow-right.png";
 import { H2, Paragraph } from "../../ui/typography";
 import "./Comment.scss";
 
@@ -38,17 +37,19 @@ const Comment = () => {
     >
       <Button
         variant="contained"
-        color="white"
+        color="blue"
         className="Buttoncomment"
         sx={{ borderRadius: "50%" }}
         onClick={handlesubtract}
       >
-        <img src={buttonRight} style={{width: "26px"}}/>
+        <img src={arrow} width="40px"style={{ transform: "rotateY(180deg)"  }}/>
       </Button>
       {Data.map((data) => {
         return (
           <div className={`${index === data.id ? "active" : "noactive"} card`}>
-            <img src={data.image} />
+            <div className="img-box">
+            <img width="40px" src={data.image} />
+            </div>
             <H2>
               {data.name} <Paragraph>{data.jobs}</Paragraph>
             </H2>
@@ -58,12 +59,12 @@ const Comment = () => {
       })}
       <Button
         variant="contained"
-        color="white"
+        color="blue"
         className="Buttoncomment"
         sx={{ borderRadius: "56%" }}
         onClick={handleAdd}
       >
-        <img src={buttonLeft} />
+        <img width="40px" src={arrow} />
       </Button>
     </Container>
   );

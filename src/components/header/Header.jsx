@@ -11,7 +11,8 @@ import { motion } from "framer-motion";
 import "./header.scss";
 import ChangeLang from "./ChangeLang";
 import { useTranslation } from "react-i18next";
-import { ColorModeContext } from "../../context/theme";
+import { useDispatch, useSelector } from "react-redux";
+import { asyncToggleTheme } from "../../store/themeSlice";
 
 const MaterialUISwitch = styled(Switch)(({ theme }) => ({
   width: 70,
@@ -35,7 +36,7 @@ const MaterialUISwitch = styled(Switch)(({ theme }) => ({
     },
   },
   "& .MuiSwitch-thumb": {
-    backgroundColor: theme.palette.mode === "dark" ? "#003892" : "#00a3ff",
+    backgroundColor: theme.palette.blue.main,
     width: 28,
     height: 28,
     "&:before": {
@@ -54,17 +55,28 @@ const MaterialUISwitch = styled(Switch)(({ theme }) => ({
   },
   "& .MuiSwitch-track": {
     opacity: 1,
-    backgroundColor: theme.palette.mode === "dark" ? "#8796A5" : "#aab4be",
+    backgroundColor: theme.palette.white.main,
     borderRadius: 50 / 2,
   },
 }));
 
+const HaederBox = styled("div")(({ theme }) => ({
+  background: theme.palette.custom.headerOpacity,
+  width: "100vw",
+  position: "fixed",
+  backdropFilter: "blur(5px)",
+  zIndex: "10000",
+}));
+
 const Header = () => {
-  const colorMode = useContext(ColorModeContext);
+  const theme = useTheme();
+  console.log(theme, "theme");
+  const state = useSelector((state) => state.isDarkMode);
+  const dispatch = useDispatch();
   const [langOpen, setLangOpen] = useState(false);
-  const { t } = useTranslation()
+  const { t } = useTranslation();
   return (
-    <div className="header-box">
+    <HaederBox className="header-box">
       <Container>
         <div className="header">
           <motion.div
@@ -78,10 +90,7 @@ const Header = () => {
                 disableElevation
                 sx={{ display: "flex", gap: "10px" }}
               >
-                <img
-                  src={telegram_icon}
-                  width="30px"
-                />
+                <img src={telegram_icon} width="30px" />
                 <Paragraph>{t("join-telegram")}</Paragraph>
               </Button>
             </StyledAncor>
@@ -92,7 +101,9 @@ const Header = () => {
             transition={{ duration: 0.5, type: "spring" }}
           >
             <FormGroup sx={{ display: "flex", flexDirection: "row" }}>
-              <FormControlLabel onClick={colorMode.toggleColorMode}
+              <FormControlLabel
+                checked={state}
+                onClick={() => dispatch(asyncToggleTheme())}
                 control={<MaterialUISwitch sx={{ m: 1 }} />}
               />
               <Box
@@ -117,7 +128,7 @@ const Header = () => {
           </motion.div>
         </div>
       </Container>
-    </div>
+    </HaederBox>
   );
 };
 
