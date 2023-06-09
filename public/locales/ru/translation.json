@@ -33,5 +33,6 @@
     "register-provided": "Введите предоставленный пароль",
     "register-name": "Название школы",
     "register": "Регистрировать",
-    "register-tooltip": "Создать пароль"
+    "register-tooltip": "Создать пароль",
+    "login": "Входить"
 }

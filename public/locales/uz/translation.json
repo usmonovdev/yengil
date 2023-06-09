@@ -32,5 +32,6 @@
     "register-provided": "Taqdim etilgan parolni kiriting",
     "register-name": "Maktab nomi",
     "register": "Roʻyxatdan oʻtish",
-    "register-tooltip": "Parolni o'ylab toping"
+    "register-tooltip": "Parolni o'ylab toping",
+    "login": "Kirish"
 }

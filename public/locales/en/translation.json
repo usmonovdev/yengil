@@ -32,5 +32,6 @@
     "register-provided": "Enter the password provided",
     "register-name": "School name",
     "register-tooltip": "Create a password",
-    "register": "Register"
+    "register": "Register",
+    "login": "Log In"
 }

@@ -3,33 +3,9 @@
   align-items: center;
   padding: 1rem 0;
   justify-content: space-between;
-  // .change-lang {
-  //   position: absolute;
-  //   top: 65px;
-  //   left: -10px;
-  //   width: 90px;
-  //   height: 90px;
-  //   background-color: var(--white);
-  //   box-shadow: 0px 15px 50px 0px rgba(0, 12, 33, 0.2);
-  //   border-radius: 6px;
-  //   display: flex;
-  //   flex-direction: column;
-  //   align-items: center;
-  //   justify-content: center;
-  //   gap: 6px;
-  //   z-index: 100000;
-  //   &::before {
-  //     content: "";
-  //     position: absolute;
-  //     top: -5px;
-  //     width: 10px;
-  //     height: 10px;
-  //     background-color: var(--white);
-  //     transform: rotate(45deg);
-  //     z-index: 1;
-  //   }
-  //   p {
-  //     cursor: pointer;
-  //   }
-  // }
+  .telegram-text {
+    @media (max-width: 600px) {
+      display: none;
+    }
+  }
 }
