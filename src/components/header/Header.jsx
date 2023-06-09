@@ -1,5 +1,6 @@
 import React, { useContext, useState } from "react";
 import language from "../../assets/icons/language.png";
+import darkLanguage from "../../assets/dark/globe.png"
 import FormGroup from "@mui/material/FormGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Switch from "@mui/material/Switch";
@@ -116,7 +117,7 @@ const Header = () => {
               >
                 <Button onClick={() => setLangOpen(!langOpen)}>
                   <img
-                    src={language}
+                    src={theme.palette.mode == "light" ? language : darkLanguage}
                     alt=""
                     width="30px"
                     style={{ opacity: "40%" }}

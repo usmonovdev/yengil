@@ -1,23 +1,19 @@
-.active {
-  width: 50%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 20px;
-  text-align: center;
-  img {
-    width: 25%;
+.swiper {
+  width: 60%;
+  height: 100%;
+  @media (max-width: 992px) {
+    width: 70%;
+  }
+  @media (max-width: 600px) {
+    width: 100%;
   }
 }
 
-.Buttoncomment {
-  box-shadow: 0px 15px 50px 0px rgba(0, 12, 33, 0.2);
-  width: 60px;
-  height: 60px;
-  display: flex;
-  align-items: center;
+.swiper-slide {
+  text-align: center;
+  display: flex !important;
   justify-content: center;
+<<<<<<< HEAD
   padding: 0;
   margin: 0;
   img {
@@ -70,3 +66,8 @@
 .noactive {
   display: none;
 }
+=======
+  align-items: center;
+  flex-direction: column;
+}
+>>>>>>> b69b54403706ceb339a44a755cf4ae26da88f0f5
