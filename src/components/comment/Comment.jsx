@@ -1,17 +1,25 @@
-import { Button, Container } from "@mui/material";
+import { Box } from "@mui/material";
 import React, { useRef, useState } from "react";
 import { Data } from "../../localData/data";
-import arrow from "../../assets/icons/arrow-right.png";
 import { H2, Paragraph } from "../../ui/typography";
 import { useInView } from "framer-motion";
 import "./Comment.scss";
 import styled from "@emotion/styled";
+import { motion } from "framer-motion";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/pagination";
+import { Pagination } from "swiper";
 
 const StyledImgBox = styled("div")(({ theme }) => ({
-  width: "100px",
-  height: "100px",
-  background: theme.palette.white.main
-}))
+  width: "70px",
+  height: "70px",
+  borderRadius: "50%",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  background: theme.palette.blue.main,
+}));
 
 const Comment = () => {
   const [index, setIndex] = useState(1);
@@ -28,15 +36,8 @@ const Comment = () => {
     }
   };
 
-  const handlesubtract = () => {
-    if (index + 1 < Data.length) {
-      setIndex(Data.length);
-    } else {
-      setIndex(index - 1);
-    }
-  };
   return (
-    <Container
+    <Box
       sx={{
         display: "flex",
         flexDirection: "row",
@@ -50,39 +51,49 @@ const Comment = () => {
       }}
       ref={ref}
     >
-      <Button
-        variant="contained"
-        color="blue"
-        className="Buttoncomment"
-        sx={{ borderRadius: "50%", transform: "rotateY(180deg)" }}
-        onClick={handlesubtract}
+      <Swiper
+        className="mySwiper"
       >
-        <img src={arrow} style={{width: "26px"}}/>
-      </Button>
-      {Data.map((data) => {
-        return (
-          <div className={`${index === data.id ? "active" : "noactive"} card`}>
-            <div className="img-box">
-            <img width="40px" src={data.image} />
-            </div>
-            <H2>
-              {data.name} <Paragraph>{data.jobs}</Paragraph>
-            </H2>
-            <Paragraph>{data.title}</Paragraph>
-          </div>
-        );
-      })}
-      <Button
-        variant="contained"
-        color="blue"
-        className="Buttoncomment"
-        sx={{ borderRadius: "56%" }}
-        onClick={handleAdd}
-        ref={ref}
-      >
-        <img width="40px" src={arrow} />
-      </Button>
-    </Container>
+        {Data.map((data) => {
+          return (
+            <SwiperSlide
+              key={data.id}
+            >
+                <StyledImgBox>
+                  <img src={data.image} width="60%" />
+                </StyledImgBox>
+              <H2>
+                {data.name} <Paragraph>{data.jobs}</Paragraph>
+              </H2>
+              <Paragraph>{data.title}</Paragraph>
+            </SwiperSlide>
+          );
+        })}
+      </Swiper>
+    </Box>
+    // <>
+    //   <Swiper
+    //     slidesPerView={4}
+    //     centeredSlides={true}
+    //     spaceBetween={30}
+    //     grabCursor={true}
+    //     pagination={{
+    //       clickable: true,
+    //     }}
+    //     modules={[Pagination]}
+    //     className="mySwiper"
+    //   >
+    //     <SwiperSlide>Slide 1</SwiperSlide>
+    //     <SwiperSlide>Slide 2</SwiperSlide>
+    //     <SwiperSlide>Slide 3</SwiperSlide>
+    //     <SwiperSlide>Slide 4</SwiperSlide>
+    //     <SwiperSlide>Slide 5</SwiperSlide>
+    //     <SwiperSlide>Slide 6</SwiperSlide>
+    //     <SwiperSlide>Slide 7</SwiperSlide>
+    //     <SwiperSlide>Slide 8</SwiperSlide>
+    //     <SwiperSlide>Slide 9</SwiperSlide>
+    //   </Swiper>
+    // </>
   );
 };
 
