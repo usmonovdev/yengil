@@ -13,61 +13,7 @@
   text-align: center;
   display: flex !important;
   justify-content: center;
-<<<<<<< HEAD
-  padding: 0;
-  margin: 0;
-  img {
-    width: 40px;
-  }
-}
-
-@media (max-width: 600px) {
-  .Buttoncomment {
-    position: absolute !important;
-  }
-  .ButtoncommentLeft {
-    right: -15px;
-  }
-  .ButtoncommentRight {
-    left: -15px;
-  }
-  .active {
-    img {
-      width: 70px;
-    }
-  }
-}
-
-@media (max-width: 450px) {
-  .Buttoncomment {
-    position: absolute !important;
-    width: 30px !important;
-    height: 60px;
-    img {
-      width: 25px !important;
-    }
-  }
-  .ButtoncommentLeft {
-    right: -15px;
-  }
-  .ButtoncommentRight {
-    left: -15px;
-    img {
-      width: 15px !important;
-    }
-  }
-  .active {
-    img {
-      width: 70px;
-    }
-  }
-}
-
-.noactive {
-  display: none;
-}
-=======
   align-items: center;
   flex-direction: column;
+  cursor: grab;
 }
->>>>>>> b69b54403706ceb339a44a755cf4ae26da88f0f5

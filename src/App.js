@@ -8,16 +8,11 @@ import { Container, CssBaseline, ThemeProvider, createTheme, useTheme } from "@m
 import { Route, Routes } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useMemo, useState } from "react";
-import { lightBlue, grey, indigo } from "@mui/material/colors";
-import styled from "@emotion/styled";
+import { lightBlue, grey, indigo, green } from "@mui/material/colors";
 import "./app.scss"
 const { palette } = createTheme();
 const { augmentColor } = palette;
 const createColor = (mainColor) => augmentColor({ color: { main: mainColor } });
-
-// const StyledContainer = styled(Container)(({ theme }) => ({
-//   background: theme.palette.custom.background
-// }))
 
 const getTokens = (mode) => ({
   palette: {
@@ -62,7 +57,15 @@ const getTokens = (mode) => ({
           backgroundColor: theme.palette.custom.background,
         }
       })
-    }
+    },
+    MuiAlert: {
+      styleOverrides: {
+        standardSuccess: {
+          backgroundColor: green[600],
+          color: grey[100]
+        }
+      }
+    },
   },
   shadows: ["none"],
   typography: {
