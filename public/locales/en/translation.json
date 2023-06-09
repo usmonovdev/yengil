@@ -12,7 +12,7 @@
     "footer-page-tab1": "Home",
     "footer-page-tab2": "Register",
     "footer-page-tab3": "Login",
-    "footer-support":"Support",
+    "footer-support": "Support",
     "footer-conditions": "Terms of use",
     "footer-confidentiality": "Privacy Policy",
     "footer-map": "Site map",
@@ -33,5 +33,7 @@
     "register-name": "School name",
     "register-tooltip": "Create a password",
     "register": "Register",
-    "login": "Log In"
+    "login": "Log In",
+    "heading": "Financial statistics",
+    "title1": "Filter transactions by manager, funnel stage or any other parameter, and you'll be able to see all financial summary information for the filtered transactions."
 }

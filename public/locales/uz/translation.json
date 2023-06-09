@@ -33,5 +33,7 @@
     "register-name": "Maktab nomi",
     "register": "Roʻyxatdan oʻtish",
     "register-tooltip": "Parolni o'ylab toping",
-    "login": "Kirish"
+    "login": "Kirish",
+    "heading": "Moliyaviy statistika",
+    "title1": "Tranzaktsiyalarni menejer, huni bosqichi yoki boshqa parametrlar bo'yicha filtrlang va siz filtrlangan tranzaktsiyalar uchun barcha moliyaviy xulosa ma'lumotlarini ko'rishingiz mumkin bo'ladi."
 }
