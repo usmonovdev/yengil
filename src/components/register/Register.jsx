@@ -1,12 +1,11 @@
 import React, { useState } from "react";
 import InputComp from "../../ui/InputComp";
-import { Box, Button } from "@mui/material";
+import { Box, Button, Tooltip } from "@mui/material";
 import { motion } from "framer-motion";
-import { H1 } from "../../ui/typography";
+import { H1, Span } from "../../ui/typography";
 import { useTranslation } from "react-i18next";
 import undov from "../../assets/icons/undov.png";
-import "./register.scss";
-import { Div, Img } from "./Registerstyled";
+import { Div, Img, RegisterBox} from "./Registerstyled";
 
 const Register = () => {
   const { t } = useTranslation();
@@ -19,11 +18,11 @@ const Register = () => {
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.6, type: "spring", delay: 0.4 }}
     >
-      <div className="register-box">
-        <H1 className="register-heading">{t("register")}</H1>
+      <RegisterBox>
+        <H1 className="register-heading" style={{padding: "1rem"}}>{t("register")}</H1>
         <Box
           sx={{
-            width: "70%",
+            width:{xs: "100%", md: "60%"},
             margin: "0 auto",
             display: "flex",
             alignItems: "center",
@@ -53,15 +52,31 @@ const Register = () => {
               label={t("register-paswword")}
               required={true}
             />
-            <Img src={undov} />
+            <Tooltip
+              disableFocusListener
+              disableTouchListener
+              title={t("register-tooltip")}
+              sx={{position: "relative"}}
+            >
+              <Img src={undov} />
+            </Tooltip>
           </Div>
-          <InputComp
-            placeholder="12345678"
-            value={paswwordProvided}
-            setValue={setPaswwordProvided}
-            label={t("register-provided")}
-            required={true}
-          />
+          <Div>
+            <InputComp
+              placeholder="12345678"
+              value={paswwordProvided}
+              setValue={setPaswwordProvided}
+              label={t("register-provided")}
+              required={true}
+            />
+            <Tooltip
+              disableFocusListener
+              disableTouchListener
+              title={t("register-provided")}
+            >
+              <Img src={undov} />
+            </Tooltip>
+          </Div>
           <Button
             variant="contained"
             color="blue"
@@ -74,7 +89,7 @@ const Register = () => {
             {t("register")}
           </Button>
         </Box>
-      </div>
+      </RegisterBox>
     </motion.div>
   );
 };
