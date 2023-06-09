@@ -1,5 +1,5 @@
 .active {
-  width: 50%;
+  width: 60%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -8,6 +8,21 @@
   text-align: center;
   img {
     width: 25%;
+  }
+  @media (max-width: 600px) {
+    display: grid;
+    justify-items: center;
+    img {
+      width: 50%;
+    }
+  }
+  @media (max-width: 450px) {
+    width: 250px;
+    display: grid;
+    justify-items: center;
+    img {
+      width: 50%;
+    }
   }
 }
 
@@ -24,6 +39,47 @@
     width: 40px;
   }
 }
+
+@media (max-width: 600px) {
+  .Buttoncomment {
+    position: absolute !important;
+  }
+  .ButtoncommentLeft {
+    right: -15px;
+  }
+  .ButtoncommentRight {
+    left: -15px;
+  }
+  .active {
+    img {
+      width: 70px;
+    }
+  }
+}
+
+@media (max-width: 450px) {
+  .Buttoncomment {
+    position: absolute !important;
+    width: 30px !important;
+    height: 60px;
+    img {
+      width: 25px !important;
+    }
+  }
+  .ButtoncommentLeft {
+    right: -15px;
+  }
+  .ButtoncommentRight {
+    left: -15px;
+    img {
+      width: 15px !important;
+    }
+  }
+  .active {
+    img {
+      width: 70px;
+    }
+  }
 
 .noactive {
   display: none;
