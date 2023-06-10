@@ -2,13 +2,16 @@ import React, { useRef } from "react";
 import leftImg from "../../../assets/icons/crm4.png";
 import { motion, useInView } from "framer-motion";
 import { H1, Paragraph } from "../../../ui/typography";
-import { Box } from "@mui/material";
+import { Box, useTheme } from "@mui/material";
 import { useTranslation } from "react-i18next";
+import financialStatisticsDark from "../../../assets/dark/financial-statistics.png"
+import financialStatisticsLight from "../../../assets/icons/financial-statistics.png"
 
 const Statistics = () => {
   const { t } = useTranslation();
   const ref = useRef();
   const isInView = useInView(ref, { once: true });
+  const theme = useTheme()
   return (
     <div
       ref={ref}
@@ -28,8 +31,8 @@ const Statistics = () => {
           flexDirection: { xs: "column", md: "row" },
         }}
       >
-        <Box sx={{ width: { xs: "100%", md: "50%" } }}>
-          <img width="100%" src={leftImg} alt="asdasdasd" />
+        <Box sx={{ width: { xs: "100%", md: "50%" }, display: "flex", alignItems: "center", justifyContent: "center" }}>
+          <img width="40%" src={theme.palette.mode == "dark" ? financialStatisticsDark : financialStatisticsLight} alt="financial statistics" />
         </Box>
         <Box sx={{ width: { xs: "100%", md: "50%" } }}>
           <H1>{t("heading")}</H1>

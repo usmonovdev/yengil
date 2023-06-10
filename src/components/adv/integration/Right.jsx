@@ -1,10 +1,13 @@
-import { Box } from "@mui/material";
+import { Box, useTheme } from "@mui/material";
 import { useInView } from "framer-motion";
 import React, { useRef } from "react";
+import settingsDark from "../../../assets/dark/settings.png"
+import settingsLight from "../../../assets/icons/settings.png"
 
 const Right = () => {
   const ref = useRef();
   const isInView = useInView(ref, { once: true });
+  const theme = useTheme()
   return (
     <Box
       sx={{
@@ -19,9 +22,9 @@ const Right = () => {
       ref={ref}
     >
       <img
-        width="100%"
-        src="https://static.tildacdn.com/tild3766-6134-4234-b239-393737343364/crm11.png"
-        alt=""
+        width="40%"
+        src={theme.palette.mode == "dark" ? settingsDark : settingsLight}
+        alt="integration"
       />
     </Box>
   );

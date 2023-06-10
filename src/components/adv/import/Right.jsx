@@ -1,10 +1,14 @@
 import React, { useRef } from "react";
 import { Box } from "@mui/system";
 import { useInView } from "framer-motion";
+import importIconDark from "../../../assets/dark/export.png"
+import importIconLight from "../../../assets/icons/export.png"
+import { useTheme } from "@mui/material";
 
 const Right = () => {
   const ref = useRef();
   const isInView = useInView(ref, { once: true });
+  const theme = useTheme()
   return (
     <Box
       sx={{
@@ -19,9 +23,9 @@ const Right = () => {
       ref={ref}
     >
       <img
-        width="80%"
-        src="https://static.tildacdn.com/tild3636-3337-4330-a237-383330613938/excel_to_brizo.svg"
-        alt=""
+        width="40%"
+        src={theme.palette.mode == "dark" ? importIconDark : importIconLight}
+        alt="download"
       />
     </Box>
   );
