@@ -7,7 +7,7 @@ const Import = () => {
     <Box
       sx={{
         display: "flex",
-        flexDirection: { xs: "column", md: "row" },
+        flexDirection: { xs: "column-reverse", md: "row" },
         alignItems: "center",
         width: "100%",
         height: "100%",

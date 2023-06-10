@@ -13,13 +13,13 @@ const Left = () => {
       sx={{
         width: { xs: "100%", md: "50%" },
         display: "flex",
-        alignItems: "flex-start",
         justifyContent: "center",
         flexDirection: "column",
         gap: "10px",
         transform: isInView ? "none" : "translateX(200px)",
         opacity: isInView ? 1 : 0,
         transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1)",
+        textAlign: {xs: "center", md: "left"}
       }}
       ref={ref}
     >
