@@ -1,11 +1,10 @@
-import Footer from "./components/footer/Footer";
-import Header from "./components/header/Header"
 import Home from "./components/Home";
 import Register from "./components/register/Register";
 import Login from "./components/login/Login";
 import Error from "./components/errorPage/Error";
 import Statistics from "./components/adv/statistics/Statistics";
-import { Container, CssBaseline, ThemeProvider, createTheme, useTheme } from "@mui/material";
+import DashboardHome from "./dashboard/home/Home"
+import { CssBaseline, ThemeProvider, createTheme } from "@mui/material";
 import { Route, Routes } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useMemo, useState } from "react";
@@ -92,14 +91,15 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-        <Routes>
-          <Route path={"/"} element={<Home />} />
-          <Route path={"/register"} element={<Register />} />
-          <Route path={"/login"} element={<Login />} />
-          <Route path={"/static"} element={<Statistics/>}/>
-          <Route path={"/dashboard"} element={<Dashboard />} />
-          <Route path={"*"} element={<Error />} />
-        </Routes>
+      <Routes>
+        <Route path={"/"} element={<Home />} />
+        <Route path={"/register"} element={<Register />} />
+        <Route path={"/login"} element={<Login />} />
+        <Route path={"/static"} element={<Statistics />} />
+        <Route path={"*"} element={<Error />} />
+        <Route path={"/dashboard"} element={<Dashboard />} />
+        <Route path={"/dashboard/home"} element={<DashboardHome />} />
+      </Routes>
     </ThemeProvider>
   );
 }
