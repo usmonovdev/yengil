@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import InputComp from "../../ui/InputComp";
 import { Box, Button, Tooltip, useTheme } from "@mui/material";
 import { motion } from "framer-motion";
-import { H1, Span } from "../../ui/typography";
+import { H1, H3, Span, StyledLink } from "../../ui/typography";
 import { useTranslation } from "react-i18next";
 import undov from "../../assets/icons/undov.png";
 import undovDark from '../../assets/dark/undov-white.png';
@@ -90,6 +90,11 @@ const Register = () => {
           >
             {t("register")}
           </Button>
+          <H3>{t("login1")}{" "}
+            <StyledLink to={"/login"} >
+              {t("login")}
+            </StyledLink>
+          </H3>
         </Box>
       </RegisterBox>
     </motion.div>

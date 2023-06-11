@@ -39,5 +39,7 @@
     "integration-title": "Veb-sayt integratsiyasi",
     "integration-info": "Veb-saytingizni Yengil-App bilan integratsiya qiling va to'g'ridan-to'g'ri mijozlarni qabul qiling real vaqtda tizim. Oddiy veb-shaklni loyihalash vositasi bilan faqat a bir necha daqiqadan so'ng siz o'zingizga kerak bo'lgan har qanday shaklni yaratishingiz mumkin, uni joylashtiring veb-saytingizga o'ting va Yengil-Appda avtomatik ravishda etakchilarni to'plashni boshlang",
     "import-title": "Tez import va eksport",
-    "import-info": "va MS Excel-dan ma'lumotlarni oson import qilish. Pull tranzaktsiyalari, bitimlar, va mijoz ma'lumotlarini bir necha marta bosish orqali Yengil-Appga kiriting. Agar kerak bo'lsa, siz ham qila olasiz zaxira nusxalarini yaratish, mijozlar segmentatsiyasini yaratish uchun ma'lumotlarni Excelga eksport qilish, maxsus hisobotlar, diagrammalar va boshqalar."
+    "import-info": "va MS Excel-dan ma'lumotlarni oson import qilish. Pull tranzaktsiyalari, bitimlar, va mijoz ma'lumotlarini bir necha marta bosish orqali Yengil-Appga kiriting. Agar kerak bo'lsa, siz ham qila olasiz zaxira nusxalarini yaratish, mijozlar segmentatsiyasini yaratish uchun ma'lumotlarni Excelga eksport qilish, maxsus hisobotlar, diagrammalar va boshqalar.",
+    "register1" : "Hali hisobingiz yo'qmi?",
+    "login1" : "Hisobingiz bormi?"
 }
