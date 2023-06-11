@@ -1,19 +1,18 @@
 import React, { useState } from "react";
-import { useTheme } from "@emotion/react";
-import doubleArrow from "../../assets/dark/double-arrow.png";
+import Fon from "../../assets/icons/icon.png";
+import { Box, Button, FormControlLabel, IconButton, Switch } from "@mui/material";
+import { useDispatch, useSelector } from "react-redux";
+import { asyncToggleTheme } from "../../store/themeSlice";
+import styled from "@emotion/styled";
+import arrow from "../../assets/dark/double-arrow.png";
 import home from "../../assets/dark/home.png";
 import students from "../../assets/dark/students.png";
 import groups from "../../assets/dark/groups.png";
-import teacher from "../../assets/dark/teachers.png";
+import teachers from "../../assets/dark/teachers.png";
 import money from "../../assets/dark/money.png";
-import setting from "../../assets/dark/dashboard-settings.png";
-import Fon from "../../assets/icons/icon.png";
+import settings from "../../assets/dark/settings.png";
 import { H3 } from "../../ui/typography";
-import { Box, FormControlLabel, Switch } from "@mui/material";
-import { useDispatch, useSelector } from "react-redux";
-import { asyncToggleTheme } from "../../store/themeSlice";
-import { Div, Img, Navbar } from "./NavStyled.js";
-import styled from "@emotion/styled";
+import { motion } from "framer-motion";
 
 const MaterialUISwitch = styled(Switch)(({ theme }) => ({
   width: 70,
@@ -61,87 +60,97 @@ const MaterialUISwitch = styled(Switch)(({ theme }) => ({
   },
 }));
 
+const LinksBox = styled(Button)(({ theme }) => ({
+  width: "100%",
+  height: "70px",
+  display: "flex",
+  flexDirection: "row",
+  alignItems: "center",
+  justifyContent: "center",
+  gap: "10px",
+  textTransform: "uppercase",
+  cursor: "pointer",
+  transition: "200ms",
+  borderRadius: "0",
+  "&:hover": {
+    background: theme.palette.custom.headerOpacity,
+  },
+}));
+
+const NavbarBox = styled("div")(({ theme }) => ({
+  width: "100px",
+  height: "100vh",
+  background: theme.palette.blue.main,
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+  justifyContent: "space-between",
+}));
+
+const ArrowBox = styled("div")(({ theme }) => ({
+  width: "100%",
+  height: "40px",
+}));
+
 const Nav = () => {
-  const theme = useTheme();
-  const [style, setStyle] = useState(true);
   const state = useSelector((state) => state.isDarkMode);
   const dispatch = useDispatch();
 
   return (
-    <Navbar
-      style={{
-        width: style ? "100px" : "200px",
-        display: "flex",
-        alignItems: style ? "center" : "start",
-      }}
+    <motion.div
+      initial={{ opacity: 0, x: -100 }}
+      animate={{ opacity: 1, x: 0 }}
+      transition={{ duration: 0.6, type: "spring", delay: 0.4 }}
     >
-      <Box
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          gap: "20px",
-          alignItems: "start !important",
-        }}
-      >
-        <Div>
-          <Img src={doubleArrow} onDoubleClick={() => setStyle(!style)} />
-          {style ? (
-            ""
-          ) : (
-            <H3
-              onDoubleClick={() => setStyle(!style)}
-              style={{ marginTop: "10px" }}
-            >
-              Close
-            </H3>
-          )}
-        </Div>
-        <Div>
-          <Img src={home} style={{ width: "36px", height: "36px" }} />
-          {style ? "" : <H3 style={{ marginTop: "15px" }}>HOME</H3>}
-        </Div>
-        <Div>
-          <Img src={students} style={{ width: "36px", height: "36px" }} />
-          {style ? "" : <H3 style={{ marginTop: "15px" }}>Students</H3>}
-        </Div>
-        <Div>
-          <Img src={groups} style={{ width: "36px", height: "36px" }} />
-          {style ? "" : <H3 style={{ marginTop: "15px" }}>Groups</H3>}
-        </Div>
-        <Div>
-          <Img src={teacher} style={{ width: "36px", height: "36px" }} />
-          {style ? "" : <H3 style={{ marginTop: "15px" }}>Teacher</H3>}
-        </Div>
-        <Div>
-          <Img src={money} style={{ width: "36px", height: "36px" }} />
-          {style ? "" : <H3 style={{ marginTop: "15px" }}>Payment</H3>}
-        </Div>
-        <Div>
-          <Img src={setting} style={{ width: "36px", height: "36px" }} />
-          {style ? "" : <H3 style={{ marginTop: "15px" }}>Setting</H3>}
-        </Div>
-      </Box>
-      <Box
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          gap: "20px",
-          alignItems: "center",
-        }}
-      >
-        <FormControlLabel
-          checked={state}
-          onClick={() => dispatch(asyncToggleTheme())}
-          control={<MaterialUISwitch />}
-        />
-        <div>
-          <Img
-            src={Fon}
-            style={{ width: "56px", height: "51px", marginBottom: "10px" }}
+      <NavbarBox>
+        <Box
+          sx={{
+            width: "100%",
+          }}
+        >
+          <ArrowBox></ArrowBox>
+          <LinksBox>
+            <img width="36px" src={home} alt="home icon" />
+          </LinksBox>
+          <LinksBox>
+            <img width="36px" src={students} alt="home icon" />
+          </LinksBox>
+          <LinksBox>
+            <img width="36px" src={groups} alt="home icon" />
+          </LinksBox>
+          <LinksBox>
+            <img width="36px" src={teachers} alt="home icon" />
+          </LinksBox>
+          <LinksBox>
+            <img width="36px" src={money} alt="home icon" />
+          </LinksBox>
+          <LinksBox>
+            <img width="36px" src={settings} alt="home icon" />
+          </LinksBox>
+        </Box>
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "20px",
+            alignItems: "center",
+          }}
+        >
+          <FormControlLabel
+            checked={state}
+            onClick={() => dispatch(asyncToggleTheme())}
+            control={<MaterialUISwitch />}
+            sx={{ margin: "0" }}
           />
-        </div>
-      </Box>
-    </Navbar>
+          <div>
+            <img
+              src={Fon}
+              style={{ width: "56px", height: "51px", marginBottom: "10px" }}
+            />
+          </div>
+        </Box>
+      </NavbarBox>
+    </motion.div>
   );
 };
 
