@@ -1,0 +1,12 @@
+.nav-item.active {
+    &::before {
+        transition: 200ms;
+        content: "";
+        position: absolute;
+        right: 0;
+        width: 4px;
+        height: 100%;
+        border-radius: 4px 0 0 4px;
+        background-color: #212E48;
+    }
+}

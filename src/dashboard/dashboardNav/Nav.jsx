@@ -1,18 +1,12 @@
-import React, { useState } from "react";
 import Fon from "../../assets/icons/icon.png";
-import { Box, Button, FormControlLabel, IconButton, Switch } from "@mui/material";
+import styled from "@emotion/styled";
+import { Box, Button, FormControlLabel, Switch } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { asyncToggleTheme } from "../../store/themeSlice";
-import styled from "@emotion/styled";
-import arrow from "../../assets/dark/double-arrow.png";
-import home from "../../assets/dark/home.png";
-import students from "../../assets/dark/students.png";
-import groups from "../../assets/dark/groups.png";
-import teachers from "../../assets/dark/teachers.png";
-import money from "../../assets/dark/money.png";
-import settings from "../../assets/dark/settings.png";
-import { H3 } from "../../ui/typography";
 import { motion } from "framer-motion";
+import { dashboardData } from "../../store/dashboardData";
+import "./nav.scss";
+import { useState } from "react";
 
 const MaterialUISwitch = styled(Switch)(({ theme }) => ({
   width: 70,
@@ -72,13 +66,10 @@ const LinksBox = styled(Button)(({ theme }) => ({
   cursor: "pointer",
   transition: "200ms",
   borderRadius: "0",
-  "&:hover": {
-    background: theme.palette.custom.headerOpacity,
-  },
 }));
 
 const NavbarBox = styled("div")(({ theme }) => ({
-  width: "100px",
+  width: "80px",
   height: "100vh",
   background: theme.palette.blue.main,
   display: "flex",
@@ -87,12 +78,12 @@ const NavbarBox = styled("div")(({ theme }) => ({
   justifyContent: "space-between",
 }));
 
-const ArrowBox = styled("div")(({ theme }) => ({
-  width: "100%",
-  height: "40px",
+const Image = styled("img")(({ theme }) => ({
+  width: "28px",
 }));
 
 const Nav = () => {
+  const [active, setActive] = useState(1);
   const state = useSelector((state) => state.isDarkMode);
   const dispatch = useDispatch();
 
@@ -108,25 +99,17 @@ const Nav = () => {
             width: "100%",
           }}
         >
-          <ArrowBox></ArrowBox>
-          <LinksBox>
-            <img width="36px" src={home} alt="home icon" />
-          </LinksBox>
-          <LinksBox>
-            <img width="36px" src={students} alt="home icon" />
-          </LinksBox>
-          <LinksBox>
-            <img width="36px" src={groups} alt="home icon" />
-          </LinksBox>
-          <LinksBox>
-            <img width="36px" src={teachers} alt="home icon" />
-          </LinksBox>
-          <LinksBox>
-            <img width="36px" src={money} alt="home icon" />
-          </LinksBox>
-          <LinksBox>
-            <img width="36px" src={settings} alt="home icon" />
-          </LinksBox>
+          {dashboardData.map((nav) => {
+            return (
+              <LinksBox
+                className={`nav-item ${nav.id == active ? "active" : ""}`}
+                key={nav.id}
+                onClick={() => setActive(nav.id)}
+              >
+                <Image src={nav.img} alt={nav.name} />
+              </LinksBox>
+            );
+          })}
         </Box>
         <Box
           sx={{
@@ -143,10 +126,7 @@ const Nav = () => {
             sx={{ margin: "0" }}
           />
           <div>
-            <img
-              src={Fon}
-              style={{ width: "56px", height: "51px", marginBottom: "10px" }}
-            />
+            <img src={Fon} style={{ width: "40px", marginBottom: "10px" }} />
           </div>
         </Box>
       </NavbarBox>
