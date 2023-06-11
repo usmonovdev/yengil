@@ -11,6 +11,7 @@ import { useSelector } from "react-redux";
 import { useMemo, useState } from "react";
 import { lightBlue, grey, indigo, green } from "@mui/material/colors";
 import "./app.scss"
+import Dashboard from "./dashboard/Dashboard";
 const { palette } = createTheme();
 const { augmentColor } = palette;
 const createColor = (mainColor) => augmentColor({ color: { main: mainColor } });
@@ -76,7 +77,6 @@ const getTokens = (mode) => ({
 })
 
 function App() {
-  const themeColor = useTheme()
   const [mode, setMode] = useState("light")
   const darkMode = useSelector(state => state.isDarkMode)
 
@@ -89,21 +89,17 @@ function App() {
   }, [darkMode]);
 
   const theme = useMemo(() => createTheme(getTokens(mode)), [mode])
-  console.log(themeColor);
   return (
     <ThemeProvider theme={theme}>
-      <Header />
       <CssBaseline />
-      <Container>
         <Routes>
           <Route path={"/"} element={<Home />} />
           <Route path={"/register"} element={<Register />} />
           <Route path={"/login"} element={<Login />} />
           <Route path={"/static"} element={<Statistics/>}/>
+          <Route path={"/dashboard"} element={<Dashboard />} />
           <Route path={"*"} element={<Error />} />
         </Routes>
-      </Container>
-      <Footer />
     </ThemeProvider>
   );
 }
