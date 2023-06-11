@@ -1,12 +1,13 @@
 import React, { useState } from 'react'
 import { motion } from "framer-motion";
 import { Box, Button } from '@mui/material';
-import { H1 } from '../../ui/typography';
+import { H1, H3, StyledLink } from '../../ui/typography';
 import { t } from 'i18next';
 import InputComp from '../../ui/InputComp';
 import { useTranslation } from 'react-i18next';
 import { RegisterBox } from '../register/Registerstyled';
 import { LoginBox } from './Loginstyled';
+import { Link } from 'react-router-dom';
 
 const Login = () => {
   const { t } = useTranslation();
@@ -57,6 +58,12 @@ const Login = () => {
           >
             {t("login")}
           </Button>
+
+          <H3>{t("register1")}{" "}
+            <StyledLink to={"/register"} >
+              {t("register")}
+            </StyledLink>
+          </H3>
 
         </Box>
       </LoginBox>
