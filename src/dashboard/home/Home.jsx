@@ -23,7 +23,7 @@ const Home = () => {
   console.log(sidebar);
 
   const StatBox = styled("div")(({ theme }) => ({
-    width: `${sidebar ? "calc(100% - 130px)" : "90%" }`,
+    width: `${sidebar ? "calc(100% - 110px)" : "100%" }`,
     display: "flex",
     flexDirection: "column",
     justifyContent: "space-between",
@@ -40,7 +40,8 @@ const Home = () => {
         sx={{
           position: "relative",
           top: "100px",
-          left: `${sidebar ? "100px" : "15px"}`,
+          left: `${sidebar ? "90px" : "0"}`,
+          padding: "15px"
         }}
       >
         <StatBox>
@@ -77,11 +78,13 @@ const Home = () => {
             <Span
               style={{
                 background: theme.palette.custom.lightGray,
-                width: "320px",
+                width: "fit-content",
                 height: "30px",
-                lineHeight: "30px",
-                paddingLeft: "10px",
+                padding: "10px",
                 borderRadius: "5px",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center"
               }}
             >
               O'tgan oyga qaraganda 5% ko'proq foyda
