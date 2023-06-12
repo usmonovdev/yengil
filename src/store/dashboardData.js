@@ -8,37 +8,37 @@ import settings from "../assets/dark/settings.png"
 export const dashboardData = [
     {
         img: home,
-        link: "/home",
+        link: "/dashboard/home",
         name: "Home",
         id: 1
     },
     {
         img: students,
-        link: "/students",
+        link: "/dashboard/students",
         name: "Students",
         id: 2
     },
     {
         img: groups,
-        link: "/groups",
+        link: "/dashboard/groups",
         name: "Groups",
         id: 3
     },
     {
         img: teachers,
-        link: "/teachers",
+        link: "/dashboard/teachers",
         name: "Teachers",
         id: 4
     },
     {
         img: money,
-        link: "/money",
+        link: "/dashboard/money",
         name: "Money",
         id: 5
     },
     {
         img: settings,
-        link: "/settings",
+        link: "/dashboard/settings",
         name: "Settings",
         id: 6
     },
