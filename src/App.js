@@ -1,15 +1,14 @@
+import { CssBaseline, ThemeProvider, createTheme } from "@mui/material";
+import { Route, Routes, useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { useEffect, useMemo, useState } from "react";
+import { lightBlue, grey, indigo, green } from "@mui/material/colors";
 import Home from "./components/Home";
 import Register from "./components/register/Register";
 import Login from "./components/login/Login";
 import Error from "./components/errorPage/Error";
 import Statistics from "./components/adv/statistics/Statistics";
 import DashboardHome from "./dashboard/home/Home"
-import { CssBaseline, ThemeProvider, createTheme } from "@mui/material";
-import { Route, Routes, useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
-import { useEffect, useMemo, useState } from "react";
-import { lightBlue, grey, indigo, green } from "@mui/material/colors";
-import "./app.scss"
 import Dashboard from "./dashboard/Dashboard";
 import Students from "./dashboard/students/Students";
 import Groups from "./dashboard/groups/Groups";
@@ -17,6 +16,8 @@ import Teachers from "./dashboard/teachers/Teachers";
 import Money from "./dashboard/money/Money";
 import Settings from "./dashboard/settings/Settings";
 import DashboardNav from "./dashboard/dashboardNav/Nav"
+import "./app.scss"
+import RoutesHome from "./components/RoutesHome";
 const { palette } = createTheme();
 const { augmentColor } = palette;
 const createColor = (mainColor) => augmentColor({ color: { main: mainColor } });
@@ -97,33 +98,17 @@ function App() {
   const theme = useMemo(() => createTheme(getTokens(mode)), [mode])
   const [token, setToken] = useState(true)
 
-  useEffect(()=> {
-    token ? navigate("/dashboard/home") :navigate("/")
+  useEffect(() => {
+    token ? navigate("/dashboard/home") : navigate("/")
   }, [])
 
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      {!token ? <>
-        <Routes>
-          <Route path={"/"} element={<Home />} />
-          <Route path={"/register"} element={<Register />} />
-          <Route path={"/login"} element={<Login />} />
-          <Route path={"/static"} element={<Statistics />} />
-          <Route path={"*"} element={<Error />} />
-        </Routes>
+      {token ? <>
+        <Dashboard />
       </> : <>
-        <DashboardNav />
-        <Routes>
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/dashboard/home" element={<DashboardHome />} />
-          <Route path="/dashboard/students" element={<Students />} />
-          <Route path="/dashboard/groups" element={<Groups />} />
-          <Route path="/dashboard/teachers" element={<Teachers />} />
-          <Route path="/dashboard/money" element={<Money />} />
-          <Route path="/dashboard/settings" element={<Settings />} />
-          <Route path={"*"} element={<Error />} />
-        </Routes>
+        <RoutesHome />
       </>}
     </ThemeProvider >
   );
