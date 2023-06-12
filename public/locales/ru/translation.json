@@ -42,5 +42,16 @@
     "import-title": "Импорт и экспортБыстрый",
     "import-info": "и простой импорт данных из MS Excel. Вытягивайте транзакции, сделки и информацию о клиенте в Yengil-App в несколько кликов. При необходимости вы также можете экспорт данных обратно в Excel для создания резервных копий, сегментации клиентов, специализированные отчеты, диаграммы и многое другое.",
     "register1": "У вас ещё нет аккаунта?",
-    "login1": "Есть аккаунт?"
+    "login1": "Есть аккаунт?",
+    "dashboardGeneral": "Общий",
+    "dashboardGeneralTitle": "Статистика и новые студенты",
+    "dashboardStudents": "Студенты",
+    "dashboardStudentsTitle": "Статистика и новые студенты",
+    "dashboardGroups": "Группы",
+    "dashboardGroupsTitle": "Статистика и новые группы",
+    "dashboardTeachers": "Учителя",
+    "dashboardTeachersTitle": "Статистика и новые учителя",
+    "dashboardPayment": "Платежи",
+    "dashboardPaymentTitle": "Статистика и новые платежи",
+    "dashboardSettings": "Настройки"
 }

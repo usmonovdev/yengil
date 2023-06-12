@@ -3,14 +3,16 @@ import TopDashboard from "../topDashboard/TopDashboard";
 import { Box } from "@mui/material";
 import { Paragraph } from "../../ui/typography";
 import { useSelector } from "react-redux";
+import { useTranslation } from "react-i18next";
 
 const Home = () => {
   const { sidebar } = useSelector(state => state)
+  const { t } = useTranslation();
   return (
     <Box sx={{ width: "100%" }}>
       <TopDashboard
-        header={"Asosiy"}
-        title={"Statistika va Yangi o'quvchilar"}
+        header={t("dashboardGeneral")}
+        title={t("dashboardGeneralTitle")}
       />
       <Box
         sx={{ position: "relative", top: "100px", left: `${sidebar ? "100px" : "5px"}` }}

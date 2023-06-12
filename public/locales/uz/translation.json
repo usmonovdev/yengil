@@ -41,5 +41,16 @@
     "import-title": "Tez import va eksport",
     "import-info": "va MS Excel-dan ma'lumotlarni oson import qilish. Pull tranzaktsiyalari, bitimlar, va mijoz ma'lumotlarini bir necha marta bosish orqali Yengil-Appga kiriting. Agar kerak bo'lsa, siz ham qila olasiz zaxira nusxalarini yaratish, mijozlar segmentatsiyasini yaratish uchun ma'lumotlarni Excelga eksport qilish, maxsus hisobotlar, diagrammalar va boshqalar.",
     "register1" : "Hali hisobingiz yo'qmi?",
-    "login1" : "Hisobingiz bormi?"
+    "login1" : "Hisobingiz bormi?",
+    "dashboardGeneral": "Asosiy",
+    "dashboardGeneralTitle": "Statistika va Yangi o'quvchilar",
+    "dashboardStudents": "O'quvchilar",
+    "dashboardStudentsTitle": "Statistika va Yangi o'quvchilar",
+    "dashboardGroups": "Guruhlar",
+    "dashboardGroupsTitle": "Statistika va Yangi guruhlar",
+    "dashboardTeachers": "O'qituvchilar",
+    "dashboardTeachersTitle": "Statistika va Yangi o'qittuvchilar",
+    "dashboardPayment": "To'lovlar",
+    "dashboardPaymentTitle": "Statistika va Yangi to'lovlar",
+    "dashboardSettings": "Sozlamalar"
 }

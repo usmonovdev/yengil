@@ -41,5 +41,16 @@
     "import-title": "Import and exportQuick",
     "import-info": " and easy data import from MS Excel. Pull transactions, deals, and client’s information into Yengil-App in a few clicks. If needed, you can also export data back to Excel to create backup copies, client segmentation, specialized reports, charts, and more.",
     "register1": "Don't have an account yet?",
-    "login1": "Have an account?"
+    "login1": "Have an account?",
+    "dashboardGeneral": "General",
+    "dashboardGeneralTitle": "Statistics and New students",
+    "dashboardStudents": "Students",
+    "dashboardStudentsTitle": "Statistics and New students",
+    "dashboardGroups": "Groups",
+    "dashboardGroupsTitle": "Statistics and New groups",
+    "dashboardTeachers": "Teachers",
+    "dashboardTeachersTitle": "Statistics and New teachers",
+    "dashboardPayment": "Payments",
+    "dashboardPaymentTitle": "Statistics and New payments",
+    "dashboardSettings": "Settings"
 }
