@@ -24,6 +24,7 @@ const Home = () => {
   console.log(sidebar);
 
   const StatBox = styled("div")(({ theme }) => ({
+    width: `${sidebar ? "calc(100% - 130px)" : "100%" }`,
     display: "flex",
     flexDirection: "column",
     justifyContent: "space-between",
@@ -40,7 +41,8 @@ const Home = () => {
         sx={{
           position: "relative",
           top: "100px",
-          left: `${sidebar ? "100px" : "15px"}`,
+          left: `${sidebar ? "100px" : "0"}`,
+          padding: "15px"
         }}
       >
         <StatBox>
@@ -49,7 +51,6 @@ const Home = () => {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1, type: "spring", delay: 0.4 }}
           >
-
             <Divs>
               <Div>
                 <H3
@@ -71,10 +72,8 @@ const Home = () => {
               <Paragraph
                 style={{
                   background: theme.palette.custom.lightGray,
-                  width: "256px",
+                  width: "fit-content",
                   height: "30px",
-                  lineHeight: "30px",
-                  paddingLeft: "10px",
                   borderRadius: "5px",
                 }}
               >
@@ -83,10 +82,11 @@ const Home = () => {
               <Span
                 style={{
                   background: theme.palette.custom.lightGray,
-                  width: "320px",
+                  width: "fit-content",
                   height: "30px",
-                  lineHeight: "30px",
-                  paddingLeft: "10px",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
                   borderRadius: "5px",
                 }}
               >
