@@ -5,8 +5,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { asyncToggleTheme } from "../../store/themeSlice";
 import { motion } from "framer-motion";
 import { dashboardData } from "../../store/dashboardData";
-import "./nav.scss";
+import { NavLink } from "react-router-dom";
 import { useState } from "react";
+import "./nav.scss";
 
 const MaterialUISwitch = styled(Switch)(({ theme }) => ({
   width: 70,
@@ -101,13 +102,16 @@ const Nav = () => {
         >
           {dashboardData.map((nav) => {
             return (
-              <LinksBox
-                className={`nav-item ${nav.id == active ? "active" : ""}`}
-                key={nav.id}
-                onClick={() => setActive(nav.id)}
-              >
-                <Image src={nav.img} alt={nav.name} />
-              </LinksBox>
+              <NavLink to={nav.link}>
+                <LinksBox
+                  className={`nav-item ${nav.id == active ? "active" : ""}`}
+                  // className={({ isActive }) => ["nav-item", isActive ? "active" : null].join(" ")}
+                  key={nav.id}
+                  onClick={() => setActive(nav.id)}
+                >
+                  <Image src={nav.img} alt={nav.name} />
+                </LinksBox>
+              </NavLink>
             );
           })}
         </Box>
