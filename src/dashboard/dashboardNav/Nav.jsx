@@ -4,7 +4,7 @@ import { Box, Button, FormControlLabel, Switch } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { asyncToggleTheme } from "../../store/themeSlice";
 import { motion } from "framer-motion";
-import { dashboardData } from "../../store/dashboardData";
+import { dashboardData } from "../../localData/dashboardData";
 import { NavLink } from "react-router-dom";
 import { useState } from "react";
 import "./nav.scss";
@@ -69,24 +69,29 @@ const LinksBox = styled(Button)(({ theme }) => ({
   borderRadius: "0",
 }));
 
-const NavbarBox = styled("div")(({ theme }) => ({
-  width: "80px",
-  height: "100vh",
-  background: theme.palette.blue.main,
-  display: "flex",
-  flexDirection: "column",
-  alignItems: "center",
-  justifyContent: "space-between",
-}));
-
 const Image = styled("img")(({ theme }) => ({
   width: "28px",
 }));
 
 const Nav = () => {
   const [active, setActive] = useState(1);
-  const state = useSelector((state) => state.isDarkMode);
+  const { isDarkMode, sidebar } = useSelector((state) => state);
+  console.log(sidebar);
   const dispatch = useDispatch();
+
+  const NavbarBox = styled("div")(({ theme }) => ({
+    position: "fixed",
+    width: "80px",
+    height: "100vh",
+    background: theme.palette.blue.main,
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "space-between",
+    zIndex: "2000",
+    transition: "200ms",
+    transform: `${sidebar ? "unset" : "translateX(-100%)"}`
+  }));
 
   return (
     <motion.div
@@ -102,10 +107,9 @@ const Nav = () => {
         >
           {dashboardData.map((nav) => {
             return (
-              <NavLink to={nav.link}>
+              <NavLink to={nav.link} key={nav.id}>
                 <LinksBox
                   className={`nav-item ${nav.id == active ? "active" : ""}`}
-                  // className={({ isActive }) => ["nav-item", isActive ? "active" : null].join(" ")}
                   key={nav.id}
                   onClick={() => setActive(nav.id)}
                 >
@@ -124,7 +128,7 @@ const Nav = () => {
           }}
         >
           <FormControlLabel
-            checked={state}
+            checked={isDarkMode}
             onClick={() => dispatch(asyncToggleTheme())}
             control={<MaterialUISwitch />}
             sx={{ margin: "0" }}

@@ -3,11 +3,15 @@ import { createSlice } from "@reduxjs/toolkit";
 export const themeSlice = createSlice({
     name: "theme",
     initialState: {
-        isDarkMode: !!JSON.parse(localStorage.getItem("THEME"))
+        isDarkMode: !!JSON.parse(localStorage.getItem("THEME")),
+        sidebar: false
     },
     reducers: {
         toggleTheme: (state) => {
             state.isDarkMode = !state.isDarkMode
+        },
+        toggleSidebar: (state) => {
+            state.sidebar = !state.sidebar
         }
     }
 })
@@ -18,5 +22,5 @@ export const asyncToggleTheme = () => (dispatch) => {
     dispatch(toggleTheme());
 };
 
-export const { toggleTheme } = themeSlice.actions
+export const { toggleTheme, toggleSidebar } = themeSlice.actions
 export default themeSlice.reducer
