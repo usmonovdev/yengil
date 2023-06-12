@@ -1,11 +1,33 @@
 import React from "react";
 import TopDashboard from "../topDashboard/TopDashboard";
-import { Box } from "@mui/material";
-import { Paragraph } from "../../ui/typography";
+import { Box, Tooltip } from "@mui/material";
 import { useSelector } from "react-redux";
+import FoydaRecharts from "../../recharts/FoydaRecharts";
+import { H3, Paragraph, Span } from "../../ui/typography";
+import { useTheme } from "@emotion/react";
+import TolovRechart from "../../recharts/TolovRechart";
+import OquvchilarReachart from "../../recharts/OquvchularReachart";
+import { Div, Divs, Img } from "./HomeStyled";
+import { styled } from "@mui/system";
+import undov from "../../assets/icons/undov.png";
+import "./home.scss";
 
 const Home = () => {
-  const { sidebar } = useSelector(state => state)
+  const { sidebar } = useSelector((state) => state);
+  const data = new Date();
+  const date = data.getDate();
+  const month = data.getMonth();
+  const year = data.getUTCFullYear();
+  const theme = useTheme();
+
+  const StatBox = styled("div")(({ theme }) => ({
+    width: `${sidebar ? "90%" : "calc(100% - 50px)"}`,
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "space-between",
+    gap: "25px",
+  }));
+
   return (
     <Box sx={{ width: "100%" }}>
       <TopDashboard
@@ -13,128 +35,490 @@ const Home = () => {
         title={"Statistika va Yangi o'quvchilar"}
       />
       <Box
-        sx={{ position: "relative", top: "100px", left: `${sidebar ? "100px" : "5px"}` }}
+        sx={{
+          position: "relative",
+          top: "100px",
+          left: `${sidebar ? "100px" : "15px"}`,
+        }}
       >
-        <Paragraph>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi magni
-          corporis facilis ex earum atque illo quod ab? Nesciunt in possimus
-          beatae facilis quia dolores distinctio nam ab dolor perferendis quos
-          corporis molestias ad, reiciendis sequi blanditiis modi necessitatibus
-          voluptate natus sint autem placeat nostrum aliquid perspiciatis.
-          Deserunt, suscipit sapiente repudiandae molestias laudantium inventore
-          voluptatum dolore dolorem rem recusandae consequuntur minus repellat?
-          Fugiat tempore quidem placeat dignissimos voluptatum totam accusamus
-          hic vitae natus vel voluptate dicta obcaecati quisquam, temporibus
-          modi facilis magnam repellat. Rem sit consequatur nulla debitis minima
-          nisi aperiam mollitia rerum sequi similique alias iure, officiis quia
-          atque exercitationem provident. Cumque maxime, suscipit vitae magni
-          quae sunt, laudantium ipsa, nulla dicta nisi assumenda. Provident
-          dolore magnam natus ullam optio. Aliquid aliquam consequatur animi
-          deserunt itaque illo quisquam tempora, accusantium laborum ducimus
-          veniam similique dolorem porro quis delectus officia eveniet quibusdam
-          possimus perspiciatis culpa dolore aperiam? Reprehenderit earum
-          nesciunt, hic vel quis officia? Rem culpa ratione quaerat numquam aut
-          magni aspernatur repellendus fugiat sapiente nostrum illum at quasi,
-          nobis consequuntur quisquam dolores! Accusamus ullam omnis, animi
-          provident possimus labore assumenda sequi dolores esse eius mollitia
-          aperiam nihil tenetur laborum tempora. Itaque quod quibusdam velit
-          quam ducimus? Facilis, adipisci vitae sequi hic fugiat nulla ad magnam
-          iure illo necessitatibus aperiam ea culpa, quis fugit optio!
-          Voluptatum cupiditate, odio maiores voluptates omnis eos aliquid? Unde
-          voluptate aliquam cumque hic, nemo, rerum voluptas perferendis laborum
-          repudiandae, temporibus mollitia voluptates perspiciatis. Quidem
-          voluptates, inventore impedit facilis dolore at, quibusdam cupiditate
-          dignissimos incidunt aut dolorum praesentium temporibus rerum
-          repellendus iste pariatur reiciendis sequi voluptatibus facere id ea
-          unde vero? Commodi assumenda non necessitatibus, quasi dolorum eum
-          nihil enim perspiciatis perferendis odio animi tempore numquam
-          asperiores nam nemo omnis temporibus quos, praesentium corporis eos
-          voluptatum. Commodi minus corporis vero hic laudantium, qui aliquam
-          rem quisquam provident, at sed. Odio tenetur pariatur laborum optio
-          dolor repellat amet laudantium. Adipisci impedit amet ea laboriosam
-          doloremque voluptatibus velit libero dolorem, nihil iste hic eligendi
-          fugit quo voluptate eaque quae assumenda, distinctio quod quibusdam
-          suscipit iusto iure possimus. Distinctio, explicabo, nobis expedita
-          sapiente maxime veniam amet dolor harum nulla eligendi dignissimos at
-          animi doloribus nam? Molestiae nisi consequatur delectus excepturi
-          culpa laudantium? Iste sed officia sequi atque eveniet dignissimos
-          asperiores ipsa aliquam! Tenetur laborum ipsam inventore veritatis
-          totam nam deleniti unde facilis ex dolores. Magni, facere sequi
-          eligendi ut cum, tempore veniam adipisci, aliquid dignissimos odio
-          distinctio? Asperiores maiores soluta ratione minima quod! Asperiores
-          dolor soluta, sapiente expedita in, numquam voluptate iusto corrupti
-          ullam eos quis vero adipisci veniam consequuntur? Architecto, at enim
-          maxime quae quaerat labore libero error, fugiat voluptatem quibusdam
-          reprehenderit! Nesciunt autem omnis delectus natus at hic quae
-          laudantium laboriosam iusto quas dolorum aperiam, excepturi dolores
-          unde eligendi corrupti fugiat perspiciatis veritatis placeat earum?
-          Ducimus ab vitae iste et consequatur soluta nesciunt recusandae. Cum
-          suscipit saepe perspiciatis error. Vel velit at quia magnam dolor,
-          fugiat tempore eius distinctio odit, blanditiis obcaecati saepe,
-          asperiores perspiciatis laborum. Reprehenderit aperiam nulla, commodi
-          repellendus quam eligendi recusandae dolorem exercitationem nisi iure
-          omnis voluptatibus tenetur, enim voluptates illo magnam aliquam! Vitae
-          sapiente suscipit totam! Consectetur quisquam non ut autem ab et
-          possimus eius suscipit, sed libero! Eveniet, expedita. Fuga vitae
-          voluptas omnis? Voluptatibus voluptatem molestiae aperiam quis
-          tenetur. Ratione mollitia quam nesciunt eveniet cum vitae laborum ut
-          facilis sit saepe repellendus doloribus unde corporis sunt
-          exercitationem iusto aut placeat id, harum veniam quo aspernatur nemo
-          similique. Sunt nemo molestiae reiciendis eveniet quisquam animi
-          aliquid amet earum? Provident magni, facilis veniam qui asperiores
-          ipsam, esse libero mollitia sapiente modi, delectus dolorum maxime!
-          Itaque inventore est quos sunt recusandae officia sint error eveniet!
-          Alias dolorum maxime illo ut pariatur! Exercitationem itaque quibusdam
-          vitae provident sint amet nemo saepe assumenda ab expedita
-          reprehenderit aspernatur mollitia doloremque ducimus fugit eaque
-          molestiae cumque iusto at maiores, rem hic. Quisquam voluptatum vel
-          harum, architecto rem dicta ex commodi id aliquam nobis repellat
-          exercitationem porro minima. Delectus recusandae excepturi quos
-          corporis. Perferendis aliquid deleniti laborum consectetur?
-          Exercitationem error a beatae minus perspiciatis rem est vero
-          reiciendis quam optio aliquam, alias rerum sapiente, eius tempora
-          ducimus illum accusamus vitae consequuntur omnis sed laboriosam.
-          Expedita, blanditiis vero aliquam illum voluptates nihil error ipsa
-          qui? Perspiciatis velit id pariatur quas facere esse, ullam culpa at
-          aliquid quae exercitationem, deleniti, sunt tempora dolorem eius
-          animi? Repellendus sit ullam perferendis, earum, sint enim assumenda
-          nisi consequuntur iure maiores officiis quos, aut nulla quas nam
-          tempore dolorem blanditiis voluptas aspernatur voluptates hic
-          corrupti? Numquam sit facere et iusto voluptatem. Quaerat, nesciunt,
-          soluta eius voluptates mollitia illum ea accusamus autem fuga commodi
-          deleniti dolorum repellat reprehenderit placeat eaque modi. Nam
-          recusandae commodi enim soluta amet blanditiis ratione nisi vitae ex
-          nesciunt sequi dolor, consectetur ullam perferendis eius? Tenetur,
-          culpa. Temporibus, magni eius! Nulla assumenda doloremque
-          necessitatibus dolorem beatae, quia, maxime sit recusandae qui
-          reprehenderit at earum tenetur reiciendis obcaecati amet commodi
-          praesentium magni provident optio repellat officiis fugit architecto!
-          Eveniet similique sit quidem, officiis eligendi aperiam. Ex ullam eum
-          distinctio minima officiis accusamus expedita. Exercitationem, ad
-          reprehenderit! Molestiae sed iste rerum magni voluptas possimus quidem
-          voluptatem recusandae facere nihil dignissimos error enim mollitia
-          veniam obcaecati eveniet sunt quam necessitatibus optio quisquam, ex
-          temporibus consectetur accusamus natus! Provident sequi doloribus
-          sapiente dolor illo reprehenderit, pariatur architecto sint? Fuga
-          expedita voluptates temporibus soluta deserunt eveniet repudiandae
-          maxime necessitatibus rem nisi alias quisquam atque autem ut ab
-          officia ex, omnis qui laborum nobis id facere ea ducimus. Placeat
-          doloribus deleniti sequi quis sit dolores corporis explicabo magni,
-          repudiandae excepturi nulla maiores cum nihil odio dignissimos.
-          Necessitatibus, ratione rerum. Labore molestiae, nemo, deserunt,
-          consequatur magnam ipsam recusandae facere nihil et corrupti accusamus
-          aspernatur? Beatae delectus, fugit sint perspiciatis illum impedit
-          quidem eius facilis quas qui maxime. Doloribus modi et blanditiis
-          commodi iure voluptates saepe facilis quasi quae, libero laudantium
-          eveniet sequi maxime minima, quos aliquid tenetur ducimus? Esse
-          tempora, dolor deleniti doloribus autem quis placeat totam? Deserunt
-          commodi, soluta, fuga illum omnis facere iusto unde optio ipsum odio
-          officia perferendis ipsa quos ut quibusdam laudantium quasi cum
-          suscipit tempore.
-        </Paragraph>
+        <StatBox>
+          <Divs>
+            <Div>
+              <H3
+                style={{ display: "flex", gap: "10px", alignItems: "center" }}
+              >
+                FOYDA
+                <Tooltip
+                  disableFocusListener
+                  disableTouchListener
+                  title="Oy davomida qilingan foyda summasi"
+                >
+                  <Img src={undov} />
+                </Tooltip>
+              </H3>
+              <Span>
+                {date}.{month + 1}.{year}
+              </Span>
+            </Div>
+            <Paragraph
+              style={{
+                background: theme.palette.custom.lightGray,
+                width: "256px",
+                height: "30px",
+                lineHeight: "30px",
+                paddingLeft: "10px",
+                borderRadius: "5px",
+              }}
+            >
+              Umumuiy foyda: "20.000.000"
+            </Paragraph>
+            <Span
+              style={{
+                background: theme.palette.custom.lightGray,
+                width: "320px",
+                height: "30px",
+                lineHeight: "30px",
+                paddingLeft: "10px",
+                borderRadius: "5px",
+              }}
+            >
+              O'tgan oyga qaraganda 5% ko'proq foyda
+            </Span>
+            <FoydaRecharts />
+            <Span
+              style={{
+                background: theme.palette.custom.lightGray,
+                width: "165px",
+                height: "19px",
+                lineHeight: "19px",
+                display: "flex",
+                alignItems: "center",
+                borderRadius: "5px",
+                gap: "5px",
+                paddingLeft: "10px",
+              }}
+            >
+              <div
+                style={{
+                  width: "10px",
+                  height: "10px",
+                  borderRadius: "20px",
+                  background: "#039BE5",
+                  borderRadius: "5px",
+                }}
+              ></div>
+              To'langan summa
+            </Span>
+            <Span style={{ textAlign: "end", marginTop: "4%" }}>
+              Oy davomida qilingan foyda summasi
+            </Span>
+          </Divs>
+          <Divs>
+            <Div>
+              <H3
+                style={{ display: "flex", gap: "10px", alignItems: "center" }}
+              >
+                To’lovlar
+                <Tooltip
+                  disableFocusListener
+                  disableTouchListener
+                  title="O’quvchilar oy davomida to’lagan summa grafigi"
+                >
+                  <Img src={undov} />
+                </Tooltip>
+              </H3>
+              <Span>
+                {date}.{month + 1}.{year}
+              </Span>
+            </Div>
+            <Span
+              style={{
+                background: theme.palette.custom.lightGray,
+                width: "256px",
+                height: "30px",
+                lineHeight: "30px",
+                paddingLeft: "10px",
+                borderRadius: "5px",
+              }}
+            >
+              Umumuiy foyda: "20.000.000"
+            </Span>
+            <TolovRechart />
+            <div style={{ display: "flex", flexDirection: "row", gap: "20px" }}>
+              <Span
+                style={{
+                  background: theme.palette.custom.lightGray,
+                  width: "165px",
+                  height: "19px",
+                  lineHeight: "19px",
+                  display: "flex",
+                  alignItems: "center",
+                  borderRadius: "5px",
+                  gap: "5px",
+                  paddingLeft: "10px",
+                }}
+              >
+                <div
+                  style={{
+                    width: "10px",
+                    height: "10px",
+                    borderRadius: "20px",
+                    background: "#039BE5",
+                    borderRadius: "5px",
+                  }}
+                ></div>
+                To'langan summa
+              </Span>
+              <Span
+                style={{
+                  background: theme.palette.custom.lightGray,
+                  width: "165px",
+                  height: "19px",
+                  lineHeight: "19px",
+                  display: "flex",
+                  alignItems: "center",
+                  borderRadius: "5px",
+                  gap: "5px",
+                  paddingLeft: "10px",
+                }}
+              >
+                <div
+                  style={{
+                    width: "10px",
+                    height: "10px",
+                    borderRadius: "20px",
+                    background: "#039BE5",
+                    borderRadius: "5px",
+                  }}
+                ></div>
+                To'langan summa
+              </Span>
+            </div>
+            <Span
+              style={{
+                background: theme.palette.custom.lightGray,
+                width: "250px",
+                height: "19px",
+                lineHeight: "19px",
+                display: "flex",
+                alignItems: "center",
+                borderRadius: "5px",
+                gap: "5px",
+                paddingLeft: "10px",
+              }}
+            >
+              Chap-raqam: Summa miqdori
+            </Span>
+            <Span
+              style={{
+                background: theme.palette.custom.lightGray,
+                width: "250px",
+                height: "19px",
+                lineHeight: "19px",
+                display: "flex",
+                alignItems: "center",
+                borderRadius: "5px",
+                gap: "5px",
+                paddingLeft: "10px",
+              }}
+            >
+              Pastki-raqam: Summa miqdori
+            </Span>
+            <Span style={{ textAlign: "end" }}>
+              O’quvchilar oy davomida to’lagan summa grafigi
+            </Span>
+          </Divs>
+          <Divs>
+            <Div>
+            <H3
+                style={{ display: "flex", gap: "10px", alignItems: "center" }}
+              >
+                Yangi o’quvchilar
+                <Tooltip
+                  disableFocusListener
+                  disableTouchListener
+                  title="Yangi o’quvchilarning kurslarga qo’shilish grafigi"
+                >
+                  <Img src={undov} />
+                </Tooltip>
+              </H3>
+              <Span>
+                {date}.{month + 1}.{year}
+              </Span>
+            </Div>
+            <Span
+              style={{
+                background: theme.palette.custom.lightGray,
+                width: "256px",
+                height: "30px",
+                lineHeight: "30px",
+                paddingLeft: "10px",
+                borderRadius: "5px",
+              }}
+            >
+              Umumiy soni: 221ta
+            </Span>
+            <OquvchilarReachart />
+            <Span
+              style={{
+                background: theme.palette.custom.lightGray,
+                width: "165px",
+                height: "19px",
+                lineHeight: "19px",
+                display: "flex",
+                alignItems: "center",
+                borderRadius: "5px",
+                gap: "5px",
+                paddingLeft: "10px",
+              }}
+            >
+              <div
+                style={{
+                  width: "10px",
+                  height: "10px",
+                  borderRadius: "20px",
+                  background: "#039BE5",
+                  borderRadius: "5px",
+                }}
+              ></div>
+              To'langan summa
+            </Span>
+            <Span style={{ textAlign: "end", marginTop: "5%" }}>
+              Yangi o’quvchilarning kurslarga qo’shilish grafigi
+            </Span>
+          </Divs>
+        </StatBox>
       </Box>
     </Box>
   );
 };
 
 export default Home;
+
+// const Home = () => {
+//   const data = new Date();
+//   const date = data.getDate();
+//   const month = data.getMonth();
+//   const year = data.getUTCFullYear();
+//   const theme = useTheme();
+//   console.log(theme);
+//   console.log(data.getUTCMonth());
+//   return (
+//     <div className="dashboardhome">
+//       <Divs>
+//         <Div>
+//           <H3>FOYDA</H3>
+//           <Span>
+//             {date}.{month + 1}.{year}
+//           </Span>
+//         </Div>
+//         <Paragraph
+//           style={{
+//             background: theme.palette.custom.lightGray,
+//             width: "256px",
+//             height: "30px",
+//             lineHeight: "30px",
+//             paddingLeft: "10px",
+//             borderRadius: "5px",
+//           }}
+//         >
+//           Umumuiy foyda: "20.000.000"
+//         </Paragraph>
+//         <Paragraph
+//           style={{
+//             background: theme.palette.custom.lightGray,
+//             width: "320px",
+//             height: "30px",
+//             lineHeight: "30px",
+//             paddingLeft: "10px",
+//             borderRadius: "5px",
+//           }}
+//         >
+//           O'tgan oyga qaraganda 5% ko'proq foyda
+//         </Paragraph>
+//         <FoydaRecharts />
+//         <Paragraph
+//           style={{
+//             background: theme.palette.custom.lightGray,
+//             width: "165px",
+//             height: "19px",
+//             lineHeight: "19px",
+//             display: "flex",
+//             alignItems: "center",
+//             borderRadius: "5px",
+//             gap: "5px",
+//             paddingLeft: "10px",
+//           }}
+//         >
+//           <div
+//             style={{
+//               width: "10px",
+//               height: "10px",
+//               borderRadius: "20px",
+//               background: "#039BE5",
+//               borderRadius: "5px",
+//             }}
+//           ></div>
+//           To'langan summa
+//         </Paragraph>
+//         <Paragraph style={{ textAlign: "end",  marginTop: "4%" }}>
+//           Oy davomida qilinganfoyda summasi
+//         </Paragraph>
+//       </Divs>
+//       <Divs>
+//         <Div>
+//           <H3>To'lovlar</H3>
+//           <Span>
+//             {date}.{month + 1}.{year}
+//           </Span>
+//         </Div>
+//         <Paragraph
+//           style={{
+//             background: theme.palette.custom.lightGray,
+//             width: "256px",
+//             height: "30px",
+//             lineHeight: "30px",
+//             paddingLeft: "10px",
+//             borderRadius: "5px",
+//           }}
+//         >
+//           Umumuiy foyda: "20.000.000"
+//         </Paragraph>
+//         <TolovRechart />
+//         <div style={{ display: "flex", flexDirection: "row", gap: "20px" }}>
+//           <Paragraph
+//             style={{
+//               background: theme.palette.custom.lightGray,
+//               width: "165px",
+//               height: "19px",
+//               lineHeight: "19px",
+//               display: "flex",
+//               alignItems: "center",
+//               borderRadius: "5px",
+//               gap: "5px",
+//               paddingLeft: "10px",
+//             }}
+//           >
+//             <div
+//               style={{
+//                 width: "10px",
+//                 height: "10px",
+//                 borderRadius: "20px",
+//                 background: "#039BE5",
+//                 borderRadius: "5px",
+//               }}
+//             ></div>
+//             To'langan summa
+//           </Paragraph>
+//           <Paragraph
+//             style={{
+//               background: theme.palette.custom.lightGray,
+//               width: "165px",
+//               height: "19px",
+//               lineHeight: "19px",
+//               display: "flex",
+//               alignItems: "center",
+//               borderRadius: "5px",
+//               gap: "5px",
+//               paddingLeft: "10px",
+//             }}
+//           >
+//             <div
+//               style={{
+//                 width: "10px",
+//                 height: "10px",
+//                 borderRadius: "20px",
+//                 background: "#039BE5",
+//                 borderRadius: "5px",
+//               }}
+//             ></div>
+//             To'langan summa
+//           </Paragraph>
+//         </div>
+//         <Paragraph
+//           style={{
+//             background: theme.palette.custom.lightGray,
+//             width: "250px",
+//             height: "19px",
+//             lineHeight: "19px",
+//             display: "flex",
+//             alignItems: "center",
+//             borderRadius: "5px",
+//             gap: "5px",
+//             paddingLeft: "10px",
+//           }}
+//         >
+//           Chap-raqam: Summa miqdori
+//         </Paragraph>
+//         <Paragraph
+//           style={{
+//             background: theme.palette.custom.lightGray,
+//             width: "250px",
+//             height: "19px",
+//             lineHeight: "19px",
+//             display: "flex",
+//             alignItems: "center",
+//             borderRadius: "5px",
+//             gap: "5px",
+//             paddingLeft: "10px",
+//           }}
+//         >
+//           Pastki-raqam: Summa miqdori
+//         </Paragraph>
+//         <Paragraph style={{ textAlign: "end" }}>
+//           O’quvchilar oy davomida to’lagan summa grafigi
+//         </Paragraph>
+//       </Divs>
+//       <Divs>
+//         <Div>
+//           <H3>Yangi o’quvchilar</H3>
+//           <Span>
+//             {date}.{month + 1}.{year}
+//           </Span>
+//         </Div>
+//         <Paragraph
+//           style={{
+//             background: theme.palette.custom.lightGray,
+//             width: "256px",
+//             height: "30px",
+//             lineHeight: "30px",
+//             paddingLeft: "10px",
+//             borderRadius: "5px",
+//           }}
+//         >
+//           Umumiy soni: 221ta
+//         </Paragraph>
+//         <OquvchilarReachart />
+//         <Paragraph
+//           style={{
+//             background: theme.palette.custom.lightGray,
+//             width: "165px",
+//             height: "19px",
+//             lineHeight: "19px",
+//             display: "flex",
+//             alignItems: "center",
+//             borderRadius: "5px",
+//             gap: "5px",
+//             paddingLeft: "10px",
+//           }}
+//         >
+//           <div
+//             style={{
+//               width: "10px",
+//               height: "10px",
+//               borderRadius: "20px",
+//               background: "#039BE5",
+//               borderRadius: "5px",
+//             }}
+//           ></div>
+//           To'langan summa
+//         </Paragraph>
+//         <Paragraph style={{ textAlign: "end", marginTop: "27%" }}>
+//           Yangi o’quvchilarning kurslarga qo’shilish grafigi
+//         </Paragraph>
+//       </Divs>
+//     </div>
+//   );
+// };
+
+// export default Home;
