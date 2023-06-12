@@ -10,6 +10,7 @@ import OquvchilarReachart from "../../recharts/OquvchularReachart";
 import { Div, Divs, Img } from "./HomeStyled";
 import { styled } from "@mui/system";
 import undov from "../../assets/icons/undov.png";
+import darkUndov from "../../assets/dark/undov-white.png";
 import "./home.scss";
 
 const Home = () => {
@@ -19,9 +20,10 @@ const Home = () => {
   const month = data.getMonth();
   const year = data.getUTCFullYear();
   const theme = useTheme();
+  console.log(sidebar);
 
   const StatBox = styled("div")(({ theme }) => ({
-    width: `${sidebar ? "90%" : "calc(100% - 50px)"}`,
+    width: `${sidebar ? "calc(100% - 130px)" : "90%" }`,
     display: "flex",
     flexDirection: "column",
     justifyContent: "space-between",
@@ -53,7 +55,7 @@ const Home = () => {
                   disableTouchListener
                   title="Oy davomida qilingan foyda summasi"
                 >
-                  <Img src={undov} />
+                  <Img src={theme.palette.mode == "dark" ? darkUndov : undov} />
                 </Tooltip>
               </H3>
               <Span>
@@ -124,7 +126,7 @@ const Home = () => {
                   disableTouchListener
                   title="O’quvchilar oy davomida to’lagan summa grafigi"
                 >
-                  <Img src={undov} />
+                  <Img src={theme.palette.mode == "dark" ? darkUndov : undov} />
                 </Tooltip>
               </H3>
               <Span>
@@ -239,7 +241,7 @@ const Home = () => {
                   disableTouchListener
                   title="Yangi o’quvchilarning kurslarga qo’shilish grafigi"
                 >
-                  <Img src={undov} />
+                  <Img  src={theme.palette.mode == "dark" ? darkUndov : undov} />
                 </Tooltip>
               </H3>
               <Span>
@@ -294,231 +296,3 @@ const Home = () => {
 };
 
 export default Home;
-
-// const Home = () => {
-//   const data = new Date();
-//   const date = data.getDate();
-//   const month = data.getMonth();
-//   const year = data.getUTCFullYear();
-//   const theme = useTheme();
-//   console.log(theme);
-//   console.log(data.getUTCMonth());
-//   return (
-//     <div className="dashboardhome">
-//       <Divs>
-//         <Div>
-//           <H3>FOYDA</H3>
-//           <Span>
-//             {date}.{month + 1}.{year}
-//           </Span>
-//         </Div>
-//         <Paragraph
-//           style={{
-//             background: theme.palette.custom.lightGray,
-//             width: "256px",
-//             height: "30px",
-//             lineHeight: "30px",
-//             paddingLeft: "10px",
-//             borderRadius: "5px",
-//           }}
-//         >
-//           Umumuiy foyda: "20.000.000"
-//         </Paragraph>
-//         <Paragraph
-//           style={{
-//             background: theme.palette.custom.lightGray,
-//             width: "320px",
-//             height: "30px",
-//             lineHeight: "30px",
-//             paddingLeft: "10px",
-//             borderRadius: "5px",
-//           }}
-//         >
-//           O'tgan oyga qaraganda 5% ko'proq foyda
-//         </Paragraph>
-//         <FoydaRecharts />
-//         <Paragraph
-//           style={{
-//             background: theme.palette.custom.lightGray,
-//             width: "165px",
-//             height: "19px",
-//             lineHeight: "19px",
-//             display: "flex",
-//             alignItems: "center",
-//             borderRadius: "5px",
-//             gap: "5px",
-//             paddingLeft: "10px",
-//           }}
-//         >
-//           <div
-//             style={{
-//               width: "10px",
-//               height: "10px",
-//               borderRadius: "20px",
-//               background: "#039BE5",
-//               borderRadius: "5px",
-//             }}
-//           ></div>
-//           To'langan summa
-//         </Paragraph>
-//         <Paragraph style={{ textAlign: "end",  marginTop: "4%" }}>
-//           Oy davomida qilinganfoyda summasi
-//         </Paragraph>
-//       </Divs>
-//       <Divs>
-//         <Div>
-//           <H3>To'lovlar</H3>
-//           <Span>
-//             {date}.{month + 1}.{year}
-//           </Span>
-//         </Div>
-//         <Paragraph
-//           style={{
-//             background: theme.palette.custom.lightGray,
-//             width: "256px",
-//             height: "30px",
-//             lineHeight: "30px",
-//             paddingLeft: "10px",
-//             borderRadius: "5px",
-//           }}
-//         >
-//           Umumuiy foyda: "20.000.000"
-//         </Paragraph>
-//         <TolovRechart />
-//         <div style={{ display: "flex", flexDirection: "row", gap: "20px" }}>
-//           <Paragraph
-//             style={{
-//               background: theme.palette.custom.lightGray,
-//               width: "165px",
-//               height: "19px",
-//               lineHeight: "19px",
-//               display: "flex",
-//               alignItems: "center",
-//               borderRadius: "5px",
-//               gap: "5px",
-//               paddingLeft: "10px",
-//             }}
-//           >
-//             <div
-//               style={{
-//                 width: "10px",
-//                 height: "10px",
-//                 borderRadius: "20px",
-//                 background: "#039BE5",
-//                 borderRadius: "5px",
-//               }}
-//             ></div>
-//             To'langan summa
-//           </Paragraph>
-//           <Paragraph
-//             style={{
-//               background: theme.palette.custom.lightGray,
-//               width: "165px",
-//               height: "19px",
-//               lineHeight: "19px",
-//               display: "flex",
-//               alignItems: "center",
-//               borderRadius: "5px",
-//               gap: "5px",
-//               paddingLeft: "10px",
-//             }}
-//           >
-//             <div
-//               style={{
-//                 width: "10px",
-//                 height: "10px",
-//                 borderRadius: "20px",
-//                 background: "#039BE5",
-//                 borderRadius: "5px",
-//               }}
-//             ></div>
-//             To'langan summa
-//           </Paragraph>
-//         </div>
-//         <Paragraph
-//           style={{
-//             background: theme.palette.custom.lightGray,
-//             width: "250px",
-//             height: "19px",
-//             lineHeight: "19px",
-//             display: "flex",
-//             alignItems: "center",
-//             borderRadius: "5px",
-//             gap: "5px",
-//             paddingLeft: "10px",
-//           }}
-//         >
-//           Chap-raqam: Summa miqdori
-//         </Paragraph>
-//         <Paragraph
-//           style={{
-//             background: theme.palette.custom.lightGray,
-//             width: "250px",
-//             height: "19px",
-//             lineHeight: "19px",
-//             display: "flex",
-//             alignItems: "center",
-//             borderRadius: "5px",
-//             gap: "5px",
-//             paddingLeft: "10px",
-//           }}
-//         >
-//           Pastki-raqam: Summa miqdori
-//         </Paragraph>
-//         <Paragraph style={{ textAlign: "end" }}>
-//           O’quvchilar oy davomida to’lagan summa grafigi
-//         </Paragraph>
-//       </Divs>
-//       <Divs>
-//         <Div>
-//           <H3>Yangi o’quvchilar</H3>
-//           <Span>
-//             {date}.{month + 1}.{year}
-//           </Span>
-//         </Div>
-//         <Paragraph
-//           style={{
-//             background: theme.palette.custom.lightGray,
-//             width: "256px",
-//             height: "30px",
-//             lineHeight: "30px",
-//             paddingLeft: "10px",
-//             borderRadius: "5px",
-//           }}
-//         >
-//           Umumiy soni: 221ta
-//         </Paragraph>
-//         <OquvchilarReachart />
-//         <Paragraph
-//           style={{
-//             background: theme.palette.custom.lightGray,
-//             width: "165px",
-//             height: "19px",
-//             lineHeight: "19px",
-//             display: "flex",
-//             alignItems: "center",
-//             borderRadius: "5px",
-//             gap: "5px",
-//             paddingLeft: "10px",
-//           }}
-//         >
-//           <div
-//             style={{
-//               width: "10px",
-//               height: "10px",
-//               borderRadius: "20px",
-//               background: "#039BE5",
-//               borderRadius: "5px",
-//             }}
-//           ></div>
-//           To'langan summa
-//         </Paragraph>
-//         <Paragraph style={{ textAlign: "end", marginTop: "27%" }}>
-//           Yangi o’quvchilarning kurslarga qo’shilish grafigi
-//         </Paragraph>
-//       </Divs>
-//     </div>
-//   );
-// };
-
-// export default Home;

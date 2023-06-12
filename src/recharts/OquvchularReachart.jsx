@@ -47,8 +47,6 @@ const data = [
   },
 ];
 
-const cardinal = curveCardinal.tension(0.2);
-
 export default class OquvchilarReachart extends PureComponent {
 
   render() {
