@@ -5,10 +5,12 @@ import Register from "./register/Register";
 import Login from "./login/Login";
 import Statistics from "./adv/statistics/Statistics";
 import Error from "./errorPage/Error";
+import Header from "./header/Header";
 
 const RoutesHome = () => {
   return (
     <>
+      <Header />
       <Routes>
         <Route path={"/"} element={<Home />} />
         <Route path={"/register"} element={<Register />} />

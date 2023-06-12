@@ -16,7 +16,6 @@ const Home = () => {
   const { t } = useTranslation();
   return (
     <>
-      <Header />
       <Container>
         <Box
           sx={{

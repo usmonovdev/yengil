@@ -7,7 +7,7 @@ import './topdashboard.scss'
 const TopDashboard = () => {
   return (
     <div>
-        <div className='header'>
+        <div className='header-top'>
         <Button variant="text"><img src={chatArrow} alt="" /></Button>
             <div>
                 <H1>Asosiy</H1>
