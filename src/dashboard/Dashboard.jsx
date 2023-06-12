@@ -13,12 +13,10 @@ import TopDashboard from "./topDashboard/TopDashboard";
 
 const Dashboard = () => {
   return (
-    <div>
-
-    <TopDashboard/>
     <Box
       sx={{ display: "flex", flexDirection: "row" }}
-      > 
+    > 
+      <TopDashboard/>
       <Nav />
       <Routes>
         <Route path="/dashboard/home" element={<Home />} />
@@ -31,7 +29,6 @@ const Dashboard = () => {
       </Routes>
     </Box>
 
-      </div>
   )
   }
 

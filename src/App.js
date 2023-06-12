@@ -96,7 +96,7 @@ function App() {
   }, [darkMode]);
 
   const theme = useMemo(() => createTheme(getTokens(mode)), [mode])
-  const [token, setToken] = useState(false)
+  const [token, setToken] = useState(true)
 
   useEffect(() => {
     token ? navigate("/dashboard/home") : navigate("/")
