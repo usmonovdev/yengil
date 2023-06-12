@@ -9,12 +9,14 @@ import Settings from "./settings/Settings";
 import { Route, Routes } from "react-router-dom";
 import Error from "../components/errorPage/Error";
 import { Box } from "@mui/material";
+import TopDashboard from "./topDashboard/TopDashboard";
 
 const Dashboard = () => {
   return (
     <Box
       sx={{ display: "flex", flexDirection: "row" }}
-    >
+    > 
+      <TopDashboard/>
       <Nav />
       <Routes>
         <Route path="/dashboard/home" element={<Home />} />
@@ -26,7 +28,8 @@ const Dashboard = () => {
         <Route path={"*"} element={<Error />} />
       </Routes>
     </Box>
-  );
-};
+
+  )
+  }
 
 export default Dashboard;
