@@ -50,7 +50,6 @@ const data = [
 const cardinal = curveCardinal.tension(0.2);
 
 export default class OquvchilarReachart extends PureComponent {
-  static demoUrl = 'https://codesandbox.io/s/area-chart-different-shapes-z94k6';
 
   render() {
     return (
@@ -70,8 +69,7 @@ export default class OquvchilarReachart extends PureComponent {
           <XAxis dataKey="name" />
           <YAxis />
           <Tooltip />
-          <Area type="monotone" dataKey="uv" stroke="#8884d8" fill="#8884d8" fillOpacity={0.3} />
-          <Area type={cardinal} dataKey="uv" stroke="#82ca9d" fill="#82ca9d" fillOpacity={0.3} />
+          <Area type="monotone" dataKey="uv" stroke="#039be5" fill="#039be5" />
         </AreaChart>
       </ResponsiveContainer>
     );

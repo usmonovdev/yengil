@@ -47,8 +47,6 @@ const data = [
 ];
 
 export default class TolovRechart extends PureComponent {
-  static demoUrl = 'https://codesandbox.io/s/bar-chart-has-no-padding-jphoc';
-
   render() {
     return (
       <ResponsiveContainer width="100%" height="60%">
@@ -69,7 +67,7 @@ export default class TolovRechart extends PureComponent {
           <Tooltip />
           <Legend />
           <CartesianGrid strokeDasharray="3 3" />
-          <Bar dataKey="pv" fill="#8884d8" background={{ fill: '#eee' }} />
+          <Bar dataKey="pv" fill="#039be5" background={{ fill: '#fff' }} />
         </BarChart>
       </ResponsiveContainer>
     );

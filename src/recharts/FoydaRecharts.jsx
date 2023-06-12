@@ -47,7 +47,6 @@ const data = [
 ];
 
 export default class FoydaRecharts extends PureComponent {
-  static demoUrl = 'https://codesandbox.io/s/area-chart-in-responsive-container-e6dx0';
 
   render() {
     return (
@@ -66,7 +65,7 @@ export default class FoydaRecharts extends PureComponent {
             <XAxis dataKey="name" />
             <YAxis />
             <Tooltip />
-            <Area type="monotone" dataKey="uv" stroke="#8884d8" fill="" />
+            <Area type="monotone" dataKey="uv" stroke="#8884d8" fill="#039be5" />
           </AreaChart>
         </ResponsiveContainer>
       </div>
