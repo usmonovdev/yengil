@@ -12,6 +12,7 @@ import { styled } from "@mui/system";
 import undov from "../../assets/icons/undov.png";
 import darkUndov from "../../assets/dark/undov-white.png";
 import "./home.scss";
+import { motion } from "framer-motion";
 
 const Home = () => {
   const { sidebar } = useSelector((state) => state);
@@ -23,7 +24,7 @@ const Home = () => {
   console.log(sidebar);
 
   const StatBox = styled("div")(({ theme }) => ({
-    width: `${sidebar ? "calc(100% - 130px)" : "90%" }`,
+    width: `${sidebar ? "calc(100% - 130px)" : "90%"}`,
     display: "flex",
     flexDirection: "column",
     justifyContent: "space-between",
@@ -44,109 +45,55 @@ const Home = () => {
         }}
       >
         <StatBox>
-          <Divs>
-            <Div>
-              <H3
-                style={{ display: "flex", gap: "10px", alignItems: "center" }}
-              >
-                FOYDA
-                <Tooltip
-                  disableFocusListener
-                  disableTouchListener
-                  title="Oy davomida qilingan foyda summasi"
+          <motion.div
+            initial={{ opacity: 0, scale: 0.7 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1, type: "spring", delay: 0.4 }}
+          >
+
+            <Divs>
+              <Div>
+                <H3
+                  style={{ display: "flex", gap: "10px", alignItems: "center" }}
                 >
-                  <Img src={theme.palette.mode == "dark" ? darkUndov : undov} />
-                </Tooltip>
-              </H3>
-              <Span>
-                {date}.{month + 1}.{year}
-              </Span>
-            </Div>
-            <Paragraph
-              style={{
-                background: theme.palette.custom.lightGray,
-                width: "256px",
-                height: "30px",
-                lineHeight: "30px",
-                paddingLeft: "10px",
-                borderRadius: "5px",
-              }}
-            >
-              Umumuiy foyda: "20.000.000"
-            </Paragraph>
-            <Span
-              style={{
-                background: theme.palette.custom.lightGray,
-                width: "320px",
-                height: "30px",
-                lineHeight: "30px",
-                paddingLeft: "10px",
-                borderRadius: "5px",
-              }}
-            >
-              O'tgan oyga qaraganda 5% ko'proq foyda
-            </Span>
-            <FoydaRecharts />
-            <Span
-              style={{
-                background: theme.palette.custom.lightGray,
-                width: "165px",
-                height: "19px",
-                lineHeight: "19px",
-                display: "flex",
-                alignItems: "center",
-                borderRadius: "5px",
-                gap: "5px",
-                paddingLeft: "10px",
-              }}
-            >
-              <div
+                  FOYDA
+                  <Tooltip
+                    disableFocusListener
+                    disableTouchListener
+                    title="Oy davomida qilingan foyda summasi"
+                  >
+                    <Img src={theme.palette.mode == "dark" ? darkUndov : undov} />
+                  </Tooltip>
+                </H3>
+                <Span>
+                  {date}.{month + 1}.{year}
+                </Span>
+              </Div>
+              <Paragraph
                 style={{
-                  width: "10px",
-                  height: "10px",
-                  borderRadius: "20px",
-                  background: "#039BE5",
+                  background: theme.palette.custom.lightGray,
+                  width: "256px",
+                  height: "30px",
+                  lineHeight: "30px",
+                  paddingLeft: "10px",
                   borderRadius: "5px",
                 }}
-              ></div>
-              To'langan summa
-            </Span>
-            <Span style={{ textAlign: "end", marginTop: "4%" }}>
-              Oy davomida qilingan foyda summasi
-            </Span>
-          </Divs>
-          <Divs>
-            <Div>
-              <H3
-                style={{ display: "flex", gap: "10px", alignItems: "center" }}
               >
-                To’lovlar
-                <Tooltip
-                  disableFocusListener
-                  disableTouchListener
-                  title="O’quvchilar oy davomida to’lagan summa grafigi"
-                >
-                  <Img src={theme.palette.mode == "dark" ? darkUndov : undov} />
-                </Tooltip>
-              </H3>
-              <Span>
-                {date}.{month + 1}.{year}
+                Umumuiy foyda: "20.000.000"
+              </Paragraph>
+              <Span
+                style={{
+                  background: theme.palette.custom.lightGray,
+                  width: "320px",
+                  height: "30px",
+                  lineHeight: "30px",
+                  paddingLeft: "10px",
+                  borderRadius: "5px",
+                }}
+              >
+                O'tgan oyga qaraganda 5% ko'proq foyda
               </Span>
-            </Div>
-            <Span
-              style={{
-                background: theme.palette.custom.lightGray,
-                width: "256px",
-                height: "30px",
-                lineHeight: "30px",
-                paddingLeft: "10px",
-                borderRadius: "5px",
-              }}
-            >
-              Umumuiy foyda: "20.000.000"
-            </Span>
-            <TolovRechart />
-            <div style={{ display: "flex", flexDirection: "row", gap: "20px" }}>
+              <FoydaRecharts />
               <Span
                 style={{
                   background: theme.palette.custom.lightGray,
@@ -171,6 +118,170 @@ const Home = () => {
                 ></div>
                 To'langan summa
               </Span>
+              <Span style={{ textAlign: "end", marginTop: "4%" }}>
+                Oy davomida qilingan foyda summasi
+              </Span>
+            </Divs>
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, scale: 0.7 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1.5, type: "spring", delay: 0.4 }}
+          >
+
+            <Divs>
+              <Div>
+                <H3
+                  style={{ display: "flex", gap: "10px", alignItems: "center" }}
+                >
+                  To’lovlar
+                  <Tooltip
+                    disableFocusListener
+                    disableTouchListener
+                    title="O’quvchilar oy davomida to’lagan summa grafigi"
+                  >
+                    <Img src={theme.palette.mode == "dark" ? darkUndov : undov} />
+                  </Tooltip>
+                </H3>
+                <Span>
+                  {date}.{month + 1}.{year}
+                </Span>
+              </Div>
+              <Span
+                style={{
+                  background: theme.palette.custom.lightGray,
+                  width: "256px",
+                  height: "30px",
+                  lineHeight: "30px",
+                  paddingLeft: "10px",
+                  borderRadius: "5px",
+                }}
+              >
+                Umumuiy foyda: "20.000.000"
+              </Span>
+              <TolovRechart />
+              <div style={{ display: "flex", flexDirection: "row", gap: "20px" }}>
+                <Span
+                  style={{
+                    background: theme.palette.custom.lightGray,
+                    width: "165px",
+                    height: "19px",
+                    lineHeight: "19px",
+                    display: "flex",
+                    alignItems: "center",
+                    borderRadius: "5px",
+                    gap: "5px",
+                    paddingLeft: "10px",
+                  }}
+                >
+                  <div
+                    style={{
+                      width: "10px",
+                      height: "10px",
+                      borderRadius: "20px",
+                      background: "#039BE5",
+                      borderRadius: "5px",
+                    }}
+                  ></div>
+                  To'langan summa
+                </Span>
+                <Span
+                  style={{
+                    background: theme.palette.custom.lightGray,
+                    width: "165px",
+                    height: "19px",
+                    lineHeight: "19px",
+                    display: "flex",
+                    alignItems: "center",
+                    borderRadius: "5px",
+                    gap: "5px",
+                    paddingLeft: "10px",
+                  }}
+                >
+                  <div
+                    style={{
+                      width: "10px",
+                      height: "10px",
+                      borderRadius: "20px",
+                      background: "#039BE5",
+                      borderRadius: "5px",
+                    }}
+                  ></div>
+                  To'langan summa
+                </Span>
+              </div>
+              <Span
+                style={{
+                  background: theme.palette.custom.lightGray,
+                  width: "250px",
+                  height: "19px",
+                  lineHeight: "19px",
+                  display: "flex",
+                  alignItems: "center",
+                  borderRadius: "5px",
+                  gap: "5px",
+                  paddingLeft: "10px",
+                }}
+              >
+                Chap-raqam: Summa miqdori
+              </Span>
+              <Span
+                style={{
+                  background: theme.palette.custom.lightGray,
+                  width: "250px",
+                  height: "19px",
+                  lineHeight: "19px",
+                  display: "flex",
+                  alignItems: "center",
+                  borderRadius: "5px",
+                  gap: "5px",
+                  paddingLeft: "10px",
+                }}
+              >
+                Pastki-raqam: Summa miqdori
+              </Span>
+              <Span style={{ textAlign: "end" }}>
+                O’quvchilar oy davomida to’lagan summa grafigi
+              </Span>
+            </Divs>
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, scale: 0.7 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 2, type: "spring", delay: 0.4 }}
+          >
+
+            <Divs>
+              <Div>
+                <H3
+                  style={{ display: "flex", gap: "10px", alignItems: "center" }}
+                >
+                  Yangi o’quvchilar
+                  <Tooltip
+                    disableFocusListener
+                    disableTouchListener
+                    title="Yangi o’quvchilarning kurslarga qo’shilish grafigi"
+                  >
+                    <Img src={theme.palette.mode == "dark" ? darkUndov : undov} />
+                  </Tooltip>
+                </H3>
+                <Span>
+                  {date}.{month + 1}.{year}
+                </Span>
+              </Div>
+              <Span
+                style={{
+                  background: theme.palette.custom.lightGray,
+                  width: "256px",
+                  height: "30px",
+                  lineHeight: "30px",
+                  paddingLeft: "10px",
+                  borderRadius: "5px",
+                }}
+              >
+                Umumiy soni: 221ta
+              </Span>
+              <OquvchilarReachart />
               <Span
                 style={{
                   background: theme.palette.custom.lightGray,
@@ -195,100 +306,11 @@ const Home = () => {
                 ></div>
                 To'langan summa
               </Span>
-            </div>
-            <Span
-              style={{
-                background: theme.palette.custom.lightGray,
-                width: "250px",
-                height: "19px",
-                lineHeight: "19px",
-                display: "flex",
-                alignItems: "center",
-                borderRadius: "5px",
-                gap: "5px",
-                paddingLeft: "10px",
-              }}
-            >
-              Chap-raqam: Summa miqdori
-            </Span>
-            <Span
-              style={{
-                background: theme.palette.custom.lightGray,
-                width: "250px",
-                height: "19px",
-                lineHeight: "19px",
-                display: "flex",
-                alignItems: "center",
-                borderRadius: "5px",
-                gap: "5px",
-                paddingLeft: "10px",
-              }}
-            >
-              Pastki-raqam: Summa miqdori
-            </Span>
-            <Span style={{ textAlign: "end" }}>
-              O’quvchilar oy davomida to’lagan summa grafigi
-            </Span>
-          </Divs>
-          <Divs>
-            <Div>
-            <H3
-                style={{ display: "flex", gap: "10px", alignItems: "center" }}
-              >
-                Yangi o’quvchilar
-                <Tooltip
-                  disableFocusListener
-                  disableTouchListener
-                  title="Yangi o’quvchilarning kurslarga qo’shilish grafigi"
-                >
-                  <Img  src={theme.palette.mode == "dark" ? darkUndov : undov} />
-                </Tooltip>
-              </H3>
-              <Span>
-                {date}.{month + 1}.{year}
+              <Span style={{ textAlign: "end", marginTop: "5%" }}>
+                Yangi o’quvchilarning kurslarga qo’shilish grafigi
               </Span>
-            </Div>
-            <Span
-              style={{
-                background: theme.palette.custom.lightGray,
-                width: "256px",
-                height: "30px",
-                lineHeight: "30px",
-                paddingLeft: "10px",
-                borderRadius: "5px",
-              }}
-            >
-              Umumiy soni: 221ta
-            </Span>
-            <OquvchilarReachart />
-            <Span
-              style={{
-                background: theme.palette.custom.lightGray,
-                width: "165px",
-                height: "19px",
-                lineHeight: "19px",
-                display: "flex",
-                alignItems: "center",
-                borderRadius: "5px",
-                gap: "5px",
-                paddingLeft: "10px",
-              }}
-            >
-              <div
-                style={{
-                  width: "10px",
-                  height: "10px",
-                  borderRadius: "20px",
-                  background: "#039BE5",
-                  borderRadius: "5px",
-                }}
-              ></div>
-              To'langan summa
-            </Span>
-            <Span style={{ textAlign: "end", marginTop: "5%" }}>
-              Yangi o’quvchilarning kurslarga qo’shilish grafigi
-            </Span>
-          </Divs>
+            </Divs>
+          </motion.div>
         </StatBox>
       </Box>
     </Box>
