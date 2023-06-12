@@ -12,6 +12,7 @@ const Register = () => {
   const theme = useTheme()
   const { t } = useTranslation();
   const [phone, setPhone] = useState("");
+  const [name, setName] = useState("");
   const [paswword, setPaswword] = useState("");
   const [paswwordProvided, setPaswwordProvided] = useState("");
   return (
@@ -34,8 +35,8 @@ const Register = () => {
         >
           <InputComp
             placeholder="MIT"
-            value={phone}
-            setValue={setPhone}
+            value={name}
+            setValue={setName}
             label={t("register-name")}
             required={true}
           />
@@ -45,6 +46,7 @@ const Register = () => {
             setValue={setPhone}
             label={t("register-phone")}
             required={true}
+            type={"number"}
           />
           <Div>
             <InputComp
