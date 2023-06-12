@@ -24,7 +24,6 @@ const Home = () => {
   console.log(sidebar);
 
   const StatBox = styled("div")(({ theme }) => ({
-    width: `${sidebar ? "calc(100% - 130px)" : "90%"}`,
     display: "flex",
     flexDirection: "column",
     justifyContent: "space-between",
