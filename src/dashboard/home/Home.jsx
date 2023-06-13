@@ -24,7 +24,7 @@ const Home = () => {
   console.log(sidebar);
 
   const StatBox = styled("div")(({ theme }) => ({
-    width: `${sidebar ? "calc(100% - 130px)" : "100%" }`,
+    width:"100%",
     display: "flex",
     flexDirection: "column",
     justifyContent: "space-between",
@@ -41,7 +41,7 @@ const Home = () => {
         sx={{
           position: "relative",
           top: "100px",
-          left: `${sidebar ? "100px" : "0"}`,
+          left: `${sidebar ? "90px" : "0"}`,
           padding: "15px"
         }}
       >
@@ -75,6 +75,7 @@ const Home = () => {
                   width: "fit-content",
                   height: "30px",
                   borderRadius: "5px",
+                  fontSize: {xs:"10px !important", md:"16px"}
                 }}
               >
                 Umumuiy foyda: "20.000.000"
@@ -82,7 +83,8 @@ const Home = () => {
               <Span
                 style={{
                   background: theme.palette.custom.lightGray,
-                  width: "fit-content",
+                  width: {xs:"100%",md:"fit-content"},
+                  fontSize: {xs:"10px !important", sm:"16px"},
                   height: "30px",
                   display: "flex",
                   alignItems: "center",

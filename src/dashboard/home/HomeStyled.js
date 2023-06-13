@@ -12,6 +12,7 @@ export const Divs = styled('div')(({ theme }) => ({
     background: theme.palette.custom.whiteSmoke,
     display: " flex",
     flexDirection: "column",
+    width: "100%",
     height: "500px",
     gap: "8px",
     padding: "15px",

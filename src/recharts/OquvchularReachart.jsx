@@ -51,7 +51,7 @@ export default class OquvchilarReachart extends PureComponent {
 
   render() {
     return (
-      <ResponsiveContainer width="100%" height="50%">
+      <ResponsiveContainer width="100%" height="70%">
         <AreaChart
           width={500}
           height={400}
