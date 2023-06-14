@@ -76,7 +76,6 @@ const Image = styled("img")(({ theme }) => ({
 const Nav = () => {
   const [active, setActive] = useState(1);
   const { isDarkMode, sidebar } = useSelector((state) => state);
-  console.log(sidebar);
   const dispatch = useDispatch();
 
   const NavbarBox = styled("div")(({ theme }) => ({

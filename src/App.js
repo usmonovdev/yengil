@@ -100,16 +100,18 @@ function App() {
   }, [darkMode]);
 
   const theme = useMemo(() => createTheme(getTokens(mode)), [mode])
-  const [token, setToken] = useState(true)
+  // const [token, setToken] = useState(true)
+  const state = useSelector(state => state.Token)
+  console.log(state);
 
   useEffect(() => {
-    token ? navigate("/dashboard/home") : navigate("/")
-  }, [])
+    state ? navigate("/dashboard/home") : navigate("/")
+  }, [state])
 
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      {token ? <>
+      {state ? <>
         <Dashboard />
       </> : <>
         <RoutesHome />

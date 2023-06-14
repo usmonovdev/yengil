@@ -11,9 +11,12 @@ import Advertising from "./adv/Advertising";
 import Header from "./header/Header";
 import Footer from "./footer/Footer";
 import "./home.scss";
+import { useDispatch } from "react-redux";
+import { setToken } from "../store/themeSlice";
 
 const Home = () => {
   const { t } = useTranslation();
+  const dispatch = useDispatch()
   return (
     <>
       <Container>
@@ -49,7 +52,7 @@ const Home = () => {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.6, type: "spring", delay: 0.4 }}
           >
-            <Link to={"/register"} style={{ textDecoration: "none" }}>
+            {/* <Link to={"/register"} style={{ textDecoration: "none" }}> */}
               <Button
                 variant="contained"
                 color="blue"
@@ -57,10 +60,11 @@ const Home = () => {
                   color: "#fff",
                   boxShadow: "0px 15px 50px 0px rgba(0,12,33,0.2)",
                 }}
+                onClick={()=> dispatch(setToken(true))}
               >
                 {t("button")}
               </Button>
-            </Link>
+            {/* </Link> */}
           </motion.div>
           <Paragraph>{t("button-title")}</Paragraph>
         </Box>
