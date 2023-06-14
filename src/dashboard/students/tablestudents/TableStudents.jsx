@@ -2,17 +2,21 @@ import React, { useState } from "react";
 import { H2, Paragraph } from "../../../ui/typography";
 import { Box, Button, InputAdornment, Select, TextField } from "@mui/material";
 import filters from "../../../assets/icons/filter.png";
+import filtersDark from "../../../assets/dark/fi-rr-filter.png";
 import { Img, TD } from "./TableStyled";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import { students } from "../../../localData/studentData";
 import NewStudents from "../new/NewStudents";
+import { useTheme } from "@emotion/react";
 
 const TableStudents = () => {
   const [search, setSearch] = useState();
   const [filter, setFilter] = useState();
   const [sorting, setSorting] = React.useState("");
+  const theme = useTheme()
+  console.log(theme.palette.custom.whiteSmoke);
 
   const handleChange = (event) => {
     setSorting(event.target.value);
@@ -44,11 +48,11 @@ const TableStudents = () => {
             <TextField
               label="Qidirish"
               id="filled-start-adornment"
-              sx={{ width: "20ch", background: "white" }}
+              sx={{ width: "20ch", background: theme.palette.custom.whiteSmoke }}
               InputProps={{
                 startAdornment: (
                   <InputAdornment position="start">
-                    <Img src={filters} />
+                    <Img src={theme.palette.mode == "light" ? filters : filtersDark} />
                   </InputAdornment>
                 ),
               }}
@@ -72,7 +76,7 @@ const TableStudents = () => {
               </FormControl>
             </Box>
           </Box>
-          <Button variant="contained">Qo'shish</Button>
+          <Button variant="contained" sx={{background: theme.palette.custom.bunting}}>Qo'shish</Button>
         </form>
         <>
           <table

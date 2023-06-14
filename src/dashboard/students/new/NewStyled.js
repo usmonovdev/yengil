@@ -1,15 +1,25 @@
 import styled from "@emotion/styled";
 
 export const Div = styled('div')(({ theme }) => ({
-    width: "100%",
+    width: "90%",
     minHeight: "5vh",
     display: "flex",
     justifyContent: "space-between",
 }))
 
+export const Nav =styled('div')(({theme}) =>({
+    width: "100%",
+    height:"3vh",
+    background:"#D9D9D9"
+}))
+
 export const Divs = styled('div')(({ theme }) => ({
     width: "30%",
-    background: "#f0f0f0",
+    minHeight: "3vh",
+    display: "flex",
+    flexDirection: "column",
+    gap: "5px",
+    background: theme.palette.custom.whiteSmoke,
 }))
 
 export const Img = styled('img')(({ theme }) => ({
