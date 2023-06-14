@@ -54,7 +54,7 @@ const Login = () => {
             required={true}
           />
           <FormControl variant="outlined" sx={{ width: "100%", }} color='blue'>
-            <InputLabel htmlFor="outlined-adornment-password">Password *</InputLabel>
+            <InputLabel htmlFor="outlined-adornment-password">{t("register-paswword")} *</InputLabel>
             <OutlinedInput
               id="outlined-adornment-password"
               type={showPassword ? 'text' : 'password'}
