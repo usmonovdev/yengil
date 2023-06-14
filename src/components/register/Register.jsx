@@ -25,7 +25,7 @@ const Register = () => {
         <H1 className="register-heading" style={{ padding: "1rem" }}>{t("register")}</H1>
         <Box
           sx={{
-            width: { xs: "100%", md: "60%" },
+            width: { xs: "90%", md: "60%" },
             margin: "0 auto",
             display: "flex",
             alignItems: "center",
