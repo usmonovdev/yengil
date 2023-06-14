@@ -13,8 +13,10 @@ import undov from "../../assets/icons/undov.png";
 import darkUndov from "../../assets/dark/undov-white.png";
 import "./home.scss";
 import { motion } from "framer-motion";
+import { useTranslation } from "react-i18next";
 
 const Home = () => {
+  const { t } = useTranslation();
   const { sidebar } = useSelector((state) => state);
   const data = new Date();
   const date = data.getDate();
@@ -34,8 +36,8 @@ const Home = () => {
   return (
     <Box sx={{ width: "100%" }}>
       <TopDashboard
-        header={"Asosiy"}
-        title={"Statistika va Yangi o'quvchilar"}
+        header={t("dashboardMain")}
+        title={t("dashboardMainTitle")}
       />
       <Box
         sx={{
@@ -56,11 +58,11 @@ const Home = () => {
                 <H3
                   style={{ display: "flex", gap: "10px", alignItems: "center" }}
                 >
-                  FOYDA
+                  {t("dashboardMainProfit")}
                   <Tooltip
                     disableFocusListener
                     disableTouchListener
-                    title="Oy davomida qilingan foyda summasi"
+                    title={t("dashboardMainProfitDanger")}
                   >
                     <Img src={theme.palette.mode == "dark" ? darkUndov : undov} />
                   </Tooltip>
@@ -78,7 +80,7 @@ const Home = () => {
                   fontSize: {xs:"10px !important", md:"16px"}
                 }}
               >
-                Umumuiy foyda: "20.000.000"
+                {t("dashboardMainGeneralBenefit")}: "20.000.000"
               </Paragraph>
               <Span
                 style={{
@@ -92,7 +94,7 @@ const Home = () => {
                   borderRadius: "5px",
                 }}
               >
-                O'tgan oyga qaraganda 5% ko'proq foyda
+                {t("dashboardMainProfitCompared")}
               </Span>
               <FoydaRecharts />
               <Span
@@ -117,10 +119,10 @@ const Home = () => {
                     borderRadius: "5px",
                   }}
                 ></div>
-                To'langan summa
+                {t("dashboardMainPaid")}
               </Span>
               <Span style={{ textAlign: "end", marginTop: "4%" }}>
-                Oy davomida qilingan foyda summasi
+                {t("dashboardMainAmountProfit")}
               </Span>
             </Divs>
           </motion.div>
@@ -135,11 +137,11 @@ const Home = () => {
                 <H3
                   style={{ display: "flex", gap: "10px", alignItems: "center" }}
                 >
-                  To’lovlar
+                  {t("dashboardMainPayments")}
                   <Tooltip
                     disableFocusListener
                     disableTouchListener
-                    title="O’quvchilar oy davomida to’lagan summa grafigi"
+                    title={t("dashboardMainPaymentsDanger")}
                   >
                     <Img src={theme.palette.mode == "dark" ? darkUndov : undov} />
                   </Tooltip>
@@ -158,7 +160,7 @@ const Home = () => {
                   borderRadius: "5px",
                 }}
               >
-                Umumuiy foyda: "20.000.000"
+                {t("dashboardMainPaymentsGeneralBenefit")}: "20.000.000"
               </Span>
               <TolovRechart />
               <div style={{ display: "flex", flexDirection: "row", gap: "20px" }}>
@@ -184,7 +186,7 @@ const Home = () => {
                       borderRadius: "5px",
                     }}
                   ></div>
-                  To'langan summa
+                  {t("dashboardMainPaymentsAmountPaid")}
                 </Span>
                 <Span
                   style={{
@@ -208,7 +210,7 @@ const Home = () => {
                       borderRadius: "5px",
                     }}
                   ></div>
-                  To'langan summa
+                  {t("dashboardMainPaymentsAmountPaid")}
                 </Span>
               </div>
               <Span
@@ -224,7 +226,7 @@ const Home = () => {
                   paddingLeft: "10px",
                 }}
               >
-                Chap-raqam: Summa miqdori
+                {t("dashboardMainPaymentsLeftNumber")}: {t("dashboardMainPaymentsTitle")}
               </Span>
               <Span
                 style={{
@@ -239,10 +241,10 @@ const Home = () => {
                   paddingLeft: "10px",
                 }}
               >
-                Pastki-raqam: Summa miqdori
+                {t("dashboardMainPaymentsSubNumber")}: {t("dashboardMainPaymentsTitle")}
               </Span>
               <Span style={{ textAlign: "end" }}>
-                O’quvchilar oy davomida to’lagan summa grafigi
+                {t("dashboardMainPaymentsAmount")}
               </Span>
             </Divs>
           </motion.div>
@@ -257,11 +259,11 @@ const Home = () => {
                 <H3
                   style={{ display: "flex", gap: "10px", alignItems: "center" }}
                 >
-                  Yangi o’quvchilar
+                  {t("dashboardMainNewStudents")}
                   <Tooltip
                     disableFocusListener
                     disableTouchListener
-                    title="Yangi o’quvchilarning kurslarga qo’shilish grafigi"
+                    title={t("dashboardmainNewStudentsDanger")}
                   >
                     <Img src={theme.palette.mode == "dark" ? darkUndov : undov} />
                   </Tooltip>
@@ -280,7 +282,7 @@ const Home = () => {
                   borderRadius: "5px",
                 }}
               >
-                Umumiy soni: 221ta
+                {t("dashboardMainNewStudentsTotalNumber")}: 221ta
               </Span>
               <OquvchilarReachart />
               <Span
@@ -305,10 +307,10 @@ const Home = () => {
                     borderRadius: "5px",
                   }}
                 ></div>
-                To'langan summa
+                {t("dashboardMainNewStudentsAmountPaid")}
               </Span>
               <Span style={{ textAlign: "end", marginTop: "5%" }}>
-                Yangi o’quvchilarning kurslarga qo’shilish grafigi
+                {t("dashboardMainNewStudentsAmount")}
               </Span>
             </Divs>
           </motion.div>
