@@ -23,7 +23,6 @@ const Home = () => {
   const month = data.getMonth();
   const year = data.getUTCFullYear();
   const theme = useTheme();
-  console.log(sidebar);
 
   const StatBox = styled("div")(({ theme }) => ({
     width:"100%",

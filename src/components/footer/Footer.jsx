@@ -9,7 +9,6 @@ import { Div, FooterContainer, Img, Styledfooter } from "./FooterStyle.js";
 const Footer = () => {
   const { t } = useTranslation();
   const theme = useTheme();
-  console.log(theme);
   return (
     <>
       <Styledfooter>

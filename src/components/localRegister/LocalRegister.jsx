@@ -66,7 +66,6 @@ const LocalRegister = () => {
         setOpen(true);
       } catch (error) {
         setLoading(false);
-        console.log(error);
       }
     } else if (name.length < 5) {
       setNameError(true);

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { H2, Paragraph } from "../../../ui/typography";
+import { H1, H2, Paragraph } from "../../../ui/typography";
 import {
   Box,
   Button,
@@ -48,25 +48,20 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 }));
 
 const TableStudents = () => {
-  const [student, setStudent] = useState(students);
   const [search, setSearch] = useState("");
-  const [filter, setFilter] = useState();
   const [sorting, setSorting] = useState("");
   const theme = useTheme();
 
   const handleChange = (event) => {
     setSorting(event.target.value);
   };
+
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
 
   const handleFilter = (e) => {
     setSearch(e);
   };
-
-  console.log(student);
-
-  useEffect(() => {}, [student]);
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -156,28 +151,51 @@ const TableStudents = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {students
-              .filter((users) => {
-                return search === ""
-                  ? users
-                  : users.name.toLowerCase().includes(search);
-              })
-              .map((users, index) => {
-                return (
-                  <StyledTableRow
-                    hover
-                    role="checkbox"
-                    tabIndex={-1}
-                    key={student.id}
-                  >
-                    <TableCell>{index}</TableCell>
-                    <TableCell>{users.name}</TableCell>
-                    <TableCell>{users.tel}</TableCell>
-                    <TableCell>{users.group}</TableCell>
-                    <TableCell>{users.payment}</TableCell>
-                  </StyledTableRow>
-                )
-              })}
+            {search.length > 0
+              ? students
+                  .filter((users) => {
+                    return search === ""
+                      ? users
+                      : users.name.toLowerCase().includes(search);
+                  })
+                  .map((users, index) => {
+                    return (
+                      <StyledTableRow
+                        hover
+                        role="checkbox"
+                        tabIndex={-1}
+                        key={users.id}
+                      >
+                        <TableCell>{index}</TableCell>
+                        <TableCell>{users.name}</TableCell>
+                        <TableCell>{users.tel}</TableCell>
+                        <TableCell>{users.group}</TableCell>
+                        <TableCell>{users.payment}</TableCell>
+                      </StyledTableRow>
+                    );
+                  })
+              : students
+                  .filter((users) => {
+                    return sorting === ""
+                      ? users
+                      : users.group.includes(sorting);
+                  })
+                  .map((users, index) => {
+                    return (
+                      <StyledTableRow
+                        hover
+                        role="checkbox"
+                        tabIndex={-1}
+                        key={users.id}
+                      >
+                        <TableCell>{index}</TableCell>
+                        <TableCell>{users.name}</TableCell>
+                        <TableCell>{users.tel}</TableCell>
+                        <TableCell>{users.group}</TableCell>
+                        <TableCell>{users.payment}</TableCell>
+                      </StyledTableRow>
+                    );
+                  })}
           </TableBody>
         </Table>
       </TableContainer>
