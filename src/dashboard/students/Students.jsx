@@ -22,6 +22,9 @@ const Students = () => {
           top: "100px",
           left: `${sidebar ? "90px" : "0"}`,
           padding: "15px",
+          display: "flex",
+          flexDirection: "column",
+          gap: "30px"
         }}
       >
         <NewStudents />

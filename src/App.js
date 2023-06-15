@@ -41,7 +41,8 @@ const getTokens = (mode) => ({
           bunting: "#212e48",
           midnight: "#182236",
           lightGray: "#d9d9d9",
-          whiteSmoke: "#f0f0f0"
+          whiteSmoke: "#f0f0f0",
+          newStudentWhite: "#D9D9D9"
         }
       } : {
         blue: createColor(lightBlue[600]),
@@ -58,7 +59,8 @@ const getTokens = (mode) => ({
           bunting: "#212e48",
           midnight: "#182236",
           lightGray: "#464646",
-          whiteSmoke: "#303030"
+          whiteSmoke: "#303030",
+          newStudentWhite: "#D9D9D9"
         }
       })
   },

@@ -116,7 +116,7 @@ const NewStudents = () => {
           display: "flex",
           flexDirection: { xs: "column" ,sm: "column", md: "row" },
           justifyContent: "space-between",
-          gap: "20px"
+          gap: "30px"
         }}
       >
         <Box
@@ -131,6 +131,7 @@ const NewStudents = () => {
           }}
           aria-label="new students"
         >
+          <Box sx={{ width: "100%", height: "10px", bgcolor: "custom.newStudentWhite", borderRadius: "4px" }}></Box>
           <Box
             sx={{
               display: "flex",
@@ -218,6 +219,7 @@ const NewStudents = () => {
           }}
           aria-label="new students"
         >
+          <Box sx={{ width: "100%", height: "10px", bgcolor: "custom.bunting", borderRadius: "4px" }}></Box>
           <Box
             sx={{
               display: "flex",
@@ -255,7 +257,7 @@ const NewStudents = () => {
                         height: "25px",
                         cursor: "pointer",
                         borderRadius: "50%",
-                        bgcolor: "custom.bunting",
+                        bgcolor: "custom.newStudentWhite",
                         transform: { xs: "rotate(-90deg)", sm: "rotate(-90deg)", md: "rotate(180deg)" }
                       }}
                     >
@@ -305,6 +307,7 @@ const NewStudents = () => {
           }}
           aria-label="new students"
         >
+          <Box sx={{ width: "100%", height: "10px", bgcolor: "blue.main", borderRadius: "4px" }}></Box>
           <Box
             sx={{
               display: "flex",
@@ -342,7 +345,7 @@ const NewStudents = () => {
                         height: "25px",
                         cursor: "pointer",
                         borderRadius: "50%",
-                        bgcolor: "custom.bunting",
+                        bgcolor: "custom.newStudentWhite",
                         transform: { xs: "rotate(-90deg)", sm: "rotate(-90deg)", md: "rotate(180deg)" }
                       }}
                     >
@@ -354,7 +357,7 @@ const NewStudents = () => {
                         height: "25px",
                         cursor: "pointer",
                         borderRadius: "50%",
-                        bgcolor: "blue.main",
+                        bgcolor: "custom.bunting",
                         transform: { xs: "rotate(-90deg)", sm: "rotate(-90deg)", md: "rotate(180deg)" }
                       }}
                     >
