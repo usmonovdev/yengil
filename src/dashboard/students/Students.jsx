@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import { Box } from "@mui/material";
 import TableStudents from "./tablestudents/TableStudents";
 import { useSelector } from "react-redux";
+import NewStudents from "./new/NewStudents";
 
 const Students = () => {
   const { t } = useTranslation();
@@ -23,6 +24,7 @@ const Students = () => {
           padding: "15px",
         }}
       >
+        {/* <NewStudents /> */}
         <TableStudents />
       </Box>
     </Box>

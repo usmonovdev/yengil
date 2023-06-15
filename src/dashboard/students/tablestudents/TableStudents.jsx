@@ -78,33 +78,41 @@ const TableStudents = () => {
     >
       <H2>O’quvchilar</H2>
       <Paragraph>Jami - 1000</Paragraph>
-      <form
-        style={{
-          display: "flex",
-          gap: "20px",
-          overflow: "scroll",
-          justifyContent: "space-between",
-          width: "1400px",
-        }}
-      >
-        <Box sx={{ display: "flex", gap: "20px" }}>
-          <TextField
-            label="Qidirish"
-            id="filled-start-adornment"
-            sx={{ width: "20ch", background: theme.palette.custom.whiteSmoke }}
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="start">
-                  <Img
-                    src={theme.palette.mode == "light" ? filters : filtersDark}
-                  />
-                </InputAdornment>
-              ),
+      <form>
+        <Box
+          sx={{
+            display: "flex",
+            gap: "20px",
+            width: "100%",
+            justifyContent: "space-between",
+            flexDirection: { xs: "column", md: "row" },
+          }}
+        >
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: { xs: "column", md: "row" },
+              gap: "20px",
             }}
-            variant="filled"
-          />
-          <Box sx={{ width: "203px", height: "20x", display: "flex" }}>
-            <FormControl fullWidth sx={{ width: { xs: "100%" } }}>
+          >
+            <TextField
+              color="blue"
+              label="Qidirish"
+              id="filled-start-adornment"
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <Img
+                      src={
+                        theme.palette.mode == "light" ? filters : filtersDark
+                      }
+                    />
+                  </InputAdornment>
+                ),
+              }}
+              variant="outlined"
+            />
+            <FormControl sx={{ width: { xs: "100%" } }} color="blue">
               <InputLabel id="demo-simple-select-label">Saralash</InputLabel>
               <Select
                 labelId="demo-simple-select-label"
@@ -120,56 +128,49 @@ const TableStudents = () => {
               </Select>
             </FormControl>
           </Box>
+          <Button variant="contained" color="blue">
+            Qo'shish
+          </Button>
         </Box>
       </form>
-      <Button variant="contained" color="blue">
-        Qo'shish
-      </Button>
-      <Box
-        sx={{
-          width: "100%",
-          overflow: "scroll",
-        }}
-      >
-        <TableContainer>
-          <Table sx={{ minWidth: 700 }}>
-            <TableHead>
-              <TableRow>
-                <StyledTableCell align="left">Ism Familiya</StyledTableCell>
-                <StyledTableCell align="left">Telefon</StyledTableCell>
-                <StyledTableCell align="left">Guruh</StyledTableCell>
-                <StyledTableCell align="left">To'lov</StyledTableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {students.map((student) => {
-                return (
-                  <StyledTableRow
-                    hover
-                    role="checkbox"
-                    tabIndex={-1}
-                    key={student.id}
-                  >
-                    <TableCell>{student.name}</TableCell>
-                    <TableCell>{student.tel}</TableCell>
-                    <TableCell>{student.group}</TableCell>
-                    <TableCell>{student.payment}</TableCell>
-                  </StyledTableRow>
-                );
-              })}
-            </TableBody>
-          </Table>
-        </TableContainer>
-        <TablePagination
-          rowsPerPageOptions={[10, 25, 100]}
-          component="div"
-          count={students.length}
-          rowsPerPage={rowsPerPage}
-          page={page}
-          onPageChange={handleChangePage}
-          onRowsPerPageChange={handleChangeRowsPerPage}
-        />
-      </Box>
+      <TableContainer sx={{ borderRadius: "5px" }}>
+        <Table sx={{ minWidth: 700 }}>
+          <TableHead>
+            <TableRow>
+              <StyledTableCell align="left">Ism Familiya</StyledTableCell>
+              <StyledTableCell align="left">Telefon</StyledTableCell>
+              <StyledTableCell align="left">Guruh</StyledTableCell>
+              <StyledTableCell align="left">To'lov</StyledTableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {students.map((student) => {
+              return (
+                <StyledTableRow
+                  hover
+                  role="checkbox"
+                  tabIndex={-1}
+                  key={student.id}
+                >
+                  <TableCell>{student.name}</TableCell>
+                  <TableCell>{student.tel}</TableCell>
+                  <TableCell>{student.group}</TableCell>
+                  <TableCell>{student.payment}</TableCell>
+                </StyledTableRow>
+              );
+            })}
+          </TableBody>
+        </Table>
+      </TableContainer>
+      <TablePagination
+        rowsPerPageOptions={[10, 25, 100]}
+        component="div"
+        count={students.length}
+        rowsPerPage={rowsPerPage}
+        page={page}
+        onPageChange={handleChangePage}
+        onRowsPerPageChange={handleChangeRowsPerPage}
+      />
     </Box>
   );
 };
