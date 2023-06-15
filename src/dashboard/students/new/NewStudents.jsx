@@ -114,7 +114,7 @@ const NewStudents = () => {
         sx={{
           width: "100%",
           display: "flex",
-          flexDirection: { sm: "column", md: "row" },
+          flexDirection: { xs: "column" ,sm: "column", md: "row" },
           justifyContent: "space-between",
           gap: "20px"
         }}
@@ -169,6 +169,7 @@ const NewStudents = () => {
                         cursor: "pointer",
                         borderRadius: "50%",
                         bgcolor: "custom.bunting",
+                        transform: { xs: "rotate(90deg)", sm: "rotate(90deg)", md: "rotate(0deg)" }
                       }}
                     >
                       <img width="100%" src={arrow} />
@@ -180,6 +181,7 @@ const NewStudents = () => {
                         cursor: "pointer",
                         borderRadius: "50%",
                         bgcolor: "blue.main",
+                        transform: { xs: "rotate(90deg)", sm: "rotate(90deg)", md: "rotate(0deg)" }
                       }}
                     >
                       <img width="100%" src={arrow} />
@@ -189,15 +191,15 @@ const NewStudents = () => {
                 <Box
                   sx={{
                     display: "flex",
-                    flexDirection: { md: "column", lg: "row" },
+                    flexDirection: { xs: "column", sm: "column", md: "column", lg: "row" },
                     alignItems: { md: "flex-start", lg: "center" },
                     gap: { md: "0", lg: "10px" },
                   }}
                 >
                   <StyledH3>{student.tel}</StyledH3>
-                  <Box sx={{ width: "0.1rem", bgcolor: "custom.lightGray", height: "20px", display: { md: "none", lg: "block" } }}></Box>
+                  <Box sx={{ width: "0.1rem", bgcolor: "custom.lightGray", height: "20px", display: { xs: "none", sm: "none", md: "none", lg: "block" } }}></Box>
                   <StyledH3>{student.group}</StyledH3>
-                  <Box sx={{ width: "0.1rem", bgcolor: "custom.lightGray", height: "20px", display: { md: "none", lg: "block" } }}></Box>
+                  <Box sx={{ width: "0.1rem", bgcolor: "custom.lightGray", height: "20px", display: { xs: "none", sm: "none", md: "none", lg: "block" } }}></Box>
                   <StyledH3>{student.responseTime}</StyledH3>
                 </Box>
               </Box>
@@ -223,7 +225,7 @@ const NewStudents = () => {
               justifyContent: "space-between",
             }}
           >
-            <H3>So’rov yuborganlar</H3>
+            <H3>Kutilmoqda</H3>
             <H3>Jami - {waitingStudents.length}</H3>
           </Box>
           {waitingStudents.map((student) => {
@@ -254,7 +256,7 @@ const NewStudents = () => {
                         cursor: "pointer",
                         borderRadius: "50%",
                         bgcolor: "custom.bunting",
-                        transform: "rotate(180deg)"
+                        transform: { xs: "rotate(-90deg)", sm: "rotate(-90deg)", md: "rotate(180deg)" }
                       }}
                     >
                       <img width="100%" src={arrow} />
@@ -266,6 +268,7 @@ const NewStudents = () => {
                         cursor: "pointer",
                         borderRadius: "50%",
                         bgcolor: "blue.main",
+                        transform: { xs: "rotate(90deg)", sm: "rotate(90deg)", md: "rotate(0deg)" }
                       }}
                     >
                       <img width="100%" src={arrow} />
@@ -275,15 +278,15 @@ const NewStudents = () => {
                 <Box
                   sx={{
                     display: "flex",
-                    flexDirection: { md: "column", lg: "row" },
+                    flexDirection: { xs: "column", sm: "column", md: "column", lg: "row" },
                     alignItems: { md: "flex-start", lg: "center" },
                     gap: { md: "0", lg: "10px" },
                   }}
                 >
                   <StyledH3>{student.tel}</StyledH3>
-                  <Box sx={{ width: "0.1rem", bgcolor: "custom.lightGray", height: "20px", display: { md: "none", lg: "block" } }}></Box>
+                  <Box sx={{ width: "0.1rem", bgcolor: "custom.lightGray", height: "20px", display: { xs: "none", sm: "none", md: "none", lg: "block" } }}></Box>
                   <StyledH3>{student.group}</StyledH3>
-                  <Box sx={{ width: "0.1rem", bgcolor: "custom.lightGray", height: "20px", display: { md: "none", lg: "block" } }}></Box>
+                  <Box sx={{ width: "0.1rem", bgcolor: "custom.lightGray", height: "20px", display: { xs: "none", sm: "none", md: "none", lg: "block" } }}></Box>
                   <StyledH3>{student.responseTime}</StyledH3>
                 </Box>
               </Box>
@@ -309,7 +312,7 @@ const NewStudents = () => {
               justifyContent: "space-between",
             }}
           >
-            <H3>So’rov yuborganlar</H3>
+            <H3>Tayyor</H3>
             <H3>Jami - {readyStudents.length}</H3>
           </Box>
           {readyStudents.map((student) => {
@@ -340,7 +343,7 @@ const NewStudents = () => {
                         cursor: "pointer",
                         borderRadius: "50%",
                         bgcolor: "custom.bunting",
-                        transform: "rotate(180deg)"
+                        transform: { xs: "rotate(-90deg)", sm: "rotate(-90deg)", md: "rotate(180deg)" }
                       }}
                     >
                       <img width="100%" src={arrow} />
@@ -352,7 +355,7 @@ const NewStudents = () => {
                         cursor: "pointer",
                         borderRadius: "50%",
                         bgcolor: "blue.main",
-                        transform: "rotate(180deg)"
+                        transform: { xs: "rotate(-90deg)", sm: "rotate(-90deg)", md: "rotate(180deg)" }
                       }}
                     >
                       <img width="100%" src={arrow} />
@@ -362,15 +365,15 @@ const NewStudents = () => {
                 <Box
                   sx={{
                     display: "flex",
-                    flexDirection: { md: "column", lg: "row" },
+                    flexDirection: { xs: "column", sm: "column", md: "column", lg: "row" },
                     alignItems: { md: "flex-start", lg: "center" },
                     gap: { md: "0", lg: "10px" },
                   }}
                 >
                   <StyledH3>{student.tel}</StyledH3>
-                  <Box sx={{ width: "0.1rem", bgcolor: "custom.lightGray", height: "20px", display: { md: "none", lg: "block" } }}></Box>
+                  <Box sx={{ width: "0.1rem", bgcolor: "custom.lightGray", height: "20px", display: { xs: "none", sm: "none", md: "none", lg: "block" } }}></Box>
                   <StyledH3>{student.group}</StyledH3>
-                  <Box sx={{ width: "0.1rem", bgcolor: "custom.lightGray", height: "20px", display: { md: "none", lg: "block" } }}></Box>
+                  <Box sx={{ width: "0.1rem", bgcolor: "custom.lightGray", height: "20px", display: { xs: "none", sm: "none", md: "none", lg: "block" } }}></Box>
                   <StyledH3>{student.responseTime}</StyledH3>
                 </Box>
               </Box>
