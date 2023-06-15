@@ -121,6 +121,8 @@ const NewStudents = () => {
       >
         <Box
           sx={{
+            maxHeight: "450px",
+            overflowY: "auto",
             width: { sm: "100%", md: "33%" },
             display: "flex",
             flexDirection: "column",
@@ -209,6 +211,8 @@ const NewStudents = () => {
         </Box>
         <Box
           sx={{
+            maxHeight: "450px",
+            overflowY: "auto",
             width: { sm: "100%", md: "33%" },
             display: "flex",
             flexDirection: "column",
@@ -297,6 +301,8 @@ const NewStudents = () => {
         </Box>
         <Box
           sx={{
+            maxHeight: "450px",
+            overflowY: "auto",
             width: { sm: "100%", md: "33%" },
             display: "flex",
             flexDirection: "column",

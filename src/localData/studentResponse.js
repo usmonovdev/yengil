@@ -63,4 +63,44 @@ export const studentResponse = [
         type: "ready",
         id: 7
     },
+    {
+        name: "Eshmatov Shermat",
+        tel: "+998 91 001 00 01",
+        group: "Ingliz tili",
+        responseTime: "2023.06.13",
+        type: "ready",
+        id: 8
+    },
+    {
+        name: "Eshmatov Shermat",
+        tel: "+998 91 001 00 01",
+        group: "Ingliz tili",
+        responseTime: "2023.06.13",
+        type: "ready",
+        id: 9
+    },
+    {
+        name: "Eshmatov Shermat",
+        tel: "+998 91 001 00 01",
+        group: "Ingliz tili",
+        responseTime: "2023.06.13",
+        type: "new",
+        id: 10
+    },
+    {
+        name: "Eshmatov Shermat",
+        tel: "+998 91 001 00 01",
+        group: "Ingliz tili",
+        responseTime: "2023.06.13",
+        type: "new",
+        id: 11
+    },
+    {
+        name: "Eshmatov Shermat",
+        tel: "+998 91 001 00 01",
+        group: "Ingliz tili",
+        responseTime: "2023.06.13",
+        type: "new",
+        id: 11
+    },
 ]
