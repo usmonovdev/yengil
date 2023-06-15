@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { H2, Paragraph } from "../../../ui/typography";
 import {
   Box,
@@ -48,9 +48,10 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 }));
 
 const TableStudents = () => {
-  const [search, setSearch] = useState();
+  const [student, setStudent] = useState(students);
+  const [search, setSearch] = useState("");
   const [filter, setFilter] = useState();
-  const [sorting, setSorting] = React.useState("");
+  const [sorting, setSorting] = useState("");
   const theme = useTheme();
 
   const handleChange = (event) => {
@@ -58,6 +59,14 @@ const TableStudents = () => {
   };
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
+
+  const handleFilter = (e) => {
+    setSearch(e);
+  };
+
+  console.log(student);
+
+  useEffect(() => {}, [student]);
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -99,6 +108,7 @@ const TableStudents = () => {
               color="blue"
               label="Qidirish"
               id="filled-start-adornment"
+              onChange={(e) => handleFilter(e.target.value)}
               InputProps={{
                 startAdornment: (
                   <InputAdornment position="start">
@@ -121,10 +131,10 @@ const TableStudents = () => {
                 value={sorting}
                 onChange={handleChange}
               >
-                <MenuItem value={10}>Matem</MenuItem>
-                <MenuItem value={20}>Ona tili</MenuItem>
-                <MenuItem value={30}>Kimyo</MenuItem>
-                <MenuItem value={40}>Fizika</MenuItem>
+                <MenuItem value="Matem">Matem</MenuItem>
+                <MenuItem value="Ona tili">Ona tili</MenuItem>
+                <MenuItem value="Kimyo">Kimyo</MenuItem>
+                <MenuItem value="Fizika">Fizika</MenuItem>
               </Select>
             </FormControl>
           </Box>
@@ -145,22 +155,27 @@ const TableStudents = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {students.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((student) => {
-              return (
-                <StyledTableRow
-                  hover
-                  role="checkbox"
-                  tabIndex={-1}
-                  key={student.id}
-                >
-                  <TableCell>{student.id}</TableCell>
-                  <TableCell>{student.name}</TableCell>
-                  <TableCell>{student.tel}</TableCell>
-                  <TableCell>{student.group}</TableCell>
-                  <TableCell>{student.payment}</TableCell>
-                </StyledTableRow>
-              );
-            })}
+            { students
+              .filter((users) => {
+                return search === ""
+                  ? users
+                  : users.name.toLowerCase().includes(search);
+              })
+              .map((users, index) => {
+                return (
+                  <StyledTableRow
+                    hover
+                    role="checkbox"
+                    tabIndex={-1}
+                    key={student.id}
+                  >
+                    <TableCell>{users.name}</TableCell>
+                    <TableCell>{users.tel}</TableCell>
+                    <TableCell>{users.group}</TableCell>
+                    <TableCell>{users.payment}</TableCell>
+                  </StyledTableRow>
+                )
+              })}
           </TableBody>
         </Table>
       </TableContainer>

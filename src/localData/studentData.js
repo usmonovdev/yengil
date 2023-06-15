@@ -2,49 +2,49 @@ export const students = [
     {
         name: 'Usmonov Azizbek',
         tel: "+99891 019 78 03",
-        group: "Dasturlash",
+        group: "Matem",
         payment: "320.000",
         id:"1"
     },
     {
         name: 'Usmonov Azizbek',
         tel: "+99891 019 78 03",
-        group: "Dasturlash",
+        group: "Matem",
         payment: "320.000",
         id:"2"
     },
     {
-        name: 'Usmonov Azizbek',
+        name: 'Abror',
         tel: "+99891 019 78 03",
-        group: "Dasturlash",
+        group: "Matem",
         payment: "320.000",
         id:"3"
     },
     {
         name: 'Usmonov Azizbek',
         tel: "+99891 019 78 03",
-        group: "Dasturlash",
+        group: "Ona tili",
         payment: "320.000",
         id:"4"
     },
     {
         name: 'Usmonov Azizbek',
         tel: "+99891 019 78 03",
-        group: "Dasturlash",
+        group: "Ona tili",
         payment: "320.000",
         id:"5"
     },
     {
         name: 'Usmonov Azizbek',
         tel: "+99891 019 78 03",
-        group: "Dasturlash",
+        group: "Ona tili",
         payment: "320.000",
         id:"6"
     },
     {
         name: 'Usmonov Azizbek',
         tel: "+99891 019 78 03",
-        group: "Dasturlash",
+        group: "Kimyo",
         payment: "320.000",
         id:"7"
     },
