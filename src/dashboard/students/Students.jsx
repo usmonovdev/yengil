@@ -24,7 +24,7 @@ const Students = () => {
           padding: "15px",
         }}
       >
-        {/* <NewStudents /> */}
+        <NewStudents />
         <TableStudents />
       </Box>
     </Box>
