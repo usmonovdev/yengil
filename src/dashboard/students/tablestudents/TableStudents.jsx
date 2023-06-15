@@ -134,9 +134,10 @@ const TableStudents = () => {
         </Box>
       </form>
       <TableContainer sx={{ borderRadius: "5px" }}>
-        <Table sx={{ minWidth: 700 }}>
+        <Table stickyHeader sx={{ minWidth: 700 }}>
           <TableHead>
             <TableRow>
+              <StyledTableCell align="left">No</StyledTableCell>
               <StyledTableCell align="left">Ism Familiya</StyledTableCell>
               <StyledTableCell align="left">Telefon</StyledTableCell>
               <StyledTableCell align="left">Guruh</StyledTableCell>
@@ -144,7 +145,7 @@ const TableStudents = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {students.map((student) => {
+            {students.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((student) => {
               return (
                 <StyledTableRow
                   hover
@@ -152,6 +153,7 @@ const TableStudents = () => {
                   tabIndex={-1}
                   key={student.id}
                 >
+                  <TableCell>{student.id}</TableCell>
                   <TableCell>{student.name}</TableCell>
                   <TableCell>{student.tel}</TableCell>
                   <TableCell>{student.group}</TableCell>
