@@ -131,6 +131,7 @@ const TableStudents = () => {
                 value={sorting}
                 onChange={handleChange}
               >
+                <MenuItem value="">Saralash</MenuItem>
                 <MenuItem value="Matem">Matem</MenuItem>
                 <MenuItem value="Ona tili">Ona tili</MenuItem>
                 <MenuItem value="Kimyo">Kimyo</MenuItem>
@@ -155,7 +156,7 @@ const TableStudents = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            { students
+            {students
               .filter((users) => {
                 return search === ""
                   ? users
@@ -169,6 +170,7 @@ const TableStudents = () => {
                     tabIndex={-1}
                     key={student.id}
                   >
+                    <TableCell>{index}</TableCell>
                     <TableCell>{users.name}</TableCell>
                     <TableCell>{users.tel}</TableCell>
                     <TableCell>{users.group}</TableCell>
