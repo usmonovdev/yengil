@@ -72,5 +72,16 @@
     "dashboardTeachersTitle": "Статистика и новые учителя",
     "dashboardMoney": "Платежи",
     "dashboardMoneyTitle": "Статистика и новые платежи",
-    "dashboardSettings": "Настройки"
+    "dashboardSettings": "Настройки",
+    "students": "Студенты",
+    "studentsAll": "Все",
+    "studentsSorting": "Сортировка",
+    "studentsSearch": "Поиск",
+    "studentsAdd": "Добавлять",
+    "studentsInfo": "Имя Фамилия",
+    "studentsPhone": "Телефон",
+    "studentsGroup": "Группа",
+    "studentsPayment": "Оплата",
+    "studentsNotFound": "Студент не найден",
+    "studentsLabelRowsPerPage": "Рядов на странице:"
 }

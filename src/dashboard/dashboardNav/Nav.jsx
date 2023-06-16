@@ -2,7 +2,7 @@ import Fon from "../../assets/icons/icon.png";
 import styled from "@emotion/styled";
 import { Box, Button, FormControlLabel, Switch } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
-import { asyncToggleTheme } from "../../store/themeSlice";
+import { asyncToggleTheme, toggleSidebar } from "../../store/themeSlice";
 import { motion } from "framer-motion";
 import { dashboardData } from "../../localData/dashboardData";
 import { NavLink } from "react-router-dom";
@@ -92,6 +92,11 @@ const Nav = () => {
     transform: `${sidebar ? "unset" : "translateX(-100%)"}`
   }));
 
+  const handleImg = (nav) => {
+    setActive(nav)
+    dispatch(toggleSidebar())
+  }
+
   return (
     <motion.div
       initial={{ opacity: 0, x: -100 }}
@@ -110,7 +115,7 @@ const Nav = () => {
                 <LinksBox
                   className={`nav-item ${nav.id == active ? "active" : ""}`}
                   key={nav.id}
-                  onClick={() => setActive(nav.id)}
+                  onClick={() => handleImg(nav.id)}
                 >
                   <Image src={nav.img} alt={nav.name} />
                 </LinksBox>

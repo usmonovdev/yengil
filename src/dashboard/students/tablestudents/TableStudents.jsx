@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { H2, H3, Paragraph } from "../../../ui/typography";
 import {
   Box,
@@ -16,14 +16,16 @@ import {
   styled,
   tableCellClasses,
 } from "@mui/material";
-import filters from "../../../assets/icons/filter.png";
-import filtersDark from "../../../assets/dark/fi-rr-filter.png";
+import search from "../../../assets/icons/search.png";
+import searchDark from "../../../assets/dark/darkSearch.png";
 import { Img } from "./TableStyled";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import { students } from "../../../localData/studentData";
 import { useTheme } from "@emotion/react";
+import { useTranslation } from "react-i18next";
+import { useInView } from "framer-motion";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -53,6 +55,8 @@ const TableStudents = () => {
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const theme = useTheme();
 
+  const { t } = useTranslation();
+
   const handleFilter = (event) => {
     setFilteredSt(
       student.filter((f) => f.name.toLowerCase().includes(event.target.value))
@@ -76,17 +80,23 @@ const TableStudents = () => {
     setRowsPerPage(+event.target.value);
     setPage(0);
   };
+  const ref = useRef();
+  const isInView = useInView(ref, { once: true });
   return (
     <Box
+    ref={ref}
       sx={{
         width: "100%",
         display: "flex",
         flexDirection: "column",
         gap: "10px",
+        transform: isInView ? "none" : "translateY(200px)",
+        opacity: isInView ? 1 : 0,
+        transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1)",
       }}
     >
-      <H2>O’quvchilar</H2>
-      <Paragraph>Jami - 1000</Paragraph>
+      <H2>{t("students")}</H2>
+      <Paragraph>{t("studentsAll")} - 1000</Paragraph>
       <form>
         <Box
           sx={{
@@ -106,14 +116,14 @@ const TableStudents = () => {
           >
             <TextField
               color="blue"
-              label="Qidirish"
+              label={t("studentsSearch")}
               onChange={handleFilter}
               InputProps={{
                 startAdornment: (
                   <InputAdornment position="start">
                     <Img
                       src={
-                        theme.palette.mode == "light" ? filters : filtersDark
+                        theme.palette.mode == "light" ? search : searchDark
                       }
                     />
                   </InputAdornment>
@@ -122,15 +132,15 @@ const TableStudents = () => {
               variant="outlined"
             />
             <FormControl sx={{ width: { xs: "100%" } }} color="blue">
-              <InputLabel id="demo-simple-select-label">Saralash</InputLabel>
+              <InputLabel id="demo-simple-select-label">{t("studentsSorting")}</InputLabel>
               <Select
                 labelId="demo-simple-select-label"
                 id="demo-simple-select"
-                label="Saralash"
+                label={t("studentsSorting")}
                 value={sorting}
                 onChange={handleChange}
               >
-                <MenuItem value="">Saralash</MenuItem>
+                <MenuItem value="">{t("studentsSorting")}</MenuItem>
                 <MenuItem value="matematika">Matem</MenuItem>
                 <MenuItem value="ona tili">Ona tili</MenuItem>
                 <MenuItem value="kimyo">Kimyo</MenuItem>
@@ -139,7 +149,7 @@ const TableStudents = () => {
             </FormControl>
           </Box>
           <Button variant="contained" color="blue">
-            Qo'shish
+            {t("studentsAdd")}
           </Button>
         </Box>
       </form>
@@ -150,10 +160,10 @@ const TableStudents = () => {
               <TableHead>
                 <TableRow>
                   <StyledTableCell align="left">ID</StyledTableCell>
-                  <StyledTableCell align="left">Ism Familiya</StyledTableCell>
-                  <StyledTableCell align="left">Telefon</StyledTableCell>
-                  <StyledTableCell align="left">Guruh</StyledTableCell>
-                  <StyledTableCell align="left">To'lov</StyledTableCell>
+                  <StyledTableCell align="left">{t("studentsInfo")}</StyledTableCell>
+                  <StyledTableCell align="left">{t("studentsPhone")}</StyledTableCell>
+                  <StyledTableCell align="left">{t("studentsGroup")}</StyledTableCell>
+                  <StyledTableCell align="left">{t("studentsPayment")}</StyledTableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
@@ -177,6 +187,7 @@ const TableStudents = () => {
             </Table>
           </TableContainer>
           <TablePagination
+            labelRowsPerPage={t("studentsLabelRowsPerPage")}
             rowsPerPageOptions={[10, 25, 100]}
             component="div"
             count={filteredSt.length}
@@ -198,7 +209,7 @@ const TableStudents = () => {
             justifyContent: "center"
           }}
         >
-        <H3>Student not found</H3>
+        <H3>{t("studentsNotFound")}</H3>
         </Box>
       )}
     </Box>

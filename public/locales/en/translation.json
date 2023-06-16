@@ -71,5 +71,17 @@
     "dashboardTeachersTitle": "Statistics and New Teachers",
     "dashboardMoney": "Payments",
     "dashboardMoneyTitle": "Statistics and New Payments",
-    "dashboardSettings": "Settings"
+    "dashboardSettings": "Settings",
+    "students": "Students",
+    "studentsNew": "New Students",
+    "studentsAll": "All",
+    "studentsSorting": "Sorting",
+    "studentsSearch": "Search",
+    "studentsAdd": "Add",
+    "studentsInfo": "Name Surname",
+    "studentsPhone": "Phone",
+    "studentsGroup": "Group",
+    "studentsPayment": "Payment",
+    "studentsNotFound": "Student not found",
+    "studentsLabelRowsPerPage": "Rows per page:"
 }
