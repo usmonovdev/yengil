@@ -1,21 +1,21 @@
 export const students = [
     {
         name: 'Usmonov Azizbek',
-        tel: "+99891 019 78 03",
+        tel: "+998993626209",
         group: "matematika",
         payment: "320.000",
         id:"1"
     },
     {
         name: 'Usmonov Azizbek',
-        tel: "+99891 019 78 03",
+        tel: "+998993626209",
         group: "matematika",
         payment: "320.000",
         id:"2"
     },
     {
         name: 'Abror',
-        tel: "+99891 019 78 03",
+        tel: "+998993626209",
         group: "matematika",
         payment: "320.000",
         id:"3"
