@@ -17,6 +17,7 @@ import {
   styled,
 } from "@mui/material";
 import { studentResponse } from "../../../localData/studentResponse";
+import { AddStudents } from "../addStudents/AddStudents";
 
 const StyledH3 = styled(H3)(({ theme }) => ({
   opacity: "60%",
@@ -121,9 +122,7 @@ const NewStudents = () => {
               </Select>
             </FormControl>
           </Box>
-          <Button variant="contained" color="blue">
-            Qo'shish
-          </Button>
+          <AddStudents />
         </Box>
       </form>
       <Box
