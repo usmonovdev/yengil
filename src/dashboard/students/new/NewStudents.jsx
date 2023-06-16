@@ -47,31 +47,13 @@ const NewStudents = () => {
   const handleChange = (event) => {
     setSorting(event.target.value);
     if (event.target.value.length > 0) {
-      setNewStudents(
-        newStudents.filter((f) =>
+      setFilter(
+        students.filter((f) =>
           f.group.toLowerCase().includes(event.target.value)
         )
       );
     } else {
-      setNewStudents(filtered.filter((e) => e.type == "new"));
-    }
-    if (event.target.value.length > 0) {
-      setWaitingStudents(
-        waitingStudents.filter((f) =>
-          f.group.toLowerCase().includes(event.target.value)
-        )
-      );
-    } else {
-      setWaitingStudents(filtered.filter((e) => e.type == "waiting"));
-    }
-    if (event.target.value.length > 0) {
-      setReadyStudents(
-        readyStudents.filter((f) =>
-          f.group.toLowerCase().includes(event.target.value)
-        )
-      );
-    } else {
-      setReadyStudents(filtered.filter((e) => e.type == "ready"));
+      setFilter(students);
     }
   };
 
