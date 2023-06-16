@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { H1, H2, Paragraph } from "../../../ui/typography";
+import { H1, H2, H3, Paragraph } from "../../../ui/typography";
 import {
   Box,
   Button,
@@ -190,7 +190,19 @@ const TableStudents = () => {
           />
         </>
       ) : (
-        <H1>Error</H1>
+        <Box
+          sx={{
+            bgcolor: "action.hover",
+            borderRadius: "5px",
+            width: "100%",
+            height: "200px",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center"
+          }}
+        >
+        <H3>Student not found</H3>
+        </Box>
       )}
     </Box>
   );
