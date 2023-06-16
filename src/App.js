@@ -81,7 +81,7 @@ const getTokens = (mode) => ({
       }
     },
   },
-  shadows: ["none"],
+  shadows: Array(25).fill('none'),
   typography: {
     fontFamily: '"Raleway", sans-serif',
     fontWeightLight: 200,

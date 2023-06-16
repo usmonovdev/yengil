@@ -24,7 +24,6 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import { students } from "../../../localData/studentData";
-import NewStudents from "../new/NewStudents";
 import { useTheme } from "@emotion/react";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -48,19 +47,28 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 }));
 
 const TableStudents = () => {
-  const [search, setSearch] = useState("");
+  const [filteredSt, setFilteredSt] = useState(students);
+  const [student, setStudent] = useState(students);
   const [sorting, setSorting] = useState("");
+  const [page, setPage] = useState(0);
+  const [rowsPerPage, setRowsPerPage] = useState(10);
   const theme = useTheme();
+
+  console.log(filteredSt);
+
+  const handleFilter = (event) => {
+    setFilteredSt(
+      student.filter((f) => f.name.toLowerCase().includes(event.target.value))
+    );
+  };
 
   const handleChange = (event) => {
     setSorting(event.target.value);
-  };
-
-  const [page, setPage] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(10);
-
-  const handleFilter = (e) => {
-    setSearch(e);
+    if (event.target.value.length > 0) {
+      setFilteredSt(student.filter((f) => f.group.toLowerCase().includes(event.target.value)));
+    } else {
+      setFilteredSt(student)
+    }
   };
 
   const handleChangePage = (event, newPage) => {
@@ -102,8 +110,7 @@ const TableStudents = () => {
             <TextField
               color="blue"
               label="Qidirish"
-              id="filled-start-adornment"
-              onChange={(e) => handleFilter(e.target.value)}
+              onChange={handleFilter}
               InputProps={{
                 startAdornment: (
                   <InputAdornment position="start">
@@ -127,10 +134,10 @@ const TableStudents = () => {
                 onChange={handleChange}
               >
                 <MenuItem value="">Saralash</MenuItem>
-                <MenuItem value="Matem">Matem</MenuItem>
-                <MenuItem value="Ona tili">Ona tili</MenuItem>
-                <MenuItem value="Kimyo">Kimyo</MenuItem>
-                <MenuItem value="Fizika">Fizika</MenuItem>
+                <MenuItem value="matematika">Matem</MenuItem>
+                <MenuItem value="ona tili">Ona tili</MenuItem>
+                <MenuItem value="kimyo">Kimyo</MenuItem>
+                <MenuItem value="fizika">Fizika</MenuItem>
               </Select>
             </FormControl>
           </Box>
@@ -139,75 +146,52 @@ const TableStudents = () => {
           </Button>
         </Box>
       </form>
-      <TableContainer sx={{ borderRadius: "5px" }}>
-        <Table stickyHeader sx={{ minWidth: 700 }}>
-          <TableHead>
-            <TableRow>
-              <StyledTableCell align="left">No</StyledTableCell>
-              <StyledTableCell align="left">Ism Familiya</StyledTableCell>
-              <StyledTableCell align="left">Telefon</StyledTableCell>
-              <StyledTableCell align="left">Guruh</StyledTableCell>
-              <StyledTableCell align="left">To'lov</StyledTableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {search.length > 0
-              ? students
-                  .filter((users) => {
-                    return search === ""
-                      ? users
-                      : users.name.toLowerCase().includes(search);
-                  })
-                  .map((users, index) => {
-                    return (
-                      <StyledTableRow
-                        hover
-                        role="checkbox"
-                        tabIndex={-1}
-                        key={users.id}
-                      >
-                        <TableCell>{index}</TableCell>
-                        <TableCell>{users.name}</TableCell>
-                        <TableCell>{users.tel}</TableCell>
-                        <TableCell>{users.group}</TableCell>
-                        <TableCell>{users.payment}</TableCell>
-                      </StyledTableRow>
-                    );
-                  })
-              : students
-                  .filter((users) => {
-                    return sorting === ""
-                      ? users
-                      : users.group.includes(sorting);
-                  })
-                  .map((users, index) => {
-                    return (
-                      <StyledTableRow
-                        hover
-                        role="checkbox"
-                        tabIndex={-1}
-                        key={users.id}
-                      >
-                        <TableCell>{index}</TableCell>
-                        <TableCell>{users.name}</TableCell>
-                        <TableCell>{users.tel}</TableCell>
-                        <TableCell>{users.group}</TableCell>
-                        <TableCell>{users.payment}</TableCell>
-                      </StyledTableRow>
-                    );
-                  })}
-          </TableBody>
-        </Table>
-      </TableContainer>
-      <TablePagination
-        rowsPerPageOptions={[10, 25, 100]}
-        component="div"
-        count={students.length}
-        rowsPerPage={rowsPerPage}
-        page={page}
-        onPageChange={handleChangePage}
-        onRowsPerPageChange={handleChangeRowsPerPage}
-      />
+      {filteredSt.length > 0 ? (
+        <>
+          <TableContainer sx={{ borderRadius: "5px" }}>
+            <Table stickyHeader sx={{ minWidth: 700 }}>
+              <TableHead>
+                <TableRow>
+                  <StyledTableCell align="left">No</StyledTableCell>
+                  <StyledTableCell align="left">Ism Familiya</StyledTableCell>
+                  <StyledTableCell align="left">Telefon</StyledTableCell>
+                  <StyledTableCell align="left">Guruh</StyledTableCell>
+                  <StyledTableCell align="left">To'lov</StyledTableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {filteredSt.map((users, index) => {
+                  return (
+                    <StyledTableRow
+                      hover
+                      role="checkbox"
+                      tabIndex={-1}
+                      key={users.id}
+                    >
+                      <TableCell>{index}</TableCell>
+                      <TableCell>{users.name}</TableCell>
+                      <TableCell>{users.tel}</TableCell>
+                      <TableCell>{users.group}</TableCell>
+                      <TableCell>{users.payment}</TableCell>
+                    </StyledTableRow>
+                  );
+                })}
+              </TableBody>
+            </Table>
+          </TableContainer>
+          <TablePagination
+            rowsPerPageOptions={[10, 25, 100]}
+            component="div"
+            count={students.length}
+            rowsPerPage={rowsPerPage}
+            page={page}
+            onPageChange={handleChangePage}
+            onRowsPerPageChange={handleChangeRowsPerPage}
+          />
+        </>
+      ) : (
+        <H1>Error</H1>
+      )}
     </Box>
   );
 };
