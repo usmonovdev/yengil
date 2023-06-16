@@ -152,7 +152,7 @@ const TableStudents = () => {
             <Table stickyHeader sx={{ minWidth: 700 }}>
               <TableHead>
                 <TableRow>
-                  <StyledTableCell align="left">No</StyledTableCell>
+                  <StyledTableCell align="left">ID</StyledTableCell>
                   <StyledTableCell align="left">Ism Familiya</StyledTableCell>
                   <StyledTableCell align="left">Telefon</StyledTableCell>
                   <StyledTableCell align="left">Guruh</StyledTableCell>
@@ -160,7 +160,7 @@ const TableStudents = () => {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {filteredSt.map((users, index) => {
+                {filteredSt.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((users, index) => {
                   return (
                     <StyledTableRow
                       hover
@@ -168,7 +168,7 @@ const TableStudents = () => {
                       tabIndex={-1}
                       key={users.id}
                     >
-                      <TableCell>{index}</TableCell>
+                      <TableCell>{users.id}</TableCell>
                       <TableCell>{users.name}</TableCell>
                       <TableCell>{users.tel}</TableCell>
                       <TableCell>{users.group}</TableCell>
@@ -182,7 +182,7 @@ const TableStudents = () => {
           <TablePagination
             rowsPerPageOptions={[10, 25, 100]}
             component="div"
-            count={students.length}
+            count={filteredSt.length}
             rowsPerPage={rowsPerPage}
             page={page}
             onPageChange={handleChangePage}
