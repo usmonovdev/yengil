@@ -11,6 +11,7 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { Telegram } from "@mui/icons-material";
 import { useTheme } from "@emotion/react";
+import {useTranslation} from "react-i18next"
 
 const style = {
   position: "absolute",
@@ -39,11 +40,12 @@ export const AddStudents = () => {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const theme = useTheme();
+  const { t } = useTranslation()
 
   return (
     <div>
       <Button onClick={handleOpen} variant="contained" color="blue">
-        Qo'shish
+        {t("newStudentsAdd")}
       </Button>
       <Modal
         sx={{ zIndex: "1000" }}
@@ -52,12 +54,12 @@ export const AddStudents = () => {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          <H3>Add People</H3>
+          <H3>{t("addStudents")}</H3>
           <InputComp
             placeholder="Azizbek"
             value={name}
             setValue={setName}
-            label="Ism"
+            label={t("addStudentsName")}
             required={true}
             name={name}
           />
@@ -65,7 +67,7 @@ export const AddStudents = () => {
             placeholder="Usmonov"
             value={firstName}
             setValue={setFirstNmae}
-            label="Familiya"
+            label={t("addStudentsSurname")}
             required={true}
             name={name}
           />
@@ -73,7 +75,7 @@ export const AddStudents = () => {
             placeholder="+99890-000-00-00"
             value={phone}
             setValue={setPhone}
-            label="Telefon"
+            label={t("addStudentsTel")}
             required={true}
             name={name}
           />
@@ -81,7 +83,7 @@ export const AddStudents = () => {
             placeholder="@t_samandar_t"
             value={telegram}
             setValue={setTelegram}
-            label="Telegram"
+            label={t("addStudentsTelegram")}
             required={true}
             name={name}
           />
@@ -89,7 +91,7 @@ export const AddStudents = () => {
             placeholder="Matematika"
             value={notes}
             setValue={setNotes}
-            label="Notes"
+            label={t("addStudentsNote")}
             required={true}
             name={name}
           />
@@ -99,7 +101,7 @@ export const AddStudents = () => {
               value={date}
               setValue={setDate}
             >
-              <DatePicker label="Qabul qilingan kun" />
+              <DatePicker label={t("addStudentsAcceptance")} />
             </DemoContainer>
           </LocalizationProvider>
           <Box
@@ -118,10 +120,10 @@ export const AddStudents = () => {
                 color: "black",
               }}
             >
-              Close
+              {t("addStudentsClose")}
             </Button>
             <Button variant="contained" color="blue">
-              Save
+              {t("addStudentsSave")}
             </Button>
           </Box>
         </Box>

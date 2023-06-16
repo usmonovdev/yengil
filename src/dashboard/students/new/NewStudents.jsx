@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import { Img } from "../tablestudents/TableStyled";
 import { H2, H3, Paragraph } from "../../../ui/typography";
 import arrow from "../../../assets/icons/arrow-right.png";
-import filters from "../../../assets/icons/filter.png";
-import filtersDark from "../../../assets/dark/fi-rr-filter.png";
+import search from "../../../assets/icons/search.png";
+import searchDark from "../../../assets/dark/darkSearch.png";
 import { useTheme } from "@emotion/react";
 import {
   Box,
@@ -14,10 +14,13 @@ import {
   MenuItem,
   Select,
   TextField,
+  Tooltip,
   styled,
 } from "@mui/material";
 import { studentResponse } from "../../../localData/studentResponse";
 import { AddStudents } from "../addStudents/AddStudents";
+import { useTranslation } from "react-i18next";
+
 
 const StyledH3 = styled(H3)(({ theme }) => ({
   opacity: "60%",
@@ -44,6 +47,7 @@ const NewStudents = () => {
 
   const [sorting, setSorting] = useState("");
   const theme = useTheme();
+  const { t } = useTranslation()
 
   const handleChange = (event) => {
     setSorting(event.target.value);
@@ -67,8 +71,8 @@ const NewStudents = () => {
         gap: "10px",
       }}
     >
-      <H2>Yangi O’quvchilar</H2>
-      <Paragraph>Jami - 10</Paragraph>
+      <H2>{t("newStudents")}</H2>
+      <Paragraph>{t("newStudentsAll")} - 10</Paragraph>
       <form>
         <Box
           sx={{
@@ -88,7 +92,7 @@ const NewStudents = () => {
           >
             <TextField
               color="blue"
-              label="Qidirish"
+              label={t("newStudentsSearch")}
               onChange={handleFilter}
               id="filled-start-adornment"
               InputProps={{
@@ -96,7 +100,7 @@ const NewStudents = () => {
                   <InputAdornment position="start">
                     <Img
                       src={
-                        theme.palette.mode == "light" ? filters : filtersDark
+                        theme.palette.mode == "light" ? search : searchDark
                       }
                     />
                   </InputAdornment>
@@ -105,7 +109,7 @@ const NewStudents = () => {
               variant="outlined"
             />
             <FormControl sx={{ width: { xs: "100%" } }} color="blue">
-              <InputLabel id="demo-simple-select-label">Saralash</InputLabel>
+              <InputLabel id="demo-simple-select-label">{t("newStudentsSorting")}</InputLabel>
               <Select
                 labelId="demo-simple-select-label"
                 id="demo-simple-select"
@@ -113,7 +117,7 @@ const NewStudents = () => {
                 value={sorting}
                 onChange={handleChange}
               >
-                <MenuItem value="">Saralash</MenuItem>
+                <MenuItem value="">{t("newStudentsSorting")}</MenuItem>
                 <MenuItem value="matematika">Matem</MenuItem>
                 <MenuItem value="ona tili">Ona tili</MenuItem>
                 <MenuItem value="kimyo">Kimyo</MenuItem>
@@ -122,7 +126,13 @@ const NewStudents = () => {
               </Select>
             </FormControl>
           </Box>
+
           <AddStudents />
+
+          {/* <Button variant="contained" color="blue">
+            {t("newStudentsAdd")}
+          </Button> */}
+
         </Box>
       </form>
       <Box
@@ -161,8 +171,8 @@ const NewStudents = () => {
               justifyContent: "space-between",
             }}
           >
-            <H3>So’rov yuborganlar</H3>
-            <H3>Jami - {newStudents.length}</H3>
+            <H3>{t("newStudentsRequesters")}</H3>
+            <H3>{t("newStudentsAll")} - {newStudents.length}</H3>
           </Box>
           <Box
             aria-aria-label="box"
@@ -217,7 +227,15 @@ const NewStudents = () => {
                               },
                             }}
                           >
+                            <Tooltip
+                              disableFocusListener
+                              disableTouchListener
+                              title={t("newStudentsWaitingTooltip")}
+                              sx={{ position: "relative" }}
+                            >
+
                             <img width="100%" src={arrow} />
+                            </Tooltip>
                           </Box>
                           <Box
                             sx={{
@@ -233,7 +251,15 @@ const NewStudents = () => {
                               },
                             }}
                           >
+                            <Tooltip
+                              disableFocusListener
+                              disableTouchListener
+                              title={t("newStudentsReadyTooltip")}
+                              sx={{ position: "relative" }}
+                            >
+
                             <img width="100%" src={arrow} />
+                            </Tooltip>
                           </Box>
                         </Box>
                       </Box>
@@ -301,7 +327,7 @@ const NewStudents = () => {
                       justifyContent: "space-between",
                     }}
                   >
-                    <H3>Bunday o'quvchi mavjud emas</H3>
+                    <H3>{t("studentsNotFound")}</H3>
                   </Box>
                 </Box>
               </>
@@ -335,8 +361,8 @@ const NewStudents = () => {
               justifyContent: "space-between",
             }}
           >
-            <H3>Kutilmoqda</H3>
-            <H3>Jami - {waitingStudents.length}</H3>
+            <H3>{t("newStudentsWaiting")}</H3>
+            <H3>{t("newStudentsAll")} - {waitingStudents.length}</H3>
           </Box>
           <Box
             aria-aria-label="box"
@@ -391,7 +417,15 @@ const NewStudents = () => {
                               },
                             }}
                           >
+                            <Tooltip
+                              disableFocusListener
+                              disableTouchListener
+                              title={t("newStudentsRequestersTooltip")}
+                              sx={{ position: "relative" }}
+                            >
+
                             <img width="100%" src={arrow} />
+                            </Tooltip>
                           </Box>
                           <Box
                             sx={{
@@ -407,7 +441,15 @@ const NewStudents = () => {
                               },
                             }}
                           >
+                            <Tooltip
+                              disableFocusListener
+                              disableTouchListener
+                              title={t("newStudentsReadyTooltip")}
+                              sx={{ position: "relative" }}
+                            >
+
                             <img width="100%" src={arrow} />
+                            </Tooltip>
                           </Box>
                         </Box>
                       </Box>
@@ -475,7 +517,7 @@ const NewStudents = () => {
                       justifyContent: "space-between",
                     }}
                   >
-                    <H3>Bunday o'quvchi mavjud emas</H3>
+                    <H3>{t("studentsNotFound")}</H3>
                   </Box>
                 </Box>
               </>
@@ -511,8 +553,8 @@ const NewStudents = () => {
               justifyContent: "space-between",
             }}
           >
-            <H3>Tayyor</H3>
-            <H3>Jami - {readyStudents.length}</H3>
+            <H3>{t("newStudentsReady")}</H3>
+            <H3>{t("newStudentsAll")} - {readyStudents.length}</H3>
           </Box>
           <Box
             aria-aria-label="box"
@@ -567,7 +609,15 @@ const NewStudents = () => {
                               },
                             }}
                           >
+                            <Tooltip
+                              disableFocusListener
+                              disableTouchListener
+                              title={t("newStudentsRequestersTooltip")}
+                              sx={{ position: "relative" }}
+                            >
+
                             <img width="100%" src={arrow} />
+                            </Tooltip>
                           </Box>
                           <Box
                             sx={{
@@ -583,7 +633,15 @@ const NewStudents = () => {
                               },
                             }}
                           >
+                            <Tooltip
+                              disableFocusListener
+                              disableTouchListener
+                              title={t("newStudentsWaitingTooltip")}
+                              sx={{ position: "relative" }}
+                            >
+
                             <img width="100%" src={arrow} />
+                            </Tooltip>
                           </Box>
                         </Box>
                       </Box>
@@ -651,7 +709,7 @@ const NewStudents = () => {
                       justifyContent: "space-between",
                     }}
                   >
-                    <H3>Bunday o'quvchi mavjud emas</H3>
+                    <H3>{t("studentsNotFound")}</H3>
                   </Box>
                 </Box>
               </>
