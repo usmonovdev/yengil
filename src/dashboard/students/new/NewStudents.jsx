@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Img } from "../tablestudents/TableStyled";
-import { H1, H2, H3, Paragraph } from "../../../ui/typography";
+import { H2, H3, Paragraph } from "../../../ui/typography";
 import arrow from "../../../assets/icons/arrow-right.png";
 import filters from "../../../assets/icons/filter.png";
 import filtersDark from "../../../assets/dark/fi-rr-filter.png";
@@ -189,7 +189,7 @@ const NewStudents = () => {
               display: "flex",
               flexDirection: "column",
               gap: "10px",
-              maxHeight: "380px",
+              height: "380px",
               overflowY: "auto",
             }}
           >
@@ -363,7 +363,7 @@ const NewStudents = () => {
               display: "flex",
               flexDirection: "column",
               gap: "10px",
-              maxHeight: "380px",
+              height: "380px",
               overflowY: "auto",
             }}
           >
@@ -539,7 +539,7 @@ const NewStudents = () => {
               display: "flex",
               flexDirection: "column",
               gap: "10px",
-              maxHeight: "380px",
+              height: "380px",
               overflowY: "auto",
             }}
           >

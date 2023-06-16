@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from "react";
-import { H1, H2, H3, Paragraph } from "../../../ui/typography";
+import React, { useState } from "react";
+import { H2, H3, Paragraph } from "../../../ui/typography";
 import {
   Box,
   Button,
   InputAdornment,
-  Paper,
   Select,
   Table,
   TableBody,
@@ -19,7 +18,7 @@ import {
 } from "@mui/material";
 import filters from "../../../assets/icons/filter.png";
 import filtersDark from "../../../assets/dark/fi-rr-filter.png";
-import { Img, TD } from "./TableStyled";
+import { Img } from "./TableStyled";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
@@ -53,8 +52,6 @@ const TableStudents = () => {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const theme = useTheme();
-
-  console.log(filteredSt);
 
   const handleFilter = (event) => {
     setFilteredSt(
