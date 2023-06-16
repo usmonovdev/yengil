@@ -17,7 +17,7 @@ const style = {
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  width: 700,
+  width: { xs: "80%", sm: "70%", md: "700px" },
   bgcolor: "background.paper",
   boxShadow: 24,
   borderRadius: "5px",
@@ -45,8 +45,8 @@ export const AddStudents = () => {
       <Button onClick={handleOpen} variant="contained" color="blue">
         Qo'shish
       </Button>
-      <Modal 
-      sx={{zIndex: "10001"}}
+      <Modal
+        sx={{ zIndex: "1000" }}
         open={open}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"

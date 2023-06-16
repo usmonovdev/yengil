@@ -26,7 +26,7 @@ const TopDashboard = ({ header, title }) => {
     gap: "20px",
     right: "0",
     backdropFilter: "blur(5px)",
-    zIndex: "10000",
+    zIndex: "1000",
   }));
 
   return (
