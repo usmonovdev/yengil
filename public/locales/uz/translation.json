@@ -71,5 +71,16 @@
     "dashboardTeachersTitle": "Statistika va Yangi o'qituvchilar",
     "dashboardMoney": "To'lovlar",
     "dashboardMoneyTitle": "Statistika va Yangi to'lovlar",
-    "dashboardSettings": "Sozlamalar"
+    "dashboardSettings": "Sozlamalar",
+    "students": "O’quvchilar",
+    "studentsAll": "Jami",
+    "studentsSorting": "Saralash",
+    "studentsSearch": "Qidirish",
+    "studentsAdd": "Qo'shish",
+    "studentsInfo": "Ism Familiya",
+    "studentsPhone": "Telefon",
+    "studentsGroup": "Guruh",
+    "studentsPayment": "To'lov",
+    "studentsNotFound": "O’quvchi topilmadi",
+    "studentsLabelRowsPerPage": "Har bir sahifadagi qatorlar:"
 }
