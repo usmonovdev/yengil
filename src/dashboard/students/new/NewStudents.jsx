@@ -34,9 +34,37 @@ const NewStudents = () => {
   const [readyStudents, setReadyStudents] = useState([]);
 
   const handleFilter = (event) => {
-    setFilter(
-      students.filter((f) => f.name.toLowerCase().includes(event.target.value))
-    );
+    if (sorting === "name") {
+      if (event.target.value.length > 0) {
+        setFilter(
+          students.filter((f) =>
+            f.name.toLowerCase().includes(event.target.value)
+          )
+        );
+      } else {
+        setFilter(studentResponse);
+      }
+    } else if (sorting === "group") {
+      if (event.target.value.length > 0) {
+        setFilter(
+          students.filter((f) =>
+            f.group.toLowerCase().includes(event.target.value)
+          )
+        );
+      } else {
+        setFilter(studentResponse);
+      }
+    } else if (sorting == "tel") {
+      if (event.target.value.length > 0) {
+        setFilter(
+          students.filter((f) =>
+            f.tel.toLowerCase().includes(event.target.value)
+          )
+        );
+      } else {
+        setFilter(studentResponse);
+      }
+    }
   };
 
   useEffect(() => {
@@ -51,15 +79,6 @@ const NewStudents = () => {
 
   const handleChange = (event) => {
     setSorting(event.target.value);
-    if (event.target.value.length > 0) {
-      setFilter(
-        students.filter((f) =>
-          f.group.toLowerCase().includes(event.target.value)
-        )
-      );
-    } else {
-      setFilter(students);
-    }
   };
 
   return (
@@ -117,6 +136,7 @@ const NewStudents = () => {
                 value={sorting}
                 onChange={handleChange}
               >
+
                 <MenuItem value="">{t("newStudentsSorting")}</MenuItem>
                 <MenuItem value="matematika">Matem</MenuItem>
                 <MenuItem value="ona tili">Ona tili</MenuItem>
@@ -132,6 +152,7 @@ const NewStudents = () => {
           {/* <Button variant="contained" color="blue">
             {t("newStudentsAdd")}
           </Button> */}
+
 
         </Box>
       </form>

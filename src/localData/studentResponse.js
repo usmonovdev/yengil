@@ -1,7 +1,7 @@
 export const studentResponse = [
     {
         name: "Turg’unboev Samandar",
-        tel: "+998 90 000 00 00",
+        tel: "+998900000000",
         group: "Ingliz tili",
         responseTime: "15:09",
         type: "new",
@@ -9,7 +9,7 @@ export const studentResponse = [
     },
     {
         name: "Abdugaffarova Muyassar",
-        tel: "+998 93 144 30 54",
+        tel: "+998993626209",
         group: "Ingliz tili",
         responseTime: "09.45",
         type: "new",
@@ -17,7 +17,7 @@ export const studentResponse = [
     },
     {
         name: "Tugrunboeva Muyassar",
-        tel: "+998 93 144 30 54",
+        tel: "+998993626209",
         group: "Matematika",
         responseTime: "15.14",
         type: "new",
@@ -25,7 +25,7 @@ export const studentResponse = [
     },
     {
         name: "Tugrunboeva Muyassar",
-        tel: "+998 93 144 30 54",
+        tel: "+998993626209",
         group: "Matematika",
         responseTime: "15.14",
         type: "new",
@@ -33,7 +33,7 @@ export const studentResponse = [
     },
     {
         name: "Abduqayumov Abror",
-        tel: "+998 98 725 07 15",
+        tel: "+998987250715",
         group: "Ingliz tili",
         responseTime: "2023.06.13",
         type: "waiting",
@@ -41,7 +41,7 @@ export const studentResponse = [
     },
     {
         name: "Usmonov Azizbek",
-        tel: "+998 91 166 73 64",
+        tel: "+998911667364",
         group: "Ingliz tili",
         responseTime: "17.03",
         type: "waiting",
@@ -49,7 +49,7 @@ export const studentResponse = [
     },
     {
         name: "Vohidov Ozodbek",
-        tel: "+998 93 144 30 54",
+        tel: "+998931443054",
         group: "Matematika",
         responseTime: "15:09",
         type: "waiting",
@@ -57,7 +57,7 @@ export const studentResponse = [
     },
     {
         name: "Eshmatov Shermat",
-        tel: "+998 91 001 00 01",
+        tel: "+998910010001",
         group: "Ingliz tili",
         responseTime: "2023.06.13",
         type: "ready",
@@ -65,7 +65,7 @@ export const studentResponse = [
     },
     {
         name: "Eshmatov Shermat",
-        tel: "+998 91 001 00 01",
+        tel: "+998910010001",
         group: "Ingliz tili",
         responseTime: "2023.06.13",
         type: "ready",
@@ -73,7 +73,7 @@ export const studentResponse = [
     },
     {
         name: "Eshmatov Shermat",
-        tel: "+998 91 001 00 01",
+        tel: "+998910010001",
         group: "Ingliz tili",
         responseTime: "2023.06.13",
         type: "ready",
@@ -81,7 +81,7 @@ export const studentResponse = [
     },
     {
         name: "Eshmatov Shermat",
-        tel: "+998 91 001 00 01",
+        tel: "+998910010001",
         group: "Ingliz tili",
         responseTime: "2023.06.13",
         type: "new",
@@ -89,7 +89,7 @@ export const studentResponse = [
     },
     {
         name: "Eshmatov Shermat",
-        tel: "+998 91 001 00 01",
+        tel: "+998910010001",
         group: "Ingliz tili",
         responseTime: "2023.06.13",
         type: "new",
@@ -97,7 +97,7 @@ export const studentResponse = [
     },
     {
         name: "Eshmatov Shermat",
-        tel: "+998 91 001 00 01",
+        tel: "+998910010001",
         group: "Ingliz tili",
         responseTime: "2023.06.13",
         type: "new",
@@ -105,7 +105,7 @@ export const studentResponse = [
     },
     {
         name: "Eshmatov Shermat",
-        tel: "+998 91 001 00 01",
+        tel: "+998910010001",
         group: "Ingliz tili",
         responseTime: "2023.06.13",
         type: "waiting",
@@ -113,7 +113,7 @@ export const studentResponse = [
     },
     {
         name: "Eshmatov Shermat",
-        tel: "+998 91 001 00 01",
+        tel: "+998910010001",
         group: "Ingliz tili",
         responseTime: "2023.06.13",
         type: "ready",
@@ -121,7 +121,7 @@ export const studentResponse = [
     },
     {
         name: "Eshmatov Shermat",
-        tel: "+998 91 001 00 01",
+        tel: "+998910010001",
         group: "Ingliz tili",
         responseTime: "2023.06.13",
         type: "new",
@@ -129,7 +129,7 @@ export const studentResponse = [
     },
     {
         name: "Eshmatov Shermat",
-        tel: "+998 91 001 00 01",
+        tel: "+998910010001",
         group: "Ingliz tili",
         responseTime: "2023.06.13",
         type: "ready",

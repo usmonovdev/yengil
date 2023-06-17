@@ -50,7 +50,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 const TableStudents = () => {
   const [filteredSt, setFilteredSt] = useState(students);
   const [student, setStudent] = useState(students);
-  const [sorting, setSorting] = useState("");
+  const [sorting, setSorting] = useState("name");
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const theme = useTheme();
@@ -58,18 +58,41 @@ const TableStudents = () => {
   const { t } = useTranslation();
 
   const handleFilter = (event) => {
-    setFilteredSt(
-      student.filter((f) => f.name.toLowerCase().includes(event.target.value))
-    );
+    if (sorting === "name") {
+      if (event.target.value.length > 0) {
+        setFilteredSt(
+          student.filter((f) =>
+            f.name.toLowerCase().includes(event.target.value)
+          )
+        );
+      } else {
+        setFilteredSt(student);
+      }
+    } else if (sorting === "group") {
+      if (event.target.value.length > 0) {
+        setFilteredSt(
+          student.filter((f) =>
+            f.group.toLowerCase().includes(event.target.value)
+          )
+        );
+      } else {
+        setFilteredSt(student);
+      }
+    } else if (sorting == "tel") {
+      if (event.target.value.length > 0) {
+        setFilteredSt(
+          student.filter((f) =>
+            f.tel.toLowerCase().includes(event.target.value)
+          )
+        );
+      } else {
+        setFilteredSt(student);
+      }
+    }
   };
 
   const handleChange = (event) => {
     setSorting(event.target.value);
-    if (event.target.value.length > 0) {
-      setFilteredSt(student.filter((f) => f.group.toLowerCase().includes(event.target.value)));
-    } else {
-      setFilteredSt(student)
-    }
   };
 
   const handleChangePage = (event, newPage) => {
@@ -84,7 +107,7 @@ const TableStudents = () => {
   const isInView = useInView(ref, { once: true });
   return (
     <Box
-    ref={ref}
+      ref={ref}
       sx={{
         width: "100%",
         display: "flex",
@@ -122,9 +145,7 @@ const TableStudents = () => {
                 startAdornment: (
                   <InputAdornment position="start">
                     <Img
-                      src={
-                        theme.palette.mode == "light" ? search : searchDark
-                      }
+                      src={theme.palette.mode == "light" ? search : searchDark}
                     />
                   </InputAdornment>
                 ),
@@ -132,7 +153,9 @@ const TableStudents = () => {
               variant="outlined"
             />
             <FormControl sx={{ width: { xs: "100%" } }} color="blue">
-              <InputLabel id="demo-simple-select-label">{t("studentsSorting")}</InputLabel>
+              <InputLabel id="demo-simple-select-label">
+                {t("studentsSorting")}
+              </InputLabel>
               <Select
                 labelId="demo-simple-select-label"
                 id="demo-simple-select"
@@ -140,11 +163,9 @@ const TableStudents = () => {
                 value={sorting}
                 onChange={handleChange}
               >
-                <MenuItem value="">{t("studentsSorting")}</MenuItem>
-                <MenuItem value="matematika">Matem</MenuItem>
-                <MenuItem value="ona tili">Ona tili</MenuItem>
-                <MenuItem value="kimyo">Kimyo</MenuItem>
-                <MenuItem value="fizika">Fizika</MenuItem>
+                <MenuItem value="name">Name</MenuItem>
+                <MenuItem value="group">Group</MenuItem>
+                <MenuItem value="tel">Telefon</MenuItem>
               </Select>
             </FormControl>
           </Box>
@@ -160,29 +181,39 @@ const TableStudents = () => {
               <TableHead>
                 <TableRow>
                   <StyledTableCell align="left">ID</StyledTableCell>
-                  <StyledTableCell align="left">{t("studentsInfo")}</StyledTableCell>
-                  <StyledTableCell align="left">{t("studentsPhone")}</StyledTableCell>
-                  <StyledTableCell align="left">{t("studentsGroup")}</StyledTableCell>
-                  <StyledTableCell align="left">{t("studentsPayment")}</StyledTableCell>
+                  <StyledTableCell align="left">
+                    {t("studentsInfo")}
+                  </StyledTableCell>
+                  <StyledTableCell align="left">
+                    {t("studentsPhone")}
+                  </StyledTableCell>
+                  <StyledTableCell align="left">
+                    {t("studentsGroup")}
+                  </StyledTableCell>
+                  <StyledTableCell align="left">
+                    {t("studentsPayment")}
+                  </StyledTableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
-                {filteredSt.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((users, index) => {
-                  return (
-                    <StyledTableRow
-                      hover
-                      role="checkbox"
-                      tabIndex={-1}
-                      key={users.id}
-                    >
-                      <TableCell>{users.id}</TableCell>
-                      <TableCell>{users.name}</TableCell>
-                      <TableCell>{users.tel}</TableCell>
-                      <TableCell>{users.group}</TableCell>
-                      <TableCell>{users.payment}</TableCell>
-                    </StyledTableRow>
-                  );
-                })}
+                {filteredSt
+                  .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                  .map((users, index) => {
+                    return (
+                      <StyledTableRow
+                        hover
+                        role="checkbox"
+                        tabIndex={-1}
+                        key={users.id}
+                      >
+                        <TableCell>{users.id}</TableCell>
+                        <TableCell>{users.name}</TableCell>
+                        <TableCell>{users.tel}</TableCell>
+                        <TableCell>{users.group}</TableCell>
+                        <TableCell>{users.payment}</TableCell>
+                      </StyledTableRow>
+                    );
+                  })}
               </TableBody>
             </Table>
           </TableContainer>
@@ -206,10 +237,10 @@ const TableStudents = () => {
             height: "200px",
             display: "flex",
             alignItems: "center",
-            justifyContent: "center"
+            justifyContent: "center",
           }}
         >
-        <H3>{t("studentsNotFound")}</H3>
+          <H3>{t("studentsNotFound")}</H3>
         </Box>
       )}
     </Box>
