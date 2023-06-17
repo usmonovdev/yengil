@@ -10,6 +10,7 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { useTheme } from "@emotion/react";
 import { useTranslation } from "react-i18next";
+import { motion } from "framer-motion";
 import { useDispatch, useSelector } from "react-redux";
 import { addWaitStudent } from "../../../store/themeSlice";
 
@@ -49,6 +50,12 @@ export const AddStudents = () => {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
+        <motion.div
+            initial={{ opacity: 0,  }}
+            animate={{ opacity: 1, translateY: 0,  }}
+            transition={{ duration: 1, type: "spring", delay: 0.1 }}
+        >
+
         <Box sx={style}>
           <H3>{t("addStudents")}</H3>
           <InputComp
@@ -58,7 +65,7 @@ export const AddStudents = () => {
             label={t("addStudentsName")}
             required={true}
             name={name}
-          />
+            />
           <InputComp
             placeholder="Usmonov"
             value={firstName}
@@ -66,7 +73,7 @@ export const AddStudents = () => {
             label={t("addStudentsSurname")}
             required={true}
             name={name}
-          />
+            />
           <InputComp
             placeholder="+99890-000-00-00"
             value={phone}
@@ -74,7 +81,7 @@ export const AddStudents = () => {
             label={t("addStudentsTel")}
             required={true}
             name={name}
-          />
+            />
           <InputComp
             placeholder="@t_samandar_t"
             value={telegram}
@@ -82,7 +89,7 @@ export const AddStudents = () => {
             label={t("addStudentsTelegram")}
             required={true}
             name={name}
-          />
+            />
           <InputComp
             placeholder="Matematika"
             value={notes}
@@ -90,14 +97,14 @@ export const AddStudents = () => {
             label={t("addStudentsNote")}
             required={true}
             name={name}
-          />
+            />
           <LocalizationProvider dateAdapter={AdapterDayjs}>
             <DemoContainer
               components={["DatePicker"]}
               value={date}
               setValue={setDate}
-            >
-              <DatePicker label="Qabul qilingan kun" />
+              >
+              <DatePicker label={t("addStudentsAcceptance")} />
             </DemoContainer>
           </LocalizationProvider>
           <Box
@@ -107,7 +114,7 @@ export const AddStudents = () => {
               justifyContent: "flex-end",
               gap: "10px",
             }}
-          >
+            >
             <Button
               variant="contained"
               onClick={() => dispatch(addWaitStudent())}
@@ -115,7 +122,7 @@ export const AddStudents = () => {
                 background: theme.palette.custom.newStudentWhite,
                 color: "black",
               }}
-            >
+              >
               {t("addStudentsClose")}
             </Button>
             <Button variant="contained" color="blue">
@@ -123,6 +130,7 @@ export const AddStudents = () => {
             </Button>
           </Box>
         </Box>
+              </motion.div>
       </Modal>
     </div>
   );

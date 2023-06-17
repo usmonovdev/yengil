@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Img } from "../tablestudents/TableStyled";
 import { H2, H3, Paragraph } from "../../../ui/typography";
 import arrow from "../../../assets/icons/arrow-right.png";
@@ -22,6 +22,7 @@ import { AddStudents } from "../addStudents/AddStudents";
 import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 import { addWaitStudent } from "../../../store/themeSlice";
+import { useInView } from "framer-motion";
 
 const StyledH3 = styled(H3)(({ theme }) => ({
   opacity: "60%",
@@ -77,11 +78,21 @@ const NewStudents = () => {
     setWaitingStudents(filtered.filter((e) => e.type == "waiting"));
     setReadyStudents(filtered.filter((e) => e.type == "ready"));
   }, [filtered]);
+  const ref = useRef();
+  const isInView = useInView(ref, { once: true });
 
   return (
     <>
     <AddStudents />
-    
+    <div
+      ref={ref}
+      style={{
+        transform: isInView ? "none" : "translateY(200px)",
+        opacity: isInView ? 1 : 0,
+        transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1)",
+      }}
+    >
+
     <Box
       sx={{
         width: "100%",
@@ -89,7 +100,7 @@ const NewStudents = () => {
         flexDirection: "column",
         gap: "10px",
       }}
-    >
+      >
       <H2>{t("newStudents")}</H2>
       <Paragraph>{t("newStudentsAll")} - 10</Paragraph>
       <form>
@@ -101,14 +112,14 @@ const NewStudents = () => {
             justifyContent: "space-between",
             flexDirection: { xs: "column", md: "row" },
           }}
-        >
+          >
           <Box
             sx={{
               display: "flex",
               flexDirection: { xs: "column", md: "row" },
               gap: "20px",
             }}
-          >
+            >
             <TextField
               color="blue"
               label={t("newStudentsSearch")}
@@ -119,12 +130,12 @@ const NewStudents = () => {
                   <InputAdornment position="start">
                     <Img
                       src={theme.palette.mode == "light" ? search : searchDark}
-                    />
+                      />
                   </InputAdornment>
                 ),
               }}
               variant="outlined"
-            />
+              />
             <FormControl sx={{ width: { xs: "100%" } }} color="blue">
               <InputLabel id="demo-simple-select-label">
                 {t("newStudentsSorting")}
@@ -135,7 +146,7 @@ const NewStudents = () => {
                 label="Saralash"
                 value={sorting}
                 onChange={(e) => setSorting(e.target.value)}
-              >
+                >
                 <MenuItem value="name">Name</MenuItem>
                 <MenuItem value="group">Group</MenuItem>
                 <MenuItem value="tel">Telefon</MenuItem>
@@ -155,7 +166,7 @@ const NewStudents = () => {
           justifyContent: "space-between",
           gap: "30px",
         }}
-      >
+        >
         <Box
           sx={{
             width: { sm: "100%", md: "33%" },
@@ -175,14 +186,14 @@ const NewStudents = () => {
               bgcolor: "custom.newStudentWhite",
               borderRadius: "4px",
             }}
-          ></Box>
+            ></Box>
           <Box
             sx={{
               display: "flex",
               flexDirection: "row",
               justifyContent: "space-between",
             }}
-          >
+            >
             <H3>{t("newStudentsRequesters")}</H3>
             <H3>
               {t("newStudentsAll")} - {newStudents.length}
@@ -197,18 +208,18 @@ const NewStudents = () => {
               height: "380px",
               overflowY: "auto",
             }}
-          >
+            >
             {newStudents.length > 0 ? (
               <>
                 {newStudents.map((student) => {
                   return (
                     <Box
-                      key={student.id}
-                      sx={{
-                        bgcolor: "custom.background",
-                        width: "100%",
-                        padding: "10px",
-                        borderRadius: "4px",
+                    key={student.id}
+                    sx={{
+                      bgcolor: "custom.background",
+                      width: "100%",
+                      padding: "10px",
+                      borderRadius: "4px",
                       }}
                     >
                       <Box
@@ -217,7 +228,7 @@ const NewStudents = () => {
                           flexDirection: "row",
                           justifyContent: "space-between",
                         }}
-                      >
+                        >
                         <H3>{student.name}</H3>
                         <Box
                           sx={{
@@ -226,7 +237,7 @@ const NewStudents = () => {
                             justifyContent: "flex-end",
                             gap: "10px",
                           }}
-                        >
+                          >
                           <Box
                             sx={{
                               width: "25px",
@@ -240,13 +251,13 @@ const NewStudents = () => {
                                 md: "rotate(0deg)",
                               },
                             }}
-                          >
+                            >
                             <Tooltip
                               disableFocusListener
                               disableTouchListener
                               title={t("newStudentsWaitingTooltip")}
                               sx={{ position: "relative" }}
-                            >
+                              >
                               <img width="100%" src={arrow} />
                             </Tooltip>
                           </Box>
@@ -263,13 +274,13 @@ const NewStudents = () => {
                                 md: "rotate(0deg)",
                               },
                             }}
-                          >
+                            >
                             <Tooltip
                               disableFocusListener
                               disableTouchListener
                               title={t("newStudentsReadyTooltip")}
                               sx={{ position: "relative" }}
-                            >
+                              >
                               <img width="100%" src={arrow} />
                             </Tooltip>
                           </Box>
@@ -287,7 +298,7 @@ const NewStudents = () => {
                           alignItems: { md: "flex-start", lg: "center" },
                           gap: { md: "0", lg: "10px" },
                         }}
-                      >
+                        >
                         <StyledH3>{student.tel}</StyledH3>
                         <Box
                           sx={{
@@ -301,7 +312,7 @@ const NewStudents = () => {
                               lg: "block",
                             },
                           }}
-                        ></Box>
+                          ></Box>
                         <StyledH3>{student.group}</StyledH3>
                         <Box
                           sx={{
@@ -315,7 +326,7 @@ const NewStudents = () => {
                               lg: "block",
                             },
                           }}
-                        ></Box>
+                          ></Box>
                         <StyledH3>{student.responseTime}</StyledH3>
                       </Box>
                     </Box>
@@ -331,14 +342,14 @@ const NewStudents = () => {
                     padding: "10px",
                     borderRadius: "4px",
                   }}
-                >
+                  >
                   <Box
                     sx={{
                       display: "flex",
                       flexDirection: "row",
                       justifyContent: "space-between",
                     }}
-                  >
+                    >
                     <H3>{t("studentsNotFound")}</H3>
                   </Box>
                 </Box>
@@ -357,7 +368,7 @@ const NewStudents = () => {
             borderRadius: "5px",
           }}
           aria-label="new students"
-        >
+          >
           <Box
             sx={{
               width: "100%",
@@ -365,14 +376,14 @@ const NewStudents = () => {
               bgcolor: "custom.bunting",
               borderRadius: "4px",
             }}
-          ></Box>
+            ></Box>
           <Box
             sx={{
               display: "flex",
               flexDirection: "row",
               justifyContent: "space-between",
             }}
-          >
+            >
             <H3>{t("newStudentsWaiting")}</H3>
             <H3>
               {t("newStudentsAll")} - {waitingStudents.length}
@@ -387,27 +398,27 @@ const NewStudents = () => {
               height: "380px",
               overflowY: "auto",
             }}
-          >
+            >
             {waitingStudents.length > 0 ? (
               <>
                 {waitingStudents.map((student) => {
                   return (
                     <Box
-                      key={student.id}
-                      sx={{
-                        bgcolor: "custom.background",
+                    key={student.id}
+                    sx={{
+                      bgcolor: "custom.background",
                         width: "100%",
                         padding: "10px",
                         borderRadius: "4px",
                       }}
-                    >
+                      >
                       <Box
                         sx={{
                           display: "flex",
                           flexDirection: "row",
                           justifyContent: "space-between",
                         }}
-                      >
+                        >
                         <H3>{student.name}</H3>
                         <Box
                           sx={{
@@ -416,7 +427,7 @@ const NewStudents = () => {
                             justifyContent: "flex-end",
                             gap: "10px",
                           }}
-                        >
+                          >
                           <Box
                             sx={{
                               width: "25px",
@@ -430,7 +441,7 @@ const NewStudents = () => {
                                 md: "rotate(180deg)",
                               },
                             }}
-                          >
+                            >
                             <Tooltip
                               disableFocusListener
                               disableTouchListener
@@ -453,13 +464,13 @@ const NewStudents = () => {
                                 md: "rotate(0deg)",
                               },
                             }}
-                          >
+                            >
                             <Tooltip
                               disableFocusListener
                               disableTouchListener
                               title={t("newStudentsReadyTooltip")}
                               sx={{ position: "relative" }}
-                            >
+                              >
                               <img width="100%" src={arrow} />
                             </Tooltip>
                           </Box>
@@ -477,7 +488,7 @@ const NewStudents = () => {
                           alignItems: { md: "flex-start", lg: "center" },
                           gap: { md: "0", lg: "10px" },
                         }}
-                      >
+                        >
                         <StyledH3>{student.tel}</StyledH3>
                         <Box
                           sx={{
@@ -491,7 +502,7 @@ const NewStudents = () => {
                               lg: "block",
                             },
                           }}
-                        ></Box>
+                          ></Box>
                         <StyledH3>{student.group}</StyledH3>
                         <Box
                           sx={{
@@ -505,7 +516,7 @@ const NewStudents = () => {
                               lg: "block",
                             },
                           }}
-                        ></Box>
+                          ></Box>
                         <StyledH3>{student.responseTime}</StyledH3>
                       </Box>
                     </Box>
@@ -521,14 +532,14 @@ const NewStudents = () => {
                     padding: "10px",
                     borderRadius: "4px",
                   }}
-                >
+                  >
                   <Box
                     sx={{
                       display: "flex",
                       flexDirection: "row",
                       justifyContent: "space-between",
                     }}
-                  >
+                    >
                     <H3>{t("studentsNotFound")}</H3>
                   </Box>
                 </Box>
@@ -549,7 +560,7 @@ const NewStudents = () => {
             borderRadius: "5px",
           }}
           aria-label="new students"
-        >
+          >
           <Box
             sx={{
               width: "100%",
@@ -557,14 +568,14 @@ const NewStudents = () => {
               bgcolor: "blue.main",
               borderRadius: "4px",
             }}
-          ></Box>
+            ></Box>
           <Box
             sx={{
               display: "flex",
               flexDirection: "row",
               justifyContent: "space-between",
             }}
-          >
+            >
             <H3>{t("newStudentsReady")}</H3>
             <H3>
               {t("newStudentsAll")} - {readyStudents.length}
@@ -579,19 +590,19 @@ const NewStudents = () => {
               height: "380px",
               overflowY: "auto",
             }}
-          >
+            >
             {readyStudents.length > 0 ? (
               <>
                 {readyStudents.map((student) => {
                   return (
                     <Box
-                      key={student.id}
-                      sx={{
-                        bgcolor: "custom.background",
-                        width: "100%",
-                        padding: "10px",
-                        borderRadius: "4px",
-                      }}
+                    key={student.id}
+                    sx={{
+                      bgcolor: "custom.background",
+                      width: "100%",
+                      padding: "10px",
+                      borderRadius: "4px",
+                    }}
                     >
                       <Box
                         sx={{
@@ -599,7 +610,7 @@ const NewStudents = () => {
                           flexDirection: "row",
                           justifyContent: "space-between",
                         }}
-                      >
+                        >
                         <H3>{student.name}</H3>
                         <Box
                           sx={{
@@ -608,7 +619,7 @@ const NewStudents = () => {
                             justifyContent: "flex-end",
                             gap: "10px",
                           }}
-                        >
+                          >
                           <Box
                             sx={{
                               width: "25px",
@@ -622,13 +633,13 @@ const NewStudents = () => {
                                 md: "rotate(180deg)",
                               },
                             }}
-                          >
+                            >
                             <Tooltip
                               disableFocusListener
                               disableTouchListener
                               title={t("newStudentsRequestersTooltip")}
                               sx={{ position: "relative" }}
-                            >
+                              >
                               <img width="100%" src={arrow} />
                             </Tooltip>
                           </Box>
@@ -645,13 +656,13 @@ const NewStudents = () => {
                                 md: "rotate(180deg)",
                               },
                             }}
-                          >
+                            >
                             <Tooltip
                               disableFocusListener
                               disableTouchListener
                               title={t("newStudentsWaitingTooltip")}
                               sx={{ position: "relative" }}
-                            >
+                              >
                               <img width="100%" src={arrow} />
                             </Tooltip>
                           </Box>
@@ -669,7 +680,7 @@ const NewStudents = () => {
                           alignItems: { md: "flex-start", lg: "center" },
                           gap: { md: "0", lg: "10px" },
                         }}
-                      >
+                        >
                         <StyledH3>{student.tel}</StyledH3>
                         <Box
                           sx={{
@@ -683,7 +694,7 @@ const NewStudents = () => {
                               lg: "block",
                             },
                           }}
-                        ></Box>
+                          ></Box>
                         <StyledH3>{student.group}</StyledH3>
                         <Box
                           sx={{
@@ -697,7 +708,7 @@ const NewStudents = () => {
                               lg: "block",
                             },
                           }}
-                        ></Box>
+                          ></Box>
                         <StyledH3>{student.responseTime}</StyledH3>
                       </Box>
                     </Box>
@@ -713,14 +724,14 @@ const NewStudents = () => {
                     padding: "10px",
                     borderRadius: "4px",
                   }}
-                >
+                  >
                   <Box
                     sx={{
                       display: "flex",
                       flexDirection: "row",
                       justifyContent: "space-between",
                     }}
-                  >
+                    >
                     <H3>{t("studentsNotFound")}</H3>
                   </Box>
                 </Box>
@@ -730,6 +741,7 @@ const NewStudents = () => {
         </Box>
       </Box>
     </Box>
+            </div>
     </>
   );
 };
