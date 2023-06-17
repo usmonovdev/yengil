@@ -5,8 +5,9 @@ export const themeSlice = createSlice({
     initialState: {
         isDarkMode: !!JSON.parse(localStorage.getItem("THEME")),
         sidebar: false,
-        Token : false,
-        addStudentWait: false
+        Token: false,
+        addStudentWait: false,
+        addStudentTables: false
     },
     reducers: {
         toggleTheme: (state) => {
@@ -20,6 +21,9 @@ export const themeSlice = createSlice({
         },
         addWaitStudent: (state) => {
             state.addStudentWait = !state.addStudentWait
+        },
+        addTablesStudent: (state) => {
+            state.addStudentTables = !state.addStudentTables
         }
     }
 })
@@ -30,5 +34,5 @@ export const asyncToggleTheme = () => (dispatch) => {
     dispatch(toggleTheme());
 };
 
-export const { toggleTheme, toggleSidebar, setToken, addWaitStudent } = themeSlice.actions
+export const { toggleTheme, toggleSidebar, setToken, addWaitStudent, addTablesStudent } = themeSlice.actions
 export default themeSlice.reducer

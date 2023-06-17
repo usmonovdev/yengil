@@ -12,6 +12,8 @@ import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { Telegram } from "@mui/icons-material";
 import { useTheme } from "@emotion/react";
 import { useTranslation } from "react-i18next";
+import { useDispatch, useSelector } from "react-redux";
+import { addTablesStudent } from "../../../store/themeSlice";
 
 const style = {
   position: "absolute",
@@ -37,19 +39,16 @@ const AddTables = () => {
   const [telegram, setTelegram] = useState("");
   const [date, setDate] = useState("");
   const [notes, setNotes] = useState("");
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  const { addStudentTables } = useSelector((state) => state);
+  const dispatch = useDispatch();
   const theme = useTheme();
   const { t } = useTranslation();
 
   return (
     <div>
-      <Button onClick={handleOpen} variant="contained" color="blue">
-        {t("newStudentsAdd")}
-      </Button>
       <Modal
         sx={{ zIndex: "1000" }}
-        open={open}
+        open={addStudentTables}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
@@ -114,7 +113,7 @@ const AddTables = () => {
           >
             <Button
               variant="contained"
-              onClick={handleClose}
+              onClick={() => dispatch(addTablesStudent())}
               style={{
                 background: theme.palette.custom.newStudentWhite,
                 color: "black",
