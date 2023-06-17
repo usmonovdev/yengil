@@ -13,6 +13,7 @@ import { Telegram } from "@mui/icons-material";
 import { useTheme } from "@emotion/react";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
+import { motion } from "framer-motion";
 import { addTablesStudent } from "../../../store/themeSlice";
 
 const style = {
@@ -52,6 +53,12 @@ const AddTables = () => {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
+        <motion.div
+            initial={{ opacity: 0,  }}
+            animate={{ opacity: 1, translateY: 0,  }}
+            transition={{ duration: 1, type: "spring", delay: 0.1 }}
+        >
+
         <Box sx={style}>
           <H3>{t("addStudents")}</H3>
           <InputComp
@@ -61,7 +68,7 @@ const AddTables = () => {
             label={t("addStudentsName")}
             required={true}
             name={name}
-          />
+            />
           <InputComp
             placeholder="Usmonov"
             value={firstName}
@@ -69,7 +76,7 @@ const AddTables = () => {
             label={t("addStudentsSurname")}
             required={true}
             name={name}
-          />
+            />
           <InputComp
             placeholder="+99890-000-00-00"
             value={phone}
@@ -77,7 +84,7 @@ const AddTables = () => {
             label={t("addStudentsTel")}
             required={true}
             name={name}
-          />
+            />
           <InputComp
             placeholder="@t_samandar_t"
             value={telegram}
@@ -85,7 +92,7 @@ const AddTables = () => {
             label={t("addStudentsTelegram")}
             required={true}
             name={name}
-          />
+            />
           <InputComp
             placeholder="Matematika"
             value={notes}
@@ -93,13 +100,13 @@ const AddTables = () => {
             label={t("addStudentsNote")}
             required={true}
             name={name}
-          />
+            />
           <LocalizationProvider dateAdapter={AdapterDayjs}>
             <DemoContainer
               components={["DatePicker"]}
               value={date}
               setValue={setDate}
-            >
+              >
               <DatePicker label={t("addStudentsAcceptance")} />
             </DemoContainer>
           </LocalizationProvider>
@@ -110,7 +117,7 @@ const AddTables = () => {
               justifyContent: "flex-end",
               gap: "10px",
             }}
-          >
+            >
             <Button
               variant="contained"
               onClick={() => dispatch(addTablesStudent())}
@@ -118,7 +125,7 @@ const AddTables = () => {
                 background: theme.palette.custom.newStudentWhite,
                 color: "black",
               }}
-            >
+              >
               {t("addStudentsClose")}
             </Button>
             <Button variant="contained" color="blue">
@@ -126,6 +133,7 @@ const AddTables = () => {
             </Button>
           </Box>
         </Box>
+              </motion.div>
       </Modal>
     </div>
   );
