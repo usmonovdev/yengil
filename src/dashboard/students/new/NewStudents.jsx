@@ -20,18 +20,23 @@ import {
 import { studentResponse } from "../../../localData/studentResponse";
 import { AddStudents } from "../addStudents/AddStudents";
 import { useTranslation } from "react-i18next";
-
+import { useDispatch } from "react-redux";
+import { addWaitStudent } from "../../../store/themeSlice";
 
 const StyledH3 = styled(H3)(({ theme }) => ({
   opacity: "60%",
 }));
 
 const NewStudents = () => {
+  const [sorting, setSorting] = useState("name");
+  const theme = useTheme();
+  const { t } = useTranslation();
   const [students, setStudents] = useState(studentResponse);
   const [newStudents, setNewStudents] = useState([]);
   const [filtered, setFilter] = useState(studentResponse);
   const [waitingStudents, setWaitingStudents] = useState([]);
   const [readyStudents, setReadyStudents] = useState([]);
+  const dispatch = useDispatch()
 
   const handleFilter = (event) => {
     if (sorting === "name") {
@@ -73,15 +78,10 @@ const NewStudents = () => {
     setReadyStudents(filtered.filter((e) => e.type == "ready"));
   }, [filtered]);
 
-  const [sorting, setSorting] = useState("");
-  const theme = useTheme();
-  const { t } = useTranslation()
-
-  const handleChange = (event) => {
-    setSorting(event.target.value);
-  };
-
   return (
+    <>
+    <AddStudents />
+    
     <Box
       sx={{
         width: "100%",
@@ -118,9 +118,7 @@ const NewStudents = () => {
                 startAdornment: (
                   <InputAdornment position="start">
                     <Img
-                      src={
-                        theme.palette.mode == "light" ? search : searchDark
-                      }
+                      src={theme.palette.mode == "light" ? search : searchDark}
                     />
                   </InputAdornment>
                 ),
@@ -128,32 +126,25 @@ const NewStudents = () => {
               variant="outlined"
             />
             <FormControl sx={{ width: { xs: "100%" } }} color="blue">
-              <InputLabel id="demo-simple-select-label">{t("newStudentsSorting")}</InputLabel>
+              <InputLabel id="demo-simple-select-label">
+                {t("newStudentsSorting")}
+              </InputLabel>
               <Select
                 labelId="demo-simple-select-label"
                 id="demo-simple-select"
                 label="Saralash"
                 value={sorting}
-                onChange={handleChange}
+                onChange={(e) => setSorting(e.target.value)}
               >
-
-                <MenuItem value="">{t("newStudentsSorting")}</MenuItem>
-                <MenuItem value="matematika">Matem</MenuItem>
-                <MenuItem value="ona tili">Ona tili</MenuItem>
-                <MenuItem value="kimyo">Kimyo</MenuItem>
-                <MenuItem value="fizika">Fizika</MenuItem>
-                <MenuItem value="ingliz tili">Ingliz tili</MenuItem>
+                <MenuItem value="name">Name</MenuItem>
+                <MenuItem value="group">Group</MenuItem>
+                <MenuItem value="tel">Telefon</MenuItem>
               </Select>
             </FormControl>
           </Box>
-
-          <AddStudents />
-
-          {/* <Button variant="contained" color="blue">
+          <Button variant="contained" color="blue" onClick={() => dispatch(addWaitStudent())}>
             {t("newStudentsAdd")}
-          </Button> */}
-
-
+          </Button>
         </Box>
       </form>
       <Box
@@ -193,7 +184,9 @@ const NewStudents = () => {
             }}
           >
             <H3>{t("newStudentsRequesters")}</H3>
-            <H3>{t("newStudentsAll")} - {newStudents.length}</H3>
+            <H3>
+              {t("newStudentsAll")} - {newStudents.length}
+            </H3>
           </Box>
           <Box
             aria-aria-label="box"
@@ -254,8 +247,7 @@ const NewStudents = () => {
                               title={t("newStudentsWaitingTooltip")}
                               sx={{ position: "relative" }}
                             >
-
-                            <img width="100%" src={arrow} />
+                              <img width="100%" src={arrow} />
                             </Tooltip>
                           </Box>
                           <Box
@@ -278,8 +270,7 @@ const NewStudents = () => {
                               title={t("newStudentsReadyTooltip")}
                               sx={{ position: "relative" }}
                             >
-
-                            <img width="100%" src={arrow} />
+                              <img width="100%" src={arrow} />
                             </Tooltip>
                           </Box>
                         </Box>
@@ -383,7 +374,9 @@ const NewStudents = () => {
             }}
           >
             <H3>{t("newStudentsWaiting")}</H3>
-            <H3>{t("newStudentsAll")} - {waitingStudents.length}</H3>
+            <H3>
+              {t("newStudentsAll")} - {waitingStudents.length}
+            </H3>
           </Box>
           <Box
             aria-aria-label="box"
@@ -444,8 +437,7 @@ const NewStudents = () => {
                               title={t("newStudentsRequestersTooltip")}
                               sx={{ position: "relative" }}
                             >
-
-                            <img width="100%" src={arrow} />
+                              <img width="100%" src={arrow} />
                             </Tooltip>
                           </Box>
                           <Box
@@ -468,8 +460,7 @@ const NewStudents = () => {
                               title={t("newStudentsReadyTooltip")}
                               sx={{ position: "relative" }}
                             >
-
-                            <img width="100%" src={arrow} />
+                              <img width="100%" src={arrow} />
                             </Tooltip>
                           </Box>
                         </Box>
@@ -575,7 +566,9 @@ const NewStudents = () => {
             }}
           >
             <H3>{t("newStudentsReady")}</H3>
-            <H3>{t("newStudentsAll")} - {readyStudents.length}</H3>
+            <H3>
+              {t("newStudentsAll")} - {readyStudents.length}
+            </H3>
           </Box>
           <Box
             aria-aria-label="box"
@@ -636,8 +629,7 @@ const NewStudents = () => {
                               title={t("newStudentsRequestersTooltip")}
                               sx={{ position: "relative" }}
                             >
-
-                            <img width="100%" src={arrow} />
+                              <img width="100%" src={arrow} />
                             </Tooltip>
                           </Box>
                           <Box
@@ -660,8 +652,7 @@ const NewStudents = () => {
                               title={t("newStudentsWaitingTooltip")}
                               sx={{ position: "relative" }}
                             >
-
-                            <img width="100%" src={arrow} />
+                              <img width="100%" src={arrow} />
                             </Tooltip>
                           </Box>
                         </Box>
@@ -739,6 +730,7 @@ const NewStudents = () => {
         </Box>
       </Box>
     </Box>
+    </>
   );
 };
 

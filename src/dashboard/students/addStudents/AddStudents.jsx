@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import { H3 } from "../../../ui/typography";
 import InputComp from "../../../ui/InputComp";
@@ -9,9 +8,10 @@ import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
-import { Telegram } from "@mui/icons-material";
 import { useTheme } from "@emotion/react";
-import {useTranslation} from "react-i18next"
+import { useTranslation } from "react-i18next";
+import { useDispatch, useSelector } from "react-redux";
+import { addWaitStudent } from "../../../store/themeSlice";
 
 const style = {
   position: "absolute",
@@ -30,26 +30,22 @@ const style = {
 };
 
 export const AddStudents = () => {
-  const [open, setOpen] = React.useState(false);
   const [name, setName] = useState("");
   const [firstName, setFirstNmae] = useState("");
   const [phone, setPhone] = useState("");
   const [telegram, setTelegram] = useState("");
   const [date, setDate] = useState("");
   const [notes, setNotes] = useState("");
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
   const theme = useTheme();
   const { t } = useTranslation()
+  const { addStudentWait } = useSelector(state => state)
+  const dispatch = useDispatch()
 
   return (
     <div>
-      <Button onClick={handleOpen} variant="contained" color="blue">
-        {t("newStudentsAdd")}
-      </Button>
       <Modal
         sx={{ zIndex: "1000" }}
-        open={open}
+        open={addStudentWait}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
@@ -101,7 +97,7 @@ export const AddStudents = () => {
               value={date}
               setValue={setDate}
             >
-              <DatePicker label={t("addStudentsAcceptance")} />
+              <DatePicker label="Qabul qilingan kun" />
             </DemoContainer>
           </LocalizationProvider>
           <Box
@@ -114,7 +110,7 @@ export const AddStudents = () => {
           >
             <Button
               variant="contained"
-              onClick={handleClose}
+              onClick={() => dispatch(addWaitStudent())}
               style={{
                 background: theme.palette.custom.newStudentWhite,
                 color: "black",
