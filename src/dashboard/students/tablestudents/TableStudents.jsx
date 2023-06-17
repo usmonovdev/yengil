@@ -92,6 +92,16 @@ const TableStudents = () => {
       } else {
         setFilteredSt(student);
       }
+    } else if (sorting == "payment") {
+      if (event.target.value.length > 0) {
+        setFilteredSt(
+          student.filter((f) =>
+            f.payment.toLowerCase().includes(event.target.value)
+          )
+        );
+      } else {
+        setFilteredSt(student);
+      }
     }
   };
 
@@ -174,6 +184,7 @@ const TableStudents = () => {
                   <MenuItem value="name">Name</MenuItem>
                   <MenuItem value="group">Group</MenuItem>
                   <MenuItem value="tel">Telefon</MenuItem>
+                  <MenuItem value="payment">To'lov</MenuItem>
                 </Select>
               </FormControl>
             </Box>

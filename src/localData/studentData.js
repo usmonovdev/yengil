@@ -38,7 +38,7 @@ export const students = [
         name: 'Usmonov Azizbek',
         tel: "+99891 019 78 03",
         group: "ona tili",
-        payment: "320.000",
+        payment: "240.000",
         id:"6"
     },
     {
