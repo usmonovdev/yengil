@@ -20,7 +20,7 @@ import {
 import { studentResponse } from "../../../localData/studentResponse";
 import { AddStudents } from "../addStudents/AddStudents";
 import { useTranslation } from "react-i18next";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addWaitStudent } from "../../../store/themeSlice";
 import { useInView } from "framer-motion";
 
@@ -38,6 +38,7 @@ const NewStudents = () => {
   const [waitingStudents, setWaitingStudents] = useState([]);
   const [readyStudents, setReadyStudents] = useState([]);
   const dispatch = useDispatch();
+  const { addStudentWait } = useSelector((state) => state);
 
   const handleFilter = (event) => {
     if (sorting === "name") {
@@ -93,7 +94,7 @@ const NewStudents = () => {
 
   return (
     <>
-      <AddStudents />
+      {addStudentWait && <AddStudents />}
       <div
         ref={ref}
         style={{
