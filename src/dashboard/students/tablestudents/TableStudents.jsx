@@ -120,155 +120,145 @@ const TableStudents = () => {
   const ref = useRef();
   const isInView = useInView(ref, { once: true });
   return (
-    <>
-      <AddTables />
-      <Box
-        ref={ref}
-        sx={{
-          width: "100%",
-          display: "flex",
-          flexDirection: "column",
-          gap: "10px",
-          transform: isInView ? "none" : "translateY(200px)",
-          opacity: isInView ? 1 : 0,
-          transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1)",
-        }}
-      >
-        <H2>{t("students")}</H2>
-        <Paragraph>{t("studentsAll")} - 1000</Paragraph>
-        <form>
+    <Box
+      ref={ref}
+      sx={{
+        width: "100%",
+        display: "flex",
+        flexDirection: "column",
+        gap: "10px",
+        transform: isInView ? "none" : "translateY(200px)",
+        opacity: isInView ? 1 : 0,
+        transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1)",
+      }}
+    >
+      <H2>{t("students")}</H2>
+      <Paragraph>{t("studentsAll")} - 1000</Paragraph>
+      <form>
+        <Box
+          sx={{
+            display: "flex",
+            gap: "20px",
+            width: "100%",
+            justifyContent: "space-between",
+            flexDirection: { xs: "column", md: "row" },
+          }}
+        >
           <Box
             sx={{
               display: "flex",
-              gap: "20px",
-              width: "100%",
-              justifyContent: "space-between",
               flexDirection: { xs: "column", md: "row" },
+              gap: "20px",
             }}
           >
-            <Box
-              sx={{
-                display: "flex",
-                flexDirection: { xs: "column", md: "row" },
-                gap: "20px",
-              }}
-            >
-              <TextField
-                color="blue"
-                label={t("studentsSearch")}
-                onChange={handleFilter}
-                InputProps={{
-                  startAdornment: (
-                    <InputAdornment position="start">
-                      <Img
-                        src={
-                          theme.palette.mode == "light" ? search : searchDark
-                        }
-                      />
-                    </InputAdornment>
-                  ),
-                }}
-                variant="outlined"
-              />
-              <FormControl sx={{ width: { xs: "100%" } }} color="blue">
-                <InputLabel id="demo-simple-select-label">
-                  {t("studentsSorting")}
-                </InputLabel>
-                <Select
-                  labelId="demo-simple-select-label"
-                  id="demo-simple-select"
-                  label={t("studentsSorting")}
-                  value={sorting}
-                  onChange={handleChange}
-                >
-                  <MenuItem value="name">Name</MenuItem>
-                  <MenuItem value="group">Group</MenuItem>
-                  <MenuItem value="tel">Telefon</MenuItem>
-                  <MenuItem value="payment">To'lov</MenuItem>
-                </Select>
-              </FormControl>
-            </Box>
-            <Button
-              onClick={() => dispatch(addTablesStudent())}
-              variant="contained"
+            <TextField
               color="blue"
-            >
-              {t("newStudentsAdd")}
-            </Button>
-            {/* <AddTables /> */}
-          </Box>
-        </form>
-        {filteredSt.length > 0 ? (
-          <>
-            <TableContainer sx={{ borderRadius: "5px" }}>
-              <Table stickyHeader sx={{ minWidth: 700 }}>
-                <TableHead>
-                  <TableRow>
-                    <StyledTableCell align="left">ID</StyledTableCell>
-                    <StyledTableCell align="left">
-                      {t("studentsInfo")}
-                    </StyledTableCell>
-                    <StyledTableCell align="left">
-                      {t("studentsPhone")}
-                    </StyledTableCell>
-                    <StyledTableCell align="left">
-                      {t("studentsGroup")}
-                    </StyledTableCell>
-                    <StyledTableCell align="left">
-                      {t("studentsPayment")}
-                    </StyledTableCell>
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                  {filteredSt
-                    .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                    .map((users, index) => {
-                      return (
-                        <StyledTableRow
-                          hover
-                          role="checkbox"
-                          tabIndex={-1}
-                          key={users.id}
-                        >
-                          <TableCell>{users.id}</TableCell>
-                          <TableCell>{users.name}</TableCell>
-                          <TableCell>{users.tel}</TableCell>
-                          <TableCell>{users.group}</TableCell>
-                          <TableCell>{users.payment}</TableCell>
-                        </StyledTableRow>
-                      );
-                    })}
-                </TableBody>
-              </Table>
-            </TableContainer>
-            <TablePagination
-              labelRowsPerPage={t("studentsLabelRowsPerPage")}
-              rowsPerPageOptions={[10, 25, 100]}
-              component="div"
-              count={filteredSt.length}
-              rowsPerPage={rowsPerPage}
-              page={page}
-              onPageChange={handleChangePage}
-              onRowsPerPageChange={handleChangeRowsPerPage}
+              label={t("studentsSearch")}
+              onChange={handleFilter}
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <Img
+                      src={theme.palette.mode == "light" ? search : searchDark}
+                    />
+                  </InputAdornment>
+                ),
+              }}
+              variant="outlined"
             />
-          </>
-        ) : (
-          <Box
-            sx={{
-              bgcolor: "action.hover",
-              borderRadius: "5px",
-              width: "100%",
-              height: "200px",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          >
-            <H3>{t("studentsNotFound")}</H3>
+            <FormControl sx={{ width: { xs: "100%" } }} color="blue">
+              <InputLabel id="demo-simple-select-label">
+                {t("studentsSorting")}
+              </InputLabel>
+              <Select
+                labelId="demo-simple-select-label"
+                id="demo-simple-select"
+                label={t("studentsSorting")}
+                value={sorting}
+                onChange={handleChange}
+              >
+                <MenuItem value="name">Name</MenuItem>
+                <MenuItem value="group">Group</MenuItem>
+                <MenuItem value="tel">Telefon</MenuItem>
+              </Select>
+            </FormControl>
           </Box>
-        )}
-      </Box>
-    </>
+          {/* <Button variant="contained" color="blue">
+            {t("studentsAdd")}
+          </Button> */}
+          <AddTables />
+        </Box>
+      </form>
+      {filteredSt.length > 0 ? (
+        <>
+          <TableContainer sx={{ borderRadius: "5px" }}>
+            <Table stickyHeader sx={{ minWidth: 700 }}>
+              <TableHead>
+                <TableRow>
+                  <StyledTableCell align="left">ID</StyledTableCell>
+                  <StyledTableCell align="left">
+                    {t("studentsInfo")}
+                  </StyledTableCell>
+                  <StyledTableCell align="left">
+                    {t("studentsPhone")}
+                  </StyledTableCell>
+                  <StyledTableCell align="left">
+                    {t("studentsGroup")}
+                  </StyledTableCell>
+                  <StyledTableCell align="left">
+                    {t("studentsPayment")}
+                  </StyledTableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {filteredSt
+                  .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                  .map((users, index) => {
+                    return (
+                      <StyledTableRow
+                        hover
+                        role="checkbox"
+                        tabIndex={-1}
+                        key={users.id}
+                      >
+                        <TableCell>{users.id}</TableCell>
+                        <TableCell>{users.name}</TableCell>
+                        <TableCell>{users.tel}</TableCell>
+                        <TableCell>{users.group}</TableCell>
+                        <TableCell>{users.payment}</TableCell>
+                      </StyledTableRow>
+                    );
+                  })}
+              </TableBody>
+            </Table>
+          </TableContainer>
+          <TablePagination
+            labelRowsPerPage={t("studentsLabelRowsPerPage")}
+            rowsPerPageOptions={[10, 25, 100]}
+            component="div"
+            count={filteredSt.length}
+            rowsPerPage={rowsPerPage}
+            page={page}
+            onPageChange={handleChangePage}
+            onRowsPerPageChange={handleChangeRowsPerPage}
+          />
+        </>
+      ) : (
+        <Box
+          sx={{
+            bgcolor: "action.hover",
+            borderRadius: "5px",
+            width: "100%",
+            height: "200px",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <H3>{t("studentsNotFound")}</H3>
+        </Box>
+      )}
+    </Box>
   );
 };
 
