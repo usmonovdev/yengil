@@ -120,6 +120,8 @@ const TableStudents = () => {
   const ref = useRef();
   const isInView = useInView(ref, { once: true });
   return (
+    <>
+    <AddTables />
     <Box
       ref={ref}
       sx={{
@@ -183,10 +185,9 @@ const TableStudents = () => {
               </Select>
             </FormControl>
           </Box>
-          {/* <Button variant="contained" color="blue">
+          <Button variant="contained" color="blue" onClick={() => dispatch(addTablesStudent())}>
             {t("studentsAdd")}
-          </Button> */}
-          <AddTables />
+          </Button>
         </Box>
       </form>
       {filteredSt.length > 0 ? (
@@ -259,6 +260,7 @@ const TableStudents = () => {
         </Box>
       )}
     </Box>
+    </>
   );
 };
 
