@@ -15,6 +15,8 @@ import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import { motion } from "framer-motion";
 import { addTablesStudent } from "../../../store/themeSlice";
+import dayjs from "dayjs";
+import { IMaskInput } from "react-imask";
 
 const style = {
   position: "absolute",
@@ -32,6 +34,22 @@ const style = {
   gap: "15px",
 };
 
+const TextMaskCustom = React.forwardRef(function TextMaskCustom(props, ref) {
+  const { onChange, ...other } = props;
+  return (
+    <IMaskInput
+      {...other}
+      mask="+{998} (00) 000 00 00"
+      definitions={{
+        _: /[1-9]/,
+      }}
+      inputRef={ref}
+      onAccept={(value) => onChange({ target: { name: props.name, value } })}
+      overwrite
+    />
+  );
+});
+
 const AddTables = () => {
   const [open, setOpen] = React.useState(false);
   const [name, setName] = useState("");
@@ -40,6 +58,7 @@ const AddTables = () => {
   const [telegram, setTelegram] = useState("");
   const [date, setDate] = useState("");
   const [notes, setNotes] = useState("");
+  const now = dayjs();
   const { addStudentTables } = useSelector((state) => state);
   const dispatch = useDispatch();
   const theme = useTheme();
@@ -54,86 +73,88 @@ const AddTables = () => {
         aria-describedby="modal-modal-description"
       >
         <motion.div
-            initial={{ opacity: 0,  }}
-            animate={{ opacity: 1, translateY: 0,  }}
-            transition={{ duration: 1, type: "spring", delay: 0.1 }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1, translateY: 0 }}
+          transition={{ duration: 1, type: "spring", delay: 0.1 }}
         >
-
-        <Box sx={style}>
-          <H3>{t("addStudents")}</H3>
-          <InputComp
-            placeholder="Azizbek"
-            value={name}
-            setValue={setName}
-            label={t("addStudentsName")}
-            required={true}
-            name={name}
+          <Box sx={style}>
+            <H3>{t("addStudents")}</H3>
+            <InputComp
+              placeholder="Azizbek"
+              value={name}
+              setValue={setName}
+              label={t("addStudentsName")}
+              required={true}
+              name={name}
             />
-          <InputComp
-            placeholder="Usmonov"
-            value={firstName}
-            setValue={setFirstNmae}
-            label={t("addStudentsSurname")}
-            required={true}
-            name={name}
+            <InputComp
+              placeholder="Usmonov"
+              value={firstName}
+              setValue={setFirstNmae}
+              label={t("addStudentsSurname")}
+              required={true}
+              name={name}
             />
-          <InputComp
-            placeholder="+99890-000-00-00"
-            value={phone}
-            setValue={setPhone}
-            label={t("addStudentsTel")}
-            required={true}
-            name={name}
+            <InputComp
+              placeholder="+99890-000-00-00"
+              value={phone}
+              setValue={setPhone}
+              inputProps={TextMaskCustom}
+              label={t("addStudentsTel")}
+              required={true}
+              name={name}
             />
-          <InputComp
-            placeholder="@t_samandar_t"
-            value={telegram}
-            setValue={setTelegram}
-            label={t("addStudentsTelegram")}
-            required={true}
-            name={name}
+            <InputComp
+              placeholder="@t_samandar_t"
+              value={telegram}
+              setValue={setTelegram}
+              label={t("addStudentsTelegram")}
+              required={true}
+              name={name}
             />
-          <InputComp
-            placeholder="Matematika"
-            value={notes}
-            setValue={setNotes}
-            label={t("addStudentsNote")}
-            required={true}
-            name={name}
+            <InputComp
+              placeholder="Matematika"
+              value={notes}
+              setValue={setNotes}
+              label={t("addStudentsNote")}
+              required={true}
+              name={name}
             />
-          <LocalizationProvider dateAdapter={AdapterDayjs}>
-            <DemoContainer
-              components={["DatePicker"]}
-              value={date}
-              setValue={setDate}
-              >
-              <DatePicker label={t("addStudentsAcceptance")} />
-            </DemoContainer>
-          </LocalizationProvider>
-          <Box
-            sx={{
-              display: "flex",
-              flexDirection: "row",
-              justifyContent: "flex-end",
-              gap: "10px",
-            }}
-            >
-            <Button
-              variant="contained"
-              onClick={() => dispatch(addTablesStudent())}
-              style={{
-                background: theme.palette.custom.newStudentWhite,
-                color: "black",
+            <LocalizationProvider dateAdapter={AdapterDayjs}>
+              <LocalizationProvider dateAdapter={AdapterDayjs}>
+                <DemoContainer components={["DatePicker", "DatePicker"]}>
+                  <DatePicker
+                    onChange={(e) => setDate(e)}
+                    label="Controlled picker"
+                    defaultValue={dayjs(now)}
+                  />
+                </DemoContainer>
+              </LocalizationProvider>
+            </LocalizationProvider>
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "row",
+                justifyContent: "flex-end",
+                gap: "10px",
               }}
+            >
+              <Button
+                variant="contained"
+                onClick={() => dispatch(addTablesStudent())}
+                style={{
+                  background: theme.palette.custom.newStudentWhite,
+                  color: "black",
+                }}
               >
-              {t("addStudentsClose")}
-            </Button>
-            <Button variant="contained" color="blue">
-              {t("addStudentsSave")}
-            </Button>
+                {t("addStudentsClose")}
+              </Button>
+              <Button variant="contained" color="blue">
+                {t("addStudentsSave")}
+              </Button>
+            </Box>
           </Box>
-        </Box>
-              </motion.div>
+        </motion.div>
       </Modal>
     </div>
   );
