@@ -26,6 +26,7 @@ import { students } from "../../../localData/studentData";
 import { useTheme } from "@emotion/react";
 import { useTranslation } from "react-i18next";
 import { useInView } from "framer-motion";
+import AddTables from "../addStudentsTables/AddTables";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -169,9 +170,10 @@ const TableStudents = () => {
               </Select>
             </FormControl>
           </Box>
-          <Button variant="contained" color="blue">
+          {/* <Button variant="contained" color="blue">
             {t("studentsAdd")}
-          </Button>
+          </Button> */}
+          <AddTables />
         </Box>
       </form>
       {filteredSt.length > 0 ? (
