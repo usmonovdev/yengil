@@ -124,6 +124,7 @@ export const AddStudents = () => {
                   onChange={(e) => setDate(e)}
                   label="Controlled picker"
                   defaultValue={dayjs(now)}
+                  sx={{width: "100%"}}
                 />
               </DemoContainer>
             </LocalizationProvider>
