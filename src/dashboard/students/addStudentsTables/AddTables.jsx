@@ -65,7 +65,7 @@ const AddTables = () => {
   const { t } = useTranslation();
 
   return (
-    <div>
+    <>
       <Modal
         sx={{ zIndex: "1000" }}
         open={addStudentTables}
@@ -124,6 +124,7 @@ const AddTables = () => {
               <LocalizationProvider dateAdapter={AdapterDayjs}>
                 <DemoContainer components={["DatePicker", "DatePicker"]}>
                   <DatePicker
+                    sx={{ width: "100%" }}
                     onChange={(e) => setDate(e)}
                     label="Controlled picker"
                     defaultValue={dayjs(now)}
@@ -156,7 +157,7 @@ const AddTables = () => {
           </Box>
         </motion.div>
       </Modal>
-    </div>
+    </>
   );
 };
 

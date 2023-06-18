@@ -159,10 +159,18 @@ const NewStudents = () => {
                     value={sorting}
                     onChange={(e) => setSorting(e.target.value)}
                   >
-                    <MenuItem value="name">{t("newStudentsSortingName")}</MenuItem>
-                    <MenuItem value="group">{t("newStudentsSortingGroup")}</MenuItem>
-                    <MenuItem value="tel">{t("newStudentsSortingPhone")}</MenuItem>
-                    <MenuItem value="responseTime">{t("newStudentsSortingTime")}</MenuItem>
+                    <MenuItem value="name">
+                      {t("newStudentsSortingName")}
+                    </MenuItem>
+                    <MenuItem value="group">
+                      {t("newStudentsSortingGroup")}
+                    </MenuItem>
+                    <MenuItem value="tel">
+                      {t("newStudentsSortingPhone")}
+                    </MenuItem>
+                    <MenuItem value="responseTime">
+                      {t("newStudentsSortingTime")}
+                    </MenuItem>
                   </Select>
                 </FormControl>
               </Box>

@@ -63,7 +63,7 @@ export const AddStudents = () => {
   const now = dayjs();
 
   return (
-    <div>
+    <>
       <Modal
         sx={{ zIndex: "1000" }}
         open={addStudentWait}
@@ -121,6 +121,7 @@ export const AddStudents = () => {
             <LocalizationProvider dateAdapter={AdapterDayjs}>
               <DemoContainer components={["DatePicker", "DatePicker"]}>
                 <DatePicker
+                  sx={{ width: "100%" }}
                   onChange={(e) => setDate(e)}
                   label="Controlled picker"
                   defaultValue={dayjs(now)}
@@ -152,6 +153,6 @@ export const AddStudents = () => {
           </Box>
         </motion.div>
       </Modal>
-    </div>
+    </>
   );
 };

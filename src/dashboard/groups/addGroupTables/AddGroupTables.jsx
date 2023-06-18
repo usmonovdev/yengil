@@ -112,7 +112,7 @@ const AddGroupTables = () => {
     setPersonName(typeof value === "string" ? value.split(",") : value);
   };
   return (
-    <div>
+    <>
       <Modal
         sx={{ zIndex: "1000" }}
         open={addTablesGroup}
@@ -246,7 +246,7 @@ const AddGroupTables = () => {
           </Box>
         </motion.div>
       </Modal>
-    </div>
+    </>
   );
 };
 
