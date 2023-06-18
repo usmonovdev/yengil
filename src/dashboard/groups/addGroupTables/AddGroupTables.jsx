@@ -196,12 +196,17 @@ const AddGroupTables = () => {
                   "MobileTimePicker",
                 ]}
               >
-                <TimePicker views={["hours", "minutes"]} label={"Dars vaqti"} onChange={(e) => setClock(e)}/>
+                <TimePicker
+                  views={["hours", "minutes"]}
+                  label={"Dars vaqti"}
+                  onChange={(e) => setClock(e)}
+                />
               </DemoContainer>
             </LocalizationProvider>
             <LocalizationProvider dateAdapter={AdapterDayjs}>
               <DemoContainer components={["DatePicker", "DatePicker"]}>
                 <DatePicker
+                  sx={{ width: "100%" }}
                   onChange={(e) => setDate(e)}
                   label="Boshlanish sanasi"
                   defaultValue={dayjs(now)}
