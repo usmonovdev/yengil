@@ -110,7 +110,6 @@ const AddTables = () => {
               required={true}
               name={name}
             />
-            <LocalizationProvider dateAdapter={AdapterDayjs}>
               <LocalizationProvider dateAdapter={AdapterDayjs}>
                 <DemoContainer components={["DatePicker", "DatePicker"]}>
                   <DatePicker
@@ -121,7 +120,6 @@ const AddTables = () => {
                   />
                 </DemoContainer>
               </LocalizationProvider>
-            </LocalizationProvider>
             <InputComp
               placeholder="Matematika"
               value={notes}

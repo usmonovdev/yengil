@@ -94,7 +94,6 @@ const AddGroupTables = () => {
   const [clock, setClock] = useState("");
   const [notes, setNotes] = useState("");
   const [group, setGroup] = useState("");
-  console.log(group);
   const theme = useTheme();
   const { t } = useTranslation();
   const { addTablesGroup } = useSelector((state) => state);

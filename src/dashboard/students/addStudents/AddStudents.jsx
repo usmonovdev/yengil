@@ -53,7 +53,6 @@ export const AddStudents = () => {
   const [firstName, setFirstNmae] = useState("");
   const [phone, setPhone] = useState("");
   const [date, setDate] = useState("");
-  console.log(date);
   const [telegram, setTelegram] = useState("");
   const [notes, setNotes] = useState("");
   const theme = useTheme();
@@ -121,6 +120,7 @@ export const AddStudents = () => {
             <LocalizationProvider dateAdapter={AdapterDayjs}>
               <DemoContainer components={["DatePicker", "DatePicker"]}>
                 <DatePicker
+                  sx={{ width: "100%" }}
                   onChange={(e) => setDate(e)}
                   label="Controlled picker"
                   defaultValue={dayjs(now)}
