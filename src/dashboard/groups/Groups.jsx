@@ -12,8 +12,8 @@ const Groups = () => {
   return (
     <Box sx={{ width: "100%" }}>
       <TopDashboard
-        header={t("dashboardStudents")}
-        title={t("dashboardStudentsTitle")}
+        header={"Guruhlar"}
+        title={"Guruhlar & Yangi Guruh"}
       />
       <Box
         sx={{

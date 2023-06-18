@@ -30,7 +30,7 @@ const style = {
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  width: { xs: "80%", sm: "70%", md: "700px" },
+  width: { xs: "90%", sm: "70%", md: "700px" },
   bgcolor: "background.paper",
   boxShadow: 24,
   borderRadius: "5px",
@@ -120,8 +120,8 @@ const AddGroupTables = () => {
         aria-describedby="modal-modal-description"
       >
         <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1, translateY: 0 }}
+          initial={{ opacity: 0, scale: 0, top: "50%", left: "50%", position: "absolute" }}
+          animate={{ opacity: 1, scale: 1, translateX: "-50%", translateY: "-50%" }}
           transition={{ duration: 1, type: "spring", delay: 0.1 }}
         >
           <Box sx={style}>

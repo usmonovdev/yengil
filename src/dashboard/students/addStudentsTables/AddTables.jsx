@@ -23,7 +23,7 @@ const style = {
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  width: { xs: "80%", sm: "70%", md: "700px" },
+  width: { xs: "90%", sm: "70%", md: "700px" },
   bgcolor: "background.paper",
   boxShadow: 24,
   borderRadius: "5px",
@@ -51,7 +51,6 @@ const TextMaskCustom = React.forwardRef(function TextMaskCustom(props, ref) {
 });
 
 const AddTables = () => {
-  const [open, setOpen] = React.useState(false);
   const [name, setName] = useState("");
   const [firstName, setFirstNmae] = useState("");
   const [phone, setPhone] = useState("");
@@ -73,8 +72,8 @@ const AddTables = () => {
         aria-describedby="modal-modal-description"
       >
         <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1, translateY: 0 }}
+          initial={{ opacity: 0, scale: 0, top: "50%", left: "50%", position: "absolute" }}
+          animate={{ opacity: 1, scale: 1, translateX: "-50%", translateY: "-50%" }}
           transition={{ duration: 1, type: "spring", delay: 0.1 }}
         >
           <Box sx={style}>
@@ -95,14 +94,13 @@ const AddTables = () => {
               required={true}
               name={name}
             />
-            <InputComp
-              placeholder="+99890-000-00-00"
-              value={phone}
-              setValue={setPhone}
-              inputProps={TextMaskCustom}
-              label={t("addStudentsTel")}
-              required={true}
-              name={name}
+          <InputComp
+            placeholder="+99890-000-00-00"
+            value={phone}
+            setValue={setPhone}
+            label={t("addStudentsTel")}
+            required={true}
+            name={name}
             />
             <InputComp
               placeholder="@t_samandar_t"
@@ -112,6 +110,18 @@ const AddTables = () => {
               required={true}
               name={name}
             />
+            <LocalizationProvider dateAdapter={AdapterDayjs}>
+              <LocalizationProvider dateAdapter={AdapterDayjs}>
+                <DemoContainer components={["DatePicker", "DatePicker"]}>
+                  <DatePicker
+                    sx={{ width: "100%" }}
+                    onChange={(e) => setDate(e)}
+                    label="Day"
+                    defaultValue={dayjs(now)}
+                  />
+                </DemoContainer>
+              </LocalizationProvider>
+            </LocalizationProvider>
             <InputComp
               placeholder="Matematika"
               value={notes}
@@ -120,18 +130,6 @@ const AddTables = () => {
               required={true}
               name={name}
             />
-            <LocalizationProvider dateAdapter={AdapterDayjs}>
-              <LocalizationProvider dateAdapter={AdapterDayjs}>
-                <DemoContainer components={["DatePicker", "DatePicker"]}>
-                  <DatePicker
-                    sx={{ width: "100%" }}
-                    onChange={(e) => setDate(e)}
-                    label="Controlled picker"
-                    defaultValue={dayjs(now)}
-                  />
-                </DemoContainer>
-              </LocalizationProvider>
-            </LocalizationProvider>
             <Box
               sx={{
                 display: "flex",
