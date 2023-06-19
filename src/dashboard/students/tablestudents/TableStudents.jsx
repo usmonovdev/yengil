@@ -31,7 +31,11 @@ import { useTranslation } from "react-i18next";
 import { useInView } from "framer-motion";
 import AddTables from "../addStudentsTables/AddTables";
 import { useDispatch, useSelector } from "react-redux";
-import { addTablesStudent } from "../../../store/themeSlice";
+import {
+  addTablesStudent,
+  studentsInfoTables,
+} from "../../../store/themeSlice";
+import StudentsInfo from "../studentsInfo/StudentsInfo";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -61,7 +65,8 @@ const TableStudents = () => {
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const theme = useTheme();
   const dispatch = useDispatch();
-  const { addStudentTables } = useSelector((state) => state);
+  // const { addStudentTables } = useSelector((state) => state);
+  // const { studentsInfo } = useSelector((state) => state);
 
   const { t } = useTranslation();
 
