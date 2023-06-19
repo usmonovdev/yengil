@@ -30,7 +30,7 @@ import { useTheme } from "@emotion/react";
 import { useTranslation } from "react-i18next";
 import { useInView } from "framer-motion";
 import AddTables from "../addStudentsTables/AddTables";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   addTablesStudent, studentsInfoTables,
 } from "../../../store/themeSlice";
@@ -63,7 +63,6 @@ const TableStudents = () => {
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const theme = useTheme();
   const dispatch = useDispatch();
-  const { addStudentTables } = useSelector((state) => state);
   const Img = styled('img')(({ theme }) => ({
     width: "11px",
     height: "11px"
