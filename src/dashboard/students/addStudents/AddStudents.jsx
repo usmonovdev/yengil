@@ -120,6 +120,7 @@ export const AddStudents = () => {
             <LocalizationProvider dateAdapter={AdapterDayjs}>
               <DemoContainer components={["DatePicker", "DatePicker"]}>
                 <DatePicker
+                  slotProps={{ color: "blue" }}
                   sx={{ width: "100%" }}
                   onChange={(e) => setDate(e)}
                   label="Controlled picker"
