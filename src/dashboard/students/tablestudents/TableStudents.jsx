@@ -62,6 +62,10 @@ const TableStudents = () => {
   const theme = useTheme();
   const dispatch = useDispatch();
   const { addStudentTables } = useSelector((state) => state);
+  const Img = styled('img')(({ theme }) => ({
+    width: "11px",
+    height: "11px"
+}))
 
   const { t } = useTranslation();
 
@@ -139,7 +143,7 @@ const TableStudents = () => {
         }}
       >
         <H2>{t("students")}</H2>
-        <Paragraph style={{ display: "flex", gap: "10px", alignItems: "center" }}>{t("studentsAll")} - 1000
+        <H3 style={{ display: "flex", gap: "10px", alignItems: "center" }}>{t("studentsAll")} - 1000
           <Tooltip
             disableFocusListener
             disableTouchListener
@@ -148,7 +152,7 @@ const TableStudents = () => {
           >
             <Img src={theme.palette.mode == "light" ? undov : undovDark} />
           </Tooltip>
-        </Paragraph>
+        </H3>
         <form>
           <Box
             sx={{
