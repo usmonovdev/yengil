@@ -30,8 +30,11 @@ import { useTheme } from "@emotion/react";
 import { useTranslation } from "react-i18next";
 import { useInView } from "framer-motion";
 import AddTables from "../addStudentsTables/AddTables";
-import { useDispatch, useSelector } from "react-redux";
-import { addTablesStudent } from "../../../store/themeSlice";
+import { useDispatch } from "react-redux";
+import {
+  addTablesStudent, studentsInfoTables,
+} from "../../../store/themeSlice";
+import StudentsInfo from "../studentsInfo/StudentsInfo";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -47,7 +50,6 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   "&:nth-of-type(odd)": {
     backgroundColor: theme.palette.action.hover,
   },
-  // hide last border
   "&:last-child td, &:last-child th": {
     border: 0,
   },
@@ -130,6 +132,7 @@ const TableStudents = () => {
   return (
     <>
       <AddTables />
+      <StudentsInfo/>
       <Box
         ref={ref}
         sx={{
@@ -238,6 +241,7 @@ const TableStudents = () => {
                           role="checkbox"
                           tabIndex={-1}
                           key={users.id}
+                          onClick={() => dispatch(studentsInfoTables())}
                         >
                           <TableCell>{users.id}</TableCell>
                           <TableCell>{users.name}</TableCell>

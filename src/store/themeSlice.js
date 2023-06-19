@@ -8,7 +8,8 @@ export const themeSlice = createSlice({
         Token: false,
         addStudentWait: false,
         addStudentTables: false,
-        addTablesGroup: false
+        addTablesGroup: false,
+        studentsInfo: false
     },
     reducers: {
         toggleTheme: (state) => {
@@ -28,6 +29,9 @@ export const themeSlice = createSlice({
         },
         addGroupTables: (state) => {
             state.addTablesGroup = !state.addTablesGroup
+        },
+        studentsInfoTables: (state) => {
+            state.studentsInfo = !state.studentsInfo
         }
     }
 })
@@ -38,5 +42,5 @@ export const asyncToggleTheme = () => (dispatch) => {
     dispatch(toggleTheme());
 };
 
-export const { addGroupTables, toggleTheme, toggleSidebar, setToken, addWaitStudent, addTablesStudent } = themeSlice.actions
+export const { addGroupTables, toggleTheme, toggleSidebar, setToken, studentsInfoTables, addWaitStudent, addTablesStudent } = themeSlice.actions
 export default themeSlice.reducer
