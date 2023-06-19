@@ -19,7 +19,7 @@ import {
   tableCellClasses,
 } from "@mui/material";
 import { useTranslation } from "react-i18next";
-import { H2, H3, Paragraph } from "../../../ui/typography";
+import { H2, H3, Paragraph, StyledLink } from "../../../ui/typography";
 import { group } from "../../../localData/groupData";
 import { Img } from "../../students/tablestudents/TableStyled";
 import { useTheme } from "@emotion/react";
@@ -235,7 +235,9 @@ const GroupTables = () => {
                           tabIndex={-1}
                           key={users.id}
                         >
-                          <TableCell>{users.id}</TableCell>
+                          <StyledLink to={`/dashboard/groups/${users.id}`}>
+                            <TableCell>{users.id}</TableCell>
+                          </StyledLink>
                           <TableCell>{users.group}</TableCell>
                           <TableCell>{users.name}</TableCell>
                           <TableCell>{users.day}</TableCell>

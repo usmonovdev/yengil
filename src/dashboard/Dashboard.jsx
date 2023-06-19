@@ -9,6 +9,7 @@ import Settings from "./settings/Settings";
 import { Route, Routes } from "react-router-dom";
 import Error from "../components/errorPage/Error";
 import { Box } from "@mui/material";
+import GroupOpen from "./groups/open/GroupOpen";
 
 const Dashboard = () => {
   return (
@@ -20,6 +21,7 @@ const Dashboard = () => {
         <Route path="/dashboard/home" element={<Home />} />
         <Route path="/dashboard/students" element={<Students />} />
         <Route path="/dashboard/groups" element={<Groups />} />
+        <Route path="/dashboard/groups/:id" element={<GroupOpen />} />
         <Route path="/dashboard/teachers" element={<Teachers />} />
         <Route path="/dashboard/money" element={<Money />} />
         <Route path="/dashboard/settings" element={<Settings />} />
