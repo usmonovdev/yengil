@@ -4,6 +4,8 @@ import { H2, H3, Paragraph } from "../../../ui/typography";
 import arrow from "../../../assets/icons/arrow-right.png";
 import search from "../../../assets/icons/search.png";
 import searchDark from "../../../assets/dark/darkSearch.png";
+import undov from "../.../../../../assets/icons/undov.png";
+import undovDark from '../.../../../../assets/dark/undov-white.png';
 import { useTheme } from "@emotion/react";
 import {
   Box,
@@ -112,7 +114,17 @@ const NewStudents = () => {
           }}
         >
           <H2>{t("newStudents")}</H2>
-          <Paragraph>{t("newStudentsAll")} - 10</Paragraph>
+          {/* <Paragraph>{t("newStudentsAll")} - 10</Paragraph> */}
+          <Paragraph style={{ display: "flex", gap: "10px", alignItems: "center" }}>{t("newStudentsAll")} - 10
+            <Tooltip
+              disableFocusListener
+              disableTouchListener
+              title={t("newStudentsTooltip")}
+              sx={{ position: "relative" }}
+            >
+              <Img src={theme.palette.mode == "light" ? undov : undovDark} />
+            </Tooltip>
+          </Paragraph>
           <form>
             <Box
               sx={{
@@ -219,7 +231,16 @@ const NewStudents = () => {
                   justifyContent: "space-between",
                 }}
               >
-                <H3>{t("newStudentsRequesters")}</H3>
+                <H3 style={{ display: "flex", gap: "10px", alignItems: "center" }}>{t("newStudentsRequesters")} - 10
+                  <Tooltip
+                    disableFocusListener
+                    disableTouchListener
+                    title={t("newStudentsRequestersTooltipGeneral")}
+                    sx={{ position: "relative" }}
+                  >
+                    <Img src={theme.palette.mode == "light" ? undov : undovDark} />
+                  </Tooltip>
+                </H3>
                 <H3>
                   {t("newStudentsAll")} - {newStudents.length}
                 </H3>
@@ -409,7 +430,18 @@ const NewStudents = () => {
                   justifyContent: "space-between",
                 }}
               >
-                <H3>{t("newStudentsWaiting")}</H3>
+                {/* <H3>{t("newStudentsWaiting")}</H3> */}
+
+                <H3 style={{ display: "flex", gap: "10px", alignItems: "center" }}>{t("newStudentsWaiting")} - 10
+                  <Tooltip
+                    disableFocusListener
+                    disableTouchListener
+                    title={t("newStudentsWaitingTooltipGeneral")}
+                    sx={{ position: "relative" }}
+                  >
+                    <Img src={theme.palette.mode == "light" ? undov : undovDark} />
+                  </Tooltip>
+                </H3>
                 <H3>
                   {t("newStudentsAll")} - {waitingStudents.length}
                 </H3>
@@ -601,7 +633,16 @@ const NewStudents = () => {
                   justifyContent: "space-between",
                 }}
               >
-                <H3>{t("newStudentsReady")}</H3>
+                <H3 style={{ display: "flex", gap: "10px", alignItems: "center" }}>{t("newStudentsReady")} - 10
+                  <Tooltip
+                    disableFocusListener
+                    disableTouchListener
+                    title={t("newStudentsReadyTooltipGeneral")}
+                    sx={{ position: "relative" }}
+                  >
+                    <Img src={theme.palette.mode == "light" ? undov : undovDark} />
+                  </Tooltip>
+                </H3>
                 <H3>
                   {t("newStudentsAll")} - {readyStudents.length}
                 </H3>
