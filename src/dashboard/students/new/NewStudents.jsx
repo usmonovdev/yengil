@@ -7,6 +7,7 @@ import searchDark from "../../../assets/dark/darkSearch.png";
 import undov from "../.../../../../assets/icons/undov.png";
 import undovDark from '../.../../../../assets/dark/undov-white.png';
 import { useTheme } from "@emotion/react";
+// import { Img } from "../../home/HomeStyled";
 import {
   Box,
   Button,
@@ -41,7 +42,10 @@ const NewStudents = () => {
   const [readyStudents, setReadyStudents] = useState([]);
   const dispatch = useDispatch();
   const { addStudentWait } = useSelector((state) => state);
-
+  const Img = styled('img')(({ theme }) => ({
+    width: "11px",
+    height: "11px"
+}))
   const handleFilter = (event) => {
     if (sorting === "name") {
       if (event.target.value.length > 0) {
@@ -115,16 +119,16 @@ const NewStudents = () => {
         >
           <H2>{t("newStudents")}</H2>
           {/* <Paragraph>{t("newStudentsAll")} - 10</Paragraph> */}
-          <Paragraph style={{ display: "flex", gap: "10px", alignItems: "center" }}>{t("newStudentsAll")} - 10
+          <H3 style={{ display: "flex", gap: "10px", alignItems: "center" }}>{t("newStudentsAll")} - 10
             <Tooltip
               disableFocusListener
               disableTouchListener
               title={t("newStudentsTooltip")}
-              sx={{ position: "relative" }}
+              // sx={{ position: "relative" }}
             >
               <Img src={theme.palette.mode == "light" ? undov : undovDark} />
             </Tooltip>
-          </Paragraph>
+          </H3>
           <form>
             <Box
               sx={{

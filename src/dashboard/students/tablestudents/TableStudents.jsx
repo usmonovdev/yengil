@@ -30,7 +30,7 @@ import { useTheme } from "@emotion/react";
 import { useTranslation } from "react-i18next";
 import { useInView } from "framer-motion";
 import AddTables from "../addStudentsTables/AddTables";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   addTablesStudent, studentsInfoTables,
 } from "../../../store/themeSlice";
@@ -63,6 +63,10 @@ const TableStudents = () => {
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const theme = useTheme();
   const dispatch = useDispatch();
+  const Img = styled('img')(({ theme }) => ({
+    width: "11px",
+    height: "11px"
+}))
 
   const { t } = useTranslation();
 
@@ -141,7 +145,7 @@ const TableStudents = () => {
         }}
       >
         <H2>{t("students")}</H2>
-        <Paragraph style={{ display: "flex", gap: "10px", alignItems: "center" }}>{t("studentsAll")} - 1000
+        <H3 style={{ display: "flex", gap: "10px", alignItems: "center" }}>{t("studentsAll")} - 1000
           <Tooltip
             disableFocusListener
             disableTouchListener
@@ -150,7 +154,7 @@ const TableStudents = () => {
           >
             <Img src={theme.palette.mode == "light" ? undov : undovDark} />
           </Tooltip>
-        </Paragraph>
+        </H3>
         <form>
           <Box
             sx={{
