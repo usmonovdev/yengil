@@ -30,10 +30,9 @@ import { useTheme } from "@emotion/react";
 import { useTranslation } from "react-i18next";
 import { useInView } from "framer-motion";
 import AddTables from "../addStudentsTables/AddTables";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import {
-  addTablesStudent,
-  studentsInfoTables,
+  addTablesStudent, studentsInfoTables,
 } from "../../../store/themeSlice";
 import StudentsInfo from "../studentsInfo/StudentsInfo";
 
@@ -51,7 +50,6 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   "&:nth-of-type(odd)": {
     backgroundColor: theme.palette.action.hover,
   },
-  // hide last border
   "&:last-child td, &:last-child th": {
     border: 0,
   },
@@ -65,8 +63,6 @@ const TableStudents = () => {
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const theme = useTheme();
   const dispatch = useDispatch();
-  // const { addStudentTables } = useSelector((state) => state);
-  // const { studentsInfo } = useSelector((state) => state);
 
   const { t } = useTranslation();
 
@@ -131,6 +127,7 @@ const TableStudents = () => {
   return (
     <>
       <AddTables />
+      <StudentsInfo/>
       <Box
         ref={ref}
         sx={{
@@ -239,6 +236,7 @@ const TableStudents = () => {
                           role="checkbox"
                           tabIndex={-1}
                           key={users.id}
+                          onClick={() => dispatch(studentsInfoTables())}
                         >
                           <TableCell>{users.id}</TableCell>
                           <TableCell>{users.name}</TableCell>

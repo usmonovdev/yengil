@@ -95,6 +95,9 @@ const StudentsInfo = () => {
               >
                 Canel
               </Button>
+              <Button variant="contained" color="blue">
+                Add
+              </Button>
               <Button variant="contained" color="error">
                 Delete
               </Button>
