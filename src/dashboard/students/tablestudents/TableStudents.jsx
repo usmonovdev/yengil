@@ -3,6 +3,7 @@ import { H2, H3, Paragraph } from "../../../ui/typography";
 import {
   Box,
   Button,
+  IconButton,
   InputAdornment,
   Select,
   Table,
@@ -20,7 +21,7 @@ import {
 import search from "../../../assets/icons/search.png";
 import searchDark from "../../../assets/dark/darkSearch.png";
 import undov from "../../../assets/icons/undov.png";
-import undovDark from '../../../assets/dark/undov-white.png';
+import undovDark from "../../../assets/dark/undov-white.png";
 import { Img } from "./TableStyled";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
@@ -32,9 +33,13 @@ import { useInView } from "framer-motion";
 import AddTables from "../addStudentsTables/AddTables";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  addTablesStudent, studentsInfoTables,
+  addTablesStudent,
+  studentsInfoTables,
 } from "../../../store/themeSlice";
 import StudentsInfo from "../studentsInfo/StudentsInfo";
+import exportD from "../../../assets/dark/export.png";
+import exportW from "../../../assets/icons/export.png";
+import { exportToExel } from "../../../utils/ExelExport";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -63,10 +68,10 @@ const TableStudents = () => {
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const theme = useTheme();
   const dispatch = useDispatch();
-  const Img = styled('img')(({ theme }) => ({
+  const Img = styled("img")(({ theme }) => ({
     width: "11px",
-    height: "11px"
-}))
+    height: "11px",
+  }));
 
   const { t } = useTranslation();
 
@@ -131,7 +136,7 @@ const TableStudents = () => {
   return (
     <>
       <AddTables />
-      <StudentsInfo/>
+      <StudentsInfo />
       <Box
         ref={ref}
         sx={{
@@ -144,8 +149,33 @@ const TableStudents = () => {
           transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1)",
         }}
       >
-        <H2>{t("students")}</H2>
-        <H3 style={{ display: "flex", gap: "10px", alignItems: "center" }}>{t("studentsAll")} - 1000
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "row",
+            gap: "10px",
+            alignItems: "center",
+          }}
+        >
+          <H2>{t("students")}</H2>
+          <Tooltip title="Download">
+            <IconButton
+              sx={{ height: "fit-content", width: "fit-content" }}
+              onClick={() =>
+                exportToExel("Markaz nomi Students (Yengil App)", students)
+              }
+            >
+              <img
+                src={theme.palette.mode == "light" ? exportW : exportD}
+                alt=""
+                width="20px"
+                height="20px"
+              />
+            </IconButton>
+          </Tooltip>
+        </Box>
+        <H3 style={{ display: "flex", gap: "10px", alignItems: "center" }}>
+          {t("studentsAll")} - 1000
           <Tooltip
             disableFocusListener
             disableTouchListener
@@ -180,7 +210,9 @@ const TableStudents = () => {
                   startAdornment: (
                     <InputAdornment position="start">
                       <Img
-                        src={theme.palette.mode == "light" ? search : searchDark}
+                        src={
+                          theme.palette.mode == "light" ? search : searchDark
+                        }
                       />
                     </InputAdornment>
                   ),
@@ -204,7 +236,11 @@ const TableStudents = () => {
                 </Select>
               </FormControl>
             </Box>
-            <Button variant="contained" color="blue" onClick={() => dispatch(addTablesStudent())}>
+            <Button
+              variant="contained"
+              color="blue"
+              onClick={() => dispatch(addTablesStudent())}
+            >
               {t("studentsAdd")}
             </Button>
           </Box>
