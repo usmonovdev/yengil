@@ -162,7 +162,7 @@ const TableStudents = () => {
             <IconButton
               sx={{ height: "fit-content", width: "fit-content" }}
               onClick={() =>
-                exportToExel("Markaz nomi Students (Yengil App)", students)
+                exportToExel("Students (Yengil App)", students)
               }
             >
               <img
