@@ -227,7 +227,7 @@ const GroupTables = () => {
                 <TableBody>
                   {filteredSt
                     .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                    .map((users, index) => {
+                    .map((users) => {
                       return (
                         <StyledTableRow
                           hover

@@ -58,6 +58,7 @@ const TableStud = ({ filteredSt }) => {
         <Table stickyHeader sx={{ minWidth: 700 }}>
           <TableHead>
             <TableRow>
+              <StyledTableCell align="left">ID</StyledTableCell>
               <StyledTableCell align="left">Ism Familiya</StyledTableCell>
               <StyledTableCell align="left">Phone</StyledTableCell>
               <StyledTableCell align="left">To’lov </StyledTableCell>
@@ -76,6 +77,7 @@ const TableStud = ({ filteredSt }) => {
                     tabIndex={-1}
                     key={users.id}
                   >
+                    <TableCell>{users.id}</TableCell>
                     <TableCell>{users.name}</TableCell>
                     <TableCell>{users.phone}</TableCell>
                     <TableCell>{users.payment}</TableCell>

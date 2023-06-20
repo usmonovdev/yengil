@@ -14,7 +14,7 @@ import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import TopDashboard from "../../topDashboard/TopDashboard";
 import { useSelector } from "react-redux";
-import { H2, H3 } from "../../../ui/typography";
+import { H1, H2, H3 } from "../../../ui/typography";
 import { group } from "../../../localData/groupData";
 import { studentData } from "../../../localData/groupStudentsData";
 import search from "../../../assets/icons/search.png";
@@ -97,7 +97,7 @@ const GroupOpen = () => {
           padding: "15px",
           display: "flex",
           flexDirection: "column",
-          gap: "10px",
+          gap: "20px",
         }}
       >
         <Box
@@ -107,27 +107,27 @@ const GroupOpen = () => {
             justifyContent: "space-between",
           }}
         >
-          <div>
-            <H3>Ustoz: {groups[0].name}</H3>
+          <Box sx={{ display: "flex", flexDirection:"column", gap: "5px" }}>
+            <H1>Ustoz: {groups[0].name}</H1>
             <H3>Dars vaqti: {group[0].clock}</H3>
             <H3>Kunlar: Dushanba, seshanba, chorshanba</H3>
             <H3>To'lov: {group[0].payment}</H3>
             <H3>Jami o'quvchilar - {studentData.length}</H3>
-          </div>
-          <div>
+          </Box>
+          <Box sx={{ display: "flex", flexDirection: "row", gap: "5px", alignItems: "flex-start" }}>
             <IconButton aria-label="delete" size="large">
               <Img src={theme.palette.mode == "light" ? edit : editDark} />
             </IconButton>
             <IconButton aria-label="delete" size="large">
               <Img src={theme.palette.mode == "light" ? remov : deleteDark} />
             </IconButton>
-          </div>
+          </Box>
         </Box>
         <Box sx={{ display: "flex", flexDirection: "row", gap: "10px" }}>
           <Button
             color="blue"
             variant="contained"
-            onClick={() => setBtn(!btn)}
+            onClick={() => setBtn(false)}
             sx={{
               bgcolor: `${btn ? "action.hover" : "blue.main"}`,
               color: `${btn ? "black" : "white"}`,
@@ -138,7 +138,7 @@ const GroupOpen = () => {
           <Button
             color="blue"
             variant="contained"
-            onClick={() => setBtn(!btn)}
+            onClick={() => setBtn(true)}
             sx={{
               bgcolor: `${btn ? "blue.main" : "action.hover"}`,
               color: `${btn ? "white" : "black"}`,
