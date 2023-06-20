@@ -3,6 +3,7 @@ import {
   Box,
   Button,
   FormControl,
+  IconButton,
   InputAdornment,
   InputLabel,
   MenuItem,
@@ -15,6 +16,7 @@ import {
   TablePagination,
   TableRow,
   TextField,
+  Tooltip,
   styled,
   tableCellClasses,
 } from "@mui/material";
@@ -29,6 +31,9 @@ import { useInView } from "framer-motion";
 import { useDispatch, useSelector } from "react-redux";
 import { addGroupTables } from "../../../store/themeSlice";
 import AddGroupTables from "../addGroupTables/AddGroupTables";
+import exportD from "../../../assets/dark/export.png";
+import exportW from "../../../assets/icons/export.png";
+import { exportToExel } from "../../../utils/ExelExport";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -146,7 +151,29 @@ const GroupTables = () => {
           transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1)",
         }}
       >
-        <H2>Guruhlar</H2>
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "row",
+            gap: "10px",
+            alignItems: "center",
+          }}
+        >
+          <H2>Guruhlar</H2>
+          <Tooltip title="Download">
+            <IconButton
+              sx={{ height: "fit-content", width: "fit-content" }}
+              onClick={() => exportToExel("Group (Yengil App)", group)}
+            >
+              <img
+                src={theme.palette.mode == "light" ? exportW : exportD}
+                alt=""
+                width="20px"
+                height="20px"
+              />
+            </IconButton>
+          </Tooltip>
+        </Box>
         <Paragraph>Jami - {group.length}</Paragraph>
         <form>
           <Box

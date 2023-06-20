@@ -10,10 +10,11 @@ import {
   Modal,
   Select,
   TextField,
+  Tooltip,
   Typography,
 } from "@mui/material";
 import { useParams } from "react-router-dom";
-import { motion } from "framer-motion"; 
+import { motion } from "framer-motion";
 import TopDashboard from "../../topDashboard/TopDashboard";
 import { useSelector } from "react-redux";
 import { H1, H3 } from "../../../ui/typography";
@@ -29,6 +30,9 @@ import edit from "../../../assets/icons/edit.png";
 import editDark from "../../../assets/dark/edit.png";
 import TableStud from "./TableStud";
 import GroupDiscount from "./GroupDiscount";
+import { exportToExel } from "../../../utils/ExelExport";
+import exportD from "../../../assets/dark/export.png";
+import exportW from "../../../assets/icons/export.png";
 
 const style = {
   position: "absolute",
@@ -212,20 +216,65 @@ const GroupOpen = () => {
           </Box>
         </Box>
         <Box sx={{ display: "flex", flexDirection: "row", gap: "10px" }}>
-          <Button
-            color="blue"
-            variant={`${btn ? "outlined" : "contained"}`}
-            onClick={() => setBtn(false)}
-          >
-            O'quvchilar
-          </Button>
-          <Button
-            color="blue"
-            variant={`${btn ? "contained" : "outlined"}`}
-            onClick={() => setBtn(true)}
-          >
-            Chegirma
-          </Button>
+          {btn ? (
+            <>
+              <Button
+                color="blue"
+                variant={`${btn ? "outlined" : "contained"}`}
+                onClick={() => setBtn(false)}
+              >
+                O'quvchilar
+              </Button>
+              <Button
+                color="blue"
+                variant={`${btn ? "contained" : "outlined"}`}
+                onClick={() => setBtn(true)}
+              >
+                Chegirma
+              </Button>
+            </>
+          ) : (
+            <>
+              <Box
+                sx={{
+                  display: "flex",
+                  flexDirection: "row",
+                  gap: "10px",
+                  alignItems: "center",
+                }}
+              >
+                <Button
+                  color="blue"
+                  variant={`${btn ? "outlined" : "contained"}`}
+                  onClick={() => setBtn(false)}
+                >
+                  O'quvchilar
+                </Button>
+                <Button
+                  color="blue"
+                  variant={`${btn ? "contained" : "outlined"}`}
+                  onClick={() => setBtn(true)}
+                >
+                  Chegirma
+                </Button>
+                <Tooltip title="Download">
+                  <IconButton
+                    sx={{ height: "fit-content", width: "fit-content" }}
+                    onClick={() =>
+                      exportToExel("GroupStudent (Yengil App)", studentData)
+                    }
+                  >
+                    <img
+                      src={theme.palette.mode == "light" ? exportW : exportD}
+                      alt=""
+                      width="20px"
+                      height="20px"
+                    />
+                  </IconButton>
+                </Tooltip>
+              </Box>
+            </>
+          )}
         </Box>
         <Box
           sx={{
