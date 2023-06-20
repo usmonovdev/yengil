@@ -11,12 +11,8 @@ import {
   tableCellClasses,
 } from "@mui/material";
 import React, { useState } from "react";
-import { Img } from "../../students/tablestudents/TableStyled";
 import { useTheme } from "@emotion/react";
-import dots from "../../../assets/icons/dots.png";
-import dotsDark from "../../../assets/dark/dots.png";
 import { useTranslation } from "react-i18next";
-import InputComp from "../../../ui/InputComp";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -82,16 +78,8 @@ const GroupDiscount = ({ filteredSt }) => {
                     <TableCell>{users.name}</TableCell>
                     <TableCell>{users.phone}</TableCell>
                     <TableCell sx={{ width: "20%" }}>
-                      {/* <InputComp
-                        label={"summa"}
-                        value={count}
-                        setValue={setCount}
-                        placeholder="240.000"
-                        name={users.id}
-                      /> */}
                       <TextField
                         label="Summa"
-                        // value={count}
                         placeholder={"240.000"}
                         type={"number"}
                         variant="outlined"
@@ -101,10 +89,6 @@ const GroupDiscount = ({ filteredSt }) => {
                         required={true}
                         name={users.id}
                         onChange={handleGetData}
-                        // error={error}
-                        // InputProps={{
-                        //   inputComponent: inputProps,
-                        // }}
                       />
                     </TableCell>
                   </StyledTableRow>

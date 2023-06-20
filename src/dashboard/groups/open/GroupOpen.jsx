@@ -178,19 +178,33 @@ const GroupOpen = () => {
               }}
               variant="outlined"
             />
-            <FormControl sx={{ width: { xs: "100%" } }} color="blue">
-              <InputLabel id="demo-simple-select-label">Saralash</InputLabel>
-              <Select
-                label={"Saralash"}
-                onChange={handleChange}
-                value={sorting}
-              >
-                <MenuItem value="name">Ism familiya</MenuItem>
-                <MenuItem value="tel">Tel</MenuItem>
-                <MenuItem value="payment">To'lov</MenuItem>
-                <MenuItem value="dabt">Qarz</MenuItem>
-              </Select>
-            </FormControl>
+            {btn ? (
+              <FormControl sx={{ width: { xs: "100%" } }} color="blue">
+                <InputLabel id="demo-simple-select-label">Saralash</InputLabel>
+                <Select
+                  label={"Saralash"}
+                  onChange={handleChange}
+                  value={sorting}
+                >
+                  <MenuItem value="name">Ism familiya</MenuItem>
+                  <MenuItem value="tel">Tel</MenuItem>
+                </Select>
+              </FormControl>
+            ) : (
+              <FormControl sx={{ width: { xs: "100%" } }} color="blue">
+                <InputLabel id="demo-simple-select-label">Saralash</InputLabel>
+                <Select
+                  label={"Saralash"}
+                  onChange={handleChange}
+                  value={sorting}
+                >
+                  <MenuItem value="name">Ism familiya</MenuItem>
+                  <MenuItem value="tel">Tel</MenuItem>
+                  <MenuItem value="payment">To'lov</MenuItem>
+                  <MenuItem value="dabt">Qarz</MenuItem>
+                </Select>
+              </FormControl>
+            )}
           </Box>
         </Box>
         {btn ? (
