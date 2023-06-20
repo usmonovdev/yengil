@@ -1,5 +1,6 @@
 import {
   Box,
+  Button,
   FormControl,
   IconButton,
   InputAdornment,
@@ -8,6 +9,7 @@ import {
   Select,
   TextField,
 } from "@mui/material";
+import { grey } from "@mui/material/colors";
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import TopDashboard from "../../topDashboard/TopDashboard";
@@ -24,6 +26,8 @@ import editDark from "../../../assets/dark/edit.png";
 import TableStud from "./TableStud";
 import { Img } from "../../students/tablestudents/TableStyled";
 import { useTheme } from "@emotion/react";
+import { color } from "framer-motion";
+import GroupDiscount from "./GroupDiscount";
 
 const GroupOpen = () => {
   const { id } = useParams();
@@ -31,6 +35,7 @@ const GroupOpen = () => {
   const groups = group.filter((e) => e.id == id);
   const [filteredSt, setFilteredSt] = useState(studentData);
   const theme = useTheme();
+  const [btn, setBtn] = useState(false);
   const [sorting, setSorting] = useState("name");
 
   const handleFilter = (event) => {
@@ -119,8 +124,28 @@ const GroupOpen = () => {
           </div>
         </Box>
         <Box sx={{ display: "flex", flexDirection: "row", gap: "10px" }}>
-        <H2>O'quvchilar</H2>
-        <H2>Chegirma</H2>
+          <Button
+            color="blue"
+            variant="contained"
+            onClick={() => setBtn(!btn)}
+            sx={{
+              bgcolor: `${btn ? "action.hover" : "blue.main"}`,
+              color: `${btn ? "black" : "white"}`,
+            }}
+          >
+            O'quvchilar
+          </Button>
+          <Button
+            color="blue"
+            variant="contained"
+            onClick={() => setBtn(!btn)}
+            sx={{
+              bgcolor: `${btn ? "blue.main" : "action.hover"}`,
+              color: `${btn ? "white" : "black"}`,
+            }}
+          >
+            Chegirma
+          </Button>
         </Box>
         <Box
           sx={{
@@ -168,7 +193,11 @@ const GroupOpen = () => {
             </FormControl>
           </Box>
         </Box>
-        <TableStud filteredSt={filteredSt}/>
+        {btn ? (
+          <GroupDiscount filteredSt={filteredSt} />
+        ) : (
+          <TableStud filteredSt={filteredSt} />
+        )}
       </Box>
     </Box>
   );
