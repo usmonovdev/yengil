@@ -1,60 +1,29 @@
 import {
   Box,
-  Button,
   FormControl,
   IconButton,
   InputAdornment,
   InputLabel,
   MenuItem,
   Select,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TablePagination,
-  TableRow,
   TextField,
-  styled,
-  tableCellClasses,
 } from "@mui/material";
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import TopDashboard from "../../topDashboard/TopDashboard";
 import { useSelector } from "react-redux";
-import { H3 } from "../../../ui/typography";
+import { H2, H3 } from "../../../ui/typography";
 import { group } from "../../../localData/groupData";
 import { studentData } from "../../../localData/groupStudentsData";
-import dots from "../../../assets/icons/dots.png";
-import dotsDark from "../../../assets/dark/dots.png";
 import search from "../../../assets/icons/search.png";
 import remov from "../../../assets/icons/delete.png";
 import searchDark from "../../../assets/dark/darkSearch.png";
 import deleteDark from "../../../assets/dark/delete.png";
 import edit from "../../../assets/icons/edit.png";
 import editDark from "../../../assets/dark/edit.png";
+import TableStud from "./TableStud";
 import { Img } from "../../students/tablestudents/TableStyled";
 import { useTheme } from "@emotion/react";
-
-const StyledTableCell = styled(TableCell)(({ theme }) => ({
-  [`&.${tableCellClasses.head}`]: {
-    backgroundColor: theme.palette.blue.main,
-    color: theme.palette.common.white,
-  },
-  [`&.${tableCellClasses.body}`]: {
-    fontSize: 14,
-  },
-}));
-
-const StyledTableRow = styled(TableRow)(({ theme }) => ({
-  "&:nth-of-type(odd)": {
-    backgroundColor: theme.palette.action.hover,
-  },
-  // hide last border
-  "&:last-child td, &:last-child th": {
-    border: 0,
-  },
-}));
 
 const GroupOpen = () => {
   const { id } = useParams();
@@ -62,9 +31,6 @@ const GroupOpen = () => {
   const groups = group.filter((e) => e.id == id);
   const [filteredSt, setFilteredSt] = useState(studentData);
   const theme = useTheme();
-  const [student, setStudent] = useState(group);
-  const [page, setPage] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(10);
   const [sorting, setSorting] = useState("name");
 
   const handleFilter = (event) => {
@@ -140,8 +106,8 @@ const GroupOpen = () => {
             <H3>Ustoz: {groups[0].name}</H3>
             <H3>Dars vaqti: {group[0].clock}</H3>
             <H3>Kunlar: Dushanba, seshanba, chorshanba</H3>
-            <H3>{group[0].payment}</H3>
-            <H3>Jami - {studentData.length}</H3>
+            <H3>To'lov: {group[0].payment}</H3>
+            <H3>Jami o'quvchilar - {studentData.length}</H3>
           </div>
           <div>
             <IconButton aria-label="delete" size="large">
@@ -152,10 +118,14 @@ const GroupOpen = () => {
             </IconButton>
           </div>
         </Box>
+        <Box sx={{ display: "flex", flexDirection: "row", gap: "10px" }}>
+        <H2>O'quvchilar</H2>
+        <H2>Chegirma</H2>
+        </Box>
         <Box
           sx={{
             display: "flex",
-            marginTop: "30px",
+            marginTop: "10px",
             width: "100%",
             justifyContent: "space-between",
             flexDirection: { xs: "column", md: "row" },
@@ -170,7 +140,7 @@ const GroupOpen = () => {
           >
             <TextField
               color="blue"
-              label={"qidirish"}
+              label={"Qidirish"}
               onChange={handleFilter}
               InputProps={{
                 startAdornment: (
@@ -184,13 +154,9 @@ const GroupOpen = () => {
               variant="outlined"
             />
             <FormControl sx={{ width: { xs: "100%" } }} color="blue">
-              <InputLabel id="demo-simple-select-label">
-                {"saralash"}
-              </InputLabel>
+              <InputLabel id="demo-simple-select-label">Saralash</InputLabel>
               <Select
-                labelId="demo-simple-select-label"
-                id="demo-simple-select"
-                label={"asd"}
+                label={"Saralash"}
                 onChange={handleChange}
                 value={sorting}
               >
@@ -202,43 +168,7 @@ const GroupOpen = () => {
             </FormControl>
           </Box>
         </Box>
-        <TableContainer sx={{ borderRadius: "5px" }}>
-          <Table stickyHeader sx={{ minWidth: 700 }}>
-            <TableHead>
-              <TableRow>
-                <StyledTableCell align="left">Ism Familiya</StyledTableCell>
-                <StyledTableCell align="left">Phone</StyledTableCell>
-                <StyledTableCell align="left">To’lov </StyledTableCell>
-                <StyledTableCell align="left">Qarz</StyledTableCell>
-                <StyledTableCell align="left">Edit</StyledTableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {filteredSt
-                .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                .map((users, index) => {
-                  return (
-                    <StyledTableRow
-                      hover
-                      role="checkbox"
-                      tabIndex={-1}
-                      key={users.id}
-                    >
-                      <TableCell>{users.name}</TableCell>
-                      <TableCell>{users.phone}</TableCell>
-                      <TableCell>{users.payment}</TableCell>
-                      <TableCell>{users.dabt}</TableCell>
-                      <TableCell>
-                        <Img
-                          src={theme.palette.mode == "light" ? dots : dotsDark}
-                        />
-                      </TableCell>
-                    </StyledTableRow>
-                  );
-                })}
-            </TableBody>
-          </Table>
-        </TableContainer>
+        <TableStud filteredSt={filteredSt}/>
       </Box>
     </Box>
   );
