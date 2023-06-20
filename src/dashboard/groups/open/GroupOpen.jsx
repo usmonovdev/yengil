@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import {
   Box,
   Button,
@@ -9,14 +10,14 @@ import {
   Select,
   TextField,
 } from "@mui/material";
-import { grey } from "@mui/material/colors";
-import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import TopDashboard from "../../topDashboard/TopDashboard";
 import { useSelector } from "react-redux";
-import { H1, H2, H3 } from "../../../ui/typography";
+import { H1, H3 } from "../../../ui/typography";
 import { group } from "../../../localData/groupData";
 import { studentData } from "../../../localData/groupStudentsData";
+import { Img } from "../../students/tablestudents/TableStyled";
+import { useTheme } from "@emotion/react";
 import search from "../../../assets/icons/search.png";
 import remov from "../../../assets/icons/delete.png";
 import searchDark from "../../../assets/dark/darkSearch.png";
@@ -24,9 +25,6 @@ import deleteDark from "../../../assets/dark/delete.png";
 import edit from "../../../assets/icons/edit.png";
 import editDark from "../../../assets/dark/edit.png";
 import TableStud from "./TableStud";
-import { Img } from "../../students/tablestudents/TableStyled";
-import { useTheme } from "@emotion/react";
-import { color } from "framer-motion";
 import GroupDiscount from "./GroupDiscount";
 
 const GroupOpen = () => {
@@ -107,14 +105,21 @@ const GroupOpen = () => {
             justifyContent: "space-between",
           }}
         >
-          <Box sx={{ display: "flex", flexDirection:"column", gap: "5px" }}>
+          <Box sx={{ display: "flex", flexDirection: "column", gap: "5px" }}>
             <H1>Ustoz: {groups[0].name}</H1>
             <H3>Dars vaqti: {group[0].clock}</H3>
             <H3>Kunlar: Dushanba, seshanba, chorshanba</H3>
             <H3>To'lov: {group[0].payment}</H3>
             <H3>Jami o'quvchilar - {studentData.length}</H3>
           </Box>
-          <Box sx={{ display: "flex", flexDirection: "row", gap: "5px", alignItems: "flex-start" }}>
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "row",
+              gap: "5px",
+              alignItems: "flex-start",
+            }}
+          >
             <IconButton aria-label="delete" size="large">
               <Img src={theme.palette.mode == "light" ? edit : editDark} />
             </IconButton>
@@ -126,23 +131,15 @@ const GroupOpen = () => {
         <Box sx={{ display: "flex", flexDirection: "row", gap: "10px" }}>
           <Button
             color="blue"
-            variant="contained"
+            variant={`${btn ? "outlined" : "contained"}`}
             onClick={() => setBtn(false)}
-            sx={{
-              bgcolor: `${btn ? "action.hover" : "blue.main"}`,
-              color: `${btn ? "black" : "white"}`,
-            }}
           >
             O'quvchilar
           </Button>
           <Button
             color="blue"
-            variant="contained"
+            variant={`${btn ? "contained" : "outlined"}`}
             onClick={() => setBtn(true)}
-            sx={{
-              bgcolor: `${btn ? "blue.main" : "action.hover"}`,
-              color: `${btn ? "white" : "black"}`,
-            }}
           >
             Chegirma
           </Button>

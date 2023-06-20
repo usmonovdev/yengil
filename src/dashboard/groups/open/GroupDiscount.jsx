@@ -39,7 +39,6 @@ const GroupDiscount = ({ filteredSt }) => {
   const [page, setPage] = useState(0);
   const [count, setCount] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
-  const theme = useTheme();
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
   };
@@ -59,7 +58,7 @@ const GroupDiscount = ({ filteredSt }) => {
         <Table stickyHeader sx={{ minWidth: 700 }}>
           <TableHead>
             <TableRow>
-              <StyledTableCell align="left">Id</StyledTableCell>
+              <StyledTableCell align="left">ID</StyledTableCell>
               <StyledTableCell align="left">Ism Familiya</StyledTableCell>
               <StyledTableCell align="left">Phone</StyledTableCell>
               <StyledTableCell align="left">Chegirma </StyledTableCell>
