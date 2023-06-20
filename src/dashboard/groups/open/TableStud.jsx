@@ -39,6 +39,8 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
+
+
 const TableStud = ({ filteredSt }) => {
   const { t } = useTranslation();
   const [page, setPage] = useState(0);
@@ -58,12 +60,12 @@ const TableStud = ({ filteredSt }) => {
         <Table stickyHeader sx={{ minWidth: 700 }}>
           <TableHead>
             <TableRow>
-              <StyledTableCell align="left">ID</StyledTableCell>
-              <StyledTableCell align="left">Ism Familiya</StyledTableCell>
-              <StyledTableCell align="left">Phone</StyledTableCell>
-              <StyledTableCell align="left">To’lov </StyledTableCell>
-              <StyledTableCell align="left">Qarz</StyledTableCell>
-              <StyledTableCell align="left">Edit</StyledTableCell>
+              <StyledTableCell align="left">{t("groupTablesId")}</StyledTableCell>
+              <StyledTableCell align="left">{t("groupOpenName")}</StyledTableCell>
+              <StyledTableCell align="left">{t("gruopOpenPhone")}</StyledTableCell>
+              <StyledTableCell align="left">{t("groupOpenPayment")} </StyledTableCell>
+              <StyledTableCell align="left">{t("groupOpenDabt")}</StyledTableCell>
+              <StyledTableCell align="left">{t("groupOpenEdit")}</StyledTableCell>
             </TableRow>
           </TableHead>
           <TableBody>

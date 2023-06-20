@@ -220,11 +220,11 @@ const GroupTables = () => {
                   onChange={handleChange}
                   value={sorting}
                 >
-                  <MenuItem value="name">Ustoz</MenuItem>
-                  <MenuItem value="group">Guruh nomi</MenuItem>
-                  <MenuItem value="day">Dars kuni</MenuItem>
-                  <MenuItem value="payment">To'lov</MenuItem>
-                  <MenuItem value="clock">Vaqti</MenuItem>
+                  <MenuItem value="name">{t("groupTablesTeacher")}</MenuItem>
+                  <MenuItem value="group">{t("groupTablesName")}</MenuItem>
+                  <MenuItem value="day">{t("groupTablesDay")}</MenuItem>
+                  <MenuItem value="payment">{t("groupTablesPayment")}</MenuItem>
+                  <MenuItem value="clock">{t("groupTablesClock")}</MenuItem>
                 </Select>
               </FormControl>
             </Box>
@@ -243,12 +243,12 @@ const GroupTables = () => {
               <Table stickyHeader sx={{ minWidth: 700 }}>
                 <TableHead>
                   <TableRow>
-                    <StyledTableCell align="left">ID</StyledTableCell>
-                    <StyledTableCell align="left">Guruh nomi</StyledTableCell>
-                    <StyledTableCell align="left">Ustoz</StyledTableCell>
-                    <StyledTableCell align="left">Dars kuni</StyledTableCell>
-                    <StyledTableCell align="left">To’lov</StyledTableCell>
-                    <StyledTableCell align="left">Vaqti</StyledTableCell>
+                    <StyledTableCell align="left">{t("groupTablesId")}</StyledTableCell>
+                    <StyledTableCell align="left">{t("groupTablesName")}</StyledTableCell>
+                    <StyledTableCell align="left">{t("groupTablesTeacher")}</StyledTableCell>
+                    <StyledTableCell align="left">{t("groupTablesDay")}</StyledTableCell>
+                    <StyledTableCell align="left">{t("groupTablesPayment")}</StyledTableCell>
+                    <StyledTableCell align="left">{t("groupTablesClock")}</StyledTableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>

@@ -33,6 +33,7 @@ import GroupDiscount from "./GroupDiscount";
 import { exportToExel } from "../../../utils/ExelExport";
 import exportD from "../../../assets/dark/export.png";
 import exportW from "../../../assets/icons/export.png";
+import { useTranslation } from "react-i18next";
 
 const style = {
   position: "absolute",
@@ -59,6 +60,7 @@ const GroupOpen = () => {
   const theme = useTheme();
   const [btn, setBtn] = useState(false);
   const [sorting, setSorting] = useState("name");
+  const { t } = useTranslation();
 
   const handleFilter = (event) => {
     if (sorting === "name") {
@@ -113,7 +115,7 @@ const GroupOpen = () => {
 
   return (
     <Box sx={{ width: "100%" }}>
-      <TopDashboard header={"Guruh"} title={"Guruhlar & Yangi Guruh"} />
+      <TopDashboard header={t("groupTables")} title={t("groupTitle")} />
       <Box
         sx={{
           position: "relative",
@@ -133,11 +135,11 @@ const GroupOpen = () => {
           }}
         >
           <Box sx={{ display: "flex", flexDirection: "column", gap: "5px" }}>
-            <H1>Ustoz: {groups[0].name}</H1>
-            <H3>Dars vaqti: {group[0].clock}</H3>
-            <H3>Kunlar: Dushanba, seshanba, chorshanba</H3>
-            <H3>To'lov: {group[0].payment}</H3>
-            <H3>Jami o'quvchilar - {studentData.length}</H3>
+            <H1>{t("groupOpenTeacher")}: {groups[0].name}</H1>
+            <H3>{t("groupOpenLessonTime")} {group[0].clock}</H3>
+            <H3>{t("groupOpenDay")}: Dushanba, seshanba, chorshanba</H3>
+            <H3>{t("groupOpenPayment")}: {group[0].payment}</H3>
+            <H3>{t("groupOpenAll")} - {studentData.length}</H3>
           </Box>
           <Box
             sx={{
@@ -177,10 +179,10 @@ const GroupOpen = () => {
                     variant="h6"
                     component="h2"
                   >
-                    O'chirish
+                    {t("groupOpenDelete")}
                   </Typography>
                   <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                    Rostan ham siz bu O'quvchini o'chirmoqchimisiz?
+                    {t("groupOpenDeleteDanger")}
                   </Typography>
                   <Box
                     sx={{
@@ -198,10 +200,10 @@ const GroupOpen = () => {
                       }}
                       onClick={handleClose}
                     >
-                      Canel
+                      {t("groupOpenCanel")}
                     </Button>
                     <Button variant="contained" color="error">
-                      Delete
+                      {t("groupOpenDelete")}
                     </Button>
                   </Box>
                 </Box>
@@ -294,7 +296,7 @@ const GroupOpen = () => {
           >
             <TextField
               color="blue"
-              label={"Qidirish"}
+              label={t("newStudentsSearch")}
               onChange={handleFilter}
               InputProps={{
                 startAdornment: (
@@ -309,28 +311,28 @@ const GroupOpen = () => {
             />
             {btn ? (
               <FormControl sx={{ width: { xs: "100%" } }} color="blue">
-                <InputLabel id="demo-simple-select-label">Saralash</InputLabel>
+                <InputLabel id="demo-simple-select-label">{t("groupOpenSorting")}</InputLabel>
                 <Select
-                  label={"Saralash"}
+                  label={t("groupOpenSorting")}
                   onChange={handleChange}
                   value={sorting}
                 >
-                  <MenuItem value="name">Ism familiya</MenuItem>
-                  <MenuItem value="tel">Tel</MenuItem>
+                  <MenuItem value="name">{t("groupOpenName")}</MenuItem>
+                  <MenuItem value="tel">{t("gruopOpenPhone")}</MenuItem>
                 </Select>
               </FormControl>
             ) : (
               <FormControl sx={{ width: { xs: "100%" } }} color="blue">
-                <InputLabel id="demo-simple-select-label">Saralash</InputLabel>
+                <InputLabel id="demo-simple-select-label">{t("groupOpenSorting")}</InputLabel>
                 <Select
-                  label={"Saralash"}
+                  label={t("groupOpenSorting")}
                   onChange={handleChange}
                   value={sorting}
                 >
-                  <MenuItem value="name">Ism familiya</MenuItem>
-                  <MenuItem value="tel">Tel</MenuItem>
-                  <MenuItem value="payment">To'lov</MenuItem>
-                  <MenuItem value="dabt">Qarz</MenuItem>
+                  <MenuItem value="name">{t("groupOpenName")}</MenuItem>
+                  <MenuItem value="tel">{t("gruopOpenPhone")}</MenuItem>
+                  <MenuItem value="payment">{t("groupOpenPayment")}</MenuItem>
+                  <MenuItem value="dabt">{t("groupOpenDabt")}</MenuItem>
                 </Select>
               </FormControl>
             )}

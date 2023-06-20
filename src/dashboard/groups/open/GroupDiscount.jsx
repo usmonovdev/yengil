@@ -60,10 +60,10 @@ const GroupDiscount = ({ filteredSt }) => {
         <Table stickyHeader sx={{ minWidth: 700 }}>
           <TableHead>
             <TableRow>
-              <StyledTableCell align="left">ID</StyledTableCell>
-              <StyledTableCell align="left">Ism Familiya</StyledTableCell>
-              <StyledTableCell align="left">Phone</StyledTableCell>
-              <StyledTableCell align="left">Chegirma </StyledTableCell>
+              <StyledTableCell align="left">{t("groupTablesId")}</StyledTableCell>
+              <StyledTableCell align="left">{t("groupOpenName")}</StyledTableCell>
+              <StyledTableCell align="left">{t("gruopOpenPhone")}</StyledTableCell>
+              <StyledTableCell align="left">{t("groupOpenDiscount")}</StyledTableCell>
             </TableRow>
           </TableHead>
           <TableBody>
