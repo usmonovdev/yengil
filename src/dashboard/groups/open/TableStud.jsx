@@ -1,4 +1,5 @@
 import {
+  IconButton,
   Table,
   TableBody,
   TableCell,
@@ -6,6 +7,7 @@ import {
   TableHead,
   TablePagination,
   TableRow,
+  Tooltip,
   styled,
   tableCellClasses,
 } from "@mui/material";
@@ -15,6 +17,7 @@ import { useTheme } from "@emotion/react";
 import dots from "../../../assets/icons/dots.png";
 import dotsDark from "../../../assets/dark/dots.png";
 import { useTranslation } from "react-i18next";
+import TableStActions from "./TableStActions";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -78,9 +81,15 @@ const TableStud = ({ filteredSt }) => {
                     <TableCell>{users.payment}</TableCell>
                     <TableCell>{users.dabt}</TableCell>
                     <TableCell>
-                      <Img
-                        src={theme.palette.mode == "light" ? dots : dotsDark}
-                      />
+                      <Tooltip title={<TableStActions />} placement="top" arrow>
+                        <IconButton>
+                          <Img
+                            src={
+                              theme.palette.mode == "light" ? dots : dotsDark
+                            }
+                          />
+                        </IconButton>
+                      </Tooltip>
                     </TableCell>
                   </StyledTableRow>
                 );
