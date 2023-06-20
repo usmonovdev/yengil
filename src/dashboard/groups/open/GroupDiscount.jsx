@@ -59,6 +59,7 @@ const GroupDiscount = ({ filteredSt }) => {
         <Table stickyHeader sx={{ minWidth: 700 }}>
           <TableHead>
             <TableRow>
+              <StyledTableCell align="left">Id</StyledTableCell>
               <StyledTableCell align="left">Ism Familiya</StyledTableCell>
               <StyledTableCell align="left">Phone</StyledTableCell>
               <StyledTableCell align="left">Chegirma </StyledTableCell>
@@ -75,6 +76,7 @@ const GroupDiscount = ({ filteredSt }) => {
                     tabIndex={-1}
                     key={users.id}
                   >
+                    <TableCell>{users.id}</TableCell>
                     <TableCell>{users.name}</TableCell>
                     <TableCell>{users.phone}</TableCell>
                     <TableCell sx={{ width: "20%" }}>
