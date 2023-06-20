@@ -7,10 +7,13 @@ import {
   InputAdornment,
   InputLabel,
   MenuItem,
+  Modal,
   Select,
   TextField,
+  Typography,
 } from "@mui/material";
 import { useParams } from "react-router-dom";
+import { motion } from "framer-motion"; 
 import TopDashboard from "../../topDashboard/TopDashboard";
 import { useSelector } from "react-redux";
 import { H1, H3 } from "../../../ui/typography";
@@ -26,6 +29,23 @@ import edit from "../../../assets/icons/edit.png";
 import editDark from "../../../assets/dark/edit.png";
 import TableStud from "./TableStud";
 import GroupDiscount from "./GroupDiscount";
+
+const style = {
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: { xs: "90%", sm: "70%", md: "400px" },
+  bgcolor: "background.paper",
+  boxShadow: 24,
+  p: 4,
+  display: "flex",
+  flexDirection: "column",
+  textAlign: "center",
+  border: "none",
+  borderRadius: "5px",
+  gap: "15px",
+};
 
 const GroupOpen = () => {
   const { id } = useParams();
@@ -83,6 +103,9 @@ const GroupOpen = () => {
   const handleChange = (event) => {
     setSorting(event.target.value);
   };
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
   return (
     <Box sx={{ width: "100%" }}>
@@ -120,10 +143,70 @@ const GroupOpen = () => {
               alignItems: "flex-start",
             }}
           >
+            <Modal
+              open={open}
+              aria-labelledby="modal-modal-title"
+              aria-describedby="modal-modal-description"
+              sx={{ zIndex: "10000" }}
+            >
+              <motion.div
+                initial={{
+                  opacity: 0,
+                  scale: 0,
+                  top: "50%",
+                  left: "50%",
+                  position: "absolute",
+                  width: "100%",
+                }}
+                animate={{
+                  opacity: 1,
+                  scale: 1,
+                  translateX: "-50%",
+                  translateY: "-50%",
+                  width: "100%",
+                }}
+                transition={{ duration: 1, type: "spring", delay: 0.1 }}
+              >
+                <Box sx={style}>
+                  <Typography
+                    id="modal-modal-title"
+                    variant="h6"
+                    component="h2"
+                  >
+                    O'chirish
+                  </Typography>
+                  <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+                    Rostan ham siz bu O'quvchini o'chirmoqchimisiz?
+                  </Typography>
+                  <Box
+                    sx={{
+                      display: "flex",
+                      justifyContent: "flex-end",
+                      gap: " 10px",
+                    }}
+                  >
+                    <Button
+                      variant="contained"
+                      color="blue"
+                      sx={{
+                        background: theme.palette.custom.newStudentWhite,
+                        color: "black",
+                      }}
+                      onClick={handleClose}
+                    >
+                      Canel
+                    </Button>
+                    <Button variant="contained" color="error">
+                      Delete
+                    </Button>
+                  </Box>
+                </Box>
+              </motion.div>
+            </Modal>
             <IconButton aria-label="delete" size="large">
               <Img src={theme.palette.mode == "light" ? edit : editDark} />
             </IconButton>
-            <IconButton aria-label="delete" size="large">
+            <IconButton aria-label="delete" size="large" onClick={handleOpen}>
               <Img src={theme.palette.mode == "light" ? remov : deleteDark} />
             </IconButton>
           </Box>

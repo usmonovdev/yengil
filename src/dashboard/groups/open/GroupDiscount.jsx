@@ -1,4 +1,5 @@
 import {
+  Button,
   Table,
   TableBody,
   TableCell,
@@ -11,6 +12,7 @@ import {
   tableCellClasses,
 } from "@mui/material";
 import React, { useState } from "react";
+import { motion } from "framer-motion"; 
 import { useTheme } from "@emotion/react";
 import { useTranslation } from "react-i18next";
 
@@ -108,6 +110,11 @@ const GroupDiscount = ({ filteredSt }) => {
         onPageChange={handleChangePage}
         onRowsPerPageChange={handleChangeRowsPerPage}
       />
+      <div style={{display: "flex", justifyContent: "flex-end"}}>
+        <Button variant="contained" color="blue" sx={{ width: {xs:"100%", md: "10%"} }}>
+          Save
+        </Button>
+      </div>
     </>
   );
 };
