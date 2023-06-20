@@ -7,8 +7,10 @@ import {
   InputAdornment,
   InputLabel,
   MenuItem,
+  Modal,
   Select,
   TextField,
+  Typography,
 } from "@mui/material";
 import { useParams } from "react-router-dom";
 import TopDashboard from "../../topDashboard/TopDashboard";
@@ -26,6 +28,23 @@ import edit from "../../../assets/icons/edit.png";
 import editDark from "../../../assets/dark/edit.png";
 import TableStud from "./TableStud";
 import GroupDiscount from "./GroupDiscount";
+
+const style = {
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: { xs: "90%", sm: "70%", md: "400px" },
+  bgcolor: "background.paper",
+  boxShadow: 24,
+  p: 4,
+  display: "flex",
+  flexDirection: "column",
+  textAlign: "center",
+  border: "none",
+  borderRadius: "5px",
+  gap: "15px",
+};
 
 const GroupOpen = () => {
   const { id } = useParams();
@@ -83,6 +102,9 @@ const GroupOpen = () => {
   const handleChange = (event) => {
     setSorting(event.target.value);
   };
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
   return (
     <Box sx={{ width: "100%" }}>
@@ -123,7 +145,7 @@ const GroupOpen = () => {
             <IconButton aria-label="delete" size="large">
               <Img src={theme.palette.mode == "light" ? edit : editDark} />
             </IconButton>
-            <IconButton aria-label="delete" size="large">
+            <IconButton aria-label="delete" size="large" onClick={handleOpen}>
               <Img src={theme.palette.mode == "light" ? remov : deleteDark} />
             </IconButton>
           </Box>
