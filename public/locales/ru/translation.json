@@ -117,5 +117,15 @@
     "addStudentsNote": "Примечания",
     "addStudentsAcceptance": "Дата принятия",
     "addStudentsClose": "Закрывать",
-    "addStudentsSave": "Сохранять"
+    "addStudentsSave": "Сохранять",
+    "group": "Группы",
+    "groupTitle": "Группы и новая группа",
+    "groupTables": "Группы",
+    "groupTablesAll": "Все",
+    "groupTablesTeacher": "Учитель",
+    "groupTablesName": "Имя группы",
+    "groupTablesDay": "День урока",
+    "groupTablesPayment": "Оплата",
+    "groupTablesClock": "Время",
+    "groupTablesId": "ИД"
 }

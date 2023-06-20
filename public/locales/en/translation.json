@@ -117,5 +117,16 @@
     "addStudentsNote": "Notes",
     "addStudentsAcceptance": "Date of acceptance",
     "addStudentsClose": "Close",
-    "addStudentsSave": "Save"
+    "addStudentsSave": "Save",
+    "group": "Groups",
+    "groupTitle": "Groups & New Group",
+    "groupTables": "Groups",
+    "groupTablesAll": "All",
+    "groupTablesTeacher": "Teacher",
+    "groupTablesName": "Group name",
+    "groupTablesDay": "Lesson day",
+    "groupTablesPayment": "Payment",
+    "groupTablesClock": "Time",
+    "groupTablesId": "ID"
+    
 }

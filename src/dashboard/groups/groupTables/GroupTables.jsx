@@ -146,8 +146,8 @@ const GroupTables = () => {
           transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1)",
         }}
       >
-        <H2>Guruhlar</H2>
-        <Paragraph>Jami - {group.length}</Paragraph>
+        <H2>{t("group")}</H2>
+        <Paragraph>{t("groupTablesAll")} - {group.length}</Paragraph>
         <form>
           <Box
             sx={{
@@ -193,11 +193,11 @@ const GroupTables = () => {
                   onChange={handleChange}
                   value={sorting}
                 >
-                  <MenuItem value="name">Ustoz</MenuItem>
-                  <MenuItem value="group">Guruh nomi</MenuItem>
-                  <MenuItem value="day">Dars kuni</MenuItem>
-                  <MenuItem value="payment">To'lov</MenuItem>
-                  <MenuItem value="clock">Vaqti</MenuItem>
+                  <MenuItem value="name">{t("groupTablesTeacher")}</MenuItem>
+                  <MenuItem value="group">{t("groupTablesName")}</MenuItem>
+                  <MenuItem value="day">{t("groupTablesDay")}</MenuItem>
+                  <MenuItem value="payment">{t("groupTablesPayment")}</MenuItem>
+                  <MenuItem value="clock">{t("groupTablesClock")}</MenuItem>
                 </Select>
               </FormControl>
             </Box>
@@ -216,12 +216,12 @@ const GroupTables = () => {
               <Table stickyHeader sx={{ minWidth: 700 }}>
                 <TableHead>
                   <TableRow>
-                    <StyledTableCell align="left">ID</StyledTableCell>
-                    <StyledTableCell align="left">Guruh nomi</StyledTableCell>
-                    <StyledTableCell align="left">Ustoz</StyledTableCell>
-                    <StyledTableCell align="left">Dars kuni</StyledTableCell>
-                    <StyledTableCell align="left">To’lov</StyledTableCell>
-                    <StyledTableCell align="left">Vaqti</StyledTableCell>
+                    <StyledTableCell align="left">{t("groupTablesId")}</StyledTableCell>
+                    <StyledTableCell align="left">{t("groupTablesName")}</StyledTableCell>
+                    <StyledTableCell align="left">{t("groupTablesTeacher")}</StyledTableCell>
+                    <StyledTableCell align="left">{t("groupTablesDay")}</StyledTableCell>
+                    <StyledTableCell align="left">{t("groupTablesPayment")}</StyledTableCell>
+                    <StyledTableCell align="left">{t("groupTablesClock")}</StyledTableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
