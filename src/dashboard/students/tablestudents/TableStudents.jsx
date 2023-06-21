@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import { H2, H3, Paragraph } from "../../../ui/typography";
+import { H2, H3 } from "../../../ui/typography";
 import {
   Box,
   Button,
@@ -22,16 +22,16 @@ import search from "../../../assets/icons/search.png";
 import searchDark from "../../../assets/dark/darkSearch.png";
 import undov from "../../../assets/icons/undov.png";
 import undovDark from "../../../assets/dark/undov-white.png";
-import { Img } from "./TableStyled";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
+import AddTables from "../addStudentsTables/AddTables";
 import FormControl from "@mui/material/FormControl";
 import { students } from "../../../localData/studentData";
 import { useTheme } from "@emotion/react";
+import { exportToExel } from "../../../utils/ExelExport";
 import { useTranslation } from "react-i18next";
 import { useInView } from "framer-motion";
-import AddTables from "../addStudentsTables/AddTables";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import {
   addTablesStudent,
   studentsInfoTables,
@@ -39,7 +39,7 @@ import {
 import StudentsInfo from "../studentsInfo/StudentsInfo";
 import exportD from "../../../assets/dark/export.png";
 import exportW from "../../../assets/icons/export.png";
-import { exportToExel } from "../../../utils/ExelExport";
+import TableActions from "./TableActions";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -66,8 +66,12 @@ const TableStudents = () => {
   const [sorting, setSorting] = useState("name");
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
+
   const theme = useTheme();
   const dispatch = useDispatch();
+  const ref = useRef();
+  const isInView = useInView(ref, { once: true });
+  
   const Img = styled("img")(({ theme }) => ({
     width: "11px",
     height: "11px",
@@ -131,8 +135,7 @@ const TableStudents = () => {
     setRowsPerPage(+event.target.value);
     setPage(0);
   };
-  const ref = useRef();
-  const isInView = useInView(ref, { once: true });
+
   return (
     <>
       <AddTables />
@@ -161,9 +164,7 @@ const TableStudents = () => {
           <Tooltip title="Download">
             <IconButton
               sx={{ height: "fit-content", width: "fit-content" }}
-              onClick={() =>
-                exportToExel("Students (Yengil App)", students)
-              }
+              onClick={() => exportToExel("Students (Yengil App)", students)}
             >
               <img
                 src={theme.palette.mode == "light" ? exportW : exportD}
@@ -264,6 +265,7 @@ const TableStudents = () => {
                     <StyledTableCell align="left">
                       {t("studentsPayment")}
                     </StyledTableCell>
+                    <StyledTableCell align="left">Edit</StyledTableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
@@ -276,13 +278,35 @@ const TableStudents = () => {
                           role="checkbox"
                           tabIndex={-1}
                           key={users.id}
-                          onClick={() => dispatch(studentsInfoTables())}
                         >
-                          <TableCell>{users.id}</TableCell>
-                          <TableCell>{users.name}</TableCell>
-                          <TableCell>{users.tel}</TableCell>
-                          <TableCell>{users.group}</TableCell>
-                          <TableCell>{users.payment}</TableCell>
+                          <TableCell
+                            onClick={() => dispatch(studentsInfoTables())}
+                          >
+                            {users.id}
+                          </TableCell>
+                          <TableCell
+                            onClick={() => dispatch(studentsInfoTables())}
+                          >
+                            {users.name}
+                          </TableCell>
+                          <TableCell
+                            onClick={() => dispatch(studentsInfoTables())}
+                          >
+                            {users.tel}
+                          </TableCell>
+                          <TableCell
+                            onClick={() => dispatch(studentsInfoTables())}
+                          >
+                            {users.group}
+                          </TableCell>
+                          <TableCell
+                            onClick={() => dispatch(studentsInfoTables())}
+                          >
+                            {users.payment}
+                          </TableCell>
+                          <TableCell>
+                            <TableActions />
+                          </TableCell>
                         </StyledTableRow>
                       );
                     })}
