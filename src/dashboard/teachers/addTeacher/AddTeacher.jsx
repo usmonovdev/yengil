@@ -1,29 +1,31 @@
 import React, { useState } from "react";
-import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
-import Modal from "@mui/material/Modal";
-import { H3 } from "../../../ui/typography";
-import InputComp from "../../../ui/InputComp";
-import { DemoContainer, DemoItem } from "@mui/x-date-pickers/internals/demo";
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
-import { DatePicker } from "@mui/x-date-pickers/DatePicker";
-import { useTheme } from "@emotion/react";
-import { useTranslation } from "react-i18next";
-import { motion } from "framer-motion";
-import { useDispatch, useSelector } from "react-redux";
-import { addGroupTables, addWaitStudent } from "../../../store/themeSlice";
-import dayjs, { Dayjs } from "dayjs";
-import { IMaskInput } from "react-imask";
 import {
+  Box,
+  Button,
   Chip,
   FormControl,
   InputLabel,
   MenuItem,
+  Modal,
   OutlinedInput,
   Select,
 } from "@mui/material";
-import { TimePicker } from "@mui/x-date-pickers";
+import { motion } from "framer-motion";
+import { H3 } from "../../../ui/typography";
+import InputComp from "../../../ui/InputComp";
+import { addTecherTables } from "../../../store/themeSlice";
+import { useTheme } from "@emotion/react";
+import { useTranslation } from "react-i18next";
+import { useDispatch, useSelector } from "react-redux";
+import dayjs from "dayjs";
+import { IMaskInput } from "react-imask";
+import {
+  DatePicker,
+  LocalizationProvider,
+  TimePicker,
+} from "@mui/x-date-pickers";
+import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 
 const style = {
   position: "absolute",
@@ -68,15 +70,7 @@ const MenuProps = {
   },
 };
 
-const names = [
-  "Dushanba",
-  "Seshanba",
-  "Chorshanba",
-  "Payshanba",
-  "Juma",
-  "Shanba",
-  "Yakshanba",
-];
+const names = ["Fizika", "Dasturlash", "Matematika", "Ingliz tili", "React"];
 
 function getStyles(name, personName, theme) {
   return {
@@ -87,21 +81,17 @@ function getStyles(name, personName, theme) {
   };
 }
 
-const AddGroupTables = () => {
+const AddTeacher = () => {
   const [name, setName] = useState("");
+  const [fistName, setfistName] = useState("");
   const [phone, setPhone] = useState("");
-  const [date, setDate] = useState("");
-  const [clock, setClock] = useState("");
+  const [salary, setSalary] = useState("");
   const [notes, setNotes] = useState("");
   const [group, setGroup] = useState("");
   const theme = useTheme();
   const { t } = useTranslation();
-  const { addTablesGroup } = useSelector((state) => state);
+  const { addTablesTeacher } = useSelector((state) => state);
   const dispatch = useDispatch();
-  const now = dayjs();
-  const handleGroup = (event) => {
-    setGroup(event.target.value);
-  };
   const [personName, setPersonName] = React.useState([]);
 
   const handleChange = (event) => {
@@ -114,59 +104,72 @@ const AddGroupTables = () => {
     <>
       <Modal
         sx={{ zIndex: "1000" }}
-        open={addTablesGroup}
+        open={addTablesTeacher}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
         <motion.div
-          initial={{ opacity: 0, scale: 0, top: "50%", left: "50%", position: "absolute", width: "100%" }}
-          animate={{ opacity: 1, scale: 1, translateX: "-50%", translateY: "-50%", width: "100%" }}
+          initial={{
+            opacity: 0,
+            scale: 0,
+            top: "50%",
+            left: "50%",
+            position: "absolute",
+            width: "100%",
+          }}
+          animate={{
+            opacity: 1,
+            scale: 1,
+            translateX: "-50%",
+            translateY: "-50%",
+            width: "100%",
+          }}
           transition={{ duration: 1, type: "spring", delay: 0.1 }}
         >
           <Box sx={style}>
-            <H3>Add Group</H3>
+            <H3>Add Teachers</H3>
             <InputComp
-              placeholder="Dasturchilar"
+              placeholder="Azizbek"
               value={name}
               setValue={setName}
-              label={"Guruh Nomi"}
+              label={"Ism"}
               required={true}
               name={name}
             />
-            <FormControl sx={{ width: { xs: "100%" } }} color="blue">
-              <InputLabel id="demo-simple-select-label">Kurslar</InputLabel>
-              <Select
-                labelId="demo-simple-select-label"
-                id="demo-simple-select"
-                label={t("studentsSorting")}
-                onChange={handleGroup}
-                value={group}
-              >
-                <MenuItem value="Matematika">Matematika</MenuItem>
-                <MenuItem value="ona tili">Ona tili</MenuItem>
-                <MenuItem value="dasturlash">Dasturlash</MenuItem>
-                <MenuItem value="fizika">Fizika</MenuItem>
-                <MenuItem value="ingliz tili">Ingliz tili</MenuItem>
-              </Select>
-            </FormControl>
             <InputComp
-              placeholder="Mirzaqulov Abbos"
+              placeholder="Usmonov"
+              value={fistName}
+              setValue={setfistName}
+              label={"Familiya"}
+              required={true}
+              name={name}
+            />
+            <InputComp
+              placeholder="+99890-000-00-00"
               value={phone}
               setValue={setPhone}
-              label={"O’qituvchi"}
+              label={"Telefon"}
               inputProps={TextMaskCustom}
               required={true}
               name={name}
             />
+            <InputComp
+              placeholder="50%"
+              value={salary}
+              setValue={setSalary}
+              label={"Oylik (%)"}
+              required={true}
+              name={name}
+            />
             <FormControl sx={{ width: "100%" }} color="blue">
-              <InputLabel id="demo-multiple-chip-label">Kunlar</InputLabel>
+              <InputLabel id="demo-multiple-chip-label">Guruh</InputLabel>
               <Select
                 labelId="demo-multiple-chip-label"
                 id="demo-multiple-chip"
                 multiple
                 value={personName}
                 onChange={handleChange}
-                input={<OutlinedInput id="select-multiple-chip" label="Kunlar" />}
+                input={<OutlinedInput id="select-multiple-chip" label="Guruh" />}
                 renderValue={(selected) => (
                   <Box sx={{ display: "flex", flexWrap: "wrap", gap: 0.5 }}>
                     {selected.map((value) => (
@@ -187,33 +190,8 @@ const AddGroupTables = () => {
                 ))}
               </Select>
             </FormControl>
-            <LocalizationProvider dateAdapter={AdapterDayjs}>
-              <DemoContainer
-                components={[
-                  "MobileTimePicker",
-                  "MobileTimePicker",
-                  "MobileTimePicker",
-                ]}
-              >
-                <TimePicker
-                  views={["hours", "minutes"]}
-                  label={"Dars vaqti"}
-                  onChange={(e) => setClock(e)}
-                />
-              </DemoContainer>
-            </LocalizationProvider>
-            <LocalizationProvider dateAdapter={AdapterDayjs}>
-              <DemoContainer components={["DatePicker", "DatePicker"]}>
-                <DatePicker
-                  sx={{ width: "100%" }}
-                  onChange={(e) => setDate(e)}
-                  label="Boshlanish sanasi"
-                  defaultValue={dayjs(now)}
-                />
-              </DemoContainer>
-            </LocalizationProvider>
             <InputComp
-              placeholder="Matematikaga yozildi"
+              placeholder="Daturlashdan dars beradi"
               value={notes}
               setValue={setNotes}
               label={"Komentariya"}
@@ -230,7 +208,7 @@ const AddGroupTables = () => {
             >
               <Button
                 variant="contained"
-                onClick={() => dispatch(addGroupTables())}
+                onClick={() => dispatch(addTecherTables())}
                 style={{
                   background: theme.palette.custom.newStudentWhite,
                   color: "black",
@@ -249,4 +227,4 @@ const AddGroupTables = () => {
   );
 };
 
-export default AddGroupTables;
+export default AddTeacher;
