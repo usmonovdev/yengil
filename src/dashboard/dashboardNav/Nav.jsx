@@ -87,7 +87,7 @@ const Nav = () => {
     flexDirection: "column",
     alignItems: "center",
     justifyContent: "space-between",
-    zIndex: "2000",
+    zIndex: "1000",
     transition: "200ms",
     transform: `${sidebar ? "unset" : "translateX(-100%)"}`
   }));
