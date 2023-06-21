@@ -11,8 +11,8 @@ import {
   styled,
   tableCellClasses,
 } from "@mui/material";
-import React, { useState } from "react";
-import { motion } from "framer-motion"; 
+import React, { useRef, useState } from "react";
+import { motion, useInView } from "framer-motion";
 import { useTheme } from "@emotion/react";
 import { useTranslation } from "react-i18next";
 
@@ -53,17 +53,36 @@ const GroupDiscount = ({ filteredSt }) => {
   const handleGetData = (e) => {
     setCount({ ...count, [e.target.name]: e.target.value });
   };
+  const ref = useRef();
+  const isInView = useInView(ref, { once: true });
 
   return (
     <>
-      <TableContainer sx={{ borderRadius: "5px" }}>
+      <TableContainer
+        sx={{
+          borderRadius: "5px",
+          borderRadius: "5px",
+          transform: isInView ? "none" : "translateX(400px)",
+          opacity: isInView ? 1 : 0,
+          transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1)",
+        }}
+        ref={ref}
+      >
         <Table stickyHeader sx={{ minWidth: 700 }}>
           <TableHead>
             <TableRow>
-              <StyledTableCell align="left">{t("groupTablesId")}</StyledTableCell>
-              <StyledTableCell align="left">{t("groupOpenName")}</StyledTableCell>
-              <StyledTableCell align="left">{t("gruopOpenPhone")}</StyledTableCell>
-              <StyledTableCell align="left">{t("groupOpenDiscount")}</StyledTableCell>
+              <StyledTableCell align="left">
+                {t("groupTablesId")}
+              </StyledTableCell>
+              <StyledTableCell align="left">
+                {t("groupOpenName")}
+              </StyledTableCell>
+              <StyledTableCell align="left">
+                {t("gruopOpenPhone")}
+              </StyledTableCell>
+              <StyledTableCell align="left">
+                {t("groupOpenDiscount")}
+              </StyledTableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -110,8 +129,12 @@ const GroupDiscount = ({ filteredSt }) => {
         onPageChange={handleChangePage}
         onRowsPerPageChange={handleChangeRowsPerPage}
       />
-      <div style={{display: "flex", justifyContent: "flex-end"}}>
-        <Button variant="contained" color="blue" sx={{ width: {xs:"100%", md: "10%"} }}>
+      <div style={{ display: "flex", justifyContent: "flex-end" }}>
+        <Button
+          variant="contained"
+          color="blue"
+          sx={{ width: { xs: "100%", md: "10%" } }}
+        >
           Save
         </Button>
       </div>

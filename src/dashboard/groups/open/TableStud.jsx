@@ -11,7 +11,8 @@ import {
   styled,
   tableCellClasses,
 } from "@mui/material";
-import React, { useState } from "react";
+import { motion, useInView } from "framer-motion";
+import React, { useRef, useState } from "react";
 import { Img } from "../../students/tablestudents/TableStyled";
 import { useTheme } from "@emotion/react";
 import dots from "../../../assets/icons/dots.png";
@@ -39,8 +40,6 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
-
-
 const TableStud = ({ filteredSt }) => {
   const { t } = useTranslation();
   const [page, setPage] = useState(0);
@@ -54,18 +53,41 @@ const TableStud = ({ filteredSt }) => {
     setRowsPerPage(+event.target.value);
     setPage(0);
   };
+  const ref = useRef();
+  const isInView = useInView(ref, { once: true });
+
   return (
     <>
-      <TableContainer sx={{ borderRadius: "5px" }}>
+      <TableContainer
+        sx={{
+          borderRadius: "5px",
+          transform: isInView ? "none" : "translateX(400px)",
+          opacity: isInView ? 1 : 0,
+          transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1)",
+        }}
+        ref={ref}
+      >
         <Table stickyHeader sx={{ minWidth: 700 }}>
           <TableHead>
             <TableRow>
-              <StyledTableCell align="left">{t("groupTablesId")}</StyledTableCell>
-              <StyledTableCell align="left">{t("groupOpenName")}</StyledTableCell>
-              <StyledTableCell align="left">{t("gruopOpenPhone")}</StyledTableCell>
-              <StyledTableCell align="left">{t("groupOpenPayment")} </StyledTableCell>
-              <StyledTableCell align="left">{t("groupOpenDabt")}</StyledTableCell>
-              <StyledTableCell align="left">{t("groupOpenEdit")}</StyledTableCell>
+              <StyledTableCell align="left">
+                {t("groupTablesId")}
+              </StyledTableCell>
+              <StyledTableCell align="left">
+                {t("groupOpenName")}
+              </StyledTableCell>
+              <StyledTableCell align="left">
+                {t("gruopOpenPhone")}
+              </StyledTableCell>
+              <StyledTableCell align="left">
+                {t("groupOpenPayment")}{" "}
+              </StyledTableCell>
+              <StyledTableCell align="left">
+                {t("groupOpenDabt")}
+              </StyledTableCell>
+              <StyledTableCell align="left">
+                {t("groupOpenEdit")}
+              </StyledTableCell>
             </TableRow>
           </TableHead>
           <TableBody>

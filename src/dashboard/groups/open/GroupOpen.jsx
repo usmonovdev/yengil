@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import {
   Box,
   Button,
@@ -14,7 +14,7 @@ import {
   Typography,
 } from "@mui/material";
 import { useParams } from "react-router-dom";
-import { motion } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import TopDashboard from "../../topDashboard/TopDashboard";
 import { useSelector } from "react-redux";
 import { H1, H3 } from "../../../ui/typography";
@@ -112,9 +112,20 @@ const GroupOpen = () => {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  const ref = useRef();
+  const isInView = useInView(ref, { once: true });
 
   return (
-    <Box sx={{ width: "100%" }}>
+    <Box
+      sx={{
+        width: "100%",
+        borderRadius: "5px",
+        transform: isInView ? "none" : "translateX(-200px)",
+        opacity: isInView ? 1 : 0,
+        transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1)",
+      }}
+      ref={ref}
+    >
       <TopDashboard header={t("groupTables")} title={t("groupTitle")} />
       <Box
         sx={{
@@ -135,11 +146,19 @@ const GroupOpen = () => {
           }}
         >
           <Box sx={{ display: "flex", flexDirection: "column", gap: "5px" }}>
-            <H1>{t("groupOpenTeacher")}: {groups[0].name}</H1>
-            <H3>{t("groupOpenLessonTime")} {group[0].clock}</H3>
+            <H1>
+              {t("groupOpenTeacher")}: {groups[0].name}
+            </H1>
+            <H3>
+              {t("groupOpenLessonTime")} {group[0].clock}
+            </H3>
             <H3>{t("groupOpenDay")}: Dushanba, seshanba, chorshanba</H3>
-            <H3>{t("groupOpenPayment")}: {group[0].payment}</H3>
-            <H3>{t("groupOpenAll")} - {studentData.length}</H3>
+            <H3>
+              {t("groupOpenPayment")}: {group[0].payment}
+            </H3>
+            <H3>
+              {t("groupOpenAll")} - {studentData.length}
+            </H3>
           </Box>
           <Box
             sx={{
@@ -311,7 +330,9 @@ const GroupOpen = () => {
             />
             {btn ? (
               <FormControl sx={{ width: { xs: "100%" } }} color="blue">
-                <InputLabel id="demo-simple-select-label">{t("groupOpenSorting")}</InputLabel>
+                <InputLabel id="demo-simple-select-label">
+                  {t("groupOpenSorting")}
+                </InputLabel>
                 <Select
                   label={t("groupOpenSorting")}
                   onChange={handleChange}
@@ -323,7 +344,9 @@ const GroupOpen = () => {
               </FormControl>
             ) : (
               <FormControl sx={{ width: { xs: "100%" } }} color="blue">
-                <InputLabel id="demo-simple-select-label">{t("groupOpenSorting")}</InputLabel>
+                <InputLabel id="demo-simple-select-label">
+                  {t("groupOpenSorting")}
+                </InputLabel>
                 <Select
                   label={t("groupOpenSorting")}
                   onChange={handleChange}
