@@ -1,11 +1,9 @@
-import { Box, IconButton, Menu, MenuItem, useTheme } from "@mui/material";
 import React, { useState } from "react";
+import { Box, IconButton, Menu, MenuItem, useTheme } from "@mui/material";
 import dotD from "../../../assets/dark/dots.png";
 import dotW from "../../../assets/icons/dots.png";
-import editD from "../../../assets/dark/edit.png";
-import editW from "../../../assets/icons/edit.png";
-import delD from "../../../assets/dark/delete.png";
-import delW from "../../../assets/icons/delete.png";
+import DeleteIcon from '@mui/icons-material/Delete';
+import EditIcon from '@mui/icons-material/Edit';
 import { Img } from "./TableStyled";
 
 const TableActions = () => {
@@ -52,18 +50,10 @@ const TableActions = () => {
       >
         <Box sx={{ padding: "4px", display: "flex", flexDirection: "row", gap: "4px" }}>
           <IconButton>
-            <Img
-              width="18px"
-              height="18px"
-              src={theme.palette.mode == "light" ? editW : editD}
-            />
+            <EditIcon />
           </IconButton>
           <IconButton>
-            <Img
-              width="18px"
-              height="18px"
-              src={theme.palette.mode == "light" ? delW : delD}
-            />
+            <DeleteIcon sx={{ color: "red" }}/>
           </IconButton>
         </Box>
       </Menu>
