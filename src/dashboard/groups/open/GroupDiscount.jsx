@@ -62,7 +62,7 @@ const GroupDiscount = ({ filteredSt }) => {
         sx={{
           borderRadius: "5px",
           borderRadius: "5px",
-          transform: isInView ? "none" : "translateX(90%)",
+          transform: isInView ? "none" : "translateX(30%)",
           opacity: isInView ? 1 : 0,
           transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1)",
         }}
