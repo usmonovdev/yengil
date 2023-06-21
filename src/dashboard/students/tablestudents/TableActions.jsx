@@ -1,10 +1,12 @@
-import { IconButton, Menu, MenuItem, useTheme } from "@mui/material";
+import { Box, IconButton, Menu, MenuItem, useTheme } from "@mui/material";
 import React, { useState } from "react";
 import dotD from "../../../assets/dark/dots.png";
 import dotW from "../../../assets/icons/dots.png";
+import editD from "../../../assets/dark/edit.png";
+import editW from "../../../assets/icons/edit.png";
+import delD from "../../../assets/dark/delete.png";
+import delW from "../../../assets/icons/delete.png";
 import { Img } from "./TableStyled";
-
-const options = ["None", "Atria"];
 
 const TableActions = () => {
   const [anchorEl, setAnchorEl] = useState(null);
@@ -35,7 +37,6 @@ const TableActions = () => {
       </IconButton>
       <Menu
         disableScrollLock={true}
-        id="long-menu"
         MenuListProps={{
           "aria-labelledby": "long-button",
         }}
@@ -44,19 +45,27 @@ const TableActions = () => {
         onClose={handleClose}
         PaperProps={{
           style: {
-            width: "fit-content",
+            width: "fit-content"
           },
         }}
+        sx={{ display: "flex", flexDirection: "row" }}
       >
-        {options.map((option) => (
-          <MenuItem
-            key={option}
-            selected={option === "Pyxis"}
-            onClick={handleClose}
-          >
-            {option}
-          </MenuItem>
-        ))}
+        <Box sx={{ padding: "4px", display: "flex", flexDirection: "row", gap: "4px" }}>
+          <IconButton>
+            <Img
+              width="18px"
+              height="18px"
+              src={theme.palette.mode == "light" ? editW : editD}
+            />
+          </IconButton>
+          <IconButton>
+            <Img
+              width="18px"
+              height="18px"
+              src={theme.palette.mode == "light" ? delW : delD}
+            />
+          </IconButton>
+        </Box>
       </Menu>
     </>
   );
