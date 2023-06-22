@@ -50,7 +50,16 @@ const style = {
   gap: "15px",
 };
 
-const EditMo = ({ modal, setModal, title }) => {
+const EditMo = ({
+  modal,
+  setModal,
+  title,
+  moName = false,
+  moSurname = false,
+  moPhone = false,
+  moTelegram = false,
+  moDay = false,
+}) => {
   const theme = useTheme();
   const [name, setName] = useState("");
   const [firstName, setFirstNmae] = useState("");
@@ -59,8 +68,6 @@ const EditMo = ({ modal, setModal, title }) => {
   const [date, setDate] = useState("");
   const [notes, setNotes] = useState("");
   const now = dayjs();
-  const { addStudentTables } = useSelector((state) => state);
-  const dispatch = useDispatch();
   const { t } = useTranslation();
 
   return (
@@ -91,49 +98,59 @@ const EditMo = ({ modal, setModal, title }) => {
         >
           <Box sx={style}>
             <H3>{title}</H3>
-            <InputComp
-              placeholder="Azizbek"
-              value={name}
-              setValue={setName}
-              label={t("addStudentsName")}
-              required={true}
-              name={name}
-            />
-            <InputComp
-              placeholder="Usmonov"
-              value={firstName}
-              setValue={setFirstNmae}
-              label={t("addStudentsSurname")}
-              required={true}
-              name={name}
-            />
-            <InputComp
-              placeholder="+99890-000-00-00"
-              value={phone}
-              setValue={setPhone}
-              label={t("addStudentsTel")}
-              required={true}
-              name={name}
-              inputProps={TextMaskCustom}
-            />
-            <InputComp
-              placeholder="@t_samandar_t"
-              value={telegram}
-              setValue={setTelegram}
-              label={t("addStudentsTelegram")}
-              required={true}
-              name={name}
-            />
-            <LocalizationProvider dateAdapter={AdapterDayjs}>
-              <DemoContainer components={["DatePicker", "DatePicker"]}>
-                <DatePicker
-                  sx={{ width: "100%" }}
-                  onChange={(e) => setDate(e)}
-                  label="Day"
-                  defaultValue={dayjs(now)}
-                />
-              </DemoContainer>
-            </LocalizationProvider>
+            {moName && (
+              <InputComp
+                placeholder="Azizbek"
+                value={name}
+                setValue={setName}
+                label={t("addStudentsName")}
+                required={true}
+                name={name}
+              />
+            )}
+            {moSurname && (
+              <InputComp
+                placeholder="Usmonov"
+                value={firstName}
+                setValue={setFirstNmae}
+                label={t("addStudentsSurname")}
+                required={true}
+                name={name}
+              />
+            )}
+            {moPhone && (
+              <InputComp
+                placeholder="+99890-000-00-00"
+                value={phone}
+                setValue={setPhone}
+                label={t("addStudentsTel")}
+                required={true}
+                name={name}
+                inputProps={TextMaskCustom}
+              />
+            )}
+            {moTelegram && (
+              <InputComp
+                placeholder="@t_samandar_t"
+                value={telegram}
+                setValue={setTelegram}
+                label={t("addStudentsTelegram")}
+                required={true}
+                name={name}
+              />
+            )}
+            {moDay && (
+              <LocalizationProvider dateAdapter={AdapterDayjs}>
+                <DemoContainer components={["DatePicker", "DatePicker"]}>
+                  <DatePicker
+                    sx={{ width: "100%" }}
+                    onChange={(e) => setDate(e)}
+                    label="Day"
+                    defaultValue={dayjs(now)}
+                  />
+                </DemoContainer>
+              </LocalizationProvider>
+            )}
             <InputComp
               placeholder="Matematika"
               value={notes}

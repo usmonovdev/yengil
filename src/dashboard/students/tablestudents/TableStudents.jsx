@@ -71,7 +71,7 @@ const TableStudents = () => {
   const dispatch = useDispatch();
   const ref = useRef();
   const isInView = useInView(ref, { once: true });
-  
+
   const Img = styled("img")(({ theme }) => ({
     width: "11px",
     height: "11px",
@@ -265,13 +265,13 @@ const TableStudents = () => {
                     <StyledTableCell align="left">
                       {t("studentsPayment")}
                     </StyledTableCell>
-                    <StyledTableCell align="left">Edit</StyledTableCell>
+                    <StyledTableCell align="left">More</StyledTableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
                   {filteredSt
                     .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                    .map((users, index) => {
+                    .map((users) => {
                       return (
                         <StyledTableRow
                           hover
@@ -279,33 +279,13 @@ const TableStudents = () => {
                           tabIndex={-1}
                           key={users.id}
                         >
-                          <TableCell
-                            onClick={() => dispatch(studentsInfoTables())}
-                          >
-                            {users.id}
-                          </TableCell>
-                          <TableCell
-                            onClick={() => dispatch(studentsInfoTables())}
-                          >
-                            {users.name}
-                          </TableCell>
-                          <TableCell
-                            onClick={() => dispatch(studentsInfoTables())}
-                          >
-                            {users.tel}
-                          </TableCell>
-                          <TableCell
-                            onClick={() => dispatch(studentsInfoTables())}
-                          >
-                            {users.group}
-                          </TableCell>
-                          <TableCell
-                            onClick={() => dispatch(studentsInfoTables())}
-                          >
-                            {users.payment}
-                          </TableCell>
+                          <TableCell>{users.id}</TableCell>
+                          <TableCell>{users.name}</TableCell>
+                          <TableCell>{users.tel}</TableCell>
+                          <TableCell>{users.group}</TableCell>
+                          <TableCell>{users.payment}</TableCell>
                           <TableCell>
-                            <TableActions />
+                            <TableActions id={users.id} name={true} tel={true} group={true} payment={true} salary={false} />
                           </TableCell>
                         </StyledTableRow>
                       );

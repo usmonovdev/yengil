@@ -8,11 +8,13 @@ import { Img } from "./TableStyled";
 import DeleteMo from "../../../ui/DeleteMo";
 import EditMo from "../../../ui/EditMo";
 import OpenInNewIcon from "@mui/icons-material/OpenInNew";
+import UsersMo from "../../../ui/UsersMo";
 
-const TableActions = () => {
+const TableActions = ({ id, group = false, payment = false, salary = false }) => {
   const [anchorEl, setAnchorEl] = useState(null);
   const [delModal, setDelModal] = useState(false);
   const [editMo, setEditMo] = useState(false);
+  const [usersMo, setUsersMo] = useState(false)
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -61,7 +63,7 @@ const TableActions = () => {
             gap: "4px",
           }}
         >
-          <IconButton>
+          <IconButton onClick={() => setUsersMo(!usersMo)}>
             <OpenInNewIcon />
           </IconButton>
           <IconButton onClick={() => setEditMo(!editMo)}>
@@ -73,7 +75,8 @@ const TableActions = () => {
         </Box>
       </Menu>
       <DeleteMo modal={delModal} setModal={setDelModal} />
-      <EditMo modal={editMo} setModal={setEditMo} title={"Edit Students"} />
+      <EditMo modal={editMo} setModal={setEditMo} title={"Edit Students"} moName={true} moSurname={true} moPhone={true} moTelegram={true} moDay={true} />
+      <UsersMo modal={usersMo} setModal={setUsersMo} id={id} group={group} payment={payment} salary={salary} />
     </>
   );
 };

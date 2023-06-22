@@ -34,15 +34,21 @@ const StyledH3 = styled(H3)(({ theme }) => ({
   borderRadius: "5px",
 }));
 
-const UsersMo = ({ name, group, tel, price, id }) => {
-  const dispatch = useDispatch();
-  const { studentsInfo } = useSelector((state) => state);
+const UsersMo = ({
+  name,
+  group,
+  price,
+  payment,
+  id,
+  modal,
+  setModal,
+  salary,
+}) => {
   const theme = useTheme();
-  console.log(id);
   return (
     <div>
       <Modal
-        open={studentsInfo}
+        open={modal}
         aria-labelledby="parent-modal-title"
         aria-describedby="parent-modal-description"
       >
@@ -67,13 +73,11 @@ const UsersMo = ({ name, group, tel, price, id }) => {
           <Box sx={style}>
             <Paragraph>People info</Paragraph>
             <Box sx={{ display: "flex", flexDirection: "column", gap: "10px" }}>
-              {name && <StyledH3>Name: Azizbek</StyledH3>}
-
-              <StyledH3>Group: 3</StyledH3>
-              <StyledH3>{id}</StyledH3>
+              <StyledH3>Name: Azizbek</StyledH3>
               <StyledH3>Tel: +998 90 000 00 00</StyledH3>
-              <StyledH3>oylik</StyledH3>
               <StyledH3>Qarzdorlik vaqti: May</StyledH3>
+              {group && <StyledH3>Group: Matematika</StyledH3>}
+              {salary && <StyledH3>Oylik: 50%</StyledH3>}
             </Box>
             <Box
               sx={{
@@ -84,7 +88,7 @@ const UsersMo = ({ name, group, tel, price, id }) => {
               }}
             >
               <Button
-                onClick={() => dispatch(studentsInfoTables())}
+                onClick={() => setModal(!modal)}
                 style={{
                   background: theme.palette.custom.newStudentWhite,
                   color: "black",
