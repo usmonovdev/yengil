@@ -34,7 +34,7 @@ import exportD from "../../../assets/dark/export.png";
 import exportW from "../../../assets/icons/export.png";
 import { useTranslation } from "react-i18next";
 import AddTeacher from "../addTeacher/AddTeacher";
-import TableActions from "../../../ui/TableActions";
+import TableActions from "./TableActions";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
