@@ -32,10 +32,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { addGroupTables, addTecherTables } from "../../../store/themeSlice";
 import exportD from "../../../assets/dark/export.png";
 import exportW from "../../../assets/icons/export.png";
-import dots from "../../../assets/icons/dots.png";
-import dotsDark from "../../../assets/dark/dots.png";
 import { useTranslation } from "react-i18next";
 import AddTeacher from "../addTeacher/AddTeacher";
+import TableActions from "../../students/tablestudents/TableActions";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -261,15 +260,7 @@ const TeacherTables = () => {
                           <TableCell>Jami - {users.group}</TableCell>
                           <TableCell>{users.salary}</TableCell>
                           <TableCell>
-                            <IconButton>
-                              <Img
-                                src={
-                                  theme.palette.mode == "light"
-                                    ? dots
-                                    : dotsDark
-                                }
-                              />
-                            </IconButton>
+                            <TableActions />
                           </TableCell>
                         </StyledTableRow>
                       );

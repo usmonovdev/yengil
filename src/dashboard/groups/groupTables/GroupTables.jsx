@@ -34,6 +34,7 @@ import AddGroupTables from "../addGroupTables/AddGroupTables";
 import exportD from "../../../assets/dark/export.png";
 import exportW from "../../../assets/icons/export.png";
 import { exportToExel } from "../../../utils/ExelExport";
+import TableActions from "../../students/tablestudents/TableActions";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -243,12 +244,25 @@ const GroupTables = () => {
               <Table stickyHeader sx={{ minWidth: 700 }}>
                 <TableHead>
                   <TableRow>
-                    <StyledTableCell align="left">{t("groupTablesId")}</StyledTableCell>
-                    <StyledTableCell align="left">{t("groupTablesName")}</StyledTableCell>
-                    <StyledTableCell align="left">{t("groupTablesTeacher")}</StyledTableCell>
-                    <StyledTableCell align="left">{t("groupTablesDay")}</StyledTableCell>
-                    <StyledTableCell align="left">{t("groupTablesPayment")}</StyledTableCell>
-                    <StyledTableCell align="left">{t("groupTablesClock")}</StyledTableCell>
+                    <StyledTableCell align="left">
+                      {t("groupTablesId")}
+                    </StyledTableCell>
+                    <StyledTableCell align="left">
+                      {t("groupTablesName")}
+                    </StyledTableCell>
+                    <StyledTableCell align="left">
+                      {t("groupTablesTeacher")}
+                    </StyledTableCell>
+                    <StyledTableCell align="left">
+                      {t("groupTablesDay")}
+                    </StyledTableCell>
+                    <StyledTableCell align="left">
+                      {t("groupTablesPayment")}
+                    </StyledTableCell>
+                    <StyledTableCell align="left">
+                      {t("groupTablesClock")}
+                    </StyledTableCell>
+                    <StyledTableCell align="left">Edit</StyledTableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
@@ -270,6 +284,9 @@ const GroupTables = () => {
                           <TableCell>{users.day}</TableCell>
                           <TableCell>{users.payment}</TableCell>
                           <TableCell>{users.clock}</TableCell>
+                          <TableCell>
+                            <TableActions />
+                          </TableCell>
                         </StyledTableRow>
                       );
                     })}

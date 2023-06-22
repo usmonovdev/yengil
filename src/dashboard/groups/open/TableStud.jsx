@@ -19,6 +19,7 @@ import dots from "../../../assets/icons/dots.png";
 import dotsDark from "../../../assets/dark/dots.png";
 import { useTranslation } from "react-i18next";
 import TableStActions from "./TableStActions";
+import TableActions from "../../students/tablestudents/TableActions";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -107,15 +108,7 @@ const TableStud = ({ filteredSt }) => {
                     <TableCell>{users.payment}</TableCell>
                     <TableCell>{users.dabt}</TableCell>
                     <TableCell>
-                      <Tooltip title={<TableStActions />} placement="top" arrow>
-                        <IconButton>
-                          <Img
-                            src={
-                              theme.palette.mode == "light" ? dots : dotsDark
-                            }
-                          />
-                        </IconButton>
-                      </Tooltip>
+                      <TableActions />
                     </TableCell>
                   </StyledTableRow>
                 );
