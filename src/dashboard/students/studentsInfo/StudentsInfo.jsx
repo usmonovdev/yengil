@@ -1,11 +1,12 @@
-import { Box, Button, Modal, Typography } from "@mui/material";
-import React, { Fragment, useState } from "react";
+import React from "react";
+import styled from "@emotion/styled";
+import { Box, Button, Modal } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { studentsInfoTables } from "../../../store/themeSlice";
 import { H3, Paragraph } from "../../../ui/typography";
-import styled from "@emotion/styled";
 import { motion } from "framer-motion";
 import { useTheme } from "@emotion/react";
+import DeleteMo from "../../../ui/DeleteMo";
 
 const style = {
   position: "absolute",
@@ -32,72 +33,6 @@ const StyledH3 = styled(H3)(({ theme }) => ({
   padding: "4px",
   borderRadius: "5px",
 }));
-
-function ChildModal() {
-  const [open, setOpen] = useState(false);
-  const handleOpen = () => {
-    setOpen(true);
-  };
-  const handleClose = () => {
-    setOpen(false);
-  };
-  const theme = useTheme();
-
-  return (
-    <Fragment>
-      <Button onClick={handleOpen} color="error" variant="contained">
-        Delete
-      </Button>
-      <Modal
-        open={open}
-        aria-labelledby="child-modal-title"
-        aria-describedby="child-modal-description"
-      >
-        <motion.div
-          initial={{
-            opacity: 0,
-            scale: 0,
-            top: "50%",
-            left: "50%",
-            position: "absolute",
-            width: "100%",
-          }}
-          animate={{
-            opacity: 1,
-            scale: 1,
-            translateX: "-50%",
-            translateY: "-50%",
-            width: "100%",
-          }}
-          transition={{ duration: 1, type: "spring", delay: 0.1 }}
-        >
-          <Box sx={style}>
-            <h2 id="child-modal-title">O'chirish</h2>
-            <p id="child-modal-description">
-              Rostan ham bu o'quvchini o'chirmoqchimisiz
-            </p>
-            <Box
-              sx={{ display: "flex", justifyContent: "flex-end", gap: "10px" }}
-            >
-              <Button
-                onClick={handleClose}
-                style={{
-                  background: theme.palette.custom.newStudentWhite,
-                  color: "black",
-                }}
-              >
-                Canel
-              </Button>
-              <Button color="error" variant="contained">
-                Delete
-              </Button>
-            </Box>
-          </Box>
-        </motion.div>
-      </Modal>
-    </Fragment>
-  );
-}
 
 const StudentsInfo = () => {
   const dispatch = useDispatch();
@@ -155,7 +90,7 @@ const StudentsInfo = () => {
               >
                 Canel
               </Button>
-              <ChildModal />
+              <DeleteMo />
             </Box>
           </Box>
         </motion.div>
