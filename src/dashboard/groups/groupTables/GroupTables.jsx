@@ -285,7 +285,7 @@ const GroupTables = () => {
                           <TableCell>{users.payment}</TableCell>
                           <TableCell>{users.clock}</TableCell>
                           <TableCell>
-                            <TableActions />
+                            <TableActions id={users.id} />
                           </TableCell>
                         </StyledTableRow>
                       );

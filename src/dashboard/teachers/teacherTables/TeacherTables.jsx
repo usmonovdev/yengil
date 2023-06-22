@@ -283,14 +283,7 @@ const TeacherTables = () => {
                             {users.salary}
                           </TableCell>
                           <TableCell>
-                            <TableActions
-                              id={users.id}
-                              name={true}
-                              tel={true}
-                              group={true}
-                              payment={false}
-                              salary={true}
-                            />
+                            <TableActions id={users.id} />
                           </TableCell>
                         </StyledTableRow>
                       );

@@ -282,14 +282,7 @@ const TableStudents = () => {
                           <TableCell>{users.group}</TableCell>
                           <TableCell>{users.payment}</TableCell>
                           <TableCell>
-                            <TableActions
-                              id={users.id}
-                              name={true}
-                              tel={true}
-                              group={true}
-                              payment={true}
-                              salary={false}
-                            />
+                            <TableActions id={users.id}/>
                           </TableCell>
                         </StyledTableRow>
                       );

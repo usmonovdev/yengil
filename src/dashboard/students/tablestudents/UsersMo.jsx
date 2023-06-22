@@ -1,14 +1,12 @@
 import React from "react";
 import styled from "@emotion/styled";
 import { Box, Button, Modal } from "@mui/material";
-import { useDispatch, useSelector } from "react-redux";
 import { motion } from "framer-motion";
 import { useTheme } from "@emotion/react";
-import { H3, Paragraph } from "./typography";
-import { studentsInfoTables } from "../store/themeSlice";
+import { H3, Paragraph } from "../../../ui/typography";
 import DeleteMo from "./DeleteMo";
 
-const style = {
+const modalStyle = {
   position: "absolute",
   top: "50%",
   left: "50%",
@@ -34,16 +32,7 @@ const StyledH3 = styled(H3)(({ theme }) => ({
   borderRadius: "5px",
 }));
 
-const UsersMo = ({
-  name,
-  group,
-  price,
-  payment,
-  id,
-  modal,
-  setModal,
-  salary,
-}) => {
+const UsersMo = ({ modal, setModal }) => {
   const theme = useTheme();
   return (
     <div>
@@ -70,14 +59,15 @@ const UsersMo = ({
           }}
           transition={{ duration: 1, type: "spring", delay: 0.1 }}
         >
-          <Box sx={style}>
-            <Paragraph>People info</Paragraph>
+          <Box sx={modalStyle}>
+            <Paragraph>People Info</Paragraph>
             <Box sx={{ display: "flex", flexDirection: "column", gap: "10px" }}>
-              <StyledH3>Name: Azizbek</StyledH3>
+              <StyledH3>Name: Usmonov Azizbek</StyledH3>
+              <StyledH3>Qarzdorlik vaqti: May</StyledH3>
+              <StyledH3>Group: Matematika</StyledH3>
+              <StyledH3>Lesson Day: Monday</StyledH3>
               <StyledH3>Tel: +998 90 000 00 00</StyledH3>
-              {payment && <StyledH3>Qarzdorlik vaqti: May</StyledH3>}
-              {group && <StyledH3>Group: Matematika</StyledH3>}
-              {salary && <StyledH3>Oylik: 50%</StyledH3>}
+              <StyledH3>Vaqt: 08:00 / 10:00</StyledH3>
             </Box>
             <Box
               sx={{

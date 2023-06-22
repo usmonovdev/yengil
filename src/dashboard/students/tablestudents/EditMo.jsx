@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import {
   Box,
   Button,
@@ -12,16 +13,14 @@ import {
 } from "@mui/material";
 import dayjs from "dayjs";
 import { motion } from "framer-motion";
-import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
-import InputComp from "./InputComp";
 import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-import { H3 } from "./typography";
+import { H3 } from "../../../ui/typography";
 import { IMaskInput } from "react-imask";
 import PropTypes from "prop-types";
-import zIndex from "@mui/material/styles/zIndex";
+import InputComp from "../../../ui/InputComp";
 
 const TextMaskCustom = React.forwardRef(function TextMaskCustom(props, ref) {
   const { onChange, ...other } = props;
@@ -44,7 +43,7 @@ TextMaskCustom.propTypes = {
   onChange: PropTypes.func.isRequired,
 };
 
-const style = {
+const modalStyle = {
   position: "absolute",
   top: "50%",
   left: "50%",
@@ -71,7 +70,7 @@ const MenuProps = {
   },
 };
 
-const names = [
+const days = [
   "Fizika",
   "Matematika",
   "Ona tili",
@@ -89,31 +88,20 @@ function getStyles(name, personName, theme) {
   };
 }
 
-const EditMo = ({
-  modal,
-  setModal,
-  title,
-  moName = false,
-  moSurname = false,
-  moPhone = false,
-  moTelegram = false,
-  moDay = false,
-  moGroup = false,
-  moSalary = false,
-}) => {
+const EditMo = ({ modal, setModal }) => {
   const [name, setName] = useState("");
   const [firstName, setFirstNmae] = useState("");
   const [phone, setPhone] = useState("");
   const [telegram, setTelegram] = useState("");
   const [date, setDate] = useState("");
   const [notes, setNotes] = useState("");
-  const [salary, setSalary] = useState("");
   const now = dayjs();
+
   const { t } = useTranslation();
   const theme = useTheme();
   const [personName, setPersonName] = useState([]);
 
-  const handleChange = (event) => {
+  const handleGetGroups = (event) => {
     const {
       target: { value },
     } = event;
@@ -146,105 +134,83 @@ const EditMo = ({
           }}
           transition={{ duration: 1, type: "spring", delay: 0.1 }}
         >
-          <Box sx={style}>
-            <H3>{title}</H3>
-            {moName && (
-              <InputComp
-                placeholder="Azizbek"
-                value={name}
-                setValue={setName}
-                label={t("addStudentsName")}
-                required={true}
-                name={name}
-              />
-            )}
-            {moSurname && (
-              <InputComp
-                placeholder="Usmonov"
-                value={firstName}
-                setValue={setFirstNmae}
-                label={t("addStudentsSurname")}
-                required={true}
-                name={name}
-              />
-            )}
-            {moPhone && (
-              <InputComp
-                placeholder="+99890-000-00-00"
-                value={phone}
-                setValue={setPhone}
-                label={t("addStudentsTel")}
-                required={true}
-                name={name}
-                inputProps={TextMaskCustom}
-              />
-            )}
-            {moSalary && (
-              <InputComp
-                placeholder="50%"
-                value={salary}
-                setValue={setSalary}
-                label={"Oylik"}
-                required={true}
-                name={name}
-              />
-            )}
-            {moGroup && (
-              <FormControl sx={{ width: "100%" }}>
-                <InputLabel id="demo-multiple-chip-label">Guruh</InputLabel>
-                <Select
-                  sx={{ zIndex: "1500" }}
-                  labelId="demo-multiple-chip-label"
-                  id="demo-multiple-chip"
-                  multiple
-                  value={personName}
-                  onChange={handleChange}
-                  input={
-                    <OutlinedInput id="select-multiple-chip" label="Guruh" />
-                  }
-                  renderValue={(selected) => (
-                    <Box sx={{ display: "flex", flexWrap: "wrap", gap: 0.5 }}>
-                      {selected.map((value) => (
-                        <Chip key={value} label={value} />
-                      ))}
-                    </Box>
-                  )}
-                  MenuProps={MenuProps}
-                >
-                  {names.map((name) => (
-                    <MenuItem
-                      key={name}
-                      value={name}
-                      style={getStyles(name, personName, theme)}
-                    >
-                      {name}
-                    </MenuItem>
-                  ))}
-                </Select>
-              </FormControl>
-            )}
-            {moTelegram && (
-              <InputComp
-                placeholder="@t_samandar_t"
-                value={telegram}
-                setValue={setTelegram}
-                label={t("addStudentsTelegram")}
-                required={true}
-                name={name}
-              />
-            )}
-            {moDay && (
-              <LocalizationProvider dateAdapter={AdapterDayjs}>
-                <DemoContainer components={["DatePicker", "DatePicker"]}>
-                  <DatePicker
-                    sx={{ width: "100%" }}
-                    onChange={(e) => setDate(e)}
-                    label="Day"
-                    defaultValue={dayjs(now)}
-                  />
-                </DemoContainer>
-              </LocalizationProvider>
-            )}
+          <Box sx={modalStyle}>
+            <H3>Edit People</H3>
+            <InputComp
+              placeholder="Azizbek"
+              value={name}
+              setValue={setName}
+              label={t("addStudentsName")}
+              required={true}
+              name={name}
+            />
+            <InputComp
+              placeholder="Usmonov"
+              value={firstName}
+              setValue={setFirstNmae}
+              label={t("addStudentsSurname")}
+              required={true}
+              name={name}
+            />
+            <InputComp
+              placeholder="+99890-000-00-00"
+              value={phone}
+              setValue={setPhone}
+              label={t("addStudentsTel")}
+              required={true}
+              name={name}
+              inputProps={TextMaskCustom}
+            />
+            <FormControl sx={{ width: "100%" }}>
+              <InputLabel id="demo-multiple-chip-label">Guruh</InputLabel>
+              <Select
+                sx={{ zIndex: "1500" }}
+                labelId="demo-multiple-chip-label"
+                id="demo-multiple-chip"
+                multiple
+                value={personName}
+                onChange={handleGetGroups}
+                input={
+                  <OutlinedInput id="select-multiple-chip" label="Guruh" />
+                }
+                renderValue={(selected) => (
+                  <Box sx={{ display: "flex", flexWrap: "wrap", gap: 0.5 }}>
+                    {selected.map((value) => (
+                      <Chip key={value} label={value} />
+                    ))}
+                  </Box>
+                )}
+                MenuProps={MenuProps}
+              >
+                {days.map((name) => (
+                  <MenuItem
+                    key={name}
+                    value={name}
+                    style={getStyles(name, personName, theme)}
+                  >
+                    {name}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+            <InputComp
+              placeholder="@t_samandar_t"
+              value={telegram}
+              setValue={setTelegram}
+              label={t("addStudentsTelegram")}
+              required={true}
+              name={name}
+            />
+            <LocalizationProvider dateAdapter={AdapterDayjs}>
+              <DemoContainer components={["DatePicker", "DatePicker"]}>
+                <DatePicker
+                  sx={{ width: "100%" }}
+                  onChange={(e) => setDate(e)}
+                  label="Day"
+                  defaultValue={dayjs(now)}
+                />
+              </DemoContainer>
+            </LocalizationProvider>
             <InputComp
               placeholder="Matematika"
               value={notes}

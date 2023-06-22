@@ -5,17 +5,9 @@ import dotW from "../../../assets/icons/dots.png";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 import { Img } from "../../students/tablestudents/TableStyled";
-import DeleteMo from "../../../ui/DeleteMo";
-import EditMo from "../../../ui/EditMo";
-import OpenInNewIcon from "@mui/icons-material/OpenInNew";
-import UsersMo from "../../../ui/UsersMo";
+import ZoomOutMapIcon from '@mui/icons-material/ZoomOutMap';
 
-const TableActions = ({
-  id,
-  group = false,
-  payment = false,
-  salary = false,
-}) => {
+const TableActions = ({ id }) => {
   const [anchorEl, setAnchorEl] = useState(null);
   const [delModal, setDelModal] = useState(false);
   const [editMo, setEditMo] = useState(false);
@@ -69,7 +61,7 @@ const TableActions = ({
           }}
         >
           <IconButton onClick={() => setUsersMo(!usersMo)}>
-            <OpenInNewIcon />
+            <ZoomOutMapIcon />
           </IconButton>
           <IconButton onClick={() => setEditMo(!editMo)}>
             <EditIcon />
@@ -79,26 +71,9 @@ const TableActions = ({
           </IconButton>
         </Box>
       </Menu>
-      <DeleteMo modal={delModal} setModal={setDelModal} />
-      <EditMo
-        modal={editMo}
-        setModal={setEditMo}
-        title={"Edit Students"}
-        moName={true}
-        moSurname={true}
-        moPhone={true}
-        moTelegram={false}
-        moDay={false}
-        moGroup={true}
-        moSalary={true}
-      />
-      <UsersMo
-        modal={usersMo}
-        setModal={setUsersMo}
-        id={id}
-        group={group}
-        salary={salary}
-      />
+      {/* <DeleteMo modal={delModal} setModal={setDelModal} />
+      <EditMo modal={editMo} setModal={setEditMo} />
+      <UsersMo modal={usersMo} setModal={setUsersMo} id={id} /> */}
     </>
   );
 };

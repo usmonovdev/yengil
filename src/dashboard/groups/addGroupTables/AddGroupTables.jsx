@@ -102,7 +102,7 @@ const AddGroupTables = () => {
   const handleGroup = (event) => {
     setGroup(event.target.value);
   };
-  const [personName, setPersonName] = React.useState([]);
+  const [personName, setPersonName] = useState([]);
 
   const handleChange = (event) => {
     const {

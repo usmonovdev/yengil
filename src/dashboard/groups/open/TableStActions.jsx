@@ -6,7 +6,7 @@ import delD from "../../../assets/dark/delete.png";
 import { motion } from "framer-motion";
 import { useTheme } from "@emotion/react";
 
-const style = {
+const modalStyle = {
   position: "absolute",
   top: "50%",
   left: "50%",
@@ -55,7 +55,7 @@ const TableStActions = () => {
           }}
           transition={{ duration: 1, type: "spring", delay: 0.1 }}
         >
-          <Box sx={style}>
+          <Box sx={modalStyle}>
             <Typography id="modal-modal-title" variant="h6" component="h2">
               O'chirish
             </Typography>
