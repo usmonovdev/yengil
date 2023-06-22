@@ -3,13 +3,11 @@ import dayjs from "dayjs";
 import { motion } from "framer-motion";
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { useDispatch, useSelector } from "react-redux";
 import InputComp from "./InputComp";
 import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { H3 } from "./typography";
-import { addTablesStudent } from "../store/themeSlice";
 import { IMaskInput } from "react-imask";
 import PropTypes from "prop-types";
 

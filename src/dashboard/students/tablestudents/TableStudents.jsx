@@ -32,10 +32,7 @@ import { exportToExel } from "../../../utils/ExelExport";
 import { useTranslation } from "react-i18next";
 import { useInView } from "framer-motion";
 import { useDispatch } from "react-redux";
-import {
-  addTablesStudent,
-  studentsInfoTables,
-} from "../../../store/themeSlice";
+import { addTablesStudent } from "../../../store/themeSlice";
 import StudentsInfo from "../studentsInfo/StudentsInfo";
 import exportD from "../../../assets/dark/export.png";
 import exportW from "../../../assets/icons/export.png";
@@ -285,7 +282,14 @@ const TableStudents = () => {
                           <TableCell>{users.group}</TableCell>
                           <TableCell>{users.payment}</TableCell>
                           <TableCell>
-                            <TableActions id={users.id} name={true} tel={true} group={true} payment={true} salary={false} />
+                            <TableActions
+                              id={users.id}
+                              name={true}
+                              tel={true}
+                              group={true}
+                              payment={true}
+                              salary={false}
+                            />
                           </TableCell>
                         </StyledTableRow>
                       );
