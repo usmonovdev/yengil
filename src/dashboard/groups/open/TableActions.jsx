@@ -6,7 +6,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 import { Img } from "../../students/tablestudents/TableStyled";
 import ZoomOutMapIcon from "@mui/icons-material/ZoomOutMap";
-import DeleteMo from "./DeleteMo";
+import DeleteMo from "../../../ui/DeleteMo";
 import UsersMo from "./UsersMo";
 
 const TableActions = () => {
@@ -70,7 +70,7 @@ const TableActions = () => {
           </IconButton>
         </Box>
       </Menu>
-      <DeleteMo modal={delModal} setModal={setDelModal} />
+      <DeleteMo modal={delModal} setModal={setDelModal} text={"Rostdanham ushbu o'quvchi guruhdan chiqarilsinmi?"}/>
       <UsersMo modal={usersMo} setModal={setUsersMo} />
     </>
   );

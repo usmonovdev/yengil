@@ -18,14 +18,6 @@ import {
   styled,
   tableCellClasses,
 } from "@mui/material";
-import search from "../../../assets/icons/search.png";
-import searchDark from "../../../assets/dark/darkSearch.png";
-import undov from "../../../assets/icons/undov.png";
-import undovDark from "../../../assets/dark/undov-white.png";
-import InputLabel from "@mui/material/InputLabel";
-import MenuItem from "@mui/material/MenuItem";
-import AddTables from "../addStudentsTables/AddTables";
-import FormControl from "@mui/material/FormControl";
 import { students } from "../../../localData/studentData";
 import { useTheme } from "@emotion/react";
 import { exportToExel } from "../../../utils/ExelExport";
@@ -33,10 +25,17 @@ import { useTranslation } from "react-i18next";
 import { useInView } from "framer-motion";
 import { useDispatch } from "react-redux";
 import { addTablesStudent } from "../../../store/themeSlice";
+import undov from "../../../assets/icons/undov.png";
+import undovDark from "../../../assets/dark/undov-white.png";
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import AddTables from "../addStudentsTables/AddTables";
+import FormControl from "@mui/material/FormControl";
 import StudentsInfo from "../studentsInfo/StudentsInfo";
 import exportD from "../../../assets/dark/export.png";
 import exportW from "../../../assets/icons/export.png";
 import TableActions from "./TableActions";
+import SearchIcon from '@mui/icons-material/Search';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -207,11 +206,7 @@ const TableStudents = () => {
                 InputProps={{
                   startAdornment: (
                     <InputAdornment position="start">
-                      <Img
-                        src={
-                          theme.palette.mode == "light" ? search : searchDark
-                        }
-                      />
+                      <SearchIcon />
                     </InputAdornment>
                   ),
                 }}

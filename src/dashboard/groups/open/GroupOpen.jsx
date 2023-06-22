@@ -7,50 +7,29 @@ import {
   InputAdornment,
   InputLabel,
   MenuItem,
-  Modal,
   Select,
   TextField,
   Tooltip,
-  Typography,
 } from "@mui/material";
 import { useParams } from "react-router-dom";
-import { motion, useInView } from "framer-motion";
+import { useInView } from "framer-motion";
 import TopDashboard from "../../topDashboard/TopDashboard";
 import { useSelector } from "react-redux";
 import { H1, H3 } from "../../../ui/typography";
 import { group } from "../../../localData/groupData";
 import { studentData } from "../../../localData/groupStudentsData";
-import { Img } from "../../students/tablestudents/TableStyled";
 import { useTheme } from "@emotion/react";
-import search from "../../../assets/icons/search.png";
-import remov from "../../../assets/icons/delete.png";
-import searchDark from "../../../assets/dark/darkSearch.png";
-import deleteDark from "../../../assets/dark/delete.png";
-import edit from "../../../assets/icons/edit.png";
-import editDark from "../../../assets/dark/edit.png";
+import DeleteIcon from "@mui/icons-material/Delete";
+import SearchIcon from '@mui/icons-material/Search';
 import TableStud from "./TableStud";
+import EditIcon from "@mui/icons-material/Edit";
 import GroupDiscount from "./GroupDiscount";
 import { exportToExel } from "../../../utils/ExelExport";
 import exportD from "../../../assets/dark/export.png";
 import exportW from "../../../assets/icons/export.png";
 import { useTranslation } from "react-i18next";
-
-const style = {
-  position: "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-  width: { xs: "90%", sm: "70%", md: "400px" },
-  bgcolor: "background.paper",
-  boxShadow: 24,
-  p: 4,
-  display: "flex",
-  flexDirection: "column",
-  textAlign: "center",
-  border: "none",
-  borderRadius: "5px",
-  gap: "15px",
-};
+import DeleteMo from "../../../ui/DeleteMo";
+import EditMo from "../groupTables/EditMo";
 
 const GroupOpen = () => {
   const { id } = useParams();
@@ -109,13 +88,15 @@ const GroupOpen = () => {
   const handleChange = (event) => {
     setSorting(event.target.value);
   };
-  const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  const [open, setOpen] = useState(false);
+  const [editMo, setEditMo] = useState(false)
   const ref = useRef();
   const isInView = useInView(ref, { once: true });
 
   return (
+    <>
+    <DeleteMo modal={open} setModal={setOpen} text={"Rostan ham ushbu guruh o'chirilsinmi?"}/>
+    <EditMo modal={editMo} setModal={setEditMo} />
     <Box
       sx={{
         width: "100%",
@@ -168,71 +149,11 @@ const GroupOpen = () => {
               alignItems: "flex-start",
             }}
           >
-            <Modal
-              open={open}
-              aria-labelledby="modal-modal-title"
-              aria-describedby="modal-modal-description"
-              sx={{ zIndex: "10000" }}
-            >
-              <motion.div
-                initial={{
-                  opacity: 0,
-                  scale: 0,
-                  top: "50%",
-                  left: "50%",
-                  position: "absolute",
-                  width: "100%",
-                }}
-                animate={{
-                  opacity: 1,
-                  scale: 1,
-                  translateX: "-50%",
-                  translateY: "-50%",
-                  width: "100%",
-                }}
-                transition={{ duration: 1, type: "spring", delay: 0.1 }}
-              >
-                <Box sx={style}>
-                  <Typography
-                    id="modal-modal-title"
-                    variant="h6"
-                    component="h2"
-                  >
-                    {t("groupOpenDelete")}
-                  </Typography>
-                  <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                    {t("groupOpenDeleteDanger")}
-                  </Typography>
-                  <Box
-                    sx={{
-                      display: "flex",
-                      justifyContent: "flex-end",
-                      gap: " 10px",
-                    }}
-                  >
-                    <Button
-                      variant="contained"
-                      color="blue"
-                      sx={{
-                        background: theme.palette.custom.newStudentWhite,
-                        color: "black",
-                      }}
-                      onClick={handleClose}
-                    >
-                      {t("groupOpenCanel")}
-                    </Button>
-                    <Button variant="contained" color="error">
-                      {t("groupOpenDelete")}
-                    </Button>
-                  </Box>
-                </Box>
-              </motion.div>
-            </Modal>
-            <IconButton aria-label="delete" size="large">
-              <Img src={theme.palette.mode == "light" ? edit : editDark} />
+            <IconButton aria-label="delete" onClick={() => setEditMo(!editMo)}>
+              <EditIcon />
             </IconButton>
-            <IconButton aria-label="delete" size="large" onClick={handleOpen}>
-              <Img src={theme.palette.mode == "light" ? remov : deleteDark} />
+            <IconButton aria-label="delete" onClick={() => setOpen(!open)}>
+              <DeleteIcon sx={{ color: "red" }} />
             </IconButton>
           </Box>
         </Box>
@@ -320,9 +241,7 @@ const GroupOpen = () => {
               InputProps={{
                 startAdornment: (
                   <InputAdornment position="start">
-                    <Img
-                      src={theme.palette.mode == "light" ? search : searchDark}
-                    />
+                    <SearchIcon />
                   </InputAdornment>
                 ),
               }}
@@ -368,6 +287,8 @@ const GroupOpen = () => {
         )}
       </Box>
     </Box>
+    
+    </>
   );
 };
 

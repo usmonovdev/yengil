@@ -21,12 +21,10 @@ import {
   tableCellClasses,
 } from "@mui/material";
 import { useTranslation } from "react-i18next";
-import { H2, H3, Paragraph, StyledLink } from "../../../ui/typography";
+import { H2, H3, Paragraph } from "../../../ui/typography";
 import { group } from "../../../localData/groupData";
-import { Img } from "../../students/tablestudents/TableStyled";
 import { useTheme } from "@emotion/react";
-import search from "../../../assets/icons/search.png";
-import searchDark from "../../../assets/dark/darkSearch.png";
+import SearchIcon from '@mui/icons-material/Search';
 import { useInView } from "framer-motion";
 import { useDispatch, useSelector } from "react-redux";
 import { addGroupTables } from "../../../store/themeSlice";
@@ -50,7 +48,6 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   "&:nth-of-type(odd)": {
     backgroundColor: theme.palette.action.hover,
   },
-  // hide last border
   "&:last-child td, &:last-child th": {
     border: 0,
   },
@@ -123,7 +120,7 @@ const GroupTables = () => {
     setSorting(event.target.value);
   };
 
-  const handleChangePage = (event, newPage) => {
+  const handleChangePage = (newPage) => {
     setPage(newPage);
   };
 
@@ -200,23 +197,17 @@ const GroupTables = () => {
                 InputProps={{
                   startAdornment: (
                     <InputAdornment position="start">
-                      <Img
-                        src={
-                          theme.palette.mode == "light" ? search : searchDark
-                        }
-                      />
+                      <SearchIcon />
                     </InputAdornment>
                   ),
                 }}
                 variant="outlined"
               />
               <FormControl sx={{ width: { xs: "100%" } }} color="blue">
-                <InputLabel id="demo-simple-select-label">
+                <InputLabel>
                   {t("studentsSorting")}
                 </InputLabel>
                 <Select
-                  labelId="demo-simple-select-label"
-                  id="demo-simple-select"
                   label={t("studentsSorting")}
                   onChange={handleChange}
                   value={sorting}
@@ -276,9 +267,7 @@ const GroupTables = () => {
                           tabIndex={-1}
                           key={users.id}
                         >
-                          <StyledLink to={`/dashboard/groups/${users.id}`}>
-                            <TableCell>{users.id}</TableCell>
-                          </StyledLink>
+                          <TableCell>{users.id}</TableCell>
                           <TableCell>{users.group}</TableCell>
                           <TableCell>{users.name}</TableCell>
                           <TableCell>{users.day}</TableCell>

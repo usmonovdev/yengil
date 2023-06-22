@@ -20,12 +20,13 @@ const style = {
   textAlign: "center",
 };
 
-const DeleteMo = ({ modal, setModal }) => {
+const DeleteMo = ({ modal, setModal, text = "Aniqmi?" }) => {
   const theme = useTheme();
 
   return (
     <>
       <Modal
+        disableScrollLock={true}
         open={modal}
         aria-labelledby="child-modal-title"
         aria-describedby="child-modal-description"
@@ -50,9 +51,7 @@ const DeleteMo = ({ modal, setModal }) => {
         >
           <Box sx={style}>
             <h2 id="child-modal-title">O'chirish</h2>
-            <p id="child-modal-description">
-              Rostan ham bu o'quvchini o'chirmoqchimisiz?
-            </p>
+            <p id="child-modal-description">{text}</p>
             <Box
               sx={{ display: "flex", justifyContent: "flex-end", gap: "10px" }}
             >

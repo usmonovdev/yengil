@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import { Box, IconButton, Menu, useTheme } from "@mui/material";
+import { useNavigate } from "react-router-dom";
+import { Img } from "../../students/tablestudents/TableStyled";
 import dotD from "../../../assets/dark/dots.png";
 import dotW from "../../../assets/icons/dots.png";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
-import { Img } from "../../students/tablestudents/TableStyled";
-import ZoomOutMapIcon from '@mui/icons-material/ZoomOutMap';
+import OpenInNewIcon from '@mui/icons-material/OpenInNew';
 import EditMo from "./EditMo";
-import UsersMo from "./UsersMo";
 import DeleteMo from "../../../ui/DeleteMo"
 
 const TableActions = ({ id }) => {
@@ -15,15 +15,15 @@ const TableActions = ({ id }) => {
   const [delModal, setDelModal] = useState(false);
   const [editMo, setEditMo] = useState(false);
   const [usersMo, setUsersMo] = useState(false);
+  
+  const navigate = useNavigate()
   const open = Boolean(anchorEl);
+  const theme = useTheme();
+
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
 
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
-  const theme = useTheme();
   return (
     <>
       <IconButton
@@ -47,7 +47,7 @@ const TableActions = ({ id }) => {
         }}
         anchorEl={anchorEl}
         open={open}
-        onClose={handleClose}
+        onClose={() => setAnchorEl(null)}
         PaperProps={{
           style: {
             width: "fit-content",
@@ -63,8 +63,8 @@ const TableActions = ({ id }) => {
             gap: "4px",
           }}
         >
-          <IconButton onClick={() => setUsersMo(!usersMo)}>
-            <ZoomOutMapIcon />
+          <IconButton onClick={() => navigate(`/dashboard/groups/${id}`)}>
+            <OpenInNewIcon />
           </IconButton>
           <IconButton onClick={() => setEditMo(!editMo)}>
             <EditIcon />
@@ -74,9 +74,8 @@ const TableActions = ({ id }) => {
           </IconButton>
         </Box>
       </Menu>
-      <DeleteMo modal={delModal} setModal={setDelModal} />
+      <DeleteMo modal={delModal} setModal={setDelModal} text={"Rostan ham ushbu guruh o'chirilsinmi?"} />
       <EditMo modal={editMo} setModal={setEditMo} />
-      <UsersMo modal={usersMo} setModal={setUsersMo} id={id} />
     </>
   );
 };
