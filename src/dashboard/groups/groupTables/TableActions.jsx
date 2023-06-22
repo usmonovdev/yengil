@@ -6,6 +6,9 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 import { Img } from "../../students/tablestudents/TableStyled";
 import ZoomOutMapIcon from '@mui/icons-material/ZoomOutMap';
+import EditMo from "./EditMo";
+import UsersMo from "./UsersMo";
+import DeleteMo from "../../../ui/DeleteMo"
 
 const TableActions = ({ id }) => {
   const [anchorEl, setAnchorEl] = useState(null);
@@ -71,9 +74,9 @@ const TableActions = ({ id }) => {
           </IconButton>
         </Box>
       </Menu>
-      {/* <DeleteMo modal={delModal} setModal={setDelModal} />
+      <DeleteMo modal={delModal} setModal={setDelModal} />
       <EditMo modal={editMo} setModal={setEditMo} />
-      <UsersMo modal={usersMo} setModal={setUsersMo} id={id} /> */}
+      <UsersMo modal={usersMo} setModal={setUsersMo} id={id} />
     </>
   );
 };

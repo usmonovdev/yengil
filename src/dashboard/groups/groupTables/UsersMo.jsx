@@ -29,8 +29,8 @@ const StyledH3 = styled(H3)(({ theme }) => ({
   background: theme.palette.action.hover,
   width: "100%",
   padding: "4px",
-  textAlign: "left",
   borderRadius: "5px",
+  textAlign: "left"
 }));
 
 const UsersMo = ({ modal, setModal }) => {
@@ -61,14 +61,15 @@ const UsersMo = ({ modal, setModal }) => {
           transition={{ duration: 1, type: "spring", delay: 0.1 }}
         >
           <Box sx={modalStyle}>
-            <Paragraph>People Info</Paragraph>
+            <Paragraph>Group Info</Paragraph>
             <Box sx={{ display: "flex", flexDirection: "column", gap: "10px" }}>
-              <StyledH3>Name: Usmonov Azizbek</StyledH3>
-              <StyledH3>Qarzdorlik vaqti: May</StyledH3>
-              <StyledH3>Group: Matematika</StyledH3>
-              <StyledH3>Lesson Day: Monday</StyledH3>
-              <StyledH3>Tel: +998 90 000 00 00</StyledH3>
+              <StyledH3>Group Name: Dasturlash</StyledH3>
+              <StyledH3>Teacher: Mirzaqulov Abbos</StyledH3>
+              <StyledH3>Kurs: Dasturlash</StyledH3>
+              <StyledH3>Dars Kunlari: Dushanba</StyledH3>
+              <StyledH3>To'lov: 320.000 so'm</StyledH3>
               <StyledH3>Vaqt: 08:00 / 10:00</StyledH3>
+              <StyledH3>Jami O'quvchilar: 15</StyledH3>
             </Box>
             <Box
               sx={{

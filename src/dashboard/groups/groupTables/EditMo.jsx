@@ -1,45 +1,26 @@
 import React, { useState } from "react";
-import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
-import Modal from "@mui/material/Modal";
-import { H3 } from "../../../ui/typography";
-import InputComp from "../../../ui/InputComp";
-import { DemoContainer, DemoItem } from "@mui/x-date-pickers/internals/demo";
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
-import { DatePicker } from "@mui/x-date-pickers/DatePicker";
-import { useTheme } from "@emotion/react";
-import { useTranslation } from "react-i18next";
-import { motion } from "framer-motion";
-import { useDispatch, useSelector } from "react-redux";
-import { addGroupTables, addWaitStudent } from "../../../store/themeSlice";
-import dayjs, { Dayjs } from "dayjs";
-import { IMaskInput } from "react-imask";
 import {
+  Box,
+  Button,
   Chip,
   FormControl,
   InputLabel,
   MenuItem,
+  Modal,
   OutlinedInput,
   Select,
+  useTheme,
 } from "@mui/material";
-import { TimePicker } from "@mui/x-date-pickers";
-
-const style = {
-  position: "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-  width: { xs: "90%", sm: "70%", md: "700px" },
-  bgcolor: "background.paper",
-  boxShadow: 24,
-  borderRadius: "5px",
-  p: 4,
-  textAlign: "center",
-  display: "flex",
-  flexDirection: "column",
-  gap: "15px",
-};
+import dayjs from "dayjs";
+import { motion } from "framer-motion";
+import { useTranslation } from "react-i18next";
+import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
+import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { H3 } from "../../../ui/typography";
+import { IMaskInput } from "react-imask";
+import PropTypes from "prop-types";
+import InputComp from "../../../ui/InputComp";
 
 const TextMaskCustom = React.forwardRef(function TextMaskCustom(props, ref) {
   const { onChange, ...other } = props;
@@ -57,6 +38,27 @@ const TextMaskCustom = React.forwardRef(function TextMaskCustom(props, ref) {
   );
 });
 
+TextMaskCustom.propTypes = {
+  name: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
+};
+
+const modalStyle = {
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: { xs: "90%", sm: "70%", md: "700px" },
+  bgcolor: "background.paper",
+  boxShadow: 24,
+  borderRadius: "5px",
+  p: 4,
+  textAlign: "center",
+  display: "flex",
+  flexDirection: "column",
+  gap: "15px",
+};
+
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
 const MenuProps = {
@@ -68,7 +70,7 @@ const MenuProps = {
   },
 };
 
-const names = [
+const days = [
   "Dushanba",
   "Seshanba",
   "Chorshanba",
@@ -76,6 +78,13 @@ const names = [
   "Juma",
   "Shanba",
   "Yakshanba",
+];
+
+const teachers = [
+  "Mirzaqulov Abbos",
+  "Turg'unboev Samandar",
+  "Abduqayumov Abror",
+  "Usmonov Azizbek",
 ];
 
 function getStyles(name, personName, theme) {
@@ -87,58 +96,92 @@ function getStyles(name, personName, theme) {
   };
 }
 
-const AddGroupTables = () => {
+const EditMo = ({ modal, setModal }) => {
   const [name, setName] = useState("");
-  const [phone, setPhone] = useState("");
+  const [price, setPrice] = useState("");
+  const [telegram, setTelegram] = useState("");
   const [date, setDate] = useState("");
-  const [clock, setClock] = useState("");
   const [notes, setNotes] = useState("");
-  const [group, setGroup] = useState("");
-  const theme = useTheme();
-  const { t } = useTranslation();
-  const { addTablesGroup } = useSelector((state) => state);
-  const dispatch = useDispatch();
-  const now = dayjs();
-  const handleGroup = (event) => {
-    setGroup(event.target.value);
-  };
+  const [course, setCourse] = useState("");
+  const [teacher, setTeacher] = useState("");
   const [personName, setPersonName] = useState([]);
+  const now = dayjs();
 
-  const handleChange = (event) => {
+  const { t } = useTranslation();
+  const theme = useTheme();
+
+  const handleGetGroups = (event) => {
     const {
       target: { value },
     } = event;
     setPersonName(typeof value === "string" ? value.split(",") : value);
   };
+
   return (
     <>
       <Modal
         sx={{ zIndex: "1000" }}
-        open={addTablesGroup}
+        open={modal}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
         <motion.div
-          initial={{ opacity: 0, scale: 0, top: "50%", left: "50%", position: "absolute", width: "100%" }}
-          animate={{ opacity: 1, scale: 1, translateX: "-50%", translateY: "-50%", width: "100%" }}
+          initial={{
+            opacity: 0,
+            scale: 0,
+            top: "50%",
+            left: "50%",
+            position: "absolute",
+            width: "100%",
+          }}
+          animate={{
+            opacity: 1,
+            scale: 1,
+            translateX: "-50%",
+            translateY: "-50%",
+            width: "100%",
+          }}
           transition={{ duration: 1, type: "spring", delay: 0.1 }}
         >
-          <Box sx={style}>
-            <H3>Add Group</H3>
+          <Box sx={modalStyle}>
+            <H3>Edit Group</H3>
             <InputComp
-              placeholder="Dasturchilar"
+              placeholder="Dasturlash"
               value={name}
               setValue={setName}
-              label={"Guruh Nomi"}
+              label={"Group Name"}
               required={true}
               name={name}
             />
-            <FormControl sx={{ width: { xs: "100%" } }} color="blue" required>
-              <InputLabel>Kurslar</InputLabel>
+            <FormControl
+              sx={{ width: { xs: "100%" }, textAlign: "left" }}
+              color="blue"
+              required
+            >
+              <InputLabel>Teacher</InputLabel>
               <Select
-                label={t("studentsSorting")}
-                onChange={handleGroup}
-                value={group}
+                label={"Teacher"}
+                onChange={(e) => setTeacher(e.target.value)}
+                value={teacher}
+              >
+                <MenuItem value="mirzakulov-abbos">Mirzakulov Abbos</MenuItem>
+                <MenuItem value="turgunboev-samandar">
+                  Turg'unboev Samandar
+                </MenuItem>
+                <MenuItem value="abdukayumov-abror">Abdukayumov Abror</MenuItem>
+                <MenuItem value="usmonov-azizbek">Usmonov Azizbek</MenuItem>
+              </Select>
+            </FormControl>
+            <FormControl
+              sx={{ width: { xs: "100%" }, textAlign: "left" }}
+              color="blue"
+              required
+            >
+              <InputLabel>Kurs</InputLabel>
+              <Select
+                label={"Kurs"}
+                onChange={(e) => setCourse(e.target.value)}
+                value={course}
               >
                 <MenuItem value="Matematika">Matematika</MenuItem>
                 <MenuItem value="ona tili">Ona tili</MenuItem>
@@ -147,24 +190,15 @@ const AddGroupTables = () => {
                 <MenuItem value="ingliz tili">Ingliz tili</MenuItem>
               </Select>
             </FormControl>
-            <InputComp
-              placeholder="Mirzaqulov Abbos"
-              value={phone}
-              setValue={setPhone}
-              label={"O’qituvchi"}
-              inputProps={TextMaskCustom}
-              required={true}
-              name={name}
-            />
-            <FormControl sx={{ width: "100%" }} color="blue">
-              <InputLabel id="demo-multiple-chip-label">Kunlar</InputLabel>
+            <FormControl sx={{ width: "100%" }} color="blue" required>
+              <InputLabel>Kunlar</InputLabel>
               <Select
-                labelId="demo-multiple-chip-label"
-                id="demo-multiple-chip"
                 multiple
                 value={personName}
-                onChange={handleChange}
-                input={<OutlinedInput id="select-multiple-chip" label="Kunlar" />}
+                onChange={handleGetGroups}
+                input={
+                  <OutlinedInput id="select-multiple-chip" label="Kunlar" />
+                }
                 renderValue={(selected) => (
                   <Box sx={{ display: "flex", flexWrap: "wrap", gap: 0.5 }}>
                     {selected.map((value) => (
@@ -174,7 +208,7 @@ const AddGroupTables = () => {
                 )}
                 MenuProps={MenuProps}
               >
-                {names.map((name) => (
+                {days.map((name) => (
                   <MenuItem
                     key={name}
                     value={name}
@@ -185,37 +219,36 @@ const AddGroupTables = () => {
                 ))}
               </Select>
             </FormControl>
-            <LocalizationProvider dateAdapter={AdapterDayjs}>
-              <DemoContainer
-                components={[
-                  "MobileTimePicker",
-                  "MobileTimePicker",
-                  "MobileTimePicker",
-                ]}
-              >
-                <TimePicker
-                  views={["hours", "minutes"]}
-                  label={"Dars vaqti"}
-                  onChange={(e) => setClock(e)}
-                />
-              </DemoContainer>
-            </LocalizationProvider>
+            <InputComp
+              placeholder="500.000 so'm"
+              value={price}
+              setValue={setPrice}
+              label={"Price"}
+              required={true}
+              name={name}
+            />
             <LocalizationProvider dateAdapter={AdapterDayjs}>
               <DemoContainer components={["DatePicker", "DatePicker"]}>
                 <DatePicker
                   sx={{ width: "100%" }}
                   onChange={(e) => setDate(e)}
-                  label="Boshlanish sanasi"
+                  label="Group start in"
                   defaultValue={dayjs(now)}
                 />
               </DemoContainer>
             </LocalizationProvider>
             <InputComp
-              placeholder="Matematikaga yozildi"
+              placeholder="@bilimdonlar"
+              value={telegram}
+              setValue={setTelegram}
+              label={"Telegram Group"}
+              name={name}
+            />
+            <InputComp
+              placeholder="Matematika"
               value={notes}
               setValue={setNotes}
-              label={"Komentariya"}
-              required={true}
+              label={t("addStudentsNote")}
               name={name}
             />
             <Box
@@ -228,7 +261,7 @@ const AddGroupTables = () => {
             >
               <Button
                 variant="contained"
-                onClick={() => dispatch(addGroupTables())}
+                onClick={() => setModal(!modal)}
                 style={{
                   background: theme.palette.custom.newStudentWhite,
                   color: "black",
@@ -247,4 +280,4 @@ const AddGroupTables = () => {
   );
 };
 
-export default AddGroupTables;
+export default EditMo;
