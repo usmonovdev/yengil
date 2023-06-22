@@ -3,10 +3,12 @@ import { Box, IconButton, Menu, useTheme } from "@mui/material";
 import dotD from "../../../assets/dark/dots.png";
 import dotW from "../../../assets/icons/dots.png";
 import DeleteIcon from "@mui/icons-material/Delete";
+import EditIcon from "@mui/icons-material/Edit";
 import { Img } from "./TableStyled";
 import DeleteMo from "./DeleteMo";
 import ZoomOutMapIcon from "@mui/icons-material/ZoomOutMap";
 import UsersMo from "./UsersMo";
+import EditMo from "./EditMo";
 
 const TableActions = ({ id }) => {
   const [anchorEl, setAnchorEl] = useState(null);
@@ -64,11 +66,15 @@ const TableActions = ({ id }) => {
           <IconButton onClick={() => setUsersMo(!usersMo)}>
             <ZoomOutMapIcon />
           </IconButton>
+          <IconButton onClick={() => setEditMo(!editMo)}>
+            <EditIcon/>
+          </IconButton>
           <IconButton onClick={() => setDelModal(!delModal)}>
             <DeleteIcon sx={{ color: "red" }} />
           </IconButton>
         </Box>
       </Menu>
+      <EditMo modal={editMo} setModal={setEditMo}/>
       <DeleteMo modal={delModal} setModal={setDelModal} />
       <UsersMo modal={usersMo} setModal={setUsersMo} id={id} />
     </>
