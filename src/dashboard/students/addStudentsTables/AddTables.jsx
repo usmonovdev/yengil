@@ -66,14 +66,28 @@ const AddTables = () => {
   return (
     <>
       <Modal
+        disableScrollLock
         sx={{ zIndex: "1000" }}
         open={addStudentTables}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
         <motion.div
-          initial={{ opacity: 0, scale: 0, top: "50%", left: "50%", position: "absolute", width: "100%" }}
-          animate={{ opacity: 1, scale: 1, translateX: "-50%", translateY: "-50%", width: "100%" }}
+          initial={{
+            opacity: 0,
+            scale: 0,
+            top: "50%",
+            left: "50%",
+            position: "absolute",
+            width: "100%",
+          }}
+          animate={{
+            opacity: 1,
+            scale: 1,
+            translateX: "-50%",
+            translateY: "-50%",
+            width: "100%",
+          }}
           transition={{ duration: 1, type: "spring", delay: 0.1 }}
         >
           <Box sx={style}>
@@ -94,13 +108,13 @@ const AddTables = () => {
               required={true}
               name={name}
             />
-          <InputComp
-            placeholder="+99890-000-00-00"
-            value={phone}
-            setValue={setPhone}
-            label={t("addStudentsTel")}
-            required={true}
-            name={name}
+            <InputComp
+              placeholder="+99890-000-00-00"
+              value={phone}
+              setValue={setPhone}
+              label={t("addStudentsTel")}
+              required={true}
+              name={name}
             />
             <InputComp
               placeholder="@t_samandar_t"
@@ -110,16 +124,16 @@ const AddTables = () => {
               required={true}
               name={name}
             />
-              <LocalizationProvider dateAdapter={AdapterDayjs}>
-                <DemoContainer components={["DatePicker", "DatePicker"]}>
-                  <DatePicker
-                    sx={{ width: "100%" }}
-                    onChange={(e) => setDate(e)}
-                    label="Day"
-                    defaultValue={dayjs(now)}
-                  />
-                </DemoContainer>
-              </LocalizationProvider>
+            <LocalizationProvider dateAdapter={AdapterDayjs}>
+              <DemoContainer components={["DatePicker", "DatePicker"]}>
+                <DatePicker
+                  sx={{ width: "100%" }}
+                  onChange={(e) => setDate(e)}
+                  label="Day"
+                  defaultValue={dayjs(now)}
+                />
+              </DemoContainer>
+            </LocalizationProvider>
             <InputComp
               placeholder="Matematika"
               value={notes}

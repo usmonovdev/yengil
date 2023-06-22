@@ -26,6 +26,7 @@ const DeleteMo = ({ modal, setModal }) => {
   return (
     <>
       <Modal
+        disableScrollLock
         open={modal}
         aria-labelledby="child-modal-title"
         aria-describedby="child-modal-description"

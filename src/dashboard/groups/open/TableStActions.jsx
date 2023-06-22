@@ -32,6 +32,7 @@ const TableStActions = () => {
   return (
     <>
       <Modal
+        disableScrollLock
         open={open}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"

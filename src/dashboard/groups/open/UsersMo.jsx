@@ -38,6 +38,7 @@ const UsersMo = ({ modal, setModal }) => {
   return (
     <div>
       <Modal
+        disableScrollLock
         open={modal}
         aria-labelledby="parent-modal-title"
         aria-describedby="parent-modal-description"

@@ -64,14 +64,28 @@ export const AddStudents = () => {
   return (
     <>
       <Modal
+        disableScrollLock
         sx={{ zIndex: "1000" }}
         open={addStudentWait}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
         <motion.div
-          initial={{ opacity: 0, scale: 0, top: "50%", left: "50%", position: "absolute", width: "100%" }}
-          animate={{ opacity: 1, scale: 1, translateX: "-50%", translateY: "-50%", width: "100%" }}
+          initial={{
+            opacity: 0,
+            scale: 0,
+            top: "50%",
+            left: "50%",
+            position: "absolute",
+            width: "100%",
+          }}
+          animate={{
+            opacity: 1,
+            scale: 1,
+            translateX: "-50%",
+            translateY: "-50%",
+            width: "100%",
+          }}
           transition={{ duration: 1, type: "spring", delay: 0.1 }}
         >
           <Box sx={style}>

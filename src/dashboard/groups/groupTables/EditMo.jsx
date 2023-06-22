@@ -120,6 +120,7 @@ const EditMo = ({ modal, setModal }) => {
   return (
     <>
       <Modal
+        disableScrollLock
         sx={{ zIndex: "1000" }}
         open={modal}
         aria-labelledby="modal-modal-title"
