@@ -5,12 +5,15 @@ import dotW from "../../../assets/icons/dots.png";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 import { Img } from "../../students/tablestudents/TableStyled";
-import ZoomOutMapIcon from '@mui/icons-material/ZoomOutMap';
+import ZoomOutMapIcon from "@mui/icons-material/ZoomOutMap";
+import DeleteMo from "./DeleteMo";
+import UsersMo from "./UsersMo";
 
 const TableActions = () => {
   const [anchorEl, setAnchorEl] = useState(null);
   const [delModal, setDelModal] = useState(false);
   const [editMo, setEditMo] = useState(false);
+  const [usersMo, setUsersMo] = useState(false);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -59,19 +62,16 @@ const TableActions = () => {
             gap: "4px",
           }}
         >
-          <IconButton>
+          <IconButton onClick={() => setUsersMo(!usersMo)}>
             <ZoomOutMapIcon />
-          </IconButton>
-          <IconButton onClick={() => setEditMo(!editMo)}>
-            <EditIcon />
           </IconButton>
           <IconButton onClick={() => setDelModal(!delModal)}>
             <DeleteIcon sx={{ color: "red" }} />
           </IconButton>
         </Box>
       </Menu>
-      {/* <DeleteMo modal={delModal} setModal={setDelModal} />
-      <EditMo modal={editMo} setModal={setEditMo} title={"Edit Students"} /> */}
+      <DeleteMo modal={delModal} setModal={setDelModal} />
+      <UsersMo modal={usersMo} setModal={setUsersMo} />
     </>
   );
 };
