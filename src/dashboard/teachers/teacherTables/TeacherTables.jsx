@@ -29,7 +29,11 @@ import search from "../../../assets/icons/search.png";
 import searchDark from "../../../assets/dark/darkSearch.png";
 import { useInView } from "framer-motion";
 import { useDispatch, useSelector } from "react-redux";
-import { addGroupTables, addTecherTables, studentsInfoTables } from "../../../store/themeSlice";
+import {
+  addGroupTables,
+  addTecherTables,
+  studentsInfoTables,
+} from "../../../store/themeSlice";
 import exportD from "../../../assets/dark/export.png";
 import exportW from "../../../assets/icons/export.png";
 import { useTranslation } from "react-i18next";
@@ -65,7 +69,7 @@ const TeacherTables = () => {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const [sorting, setSorting] = useState("name");
-  const [userId, setUserId] = useState(null)
+  const [userId, setUserId] = useState(null);
   const dispatch = useDispatch();
   const { t } = useTranslation();
   const { addTablesTeacher } = useSelector((state) => state);
@@ -279,7 +283,14 @@ const TeacherTables = () => {
                             {users.salary}
                           </TableCell>
                           <TableCell>
-                            <TableActions />
+                            <TableActions
+                              id={users.id}
+                              name={true}
+                              tel={true}
+                              group={true}
+                              payment={false}
+                              salary={true}
+                            />
                           </TableCell>
                         </StyledTableRow>
                       );

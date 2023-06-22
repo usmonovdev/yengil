@@ -1,4 +1,15 @@
-import { Box, Button, Modal, useTheme } from "@mui/material";
+import {
+  Box,
+  Button,
+  Chip,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Modal,
+  OutlinedInput,
+  Select,
+  useTheme,
+} from "@mui/material";
 import dayjs from "dayjs";
 import { motion } from "framer-motion";
 import React, { useState } from "react";
@@ -10,6 +21,7 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { H3 } from "./typography";
 import { IMaskInput } from "react-imask";
 import PropTypes from "prop-types";
+import zIndex from "@mui/material/styles/zIndex";
 
 const TextMaskCustom = React.forwardRef(function TextMaskCustom(props, ref) {
   const { onChange, ...other } = props;
@@ -48,6 +60,35 @@ const style = {
   gap: "15px",
 };
 
+const ITEM_HEIGHT = 48;
+const ITEM_PADDING_TOP = 8;
+const MenuProps = {
+  PaperProps: {
+    style: {
+      maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
+      width: 250,
+    },
+  },
+};
+
+const names = [
+  "Fizika",
+  "Matematika",
+  "Ona tili",
+  "React",
+  "Dasturlash",
+  "Ingliz tili",
+];
+
+function getStyles(name, personName, theme) {
+  return {
+    fontWeight:
+      personName.indexOf(name) === -1
+        ? theme.typography.fontWeightRegular
+        : theme.typography.fontWeightMedium,
+  };
+}
+
 const EditMo = ({
   modal,
   setModal,
@@ -57,21 +98,32 @@ const EditMo = ({
   moPhone = false,
   moTelegram = false,
   moDay = false,
+  moGroup = false,
+  moSalary = false,
 }) => {
-  const theme = useTheme();
   const [name, setName] = useState("");
   const [firstName, setFirstNmae] = useState("");
   const [phone, setPhone] = useState("");
   const [telegram, setTelegram] = useState("");
   const [date, setDate] = useState("");
   const [notes, setNotes] = useState("");
+  const [salary, setSalary] = useState("");
   const now = dayjs();
   const { t } = useTranslation();
+  const theme = useTheme();
+  const [personName, setPersonName] = useState([]);
+
+  const handleChange = (event) => {
+    const {
+      target: { value },
+    } = event;
+    setPersonName(typeof value === "string" ? value.split(",") : value);
+  };
 
   return (
     <>
       <Modal
-        sx={{ zIndex: "1400" }}
+        sx={{ zIndex: "1000" }}
         open={modal}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
@@ -126,6 +178,50 @@ const EditMo = ({
                 name={name}
                 inputProps={TextMaskCustom}
               />
+            )}
+            {moSalary && (
+              <InputComp
+                placeholder="50%"
+                value={salary}
+                setValue={setSalary}
+                label={"Oylik"}
+                required={true}
+                name={name}
+              />
+            )}
+            {moGroup && (
+              <FormControl sx={{ width: "100%" }}>
+                <InputLabel id="demo-multiple-chip-label">Guruh</InputLabel>
+                <Select
+                  sx={{ zIndex: "1500" }}
+                  labelId="demo-multiple-chip-label"
+                  id="demo-multiple-chip"
+                  multiple
+                  value={personName}
+                  onChange={handleChange}
+                  input={
+                    <OutlinedInput id="select-multiple-chip" label="Guruh" />
+                  }
+                  renderValue={(selected) => (
+                    <Box sx={{ display: "flex", flexWrap: "wrap", gap: 0.5 }}>
+                      {selected.map((value) => (
+                        <Chip key={value} label={value} />
+                      ))}
+                    </Box>
+                  )}
+                  MenuProps={MenuProps}
+                >
+                  {names.map((name) => (
+                    <MenuItem
+                      key={name}
+                      value={name}
+                      style={getStyles(name, personName, theme)}
+                    >
+                      {name}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
             )}
             {moTelegram && (
               <InputComp

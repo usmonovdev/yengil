@@ -75,7 +75,7 @@ const UsersMo = ({
             <Box sx={{ display: "flex", flexDirection: "column", gap: "10px" }}>
               <StyledH3>Name: Azizbek</StyledH3>
               <StyledH3>Tel: +998 90 000 00 00</StyledH3>
-              <StyledH3>Qarzdorlik vaqti: May</StyledH3>
+              {payment && <StyledH3>Qarzdorlik vaqti: May</StyledH3>}
               {group && <StyledH3>Group: Matematika</StyledH3>}
               {salary && <StyledH3>Oylik: 50%</StyledH3>}
             </Box>
