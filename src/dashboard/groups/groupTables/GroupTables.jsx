@@ -34,7 +34,7 @@ import AddGroupTables from "../addGroupTables/AddGroupTables";
 import exportD from "../../../assets/dark/export.png";
 import exportW from "../../../assets/icons/export.png";
 import { exportToExel } from "../../../utils/ExelExport";
-import TableActions from "../../students/tablestudents/TableActions";
+import TableActions from "../../../ui/TableActions";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {

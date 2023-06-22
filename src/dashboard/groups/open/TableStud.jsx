@@ -19,7 +19,7 @@ import dots from "../../../assets/icons/dots.png";
 import dotsDark from "../../../assets/dark/dots.png";
 import { useTranslation } from "react-i18next";
 import TableStActions from "./TableStActions";
-import TableActions from "../../students/tablestudents/TableActions";
+import TableActions from "../../../ui/TableActions";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {

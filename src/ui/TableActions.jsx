@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import { Box, IconButton, Menu, MenuItem, useTheme } from "@mui/material";
-import dotD from "../../../assets/dark/dots.png";
-import dotW from "../../../assets/icons/dots.png";
+import { Box, IconButton, Menu, useTheme } from "@mui/material";
+import dotD from "../assets/dark/dots.png";
+import dotW from "../assets/icons/dots.png";
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
-import { Img } from "./TableStyled";
-import DeleteMo from "../../../ui/DeleteMo";
+import { Img } from "../dashboard/students/tablestudents/TableStyled";
+import DeleteMo from "./DeleteMo";
+import EditMo from "./EditMo";
 
 const TableActions = () => {
   const [anchorEl, setAnchorEl] = useState(null);
@@ -61,6 +62,7 @@ const TableActions = () => {
         </Box>
       </Menu>
       <DeleteMo modal={delModal} setModal={setDelModal}/>
+      <EditMo modal={editMo} setModal={setEditMo} title={"Edit Students"}/>
     </>
   );
 };

@@ -1,5 +1,4 @@
 import { Box, Button, Modal, useTheme } from "@mui/material";
-import { useState } from "react";
 import { motion } from "framer-motion";
 
 const style = {
