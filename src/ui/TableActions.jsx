@@ -2,16 +2,17 @@ import React, { useState } from "react";
 import { Box, IconButton, Menu, useTheme } from "@mui/material";
 import dotD from "../assets/dark/dots.png";
 import dotW from "../assets/icons/dots.png";
-import DeleteIcon from '@mui/icons-material/Delete';
-import EditIcon from '@mui/icons-material/Edit';
+import DeleteIcon from "@mui/icons-material/Delete";
+import EditIcon from "@mui/icons-material/Edit";
 import { Img } from "../dashboard/students/tablestudents/TableStyled";
 import DeleteMo from "./DeleteMo";
 import EditMo from "./EditMo";
+import OpenInNewIcon from "@mui/icons-material/OpenInNew";
 
 const TableActions = () => {
   const [anchorEl, setAnchorEl] = useState(null);
-  const [delModal, setDelModal] = useState(false)
-  const [editMo, setEditMo] = useState(false)
+  const [delModal, setDelModal] = useState(false);
+  const [editMo, setEditMo] = useState(false);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -47,22 +48,32 @@ const TableActions = () => {
         onClose={handleClose}
         PaperProps={{
           style: {
-            width: "fit-content"
+            width: "fit-content",
           },
         }}
         sx={{ display: "flex", flexDirection: "row" }}
       >
-        <Box sx={{ padding: "4px", display: "flex", flexDirection: "row", gap: "4px" }}>
+        <Box
+          sx={{
+            padding: "4px",
+            display: "flex",
+            flexDirection: "row",
+            gap: "4px",
+          }}
+        >
+          <IconButton>
+            <OpenInNewIcon />
+          </IconButton>
           <IconButton onClick={() => setEditMo(!editMo)}>
             <EditIcon />
           </IconButton>
           <IconButton onClick={() => setDelModal(!delModal)}>
-            <DeleteIcon sx={{ color: "red" }}/>
+            <DeleteIcon sx={{ color: "red" }} />
           </IconButton>
         </Box>
       </Menu>
-      <DeleteMo modal={delModal} setModal={setDelModal}/>
-      <EditMo modal={editMo} setModal={setEditMo} title={"Edit Students"}/>
+      <DeleteMo modal={delModal} setModal={setDelModal} />
+      <EditMo modal={editMo} setModal={setEditMo} title={"Edit Students"} />
     </>
   );
 };

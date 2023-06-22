@@ -1,6 +1,6 @@
 import { teacher } from "../../../localData/teacherData";
 import { exportToExel } from "../../../utils/ExelExport";
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
   Box,
   Button,
@@ -29,7 +29,7 @@ import search from "../../../assets/icons/search.png";
 import searchDark from "../../../assets/dark/darkSearch.png";
 import { useInView } from "framer-motion";
 import { useDispatch, useSelector } from "react-redux";
-import { addGroupTables, addTecherTables } from "../../../store/themeSlice";
+import { addGroupTables, addTecherTables, studentsInfoTables } from "../../../store/themeSlice";
 import exportD from "../../../assets/dark/export.png";
 import exportW from "../../../assets/icons/export.png";
 import { useTranslation } from "react-i18next";
@@ -65,6 +65,7 @@ const TeacherTables = () => {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const [sorting, setSorting] = useState("name");
+  const [userId, setUserId] = useState(null)
   const dispatch = useDispatch();
   const { t } = useTranslation();
   const { addTablesTeacher } = useSelector((state) => state);
@@ -252,13 +253,31 @@ const TeacherTables = () => {
                           tabIndex={-1}
                           key={users.id}
                         >
-                          <StyledLink to={`/dashboard/groups/${users.id}`}>
-                            <TableCell>{users.id}</TableCell>
-                          </StyledLink>
-                          <TableCell>{users.name}</TableCell>
-                          <TableCell>{users.tel}</TableCell>
-                          <TableCell>Jami - {users.group}</TableCell>
-                          <TableCell>{users.salary}</TableCell>
+                          <TableCell
+                            onClick={() => dispatch(studentsInfoTables())}
+                          >
+                            {users.id}
+                          </TableCell>
+                          <TableCell
+                            onClick={() => dispatch(studentsInfoTables())}
+                          >
+                            {users.name}
+                          </TableCell>
+                          <TableCell
+                            onClick={() => dispatch(studentsInfoTables())}
+                          >
+                            {users.tel}
+                          </TableCell>
+                          <TableCell
+                            onClick={() => dispatch(studentsInfoTables())}
+                          >
+                            Jami - {users.group}
+                          </TableCell>
+                          <TableCell
+                            onClick={() => dispatch(studentsInfoTables())}
+                          >
+                            {users.salary}
+                          </TableCell>
                           <TableCell>
                             <TableActions />
                           </TableCell>
