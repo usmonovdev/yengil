@@ -9,6 +9,7 @@ import EditIcon from "@mui/icons-material/Edit";
 import OpenInNewIcon from '@mui/icons-material/OpenInNew';
 import EditMo from "./EditMo";
 import DeleteMo from "../../../ui/DeleteMo"
+import { useTranslation } from "react-i18next";
 
 const TableActions = ({ id }) => {
   const [anchorEl, setAnchorEl] = useState(null);
@@ -23,6 +24,9 @@ const TableActions = ({ id }) => {
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
+
+  const { t } = useTranslation();
+
 
   return (
     <>
@@ -74,7 +78,7 @@ const TableActions = ({ id }) => {
           </IconButton>
         </Box>
       </Menu>
-      <DeleteMo modal={delModal} setModal={setDelModal} text={"Rostan ham ushbu guruh o'chirilsinmi?"} />
+      <DeleteMo modal={delModal} setModal={setDelModal} text={t("deleteGroupTitle")} />
       <EditMo modal={editMo} setModal={setEditMo} />
     </>
   );
