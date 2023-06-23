@@ -224,9 +224,9 @@ const TableStudents = () => {
                   value={sorting}
                   onChange={handleChange}
                 >
-                  <MenuItem value="name">Name</MenuItem>
-                  <MenuItem value="group">Group</MenuItem>
-                  <MenuItem value="tel">Telefon</MenuItem>
+                  <MenuItem value="name">{t("addStudentsName")}</MenuItem>
+                  <MenuItem value="group">{t("addStudentsGroup")}</MenuItem>
+                  <MenuItem value="tel">{t("addStudentsTel")}</MenuItem>
                 </Select>
               </FormControl>
             </Box>
@@ -245,7 +245,7 @@ const TableStudents = () => {
               <Table stickyHeader sx={{ minWidth: 700 }}>
                 <TableHead>
                   <TableRow>
-                    <StyledTableCell align="left">ID</StyledTableCell>
+                    <StyledTableCell align="left">{t("groupTablesId")}</StyledTableCell>
                     <StyledTableCell align="left">
                       {t("studentsInfo")}
                     </StyledTableCell>
@@ -258,7 +258,7 @@ const TableStudents = () => {
                     <StyledTableCell align="left">
                       {t("studentsPayment")}
                     </StyledTableCell>
-                    <StyledTableCell align="left">More</StyledTableCell>
+                    <StyledTableCell align="left">{t("groupMore")}</StyledTableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>

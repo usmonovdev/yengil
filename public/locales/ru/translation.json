@@ -142,5 +142,19 @@
     "groupOpenName": "Имя Фамилия",
     "gruopOpenPhone": "Телефон",
     "groupOpenDabt": "Долг",
-    "groupOpenEdit": "Редактировать"
+    "groupOpenEdit": "Редактировать",
+    "groupMore": "Более",
+    "deleteTitleRequest": "Вы уверены, что хотите удалить учащегося, отправившего запрос?",
+    "deleteTitlePending": "Вы уверены, что хотите удалить ожидающего студента?",
+    "deleteTitle": "Вы хотите удалить этого студента?",
+    "deleteGroupTitle": "Вы хотите удалить эту группу?",
+    "editMoGroup": "Редактировать группу",
+    "editMoTeacher": "Учитель",
+    "edidtMoCourse": "Курс",
+    "removeGroup": "Вы уверены, что хотите удалить этого студента из группы?",
+    "userMo": "Информация о людях",
+    "userMoName": "Имя",
+    "userMoDebitTime": "Срок кредита",
+    "userMoTotalDebit": "Общая задолженность",
+    "userMoPhone": "телефон"
 }

@@ -5,6 +5,8 @@ import { motion } from "framer-motion";
 import { useTheme } from "@emotion/react";
 import { H3, Paragraph } from "../../../ui/typography";
 import DeleteMo from "../../../ui/DeleteMo";
+import { t } from "i18next";
+import { useTranslation } from "react-i18next";
 
 const modalStyle = {
   position: "absolute",
@@ -35,6 +37,7 @@ const StyledH3 = styled(H3)(({ theme }) => ({
 
 const UsersMo = ({ modal, setModal }) => {
   const theme = useTheme();
+  const { t } = useTranslation();
   return (
     <div>
       <Modal
@@ -62,12 +65,12 @@ const UsersMo = ({ modal, setModal }) => {
           transition={{ duration: 1, type: "spring", delay: 0.1 }}
         >
           <Box sx={modalStyle}>
-            <Paragraph>People Info</Paragraph>
+            <Paragraph>{t("userMo")}</Paragraph>
             <Box sx={{ display: "flex", flexDirection: "column", gap: "10px" }}>
-              <StyledH3>Name: Usmonov Azizbek</StyledH3>
-              <StyledH3>Qarzdorlik vaqti: May</StyledH3>
-              <StyledH3>Umumiy qarzdorlik: 320.000</StyledH3>
-              <StyledH3>Tel: +998 90 000 00 00</StyledH3>
+              <StyledH3>{t("userMoName")}: Usmonov Azizbek</StyledH3>
+              <StyledH3>{t("userMoDebitTime")}: May</StyledH3>
+              <StyledH3>{t("userMoTotalDebit")}: 320.000</StyledH3>
+              <StyledH3>{t("userMoPhone")}: +998 90 000 00 00</StyledH3>
             </Box>
             <Box
               sx={{
@@ -84,7 +87,7 @@ const UsersMo = ({ modal, setModal }) => {
                   color: "black",
                 }}
               >
-                Canel
+                {t("groupOpenCanel")}
               </Button>
               <DeleteMo />
             </Box>

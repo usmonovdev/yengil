@@ -119,7 +119,7 @@ const AddStudent = ({ data }) => {
                           <Tooltip
                             disableFocusListener
                             disableTouchListener
-                            title={"O'chirish"}
+                            title={t("groupOpenDelete")}
                             sx={{ position: "relative" }}
                             arrow
                           >

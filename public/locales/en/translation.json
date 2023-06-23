@@ -145,10 +145,16 @@
     "groupOpenEdit": "Edit",
     "groupMore": "More",
     "deleteTitleRequest": "Are you sure you want to delete the student who sent the request?",
-    "deleteTitlePending": "Are you sure you want to delete a pending reader?",
+    "deleteTitlePending": "Are you sure you want to delete a pending student?",
     "deleteTitle": "Are you sure you want to delete this student?",
     "deleteGroupTitle": "Are you sure you want to delete this group?",
     "editMoGroup": "Edit Group",
     "editMoTeacher": "Teacher",
-    "edidtMoCourse": "Course"
+    "edidtMoCourse": "Course",
+    "removeGroup": "Do you really want to remove this student from the group?",
+    "userMo": "People Info",
+    "userMoName": "Name",
+    "userMoDebitTime": "Debt time",
+    "userMoTotalDebit": "Total indebtedness",
+    "userMoPhone": "Phone"
 }

@@ -95,7 +95,7 @@ const GroupOpen = () => {
 
   return (
     <>
-    <DeleteMo modal={open} setModal={setOpen} text={"Rostan ham ushbu guruh o'chirilsinmi?"}/>
+    <DeleteMo modal={open} setModal={setOpen} text={t("deleteGroupTitle")}/>
     <EditMo modal={editMo} setModal={setEditMo} />
     <Box
       sx={{
@@ -165,14 +165,14 @@ const GroupOpen = () => {
                 variant={`${btn ? "outlined" : "contained"}`}
                 onClick={() => setBtn(false)}
               >
-                O'quvchilar
+                {t("groupOpenStudents")}
               </Button>
               <Button
                 color="blue"
                 variant={`${btn ? "contained" : "outlined"}`}
                 onClick={() => setBtn(true)}
               >
-                Chegirma
+                {t("groupOpenDiscount")}
               </Button>
             </>
           ) : (
@@ -190,14 +190,14 @@ const GroupOpen = () => {
                   variant={`${btn ? "outlined" : "contained"}`}
                   onClick={() => setBtn(false)}
                 >
-                  O'quvchilar
+                  {t("groupOpenStudents")}
                 </Button>
                 <Button
                   color="blue"
                   variant={`${btn ? "contained" : "outlined"}`}
                   onClick={() => setBtn(true)}
                 >
-                  Chegirma
+                  {t("groupOpenDiscount")}
                 </Button>
                 <Tooltip title="Download">
                   <IconButton
