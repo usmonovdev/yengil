@@ -41,6 +41,13 @@ const style = {
   gap: "15px",
 };
 
+const teachers = [
+  "Mirzaqulov Abbos",
+  "Turg'unboev Samandar",
+  "Abduqayumov Abror",
+  "Usmonov Azizbek",
+];
+
 const TextMaskCustom = React.forwardRef(function TextMaskCustom(props, ref) {
   const { onChange, ...other } = props;
   return (
@@ -89,9 +96,10 @@ function getStyles(name, personName, theme) {
 
 const AddGroupTables = () => {
   const [name, setName] = useState("");
-  const [phone, setPhone] = useState("");
+  const [price, setPrice] = useState("");
   const [date, setDate] = useState("");
   const [clock, setClock] = useState("");
+  const [teacher, setTeacher] = useState("");
   const [notes, setNotes] = useState("");
   const [group, setGroup] = useState("");
   const theme = useTheme();
@@ -147,7 +155,11 @@ const AddGroupTables = () => {
               required={true}
               name={name}
             />
-            <FormControl sx={{ width: { xs: "100%" } }} color="blue" required>
+            <FormControl
+              sx={{ width: { xs: "100%" }, textAlign: "left" }}
+              color="blue"
+              required
+            >
               <InputLabel>Kurslar</InputLabel>
               <Select
                 label={t("studentsSorting")}
@@ -161,12 +173,30 @@ const AddGroupTables = () => {
                 <MenuItem value="ingliz tili">Ingliz tili</MenuItem>
               </Select>
             </FormControl>
+            <FormControl
+              sx={{ width: { xs: "100%" }, textAlign: "left" }}
+              color="blue"
+              required
+            >
+              <InputLabel>Teacher</InputLabel>
+              <Select
+                label={"Teacher"}
+                onChange={(e) => setTeacher(e.target.value)}
+                value={teacher}
+              >
+                <MenuItem value="mirzakulov-abbos">Mirzakulov Abbos</MenuItem>
+                <MenuItem value="turgunboev-samandar">
+                  Turg'unboev Samandar
+                </MenuItem>
+                <MenuItem value="abdukayumov-abror">Abdukayumov Abror</MenuItem>
+                <MenuItem value="usmonov-azizbek">Usmonov Azizbek</MenuItem>
+              </Select>
+            </FormControl>
             <InputComp
-              placeholder="Mirzaqulov Abbos"
-              value={phone}
-              setValue={setPhone}
-              label={"O’qituvchi"}
-              inputProps={TextMaskCustom}
+              placeholder="500.000 so'm"
+              value={price}
+              setValue={setPrice}
+              label={"Price"}
               required={true}
               name={name}
             />

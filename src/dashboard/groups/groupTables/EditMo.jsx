@@ -14,7 +14,11 @@ import {
 import dayjs from "dayjs";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
-import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
+import {
+  DatePicker,
+  LocalizationProvider,
+  TimePicker,
+} from "@mui/x-date-pickers";
 import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { H3 } from "../../../ui/typography";
@@ -99,8 +103,8 @@ function getStyles(name, personName, theme) {
 const EditMo = ({ modal, setModal }) => {
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
-  const [telegram, setTelegram] = useState("");
   const [date, setDate] = useState("");
+  const [clock, setClock] = useState("");
   const [notes, setNotes] = useState("");
   const [course, setCourse] = useState("");
   const [teacher, setTeacher] = useState("");
@@ -220,6 +224,21 @@ const EditMo = ({ modal, setModal }) => {
                 ))}
               </Select>
             </FormControl>
+            <LocalizationProvider dateAdapter={AdapterDayjs}>
+              <DemoContainer
+                components={[
+                  "MobileTimePicker",
+                  "MobileTimePicker",
+                  "MobileTimePicker",
+                ]}
+              >
+                <TimePicker
+                  views={["hours", "minutes"]}
+                  label={"Dars vaqti"}
+                  onChange={(e) => setClock(e)}
+                />
+              </DemoContainer>
+            </LocalizationProvider>
             <InputComp
               placeholder="500.000 so'm"
               value={price}
@@ -238,13 +257,6 @@ const EditMo = ({ modal, setModal }) => {
                 />
               </DemoContainer>
             </LocalizationProvider>
-            <InputComp
-              placeholder="@bilimdonlar"
-              value={telegram}
-              setValue={setTelegram}
-              label={"Telegram Group"}
-              name={name}
-            />
             <InputComp
               placeholder="Matematika"
               value={notes}
