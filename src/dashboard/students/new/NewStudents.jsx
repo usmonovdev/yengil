@@ -7,10 +7,12 @@ import searchDark from "../../../assets/dark/darkSearch.png";
 import undov from "../.../../../../assets/icons/undov.png";
 import undovDark from "../.../../../../assets/dark/undov-white.png";
 import { useTheme } from "@emotion/react";
+import DeleteIcon from "@mui/icons-material/Delete";
 import {
   Box,
   Button,
   FormControl,
+  IconButton,
   InputAdornment,
   InputLabel,
   MenuItem,
@@ -25,7 +27,8 @@ import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import { addWaitStudent } from "../../../store/themeSlice";
 import { useInView } from "framer-motion";
-import SearchIcon from '@mui/icons-material/Search';
+import SearchIcon from "@mui/icons-material/Search";
+import DeleteMo from "../../../ui/DeleteMo";
 
 const StyledH3 = styled(H3)(({ theme }) => ({
   opacity: "60%",
@@ -43,6 +46,9 @@ const NewStudents = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const { addStudentWait } = useSelector((state) => state);
+  const [delModal3, setDelModal3] = useState(false);
+  const [delModal2, setDelModal2] = useState(false);
+  const [delModal, setDelModal] = useState(false);
 
   const Img = styled("img")(({ theme }) => ({
     width: "11px",
@@ -268,123 +274,152 @@ const NewStudents = () => {
                   <>
                     {newStudents.map((student) => {
                       return (
-                        <Box
-                          key={student.id}
-                          sx={{
-                            bgcolor: "custom.background",
-                            width: "100%",
-                            padding: "10px",
-                            borderRadius: "4px",
-                          }}
-                        >
+                        <>
                           <Box
+                            key={student.id}
                             sx={{
-                              display: "flex",
-                              flexDirection: "row",
-                              justifyContent: "space-between",
+                              bgcolor: "custom.background",
+                              width: "100%",
+                              padding: "10px",
+                              borderRadius: "4px",
                             }}
                           >
-                            <H3>{student.name}</H3>
                             <Box
                               sx={{
                                 display: "flex",
                                 flexDirection: "row",
-                                justifyContent: "flex-end",
-                                gap: "10px",
+                                justifyContent: "space-between",
                               }}
                             >
+                              <H3>{student.name}</H3>
                               <Box
                                 sx={{
-                                  width: "25px",
-                                  height: "25px",
-                                  cursor: "pointer",
-                                  borderRadius: "50%",
-                                  bgcolor: "custom.bunting",
-                                  transform: {
-                                    xs: "rotate(90deg)",
-                                    sm: "rotate(90deg)",
-                                    md: "rotate(0deg)",
-                                  },
+                                  display: "flex",
+                                  flexDirection: "row",
+                                  justifyContent: "flex-end",
+                                  gap: "10px",
                                 }}
                               >
-                                <Tooltip
-                                  disableFocusListener
-                                  disableTouchListener
-                                  title={t("newStudentsWaitingTooltip")}
-                                  sx={{ position: "relative" }}
+                                <Box
+                                  sx={{
+                                    width: "25px",
+                                    height: "25px",
+                                    cursor: "pointer",
+                                    borderRadius: "50%",
+                                    bgcolor: "custom.bunting",
+                                    display: "flex",
+                                    flexDirection: "row",
+                                    transform: {
+                                      xs: "rotate(90deg)",
+                                      sm: "rotate(90deg)",
+                                      md: "rotate(0deg)",
+                                    },
+                                  }}
                                 >
-                                  <img width="100%" src={arrow} />
-                                </Tooltip>
-                              </Box>
-                              <Box
-                                sx={{
-                                  width: "25px",
-                                  height: "25px",
-                                  cursor: "pointer",
-                                  borderRadius: "50%",
-                                  bgcolor: "blue.main",
-                                  transform: {
-                                    xs: "rotate(90deg)",
-                                    sm: "rotate(90deg)",
-                                    md: "rotate(0deg)",
-                                  },
-                                }}
-                              >
-                                <Tooltip
-                                  disableFocusListener
-                                  disableTouchListener
-                                  title={t("newStudentsReadyTooltip")}
-                                  sx={{ position: "relative" }}
+                                  <Tooltip
+                                    disableFocusListener
+                                    disableTouchListener
+                                    title={t("newStudentsWaitingTooltip")}
+                                    sx={{ position: "relative" }}
+                                  >
+                                    <img width="100%" src={arrow} />
+                                  </Tooltip>
+                                </Box>
+                                <Box
+                                  sx={{
+                                    width: "25px",
+                                    height: "25px",
+                                    cursor: "pointer",
+                                    borderRadius: "50%",
+                                    bgcolor: "blue.main",
+                                    transform: {
+                                      xs: "rotate(90deg)",
+                                      sm: "rotate(90deg)",
+                                      md: "rotate(0deg)",
+                                    },
+                                  }}
                                 >
-                                  <img width="100%" src={arrow} />
-                                </Tooltip>
+                                  <Tooltip
+                                    disableFocusListener
+                                    disableTouchListener
+                                    title={t("newStudentsReadyTooltip")}
+                                    sx={{ position: "relative" }}
+                                  >
+                                    <img width="100%" src={arrow} />
+                                  </Tooltip>
+                                </Box>
+                                <Box
+                                  sx={{
+                                    width: "25px",
+                                    height: "25px",
+                                    cursor: "pointer",
+                                    display: "flex",
+                                    justifyContent: "center",
+                                    alignItems: "center",
+                                    borderRadius: "50%",
+                                  }}
+                                >
+                                  <Tooltip
+                                    disableFocusListener
+                                    disableTouchListener
+                                    title={"O'chirish"}
+                                    sx={{ position: "relative" }}
+                                  >
+                                    <IconButton
+                                      size="small"
+                                      onClick={() => setDelModal(!delModal)}
+                                    >
+                                      <DeleteIcon sx={{ color: "red" }} />
+                                    </IconButton>
+                                  </Tooltip>
+                                </Box>
                               </Box>
                             </Box>
-                          </Box>
-                          <Box
-                            sx={{
-                              display: "flex",
-                              flexDirection: {
-                                xs: "column",
-                                sm: "column",
-                                md: "column",
-                                lg: "row",
-                              },
-                              alignItems: { md: "flex-start", lg: "center" },
-                              gap: { md: "0", lg: "10px" },
-                            }}
-                          >
-                            <StyledH3>{student.tel}</StyledH3>
                             <Box
                               sx={{
-                                width: "0.1rem",
-                                bgcolor: "custom.lightGray",
-                                height: "20px",
-                                display: {
-                                  xs: "none",
-                                  sm: "none",
-                                  md: "none",
-                                  lg: "block",
+                                display: "flex",
+                                flexDirection: {
+                                  xs: "column",
+                                  sm: "column",
+                                  md: "column",
+                                  lg: "row",
                                 },
+                                alignItems: { md: "flex-start", lg: "center" },
+                                gap: { md: "0", lg: "10px" },
                               }}
-                            ></Box>
-                            <StyledH3>{student.group}</StyledH3>
-                            <Box
-                              sx={{
-                                width: "0.1rem",
-                                bgcolor: "custom.lightGray",
-                                height: "20px",
-                                display: {
-                                  xs: "none",
-                                  sm: "none",
-                                  md: "none",
-                                  lg: "block",
-                                },
-                              }}
-                            ></Box>
-                            <StyledH3>{student.responseTime}</StyledH3>
+                            >
+                              <StyledH3>{student.tel}</StyledH3>
+                              <Box
+                                sx={{
+                                  width: "0.1rem",
+                                  bgcolor: "custom.lightGray",
+                                  height: "20px",
+                                  display: {
+                                    xs: "none",
+                                    sm: "none",
+                                    md: "none",
+                                    lg: "block",
+                                  },
+                                }}
+                              ></Box>
+                              <StyledH3>{student.group}</StyledH3>
+                              <Box
+                                sx={{
+                                  width: "0.1rem",
+                                  bgcolor: "custom.lightGray",
+                                  height: "20px",
+                                  display: {
+                                    xs: "none",
+                                    sm: "none",
+                                    md: "none",
+                                    lg: "block",
+                                  },
+                                }}
+                              ></Box>
+                              <StyledH3>{student.responseTime}</StyledH3>
+                            </Box>
                           </Box>
-                        </Box>
+                        </>
                       );
                     })}
                   </>
@@ -543,6 +578,31 @@ const NewStudents = () => {
                                   sx={{ position: "relative" }}
                                 >
                                   <img width="100%" src={arrow} />
+                                </Tooltip>
+                              </Box>
+                              <Box
+                                sx={{
+                                  width: "25px",
+                                  height: "25px",
+                                  cursor: "pointer",
+                                  display: "flex",
+                                  justifyContent: "center",
+                                  alignItems: "center",
+                                  borderRadius: "50%",
+                                }}
+                              >
+                                <Tooltip
+                                  disableFocusListener
+                                  disableTouchListener
+                                  title={"O'chirish"}
+                                  sx={{ position: "relative" }}
+                                >
+                                  <IconButton
+                                    size="small"
+                                    onClick={() => setDelModal2(!delModal2)}
+                                  >
+                                    <DeleteIcon sx={{ color: "red" }} />
+                                  </IconButton>
                                 </Tooltip>
                               </Box>
                             </Box>
@@ -751,6 +811,31 @@ const NewStudents = () => {
                                   <img width="100%" src={arrow} />
                                 </Tooltip>
                               </Box>
+                              <Box
+                                sx={{
+                                  width: "25px",
+                                  height: "25px",
+                                  cursor: "pointer",
+                                  display: "flex",
+                                  justifyContent: "center",
+                                  alignItems: "center",
+                                  borderRadius: "50%",
+                                }}
+                              >
+                                <Tooltip
+                                  disableFocusListener
+                                  disableTouchListener
+                                  title={"O'chirish"}
+                                  sx={{ position: "relative" }}
+                                >
+                                  <IconButton
+                                    size="small"
+                                    onClick={() => setDelModal3(!delModal3)}
+                                  >
+                                    <DeleteIcon sx={{ color: "red" }} />
+                                  </IconButton>
+                                </Tooltip>
+                              </Box>
                             </Box>
                           </Box>
                           <Box
@@ -827,6 +912,21 @@ const NewStudents = () => {
           </Box>
         </Box>
       </div>
+      <DeleteMo
+        modal={delModal}
+        setModal={setDelModal}
+        text="Rostdan ham so'rov yuborgan o'quvchini o'chirmoqchimisiz?"
+      />
+      <DeleteMo
+        modal={delModal2}
+        setModal={setDelModal2}
+        text="Rostdan ham kutayotgan o'quvchini o'chirmoqchimisiz?"
+      />
+      <DeleteMo
+        modal={delModal3}
+        setModal={setDelModal3}
+        text="Rostdan ham ushbu o'quvchini o'chirmoqchimisiz?"
+      />
     </>
   );
 };
