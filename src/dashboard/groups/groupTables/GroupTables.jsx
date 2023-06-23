@@ -157,7 +157,7 @@ const GroupTables = () => {
             alignItems: "center",
           }}
         >
-          <H2>Guruhlar</H2>
+          <H2>{t("group")}</H2>
           <Tooltip title="Download groups data (Exel)" arrow>
             <IconButton
               sx={{ height: "fit-content", width: "fit-content" }}
@@ -172,7 +172,7 @@ const GroupTables = () => {
             </IconButton>
           </Tooltip>
         </Box>
-        <Paragraph>Jami - {group.length}</Paragraph>
+        <Paragraph>{t("groupTablesAll")} - {group.length}</Paragraph>
         <form>
           <Box
             sx={{
@@ -253,7 +253,7 @@ const GroupTables = () => {
                     <StyledTableCell align="left">
                       {t("groupTablesClock")}
                     </StyledTableCell>
-                    <StyledTableCell align="left">More</StyledTableCell>
+                    <StyledTableCell align="left">{t("groupMore")}</StyledTableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>

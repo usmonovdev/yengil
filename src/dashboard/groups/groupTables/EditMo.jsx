@@ -149,7 +149,7 @@ const EditMo = ({ modal, setModal }) => {
           transition={{ duration: 1, type: "spring", delay: 0.1 }}
         >
           <Box sx={modalStyle}>
-            <H3>Edit Group</H3>
+            <H3>{t("editMoGroup")}</H3>
             <InputComp
               placeholder="Dasturlash"
               value={name}
@@ -163,7 +163,7 @@ const EditMo = ({ modal, setModal }) => {
               color="blue"
               required
             >
-              <InputLabel>Teacher</InputLabel>
+              <InputLabel>{t("editMoTeacher")}</InputLabel>
               <Select
                 label={"Teacher"}
                 onChange={(e) => setTeacher(e.target.value)}
@@ -182,7 +182,7 @@ const EditMo = ({ modal, setModal }) => {
               color="blue"
               required
             >
-              <InputLabel>Kurs</InputLabel>
+              <InputLabel>{t("edidtMoCourse")}</InputLabel>
               <Select
                 label={"Kurs"}
                 onChange={(e) => setCourse(e.target.value)}
@@ -196,7 +196,7 @@ const EditMo = ({ modal, setModal }) => {
               </Select>
             </FormControl>
             <FormControl sx={{ width: "100%" }} color="blue" required>
-              <InputLabel>Kunlar</InputLabel>
+              <InputLabel>{t("groupOpenDay")}</InputLabel>
               <Select
                 multiple
                 value={personName}

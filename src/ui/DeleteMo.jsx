@@ -1,5 +1,6 @@
 import { Box, Button, Modal, useTheme } from "@mui/material";
 import { motion } from "framer-motion";
+import { useTranslation } from "react-i18next";
 
 const style = {
   position: "absolute",
@@ -22,6 +23,7 @@ const style = {
 
 const DeleteMo = ({ modal, setModal, text = "Aniqmi?" }) => {
   const theme = useTheme();
+  const { t } = useTranslation();
 
   return (
     <>
@@ -50,7 +52,7 @@ const DeleteMo = ({ modal, setModal, text = "Aniqmi?" }) => {
           transition={{ duration: 1, type: "spring", delay: 0.1 }}
         >
           <Box sx={style}>
-            <h2 id="child-modal-title">O'chirish</h2>
+            <h2 id="child-modal-title">{t("groupOpenDelete")}</h2>
             <p id="child-modal-description">{text}</p>
             <Box
               sx={{ display: "flex", justifyContent: "flex-end", gap: "10px" }}
@@ -62,10 +64,10 @@ const DeleteMo = ({ modal, setModal, text = "Aniqmi?" }) => {
                   color: "black",
                 }}
               >
-                Canel
+                {t("groupOpenCanel")}
               </Button>
               <Button color="error" variant="contained">
-                Delete
+                {t("groupOpenDelete")}
               </Button>
             </Box>
           </Box>

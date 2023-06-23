@@ -5,6 +5,7 @@ import editD from "../../../assets/dark/edit.png";
 import delD from "../../../assets/dark/delete.png";
 import { motion } from "framer-motion";
 import { useTheme } from "@emotion/react";
+import { useTranslation } from "react-i18next";
 
 const modalStyle = {
   position: "absolute",
@@ -28,6 +29,7 @@ const TableStActions = () => {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const theme = useTheme();
+  const { t } = useTranslation();
 
   return (
     <>
@@ -58,10 +60,10 @@ const TableStActions = () => {
         >
           <Box sx={modalStyle}>
             <Typography id="modal-modal-title" variant="h6" component="h2">
-              O'chirish
+              {t("groupOpenDelete")}
             </Typography>
             <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-              Rostan ham siz bu O'quvchini o'chirmoqchimisiz?
+              {t("deleteTitle")}
             </Typography>
             <Box
               sx={{
@@ -79,10 +81,10 @@ const TableStActions = () => {
                 }}
                 onClick={handleClose}
               >
-                Canel
+                {t("groupOpenCanel")}
               </Button>
               <Button variant="contained" color="error">
-                Delete
+                {t("groupOpenDelete")}
               </Button>
             </Box>
           </Box>

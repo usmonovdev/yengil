@@ -8,6 +8,7 @@ import { Img } from "../../students/tablestudents/TableStyled";
 import ZoomOutMapIcon from "@mui/icons-material/ZoomOutMap";
 import DeleteMo from "../../../ui/DeleteMo";
 import UsersMo from "./UsersMo";
+import { useTranslation } from "react-i18next";
 
 const TableActions = () => {
   const [anchorEl, setAnchorEl] = useState(null);
@@ -23,6 +24,7 @@ const TableActions = () => {
     setAnchorEl(null);
   };
   const theme = useTheme();
+  const { t } = useTranslation();
   return (
     <>
       <IconButton
@@ -70,7 +72,7 @@ const TableActions = () => {
           </IconButton>
         </Box>
       </Menu>
-      <DeleteMo modal={delModal} setModal={setDelModal} text={"Rostdanham ushbu o'quvchi guruhdan chiqarilsinmi?"}/>
+      <DeleteMo modal={delModal} setModal={setDelModal} text={t("removeGroup")}/>
       <UsersMo modal={usersMo} setModal={setUsersMo} />
     </>
   );

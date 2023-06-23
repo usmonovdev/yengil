@@ -141,5 +141,19 @@
     "groupOpenName": "Ism Familiya",
     "gruopOpenPhone": "Telefon",
     "groupOpenDabt": "Qarz",
-    "groupOpenEdit": "Tahrirlash"
+    "groupOpenEdit": "Tahrirlash",
+    "groupMore": "Ko'proq",
+    "deleteTitleRequest": "Haqiqatan ham soʻrov yuborgan talabani oʻchirib tashlamoqchimisiz?",
+    "deleteTitlePending": "Haqiqatan ham kutilayotgan oʻquvchini oʻchirib tashlamoqchimisiz?",
+    "deleteTitle": "Bu oʻquvchini oʻchirib tashlamoqchimisiz?",
+    "deleteGroupTitle": "Bu guruhni oʻchirib tashlamoqchimisiz?",
+    "editMoGroup": "Guruhni tahrirlash",
+    "editMoTeacher": "O'qituvchi",
+    "edidtMoCourse": "Kurs",
+    "removeGroup": "Haqiqatan ham bu talabani guruhdan olib tashlamoqchimisiz?",
+    "userMo": "Odamlar haqida ma'lumot",
+    "userMoName": "Ism",
+    "userMoDebitTime": "Qarz muddati",
+    "userMoTotalDebit": "Umumiy qarz",
+    "userMoPhone": "Telefon"
 }
