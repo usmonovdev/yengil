@@ -58,10 +58,11 @@ const Home = () => {
                   style={{ display: "flex", gap: "10px", alignItems: "center" }}
                 >
                   {t("dashboardMainProfit")}
-                  <Tooltip
+                  <Tooltip 
                     disableFocusListener
                     disableTouchListener
                     title={t("dashboardMainProfitDanger")}
+                    arrow
                   >
                     <Img src={theme.palette.mode == "dark" ? darkUndov : undov} />
                   </Tooltip>
@@ -141,6 +142,7 @@ const Home = () => {
                     disableFocusListener
                     disableTouchListener
                     title={t("dashboardMainPaymentsDanger")}
+                    arrow
                   >
                     <Img src={theme.palette.mode == "dark" ? darkUndov : undov} />
                   </Tooltip>
@@ -263,6 +265,7 @@ const Home = () => {
                     disableFocusListener
                     disableTouchListener
                     title={t("dashboardmainNewStudentsDanger")}
+                    arrow
                   >
                     <Img src={theme.palette.mode == "dark" ? darkUndov : undov} />
                   </Tooltip>

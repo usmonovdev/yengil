@@ -35,7 +35,7 @@ import StudentsInfo from "../studentsInfo/StudentsInfo";
 import exportD from "../../../assets/dark/export.png";
 import exportW from "../../../assets/icons/export.png";
 import TableActions from "./TableActions";
-import SearchIcon from '@mui/icons-material/Search';
+import SearchIcon from "@mui/icons-material/Search";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -157,7 +157,7 @@ const TableStudents = () => {
           }}
         >
           <H2>{t("students")}</H2>
-          <Tooltip title="Download Students (Exel)">
+          <Tooltip title="Download Students (Exel)" arrow>
             <IconButton
               sx={{ height: "fit-content", width: "fit-content" }}
               onClick={() => exportToExel("Students (Yengil App)", students)}
@@ -178,6 +178,7 @@ const TableStudents = () => {
             disableTouchListener
             title={t("studentsTooltip")}
             sx={{ position: "relative" }}
+            arrow
           >
             <Img src={theme.palette.mode == "light" ? undov : undovDark} />
           </Tooltip>
@@ -277,7 +278,7 @@ const TableStudents = () => {
                           <TableCell>{users.group}</TableCell>
                           <TableCell>{users.payment}</TableCell>
                           <TableCell>
-                            <TableActions id={users.id}/>
+                            <TableActions id={users.id} />
                           </TableCell>
                         </StyledTableRow>
                       );

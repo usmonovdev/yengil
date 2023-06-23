@@ -1,18 +1,12 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Img } from "../tablestudents/TableStyled";
-import { H2, H3, Paragraph } from "../../../ui/typography";
-import arrow from "../../../assets/icons/arrow-right.png";
-import search from "../../../assets/icons/search.png";
-import searchDark from "../../../assets/dark/darkSearch.png";
+import { H2, H3 } from "../../../ui/typography";
 import undov from "../.../../../../assets/icons/undov.png";
 import undovDark from "../.../../../../assets/dark/undov-white.png";
 import { useTheme } from "@emotion/react";
-import DeleteIcon from "@mui/icons-material/Delete";
 import {
   Box,
   Button,
   FormControl,
-  IconButton,
   InputAdornment,
   InputLabel,
   MenuItem,
@@ -29,10 +23,9 @@ import { addWaitStudent } from "../../../store/themeSlice";
 import { useInView } from "framer-motion";
 import SearchIcon from "@mui/icons-material/Search";
 import DeleteMo from "../../../ui/DeleteMo";
-
-const StyledH3 = styled(H3)(({ theme }) => ({
-  opacity: "60%",
-}));
+import AddStudent from "./AddStudent";
+import WaitingStudents from "./WaitingStudents";
+import ReadyStudents from "./ReadyStudents";
 
 const NewStudents = () => {
   const [sorting, setSorting] = useState("name");
@@ -127,14 +120,13 @@ const NewStudents = () => {
           }}
         >
           <H2>{t("newStudents")}</H2>
-          {/* <Paragraph>{t("newStudentsAll")} - 10</Paragraph> */}
           <H3 style={{ display: "flex", gap: "10px", alignItems: "center" }}>
             {t("newStudentsAll")} - 10
             <Tooltip
               disableFocusListener
               disableTouchListener
               title={t("newStudentsTooltip")}
-              // sx={{ position: "relative" }}
+              arrow
             >
               <Img src={theme.palette.mode == "light" ? undov : undovDark} />
             </Tooltip>
@@ -250,6 +242,7 @@ const NewStudents = () => {
                     disableTouchListener
                     title={t("newStudentsRequestersTooltipGeneral")}
                     sx={{ position: "relative" }}
+                    arrow
                   >
                     <Img
                       src={theme.palette.mode == "light" ? undov : undovDark}
@@ -260,192 +253,7 @@ const NewStudents = () => {
                   {t("newStudentsAll")} - {newStudents.length}
                 </H3>
               </Box>
-              <Box
-                aria-aria-label="box"
-                sx={{
-                  display: "flex",
-                  flexDirection: "column",
-                  gap: "10px",
-                  height: "380px",
-                  overflowY: "auto",
-                }}
-              >
-                {newStudents.length > 0 ? (
-                  <>
-                    {newStudents.map((student) => {
-                      return (
-                        <>
-                          <Box
-                            key={student.id}
-                            sx={{
-                              bgcolor: "custom.background",
-                              width: "100%",
-                              padding: "10px",
-                              borderRadius: "4px",
-                            }}
-                          >
-                            <Box
-                              sx={{
-                                display: "flex",
-                                flexDirection: "row",
-                                justifyContent: "space-between",
-                              }}
-                            >
-                              <H3>{student.name}</H3>
-                              <Box
-                                sx={{
-                                  display: "flex",
-                                  flexDirection: "row",
-                                  justifyContent: "flex-end",
-                                  gap: "10px",
-                                }}
-                              >
-                                <Box
-                                  sx={{
-                                    width: "25px",
-                                    height: "25px",
-                                    cursor: "pointer",
-                                    borderRadius: "50%",
-                                    bgcolor: "custom.bunting",
-                                    display: "flex",
-                                    flexDirection: "row",
-                                    transform: {
-                                      xs: "rotate(90deg)",
-                                      sm: "rotate(90deg)",
-                                      md: "rotate(0deg)",
-                                    },
-                                  }}
-                                >
-                                  <Tooltip
-                                    disableFocusListener
-                                    disableTouchListener
-                                    title={t("newStudentsWaitingTooltip")}
-                                    sx={{ position: "relative" }}
-                                  >
-                                    <img width="100%" src={arrow} />
-                                  </Tooltip>
-                                </Box>
-                                <Box
-                                  sx={{
-                                    width: "25px",
-                                    height: "25px",
-                                    cursor: "pointer",
-                                    borderRadius: "50%",
-                                    bgcolor: "blue.main",
-                                    transform: {
-                                      xs: "rotate(90deg)",
-                                      sm: "rotate(90deg)",
-                                      md: "rotate(0deg)",
-                                    },
-                                  }}
-                                >
-                                  <Tooltip
-                                    disableFocusListener
-                                    disableTouchListener
-                                    title={t("newStudentsReadyTooltip")}
-                                    sx={{ position: "relative" }}
-                                  >
-                                    <img width="100%" src={arrow} />
-                                  </Tooltip>
-                                </Box>
-                                <Box
-                                  sx={{
-                                    width: "25px",
-                                    height: "25px",
-                                    cursor: "pointer",
-                                    display: "flex",
-                                    justifyContent: "center",
-                                    alignItems: "center",
-                                    borderRadius: "50%",
-                                  }}
-                                >
-                                  <Tooltip
-                                    disableFocusListener
-                                    disableTouchListener
-                                    title={"O'chirish"}
-                                    sx={{ position: "relative" }}
-                                  >
-                                    <IconButton
-                                      size="small"
-                                      onClick={() => setDelModal(!delModal)}
-                                    >
-                                      <DeleteIcon sx={{ color: "red" }} />
-                                    </IconButton>
-                                  </Tooltip>
-                                </Box>
-                              </Box>
-                            </Box>
-                            <Box
-                              sx={{
-                                display: "flex",
-                                flexDirection: {
-                                  xs: "column",
-                                  sm: "column",
-                                  md: "column",
-                                  lg: "row",
-                                },
-                                alignItems: { md: "flex-start", lg: "center" },
-                                gap: { md: "0", lg: "10px" },
-                              }}
-                            >
-                              <StyledH3>{student.tel}</StyledH3>
-                              <Box
-                                sx={{
-                                  width: "0.1rem",
-                                  bgcolor: "custom.lightGray",
-                                  height: "20px",
-                                  display: {
-                                    xs: "none",
-                                    sm: "none",
-                                    md: "none",
-                                    lg: "block",
-                                  },
-                                }}
-                              ></Box>
-                              <StyledH3>{student.group}</StyledH3>
-                              <Box
-                                sx={{
-                                  width: "0.1rem",
-                                  bgcolor: "custom.lightGray",
-                                  height: "20px",
-                                  display: {
-                                    xs: "none",
-                                    sm: "none",
-                                    md: "none",
-                                    lg: "block",
-                                  },
-                                }}
-                              ></Box>
-                              <StyledH3>{student.responseTime}</StyledH3>
-                            </Box>
-                          </Box>
-                        </>
-                      );
-                    })}
-                  </>
-                ) : (
-                  <>
-                    <Box
-                      sx={{
-                        bgcolor: "custom.background",
-                        width: "100%",
-                        padding: "10px",
-                        borderRadius: "4px",
-                      }}
-                    >
-                      <Box
-                        sx={{
-                          display: "flex",
-                          flexDirection: "row",
-                          justifyContent: "space-between",
-                        }}
-                      >
-                        <H3>{t("studentsNotFound")}</H3>
-                      </Box>
-                    </Box>
-                  </>
-                )}
-              </Box>
+              <AddStudent data={newStudents} />
             </Box>
             <Box
               sx={{
@@ -474,8 +282,6 @@ const NewStudents = () => {
                   justifyContent: "space-between",
                 }}
               >
-                {/* <H3>{t("newStudentsWaiting")}</H3> */}
-
                 <H3
                   style={{ display: "flex", gap: "10px", alignItems: "center" }}
                 >
@@ -485,6 +291,7 @@ const NewStudents = () => {
                     disableTouchListener
                     title={t("newStudentsWaitingTooltipGeneral")}
                     sx={{ position: "relative" }}
+                    arrow
                   >
                     <Img
                       src={theme.palette.mode == "light" ? undov : undovDark}
@@ -495,188 +302,7 @@ const NewStudents = () => {
                   {t("newStudentsAll")} - {waitingStudents.length}
                 </H3>
               </Box>
-              <Box
-                aria-aria-label="box"
-                sx={{
-                  display: "flex",
-                  flexDirection: "column",
-                  gap: "10px",
-                  height: "380px",
-                  overflowY: "auto",
-                }}
-              >
-                {waitingStudents.length > 0 ? (
-                  <>
-                    {waitingStudents.map((student) => {
-                      return (
-                        <Box
-                          key={student.id}
-                          sx={{
-                            bgcolor: "custom.background",
-                            width: "100%",
-                            padding: "10px",
-                            borderRadius: "4px",
-                          }}
-                        >
-                          <Box
-                            sx={{
-                              display: "flex",
-                              flexDirection: "row",
-                              justifyContent: "space-between",
-                            }}
-                          >
-                            <H3>{student.name}</H3>
-                            <Box
-                              sx={{
-                                display: "flex",
-                                flexDirection: "row",
-                                justifyContent: "flex-end",
-                                gap: "10px",
-                              }}
-                            >
-                              <Box
-                                sx={{
-                                  width: "25px",
-                                  height: "25px",
-                                  cursor: "pointer",
-                                  borderRadius: "50%",
-                                  bgcolor: "custom.newStudentWhite",
-                                  transform: {
-                                    xs: "rotate(-90deg)",
-                                    sm: "rotate(-90deg)",
-                                    md: "rotate(180deg)",
-                                  },
-                                }}
-                              >
-                                <Tooltip
-                                  disableFocusListener
-                                  disableTouchListener
-                                  title={t("newStudentsRequestersTooltip")}
-                                  sx={{ position: "relative" }}
-                                >
-                                  <img width="100%" src={arrow} />
-                                </Tooltip>
-                              </Box>
-                              <Box
-                                sx={{
-                                  width: "25px",
-                                  height: "25px",
-                                  cursor: "pointer",
-                                  borderRadius: "50%",
-                                  bgcolor: "blue.main",
-                                  transform: {
-                                    xs: "rotate(90deg)",
-                                    sm: "rotate(90deg)",
-                                    md: "rotate(0deg)",
-                                  },
-                                }}
-                              >
-                                <Tooltip
-                                  disableFocusListener
-                                  disableTouchListener
-                                  title={t("newStudentsReadyTooltip")}
-                                  sx={{ position: "relative" }}
-                                >
-                                  <img width="100%" src={arrow} />
-                                </Tooltip>
-                              </Box>
-                              <Box
-                                sx={{
-                                  width: "25px",
-                                  height: "25px",
-                                  cursor: "pointer",
-                                  display: "flex",
-                                  justifyContent: "center",
-                                  alignItems: "center",
-                                  borderRadius: "50%",
-                                }}
-                              >
-                                <Tooltip
-                                  disableFocusListener
-                                  disableTouchListener
-                                  title={"O'chirish"}
-                                  sx={{ position: "relative" }}
-                                >
-                                  <IconButton
-                                    size="small"
-                                    onClick={() => setDelModal2(!delModal2)}
-                                  >
-                                    <DeleteIcon sx={{ color: "red" }} />
-                                  </IconButton>
-                                </Tooltip>
-                              </Box>
-                            </Box>
-                          </Box>
-                          <Box
-                            sx={{
-                              display: "flex",
-                              flexDirection: {
-                                xs: "column",
-                                sm: "column",
-                                md: "column",
-                                lg: "row",
-                              },
-                              alignItems: { md: "flex-start", lg: "center" },
-                              gap: { md: "0", lg: "10px" },
-                            }}
-                          >
-                            <StyledH3>{student.tel}</StyledH3>
-                            <Box
-                              sx={{
-                                width: "0.1rem",
-                                bgcolor: "custom.lightGray",
-                                height: "20px",
-                                display: {
-                                  xs: "none",
-                                  sm: "none",
-                                  md: "none",
-                                  lg: "block",
-                                },
-                              }}
-                            ></Box>
-                            <StyledH3>{student.group}</StyledH3>
-                            <Box
-                              sx={{
-                                width: "0.1rem",
-                                bgcolor: "custom.lightGray",
-                                height: "20px",
-                                display: {
-                                  xs: "none",
-                                  sm: "none",
-                                  md: "none",
-                                  lg: "block",
-                                },
-                              }}
-                            ></Box>
-                            <StyledH3>{student.responseTime}</StyledH3>
-                          </Box>
-                        </Box>
-                      );
-                    })}
-                  </>
-                ) : (
-                  <>
-                    <Box
-                      sx={{
-                        bgcolor: "custom.background",
-                        width: "100%",
-                        padding: "10px",
-                        borderRadius: "4px",
-                      }}
-                    >
-                      <Box
-                        sx={{
-                          display: "flex",
-                          flexDirection: "row",
-                          justifyContent: "space-between",
-                        }}
-                      >
-                        <H3>{t("studentsNotFound")}</H3>
-                      </Box>
-                    </Box>
-                  </>
-                )}
-              </Box>
+              <WaitingStudents data={waitingStudents} />
             </Box>
             <Box
               sx={{
@@ -716,6 +342,7 @@ const NewStudents = () => {
                     disableTouchListener
                     title={t("newStudentsReadyTooltipGeneral")}
                     sx={{ position: "relative" }}
+                    arrow
                   >
                     <Img
                       src={theme.palette.mode == "light" ? undov : undovDark}
@@ -726,188 +353,7 @@ const NewStudents = () => {
                   {t("newStudentsAll")} - {readyStudents.length}
                 </H3>
               </Box>
-              <Box
-                aria-aria-label="box"
-                sx={{
-                  display: "flex",
-                  flexDirection: "column",
-                  gap: "10px",
-                  height: "380px",
-                  overflowY: "auto",
-                }}
-              >
-                {readyStudents.length > 0 ? (
-                  <>
-                    {readyStudents.map((student) => {
-                      return (
-                        <Box
-                          key={student.id}
-                          sx={{
-                            bgcolor: "custom.background",
-                            width: "100%",
-                            padding: "10px",
-                            borderRadius: "4px",
-                          }}
-                        >
-                          <Box
-                            sx={{
-                              display: "flex",
-                              flexDirection: "row",
-                              justifyContent: "space-between",
-                            }}
-                          >
-                            <H3>{student.name}</H3>
-                            <Box
-                              sx={{
-                                display: "flex",
-                                flexDirection: "row",
-                                justifyContent: "flex-end",
-                                gap: "10px",
-                              }}
-                            >
-                              <Box
-                                sx={{
-                                  width: "25px",
-                                  height: "25px",
-                                  cursor: "pointer",
-                                  borderRadius: "50%",
-                                  bgcolor: "custom.newStudentWhite",
-                                  transform: {
-                                    xs: "rotate(-90deg)",
-                                    sm: "rotate(-90deg)",
-                                    md: "rotate(180deg)",
-                                  },
-                                }}
-                              >
-                                <Tooltip
-                                  disableFocusListener
-                                  disableTouchListener
-                                  title={t("newStudentsRequestersTooltip")}
-                                  sx={{ position: "relative" }}
-                                >
-                                  <img width="100%" src={arrow} />
-                                </Tooltip>
-                              </Box>
-                              <Box
-                                sx={{
-                                  width: "25px",
-                                  height: "25px",
-                                  cursor: "pointer",
-                                  borderRadius: "50%",
-                                  bgcolor: "custom.bunting",
-                                  transform: {
-                                    xs: "rotate(-90deg)",
-                                    sm: "rotate(-90deg)",
-                                    md: "rotate(180deg)",
-                                  },
-                                }}
-                              >
-                                <Tooltip
-                                  disableFocusListener
-                                  disableTouchListener
-                                  title={t("newStudentsWaitingTooltip")}
-                                  sx={{ position: "relative" }}
-                                >
-                                  <img width="100%" src={arrow} />
-                                </Tooltip>
-                              </Box>
-                              <Box
-                                sx={{
-                                  width: "25px",
-                                  height: "25px",
-                                  cursor: "pointer",
-                                  display: "flex",
-                                  justifyContent: "center",
-                                  alignItems: "center",
-                                  borderRadius: "50%",
-                                }}
-                              >
-                                <Tooltip
-                                  disableFocusListener
-                                  disableTouchListener
-                                  title={"O'chirish"}
-                                  sx={{ position: "relative" }}
-                                >
-                                  <IconButton
-                                    size="small"
-                                    onClick={() => setDelModal3(!delModal3)}
-                                  >
-                                    <DeleteIcon sx={{ color: "red" }} />
-                                  </IconButton>
-                                </Tooltip>
-                              </Box>
-                            </Box>
-                          </Box>
-                          <Box
-                            sx={{
-                              display: "flex",
-                              flexDirection: {
-                                xs: "column",
-                                sm: "column",
-                                md: "column",
-                                lg: "row",
-                              },
-                              alignItems: { md: "flex-start", lg: "center" },
-                              gap: { md: "0", lg: "10px" },
-                            }}
-                          >
-                            <StyledH3>{student.tel}</StyledH3>
-                            <Box
-                              sx={{
-                                width: "0.1rem",
-                                bgcolor: "custom.lightGray",
-                                height: "20px",
-                                display: {
-                                  xs: "none",
-                                  sm: "none",
-                                  md: "none",
-                                  lg: "block",
-                                },
-                              }}
-                            ></Box>
-                            <StyledH3>{student.group}</StyledH3>
-                            <Box
-                              sx={{
-                                width: "0.1rem",
-                                bgcolor: "custom.lightGray",
-                                height: "20px",
-                                display: {
-                                  xs: "none",
-                                  sm: "none",
-                                  md: "none",
-                                  lg: "block",
-                                },
-                              }}
-                            ></Box>
-                            <StyledH3>{student.responseTime}</StyledH3>
-                          </Box>
-                        </Box>
-                      );
-                    })}
-                  </>
-                ) : (
-                  <>
-                    <Box
-                      sx={{
-                        bgcolor: "custom.background",
-                        width: "100%",
-                        padding: "10px",
-                        borderRadius: "4px",
-                      }}
-                    >
-                      <Box
-                        sx={{
-                          display: "flex",
-                          flexDirection: "row",
-                          justifyContent: "space-between",
-                        }}
-                      >
-                        <H3>{t("studentsNotFound")}</H3>
-                      </Box>
-                    </Box>
-                  </>
-                )}
-              </Box>
+              <ReadyStudents data={readyStudents} />
             </Box>
           </Box>
         </Box>

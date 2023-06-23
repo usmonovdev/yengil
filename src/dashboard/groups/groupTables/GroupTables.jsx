@@ -120,7 +120,7 @@ const GroupTables = () => {
     setSorting(event.target.value);
   };
 
-  const handleChangePage = (newPage) => {
+  const handleChangePage = (event, newPage) => {
     setPage(newPage);
   };
 
@@ -158,7 +158,7 @@ const GroupTables = () => {
           }}
         >
           <H2>Guruhlar</H2>
-          <Tooltip title="Download groups data (Exel)">
+          <Tooltip title="Download groups data (Exel)" arrow>
             <IconButton
               sx={{ height: "fit-content", width: "fit-content" }}
               onClick={() => exportToExel("Group (Yengil App)", group)}
