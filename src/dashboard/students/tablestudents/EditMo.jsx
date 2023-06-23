@@ -59,17 +59,6 @@ const modalStyle = {
   gap: "15px",
 };
 
-const ITEM_HEIGHT = 48;
-const ITEM_PADDING_TOP = 8;
-const MenuProps = {
-  PaperProps: {
-    style: {
-      maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
-      width: 250,
-    },
-  },
-};
-
 const days = [
   "Fizika",
   "Matematika",
@@ -99,6 +88,7 @@ const EditMo = ({ modal, setModal }) => {
 
   const { t } = useTranslation();
   const theme = useTheme();
+  console.log(theme.shadows);
   const [personName, setPersonName] = useState([]);
 
   const handleGetGroups = (event) => {
@@ -106,6 +96,17 @@ const EditMo = ({ modal, setModal }) => {
       target: { value },
     } = event;
     setPersonName(typeof value === "string" ? value.split(",") : value);
+  };
+
+  const ITEM_HEIGHT = 48;
+  const ITEM_PADDING_TOP = 8;
+  const MenuProps = {
+    PaperProps: {
+      style: {
+        maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
+        width: 250,
+      },
+    },
   };
 
   return (
@@ -162,7 +163,7 @@ const EditMo = ({ modal, setModal }) => {
               name={name}
               inputProps={TextMaskCustom}
             />
-            <FormControl sx={{ width: "100%" }}>
+            <FormControl sx={{ width: "100%" }} color="blue">
               <InputLabel id="demo-multiple-chip-label">Guruh</InputLabel>
               <Select
                 sx={{ zIndex: "1500" }}

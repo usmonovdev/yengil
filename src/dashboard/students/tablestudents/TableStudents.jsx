@@ -157,7 +157,7 @@ const TableStudents = () => {
           }}
         >
           <H2>{t("students")}</H2>
-          <Tooltip title="Download">
+          <Tooltip title="Download Students (Exel)">
             <IconButton
               sx={{ height: "fit-content", width: "fit-content" }}
               onClick={() => exportToExel("Students (Yengil App)", students)}

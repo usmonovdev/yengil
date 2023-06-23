@@ -158,7 +158,7 @@ const GroupTables = () => {
           }}
         >
           <H2>Guruhlar</H2>
-          <Tooltip title="Download">
+          <Tooltip title="Download groups data (Exel)">
             <IconButton
               sx={{ height: "fit-content", width: "fit-content" }}
               onClick={() => exportToExel("Group (Yengil App)", group)}
@@ -253,7 +253,7 @@ const GroupTables = () => {
                     <StyledTableCell align="left">
                       {t("groupTablesClock")}
                     </StyledTableCell>
-                    <StyledTableCell align="left">Edit</StyledTableCell>
+                    <StyledTableCell align="left">More</StyledTableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>

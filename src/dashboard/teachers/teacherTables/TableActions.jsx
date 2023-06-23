@@ -75,9 +75,9 @@ const TableActions = ({ id }) => {
           </IconButton>
         </Box>
       </Menu>
-      <DeleteMo modal={delModal} setModal={setDelModal} />
-      <EditMo modal={editMo} setModal={setEditMo} />
-      <UsersMo modal={usersMo} setModal={setUsersMo} id={id} />
+      <DeleteMo modal={delModal} setModal={setDelModal} text={"Rostdanham ushbu o'qituvchini o'chirib tashlamoqchimisiz?"} />
+      <EditMo modal={editMo} setModal={setEditMo}/>
+      <UsersMo modal={usersMo} setModal={setUsersMo} id={id}/>
     </>
   );
 };
