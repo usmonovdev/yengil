@@ -104,7 +104,7 @@ const EditMo = ({ modal, setModal }) => {
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
   const [date, setDate] = useState("");
-  const [clock, setClock] = useState("");
+  const [clock, setClock] = useState(""); 
   const [notes, setNotes] = useState("");
   const [course, setCourse] = useState("");
   const [teacher, setTeacher] = useState("");
