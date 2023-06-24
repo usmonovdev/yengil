@@ -4,7 +4,7 @@ import Button from "@mui/material/Button";
 import Modal from "@mui/material/Modal";
 import { H3 } from "../../../ui/typography";
 import InputComp from "../../../ui/InputComp";
-import { DemoContainer, DemoItem } from "@mui/x-date-pickers/internals/demo";
+import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
@@ -12,22 +12,10 @@ import { useTheme } from "@emotion/react";
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  addGroupTables,
-  addProfitTables,
-  addWaitStudent,
-} from "../../../store/themeSlice";
+import { addProfitTables } from "../../../store/themeSlice";
 import dayjs, { Dayjs } from "dayjs";
-import { IMaskInput } from "react-imask";
-import {
-  Chip,
-  FormControl,
-  InputLabel,
-  MenuItem,
-  OutlinedInput,
-  Select,
-} from "@mui/material";
 import { TimePicker } from "@mui/x-date-pickers";
+import { IMaskInput } from "react-imask";
 
 const style = {
   position: "absolute",
@@ -45,13 +33,6 @@ const style = {
   gap: "15px",
 };
 
-const teachers = [
-  "Mirzaqulov Abbos",
-  "Turg'unboev Samandar",
-  "Abduqayumov Abror",
-  "Usmonov Azizbek",
-];
-
 const TextMaskCustom = React.forwardRef(function TextMaskCustom(props, ref) {
   const { onChange, ...other } = props;
   return (
@@ -68,60 +49,19 @@ const TextMaskCustom = React.forwardRef(function TextMaskCustom(props, ref) {
   );
 });
 
-const ITEM_HEIGHT = 48;
-const ITEM_PADDING_TOP = 8;
-const MenuProps = {
-  PaperProps: {
-    style: {
-      maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
-      width: 250,
-    },
-  },
-};
-
-const names = [
-  "Dushanba",
-  "Seshanba",
-  "Chorshanba",
-  "Payshanba",
-  "Juma",
-  "Shanba",
-  "Yakshanba",
-];
-
-function getStyles(name, personName, theme) {
-  return {
-    fontWeight:
-      personName.indexOf(name) === -1
-        ? theme.typography.fontWeightRegular
-        : theme.typography.fontWeightMedium,
-  };
-}
-
 const AddProfit = () => {
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
   const [date, setDate] = useState("");
   const [clock, setClock] = useState("");
-  const [teacher, setTeacher] = useState("");
-  const [notes, setNotes] = useState("");
-  const [group, setGroup] = useState("");
+  const [phone, setPhone] = useState("");
+  const [reason, setReason] = useState("");
   const theme = useTheme();
   const { t } = useTranslation();
   const { addTablesProfit } = useSelector((state) => state);
   const dispatch = useDispatch();
   const now = dayjs();
-  const handleGroup = (event) => {
-    setGroup(event.target.value);
-  };
-  const [personName, setPersonName] = useState([]);
 
-  const handleChange = (event) => {
-    const {
-      target: { value },
-    } = event;
-    setPersonName(typeof value === "string" ? value.split(",") : value);
-  };
   return (
     <>
       <Modal
@@ -161,70 +101,30 @@ const AddProfit = () => {
             />
             <InputComp
               placeholder="Arenda"
-              value={name}
-              setValue={setName}
-              label={""}
+              value={reason}
+              setValue={setReason}
+              label={"Sababi"}
               required={true}
               name={name}
             />
-            <FormControl
-              sx={{ width: { xs: "100%" }, textAlign: "left" }}
-              color="blue"
-              required
-            >
-              <InputLabel>Teacher</InputLabel>
-              <Select
-                label={"Teacher"}
-                onChange={(e) => setTeacher(e.target.value)}
-                value={teacher}
-              >
-                <MenuItem value="mirzakulov-abbos">Mirzakulov Abbos</MenuItem>
-                <MenuItem value="turgunboev-samandar">
-                  Turg'unboev Samandar
-                </MenuItem>
-                <MenuItem value="abdukayumov-abror">Abdukayumov Abror</MenuItem>
-                <MenuItem value="usmonov-azizbek">Usmonov Azizbek</MenuItem>
-              </Select>
-            </FormControl>
             <InputComp
-              placeholder="500.000 so'm"
+              placeholder="3.200.000"
               value={price}
               setValue={setPrice}
-              label={"Price"}
+              label={"Qancha ishlatdi"}
               required={true}
               name={name}
             />
-            <FormControl sx={{ width: "100%" }} color="blue">
-              <InputLabel id="demo-multiple-chip-label">Kunlar</InputLabel>
-              <Select
-                labelId="demo-multiple-chip-label"
-                id="demo-multiple-chip"
-                multiple
-                value={personName}
-                onChange={handleChange}
-                input={
-                  <OutlinedInput id="select-multiple-chip" label="Kunlar" />
-                }
-                renderValue={(selected) => (
-                  <Box sx={{ display: "flex", flexWrap: "wrap", gap: 0.5 }}>
-                    {selected.map((value) => (
-                      <Chip key={value} label={value} />
-                    ))}
-                  </Box>
-                )}
-                MenuProps={MenuProps}
-              >
-                {names.map((name) => (
-                  <MenuItem
-                    key={name}
-                    value={name}
-                    style={getStyles(name, personName, theme)}
-                  >
-                    {name}
-                  </MenuItem>
-                ))}
-              </Select>
-            </FormControl>
+            <LocalizationProvider dateAdapter={AdapterDayjs}>
+              <DemoContainer components={["DatePicker", "DatePicker"]}>
+                <DatePicker
+                  sx={{ width: "100%" }}
+                  onChange={(e) => setDate(e)}
+                  label="Kuni"
+                  defaultValue={dayjs(now)}
+                />
+              </DemoContainer>
+            </LocalizationProvider>
             <LocalizationProvider dateAdapter={AdapterDayjs}>
               <DemoContainer
                 components={[
@@ -235,28 +135,19 @@ const AddProfit = () => {
               >
                 <TimePicker
                   views={["hours", "minutes"]}
-                  label={"Dars vaqti"}
+                  label={"Soati"}
                   onChange={(e) => setClock(e)}
                 />
               </DemoContainer>
             </LocalizationProvider>
-            <LocalizationProvider dateAdapter={AdapterDayjs}>
-              <DemoContainer components={["DatePicker", "DatePicker"]}>
-                <DatePicker
-                  sx={{ width: "100%" }}
-                  onChange={(e) => setDate(e)}
-                  label="Boshlanish sanasi"
-                  defaultValue={dayjs(now)}
-                />
-              </DemoContainer>
-            </LocalizationProvider>
             <InputComp
-              placeholder="Matematikaga yozildi"
-              value={notes}
-              setValue={setNotes}
-              label={"Komentariya"}
+              placeholder="+998900000000"
+              value={phone}
+              setValue={setPhone}
+              label={"Telefon"}
               required={true}
               name={name}
+              inputProps={TextMaskCustom}
             />
             <Box
               sx={{

@@ -297,7 +297,7 @@ const MoneyTables = () => {
                 justifyContent: "center",
               }}
             >
-              <H3>{t("studentsNotFound")}</H3>
+              <H3>Bunday ma'lumot topilmadi</H3>
             </Box>
           )}
         </Box>

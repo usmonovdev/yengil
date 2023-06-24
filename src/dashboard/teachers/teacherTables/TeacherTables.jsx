@@ -314,7 +314,7 @@ const TeacherTables = () => {
               justifyContent: "center",
             }}
           >
-            <H3>{t("studentsNotFound")}</H3>
+            <H3>Bunday o'qituvchi topilmadi</H3>
           </Box>
         )}
       </Box>

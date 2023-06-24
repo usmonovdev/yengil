@@ -64,12 +64,12 @@ const UsersMo = ({ modal, setModal }) => {
           <Box sx={modalStyle}>
             <Paragraph>People Info</Paragraph>
             <Box sx={{ display: "flex", flexDirection: "column", gap: "10px" }}>
-              <StyledH3>Name: Usmonov Azizbek</StyledH3>
-              <StyledH3>Qarzdorlik vaqti: May</StyledH3>
-              <StyledH3>Group: Matematika</StyledH3>
-              <StyledH3>Lesson Day: Monday</StyledH3>
+              <StyledH3>Kim ishlatdi: Mirzoqulov Abbos</StyledH3>
+              <StyledH3>Sababi: Arenda</StyledH3>
+              <StyledH3>Qancha ishlatdi: 3.200.000</StyledH3>
+              <StyledH3>Kuni: 01.01.2023</StyledH3>
+              <StyledH3>Soati: 13:05</StyledH3>
               <StyledH3>Tel: +998 90 000 00 00</StyledH3>
-              <StyledH3>Vaqt: 08:00 / 10:00</StyledH3>
             </Box>
             <Box
               sx={{
