@@ -13,6 +13,8 @@ const Teachers = () => {
       <TopDashboard
         header={t("dashboardTeachers")}
         title={t("dashboardTeachersTitle")}
+        prew={"/dashboard/groups"}
+        next={"/dashboard/money"}
       />
       <Box
         sx={{

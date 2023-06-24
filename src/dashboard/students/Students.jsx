@@ -15,6 +15,8 @@ const Students = () => {
       <TopDashboard
         header={t("dashboardStudents")}
         title={t("dashboardStudentsTitle")}
+        prew={"/dashboard/home"}
+        next={"/dashboard/groups"}
       />
       <Box
         sx={{
@@ -24,7 +26,7 @@ const Students = () => {
           padding: "15px",
           display: "flex",
           flexDirection: "column",
-          gap: "30px"
+          gap: "30px",
         }}
       >
         <NewStudents />

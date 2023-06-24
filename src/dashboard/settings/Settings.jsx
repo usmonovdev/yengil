@@ -10,6 +10,8 @@ const Settings = () => {
       <TopDashboard
         header={t("dashboardSettings")}
         // title={t("dashboardSettingsTitle")}
+        prew={"/dashboard/money"}
+        nextDisabled={true}
       />
     </Box>
   )

@@ -14,6 +14,8 @@ const Groups = () => {
       <TopDashboard
         header={t("group")}
         title={t("groupTitle")}
+        prew={"/dashboard/students"}
+        next={"/dashboard/teachers"}
       />
       <Box
         sx={{
