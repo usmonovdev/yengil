@@ -15,6 +15,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { addWaitStudent } from "../../../store/themeSlice";
 import dayjs, { Dayjs } from "dayjs";
 import { IMaskInput } from "react-imask";
+import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 
 const style = {
   position: "absolute",
@@ -53,6 +54,7 @@ export const AddStudents = () => {
   const [firstName, setFirstNmae] = useState("");
   const [phone, setPhone] = useState("");
   const [date, setDate] = useState("");
+  const [group, setGroup] = useState("");
   const [telegram, setTelegram] = useState("");
   const [notes, setNotes] = useState("");
   const theme = useTheme();
@@ -60,6 +62,10 @@ export const AddStudents = () => {
   const { addStudentWait } = useSelector((state) => state);
   const dispatch = useDispatch();
   const now = dayjs();
+
+  const handleGroup = (event) => {
+    setGroup(event.target.value);
+  };
 
   return (
     <>
@@ -106,6 +112,24 @@ export const AddStudents = () => {
               required={true}
               name={name}
             />
+            <FormControl
+              sx={{ width: { xs: "100%" }, textAlign: "left" }}
+              color="blue"
+              required
+            >
+              <InputLabel>Guruh</InputLabel>
+              <Select
+                label={t("studentsSorting")}
+                onChange={handleGroup}
+                value={group}
+              >
+                <MenuItem value="Matematika">Matematika</MenuItem>
+                <MenuItem value="ona tili">Ona tili</MenuItem>
+                <MenuItem value="dasturlash">Dasturlash</MenuItem>
+                <MenuItem value="fizika">Fizika</MenuItem>
+                <MenuItem value="ingliz tili">Ingliz tili</MenuItem>
+              </Select>
+            </FormControl>
             <InputComp
               placeholder="+99890-000-00-00"
               value={phone}
