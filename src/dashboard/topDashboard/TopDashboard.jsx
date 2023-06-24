@@ -1,4 +1,4 @@
-import { Box, IconButton, styled, useTheme } from "@mui/material";
+import { Box, IconButton, Tooltip, styled, useTheme } from "@mui/material";
 import React, { useState } from "react";
 import { H1, Paragraph } from "../../ui/typography";
 import chatArrow from "../../assets/icons/double-arrow.png";
@@ -27,14 +27,14 @@ const TopDashboard = ({
 
   const HeaderBox = styled("div")(({ theme }) => ({
     background: theme.palette.custom.headerOpacity,
-    width: `${state ? "calc(100% - 80px)" : "100%"}`,
+    width: "100%",
     display: "flex",
     alignItems: "center",
     flexDirection: "row",
     justifyContent: "space-between",
     position: "fixed",
     gap: "20px",
-    right: "0",
+    left: `${state ? "90px" : "0px"}`,
     backdropFilter: "blur(5px)",
     zIndex: "1000",
   }));
@@ -70,8 +70,9 @@ const TopDashboard = ({
             />
           </IconButton>
           <Box>
-            <H1>{header}</H1>
-            <Paragraph>{title}</Paragraph>
+            <Tooltip title={title} arrow>
+              <H1>{header}</H1>
+            </Tooltip>
           </Box>
         </Box>
         <Box sx={{ marginRight: "10px" }}>
@@ -82,8 +83,8 @@ const TopDashboard = ({
           >
             <NavigateNextIcon />
           </IconButton>
-          <IconButton disabled={nextDisabled}>
-            <NavigateNextIcon onClick={() => navigate(next)} />
+          <IconButton disabled={nextDisabled} onClick={() => navigate(next)}>
+            <NavigateNextIcon />
           </IconButton>
         </Box>
       </HeaderBox>

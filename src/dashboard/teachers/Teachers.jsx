@@ -19,7 +19,7 @@ const Teachers = () => {
       <Box
         sx={{
           position: "relative",
-          top: "100px",
+          top: "50px",
           left: `${sidebar ? "90px" : "0"}`,
           padding: "15px",
           display: "flex",
