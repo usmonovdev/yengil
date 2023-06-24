@@ -4,6 +4,7 @@ import TopDashboard from "../topDashboard/TopDashboard";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import MoneyTables from "./moneyTables/MoneyTables";
+import SalaryTables from "./salaryTables/SalaryTables";
 
 const Money = () => {
   const { t } = useTranslation();
@@ -23,6 +24,7 @@ const Money = () => {
         }}
       >
         <MoneyTables />
+        <SalaryTables />
       </Box>
     </Box>
   );

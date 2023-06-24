@@ -12,9 +12,7 @@ import { useTheme } from "@emotion/react";
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
 import { useDispatch, useSelector } from "react-redux";
-import { addProfitTables } from "../../../store/themeSlice";
-import dayjs, { Dayjs } from "dayjs";
-import { TimePicker } from "@mui/x-date-pickers";
+import { addSalatyTables } from "../../../store/themeSlice";
 import { IMaskInput } from "react-imask";
 
 const style = {
@@ -49,25 +47,23 @@ const TextMaskCustom = React.forwardRef(function TextMaskCustom(props, ref) {
   );
 });
 
-const AddProfit = () => {
+const AddSalary = () => {
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
-  const [date, setDate] = useState("");
-  const [clock, setClock] = useState("");
+  const [jobs, setJobs] = useState("");
   const [phone, setPhone] = useState("");
   const [reason, setReason] = useState("");
   const theme = useTheme();
   const { t } = useTranslation();
-  const { addTablesProfit } = useSelector((state) => state);
+  const { addTablesSalary } = useSelector((state) => state);
   const dispatch = useDispatch();
-  const now = dayjs();
 
   return (
     <>
       <Modal
         disableScrollLock
         sx={{ zIndex: "1000" }}
-        open={addTablesProfit}
+        open={addTablesSalary}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
@@ -90,56 +86,39 @@ const AddProfit = () => {
           transition={{ duration: 1, type: "spring", delay: 0.1 }}
         >
           <Box sx={style}>
-            <H3>Foyda</H3>
+            <H3>Oylik</H3>
             <InputComp
               placeholder="Mirzaqulov Abbos"
               value={name}
               setValue={setName}
-              label={"Kim ishlatdi"}
+              label={"Ism Familiya"}
               required={true}
               name={name}
             />
             <InputComp
-              placeholder="Arenda"
+              placeholder="6.000.000"
               value={reason}
               setValue={setReason}
-              label={"Sababi"}
+              label={"Xodim uchun"}
               required={true}
               name={name}
             />
             <InputComp
-              placeholder="3.200.000"
+              placeholder="6.000.000"
               value={price}
               setValue={setPrice}
-              label={"Qancha ishlatdi"}
+              label={"Markaz uchun"}
               required={true}
               name={name}
             />
-            <LocalizationProvider dateAdapter={AdapterDayjs}>
-              <DemoContainer components={["DatePicker", "DatePicker"]}>
-                <DatePicker
-                  sx={{ width: "100%" }}
-                  onChange={(e) => setDate(e)}
-                  label="Kuni"
-                  defaultValue={dayjs(now)}
-                />
-              </DemoContainer>
-            </LocalizationProvider>
-            <LocalizationProvider dateAdapter={AdapterDayjs}>
-              <DemoContainer
-                components={[
-                  "MobileTimePicker",
-                  "MobileTimePicker",
-                  "MobileTimePicker",
-                ]}
-              >
-                <TimePicker
-                  views={["hours", "minutes"]}
-                  label={"Soati"}
-                  onChange={(e) => setClock(e)}
-                />
-              </DemoContainer>
-            </LocalizationProvider>
+            <InputComp
+              placeholder="O'qituvchi"
+              value={jobs}
+              setValue={setJobs}
+              label={"Kasbi"}
+              required={true}
+              name={name}
+            />
             <InputComp
               placeholder="+998900000000"
               value={phone}
@@ -159,7 +138,7 @@ const AddProfit = () => {
             >
               <Button
                 variant="contained"
-                onClick={() => dispatch(addProfitTables())}
+                onClick={() => dispatch(addSalatyTables())}
                 style={{
                   background: theme.palette.custom.newStudentWhite,
                   color: "black",
@@ -178,4 +157,4 @@ const AddProfit = () => {
   );
 };
 
-export default AddProfit;
+export default AddSalary;
