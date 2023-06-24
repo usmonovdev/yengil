@@ -24,12 +24,15 @@ import { exportToExel } from "../../../utils/ExelExport";
 import { useTheme } from "@emotion/react";
 import exportD from "../../../assets/dark/export.png";
 import exportW from "../../../assets/icons/export.png";
-import { profit } from "../../../localData/profitData";
+import { useDispatch, useSelector } from "react-redux";
 import { useInView } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import SearchIcon from "@mui/icons-material/Search";
+import { addSalatyTables } from "../../../store/themeSlice";
 import styled from "@emotion/styled";
 import TableActions from "./TableActions";
+import AddSalary from "../add/AddSalary";
+import { salary } from "../../../localData/salaryData";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -50,13 +53,15 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
-const MoneyTables = () => {
+const SalaryTables = () => {
   const theme = useTheme();
-  const [filteredSt, setFilteredSt] = useState(profit);
-  const [student, setStudent] = useState(profit);
+  const [filteredSt, setFilteredSt] = useState(salary);
+  const [student, setStudent] = useState(salary);
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const [sorting, setSorting] = useState("name");
+  const dispatch = useDispatch();
+  const { addTablesSalary } = useSelector((state) => state);
 
   const handleFilter = (event) => {
     if (sorting === "name") {
@@ -79,31 +84,31 @@ const MoneyTables = () => {
       } else {
         setFilteredSt(student);
       }
-    } else if (sorting == "cash") {
+    } else if (sorting == "teachers_salary") {
       if (event.target.value.length > 0) {
         setFilteredSt(
           student.filter((f) =>
-            f.cash.toLowerCase().includes(event.target.value)
+            f.teachers_salary.toLowerCase().includes(event.target.value)
           )
         );
       } else {
         setFilteredSt(student);
       }
-    } else if (sorting == "date") {
+    } else if (sorting == "center_salary") {
       if (event.target.value.length > 0) {
         setFilteredSt(
           student.filter((f) =>
-            f.date.toLowerCase().includes(event.target.value)
+            f.center_salary.toLowerCase().includes(event.target.value)
           )
         );
       } else {
         setFilteredSt(student);
       }
-    } else if (sorting == "clock") {
+    } else if (sorting == "jobs") {
       if (event.target.value.length > 0) {
         setFilteredSt(
           student.filter((f) =>
-            f.clock.toLowerCase().includes(event.target.value)
+            f.jobs.toLowerCase().includes(event.target.value)
           )
         );
       } else {
@@ -128,9 +133,9 @@ const MoneyTables = () => {
   const { t } = useTranslation();
   const ref = useRef();
   const isInView = useInView(ref, { once: true });
-
   return (
     <>
+      {addTablesSalary && <AddSalary />}
       <Box
         ref={ref}
         sx={{
@@ -151,11 +156,11 @@ const MoneyTables = () => {
             alignItems: "center",
           }}
         >
-          <H2>Foyda</H2>
-          <Tooltip title="Download profit data (Exel)" arrow>
+          <H2>Oyliklar</H2>
+          <Tooltip title="Download salary data (Exel)" arrow>
             <IconButton
               sx={{ height: "fit-content", width: "fit-content" }}
-              onClick={() => exportToExel("Group (Yengil App)", profit)}
+              onClick={() => exportToExel("SalaryTables (Yengil App)", salary)}
             >
               <img
                 src={theme.palette.mode == "light" ? exportW : exportD}
@@ -166,7 +171,7 @@ const MoneyTables = () => {
             </IconButton>
           </Tooltip>
         </Box>
-        <Paragraph>Umumiy foyda - 50.000.000</Paragraph>
+        <Paragraph>Umumiy Oylik - 13.000.000</Paragraph>
         <form>
           <Box
             sx={{
@@ -204,14 +209,21 @@ const MoneyTables = () => {
                   onChange={handleChange}
                   value={sorting}
                 >
-                  <MenuItem value="name">Kim tomonidan</MenuItem>
+                  <MenuItem value="name">Ism Familiya</MenuItem>
                   <MenuItem value="tel">Telefon</MenuItem>
-                  <MenuItem value="cash">Summa</MenuItem>
-                  <MenuItem value="date">Vaqt</MenuItem>
-                  <MenuItem value="clock">Soat</MenuItem>
+                  <MenuItem value="teachers_salary">Xodim uchun</MenuItem>
+                  <MenuItem value="center_salary">Markaz uchun</MenuItem>
+                  <MenuItem value="jobs">Kasbi</MenuItem>
                 </Select>
               </FormControl>
             </Box>
+            <Button
+              variant="contained"
+              color="blue"
+              onClick={() => dispatch(addSalatyTables())}
+            >
+              {t("studentsAdd")}
+            </Button>
           </Box>
         </form>
         {filteredSt.length > 0 ? (
@@ -220,14 +232,12 @@ const MoneyTables = () => {
               <Table stickyHeader sx={{ minWidth: 700 }}>
                 <TableHead>
                   <TableRow>
-                    <StyledTableCell align="left">Id</StyledTableCell>
-                    <StyledTableCell align="left">
-                      Kim tomonidan
-                    </StyledTableCell>
+                    <StyledTableCell align="left">ID</StyledTableCell>
+                    <StyledTableCell align="left">Ism Familiya</StyledTableCell>
                     <StyledTableCell align="left">Telefon</StyledTableCell>
-                    <StyledTableCell align="left">Summa</StyledTableCell>
-                    <StyledTableCell align="left">Vaqt</StyledTableCell>
-                    <StyledTableCell align="left">Soat</StyledTableCell>
+                    <StyledTableCell align="left">Xodim uchun</StyledTableCell>
+                    <StyledTableCell align="left">Markaz uchun</StyledTableCell>
+                    <StyledTableCell align="left">Kasbi</StyledTableCell>
                     <StyledTableCell align="left">More</StyledTableCell>
                   </TableRow>
                 </TableHead>
@@ -245,9 +255,9 @@ const MoneyTables = () => {
                           <TableCell>{users.id}</TableCell>
                           <TableCell>{users.name}</TableCell>
                           <TableCell>{users.tel}</TableCell>
-                          <TableCell>{users.cash}</TableCell>
-                          <TableCell>{users.date}</TableCell>
-                          <TableCell>{users.clock}</TableCell>
+                          <TableCell>{users.teachers_salary}</TableCell>
+                          <TableCell>{users.center_salary}</TableCell>
+                          <TableCell>{users.jobs}</TableCell>
                           <TableCell>
                             <TableActions id={users.id} />
                           </TableCell>
@@ -288,4 +298,4 @@ const MoneyTables = () => {
   );
 };
 
-export default MoneyTables;
+export default SalaryTables;

@@ -1,13 +1,12 @@
-import { Box } from "@mui/material";
 import React from "react";
+import { Box } from "@mui/material";
 import TopDashboard from "../topDashboard/TopDashboard";
-import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
-import MoneyTables from "./moneyTables/MoneyTables";
-import SalaryTables from "./salaryTables/SalaryTables";
+import MoneyTables from "./money/MoneyTables";
+import SalaryTables from "./salary/SalaryTables";
+import Cost from "./cost/Cost"
 
 const Money = () => {
-  const { t } = useTranslation();
   const { sidebar } = useSelector((state) => state);
   return (
     <Box sx={{ width: "100%" }}>
@@ -24,6 +23,7 @@ const Money = () => {
         }}
       >
         <MoneyTables />
+        <Cost />
         <SalaryTables />
       </Box>
     </Box>

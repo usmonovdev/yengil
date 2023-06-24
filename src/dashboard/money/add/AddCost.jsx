@@ -4,12 +4,18 @@ import Button from "@mui/material/Button";
 import Modal from "@mui/material/Modal";
 import { H3 } from "../../../ui/typography";
 import InputComp from "../../../ui/InputComp";
+import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { useTheme } from "@emotion/react";
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
 import { useDispatch, useSelector } from "react-redux";
-import { addSalatyTables } from "../../../store/themeSlice";
+import { addCost } from "../../../store/themeSlice";
+import dayjs from "dayjs";
 import { IMaskInput } from "react-imask";
+import { TimePicker } from "@mui/x-date-pickers";
 
 const style = {
   position: "absolute",
@@ -43,23 +49,25 @@ const TextMaskCustom = React.forwardRef(function TextMaskCustom(props, ref) {
   );
 });
 
-const AddSalary = () => {
+const AddCost = () => {
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
-  const [jobs, setJobs] = useState("");
+  const [date, setDate] = useState("");
+  const [clock, setClock] = useState("");
   const [phone, setPhone] = useState("");
   const [reason, setReason] = useState("");
   const theme = useTheme();
   const { t } = useTranslation();
-  const { addTablesSalary } = useSelector((state) => state);
+  const { cost } = useSelector((state) => state);
   const dispatch = useDispatch();
+  const now = dayjs();
 
   return (
     <>
       <Modal
         disableScrollLock
         sx={{ zIndex: "1000" }}
-        open={addTablesSalary}
+        open={cost}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
@@ -82,39 +90,56 @@ const AddSalary = () => {
           transition={{ duration: 1, type: "spring", delay: 0.1 }}
         >
           <Box sx={style}>
-            <H3>Oylik</H3>
+            <H3>Xarajat qo'shish</H3>
             <InputComp
               placeholder="Mirzaqulov Abbos"
               value={name}
               setValue={setName}
-              label={"Ism Familiya"}
+              label={"Kim ishlatdi"}
               required={true}
               name={name}
             />
             <InputComp
-              placeholder="6.000.000"
+              placeholder="Arenda"
               value={reason}
               setValue={setReason}
-              label={"Xodim uchun"}
+              label={"Sababi"}
               required={true}
               name={name}
             />
             <InputComp
-              placeholder="6.000.000"
+              placeholder="3.200.000"
               value={price}
               setValue={setPrice}
-              label={"Markaz uchun"}
+              label={"Qancha ishlatdi"}
               required={true}
               name={name}
             />
-            <InputComp
-              placeholder="O'qituvchi"
-              value={jobs}
-              setValue={setJobs}
-              label={"Kasbi"}
-              required={true}
-              name={name}
-            />
+            <LocalizationProvider dateAdapter={AdapterDayjs}>
+              <DemoContainer components={["DatePicker", "DatePicker"]}>
+                <DatePicker
+                  sx={{ width: "100%" }}
+                  onChange={(e) => setDate(e)}
+                  label="Kuni"
+                  defaultValue={dayjs(now)}
+                />
+              </DemoContainer>
+            </LocalizationProvider>
+            <LocalizationProvider dateAdapter={AdapterDayjs}>
+              <DemoContainer
+                components={[
+                  "MobileTimePicker",
+                  "MobileTimePicker",
+                  "MobileTimePicker",
+                ]}
+              >
+                <TimePicker
+                  views={["hours", "minutes"]}
+                  label={"Soati"}
+                  onChange={(e) => setClock(e)}
+                />
+              </DemoContainer>
+            </LocalizationProvider>
             <InputComp
               placeholder="+998900000000"
               value={phone}
@@ -134,7 +159,7 @@ const AddSalary = () => {
             >
               <Button
                 variant="contained"
-                onClick={() => dispatch(addSalatyTables())}
+                onClick={() => dispatch(addCost())}
                 style={{
                   background: theme.palette.custom.newStudentWhite,
                   color: "black",
@@ -153,4 +178,4 @@ const AddSalary = () => {
   );
 };
 
-export default AddSalary;
+export default AddCost;
