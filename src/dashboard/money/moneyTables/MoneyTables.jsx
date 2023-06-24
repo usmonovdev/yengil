@@ -31,7 +31,8 @@ import { useTranslation } from "react-i18next";
 import SearchIcon from "@mui/icons-material/Search";
 import { addProfitTables } from "../../../store/themeSlice";
 import styled from "@emotion/styled";
-import TableActions from "../../groups/groupTables/TableActions";
+import TableActions from "./TableActions";
+import AddProfit from "../add/AddProfit";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -135,6 +136,7 @@ const MoneyTables = () => {
 
   return (
     <>
+      {addTablesProfit && <AddProfit />}
       <>
         <Box
           ref={ref}

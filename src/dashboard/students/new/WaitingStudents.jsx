@@ -5,6 +5,7 @@ import { useTranslation } from "react-i18next";
 import arrow from "../../../assets/icons/arrow-right.png";
 import DeleteIcon from "@mui/icons-material/Delete";
 import styled from "@emotion/styled";
+import DeleteMo from "../../../ui/DeleteMo";
 
 const StyledH3 = styled(H3)(({ theme }) => ({
   opacity: "60%",
@@ -200,6 +201,11 @@ const WaitingStudents = ({ data }) => {
           </>
         )}
       </Box>
+      <DeleteMo
+        modal={delModal2}
+        setModal={setDelModal2}
+        text={t("deleteTitlePending")}
+      />
     </>
   );
 };

@@ -358,21 +358,6 @@ const NewStudents = () => {
           </Box>
         </Box>
       </div>
-      <DeleteMo
-        modal={delModal}
-        setModal={setDelModal}
-        text={t("deleteTitleRequest")}
-      />
-      <DeleteMo
-        modal={delModal2}
-        setModal={setDelModal2}
-        text={t("deleteTitlePending")}
-      />
-      <DeleteMo
-        modal={delModal3}
-        setModal={setDelModal3}
-        text={t("deleteTitle")}
-      />
     </>
   );
 };
