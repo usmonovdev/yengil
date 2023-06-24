@@ -114,13 +114,11 @@ const Nav = () => {
               <NavLink
                 to={nav.link}
                 key={nav.id}
-                className={`nav-item ${({ isActive, isPending }) =>
-                  isPending ? "pending" : isActive ? "active" : ""}`}
+                className={({ isActive, isPending }) =>
+                  isPending ? "pending" : isActive ? "nav-item active" : "nav-item"
+                }
               >
-                <LinksBox
-                  key={nav.id}
-                  onClick={() => handleImg(nav.id)}
-                >
+                <LinksBox key={nav.id} onClick={() => handleImg(nav.id)}>
                   <Image src={nav.img} alt={nav.name} />
                 </LinksBox>
               </NavLink>
