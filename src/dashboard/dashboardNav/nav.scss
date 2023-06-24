@@ -1,4 +1,5 @@
 .nav-item.active {
+    position: relative;
     &::before {
         transition: 200ms;
         content: "";

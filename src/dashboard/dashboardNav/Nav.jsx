@@ -89,13 +89,13 @@ const Nav = () => {
     justifyContent: "space-between",
     zIndex: "1000",
     transition: "200ms",
-    transform: `${sidebar ? "unset" : "translateX(-100%)"}`
+    transform: `${sidebar ? "unset" : "translateX(-100%)"}`,
   }));
 
   const handleImg = (nav) => {
-    setActive(nav)
-    dispatch(toggleSidebar())
-  }
+    setActive(nav);
+    dispatch(toggleSidebar());
+  };
 
   return (
     <motion.div
@@ -111,9 +111,13 @@ const Nav = () => {
         >
           {dashboardData.map((nav) => {
             return (
-              <NavLink to={nav.link} key={nav.id}>
+              <NavLink
+                to={nav.link}
+                key={nav.id}
+                className={`nav-item ${({ isActive, isPending }) =>
+                  isPending ? "pending" : isActive ? "active" : ""}`}
+              >
                 <LinksBox
-                  className={`nav-item ${nav.id == active ? "active" : ""}`}
                   key={nav.id}
                   onClick={() => handleImg(nav.id)}
                 >
