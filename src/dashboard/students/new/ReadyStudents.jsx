@@ -86,7 +86,7 @@ const ReadyStudents = ({ data }) => {
                           height: "25px",
                           cursor: "pointer",
                           borderRadius: "50%",
-                          bgcolor: "custom.bunting",
+                          bgcolor: "blue.main",
                           transform: {
                             xs: "rotate(-90deg)",
                             sm: "rotate(-90deg)",
@@ -119,14 +119,16 @@ const ReadyStudents = ({ data }) => {
                           disableFocusListener
                           disableTouchListener
                           title={t("groupOpenDelete")}
-                          sx={{ position: "relative" }}
+                          sx={{
+                            position: "relative",
+                          }}
                           arrow
                         >
                           <IconButton
                             size="small"
                             onClick={() => setDelModal3(!delModal3)}
                           >
-                            <DeleteIcon sx={{ color: "red" }} />
+                            <DeleteIcon sx={{ color: "gray" }} />
                           </IconButton>
                         </Tooltip>
                       </Box>

@@ -62,7 +62,7 @@ const AddStudent = ({ data }) => {
                             height: "25px",
                             cursor: "pointer",
                             borderRadius: "50%",
-                            bgcolor: "custom.bunting",
+                            bgcolor: "custom.newStudentWhite",
                             display: "flex",
                             flexDirection: "row",
                             transform: {
@@ -128,7 +128,7 @@ const AddStudent = ({ data }) => {
                               size="small"
                               onClick={() => setDelModal(!delModal)}
                             >
-                              <DeleteIcon sx={{ color: "red" }} />
+                              <DeleteIcon sx={{ color: "gray" }} />
                             </IconButton>
                           </Tooltip>
                         </Box>

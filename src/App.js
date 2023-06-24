@@ -42,7 +42,7 @@ const getTokens = (mode) => ({
           midnight: "#182236",
           lightGray: "#d9d9d9",
           whiteSmoke: "#f0f0f0",
-          newStudentWhite: "#D9D9D9"
+          newStudentWhite: "#8B8B8B"
         }
       } : {
         blue: createColor(lightBlue[600]),

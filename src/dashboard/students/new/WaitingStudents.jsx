@@ -125,7 +125,7 @@ const WaitingStudents = ({ data }) => {
                             size="small"
                             onClick={() => setDelModal2(!delModal2)}
                           >
-                            <DeleteIcon sx={{ color: "red" }} />
+                            <DeleteIcon sx={{ color: "gray" }} />
                           </IconButton>
                         </Tooltip>
                       </Box>
