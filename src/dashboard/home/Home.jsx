@@ -37,6 +37,10 @@ const Home = () => {
       <TopDashboard
         header={t("dashboardMain")}
         title={t("dashboardMainTitle")}
+        prew={"/dashboard/home"}
+        next={"/dashboard/students"}
+        prewDisabled={true}
+        nextDisabled={false}
       />
       <Box
         sx={{
