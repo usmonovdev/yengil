@@ -114,8 +114,8 @@ const Nav = () => {
               <NavLink
                 to={nav.link}
                 key={nav.id}
-                className={({ isActive, isPending }) =>
-                  isPending ? "pending" : isActive ? "nav-item active" : "nav-item"
+                className={({ isActive }) =>
+                  isActive ? "nav-item active" : "nav-item"
                 }
               >
                 <LinksBox key={nav.id} onClick={() => handleImg(nav.id)}>

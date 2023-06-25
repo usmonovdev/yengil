@@ -88,7 +88,6 @@ const EditMo = ({ modal, setModal }) => {
 
   const { t } = useTranslation();
   const theme = useTheme();
-  console.log(theme.shadows);
   const [personName, setPersonName] = useState([]);
 
   const handleGetGroups = (event) => {
