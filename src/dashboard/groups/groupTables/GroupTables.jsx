@@ -158,7 +158,7 @@ const GroupTables = () => {
           }}
         >
           <H2>{t("group")}</H2>
-          <Tooltip title="Download groups data (Exel)" arrow>
+          <Tooltip title={t("groupDownloadTitle")} arrow>
             <IconButton
               sx={{ height: "fit-content", width: "fit-content" }}
               onClick={() => exportToExel("Group (Yengil App)", group)}

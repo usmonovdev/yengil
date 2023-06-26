@@ -153,8 +153,8 @@ const TeacherTables = () => {
             alignItems: "center",
           }}
         >
-          <H2>O’qituvchilar</H2>
-          <Tooltip title="Download teachers data (Exel)" arrow>
+          <H2>{t("dashboardTeachers")}</H2>
+          <Tooltip title={t("teachersDownloadTitle")} arrow>
             <IconButton
               sx={{ height: "fit-content", width: "fit-content" }}
               onClick={() => exportToExel("Teacher (Yengil App)", teacher)}
@@ -168,7 +168,7 @@ const TeacherTables = () => {
             </IconButton>
           </Tooltip>
         </Box>
-        <Paragraph>Jami - {teacher.length}</Paragraph>
+        <Paragraph>{t("groupTablesAll")} - {teacher.length}</Paragraph>
         <form>
           <Box
             sx={{
@@ -214,10 +214,10 @@ const TeacherTables = () => {
                   onChange={handleChange}
                   value={sorting}
                 >
-                  <MenuItem value="name">Ism Familiya</MenuItem>
-                  <MenuItem value="tel">Telefon</MenuItem>
-                  <MenuItem value="group">Guruh</MenuItem>
-                  <MenuItem value="salary">Oylik</MenuItem>
+                  <MenuItem value="name">{t("studentsInfo")}</MenuItem>
+                  <MenuItem value="tel">{t("studentsPhone")}</MenuItem>
+                  <MenuItem value="group">{t("studentsGroup")}</MenuItem>
+                  <MenuItem value="salary">{t("teachersEditLabel")}</MenuItem>
                 </Select>
               </FormControl>
             </Box>
@@ -239,11 +239,11 @@ const TeacherTables = () => {
                     <StyledTableCell align="left">
                       {t("groupTablesId")}
                     </StyledTableCell>
-                    <StyledTableCell align="left">Ism Familiya</StyledTableCell>
-                    <StyledTableCell align="left">Telefon</StyledTableCell>
-                    <StyledTableCell align="left">Guruhlar</StyledTableCell>
-                    <StyledTableCell align="left">Oylik</StyledTableCell>
-                    <StyledTableCell align="left">Edit</StyledTableCell>
+                    <StyledTableCell align="left">{t("groupOpenName")}</StyledTableCell>
+                    <StyledTableCell align="left">{t("gruopOpenPhone")}</StyledTableCell>
+                    <StyledTableCell align="left">{t("groupTables")}</StyledTableCell>
+                    <StyledTableCell align="left">{t("teachersEditLabel")}</StyledTableCell>
+                    <StyledTableCell align="left">{t("groupOpenEdit")}</StyledTableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
@@ -275,7 +275,7 @@ const TeacherTables = () => {
                           <TableCell
                             onClick={() => dispatch(studentsInfoTables())}
                           >
-                            Jami - {users.group}
+                            {t("groupTablesAll")} - {users.group}
                           </TableCell>
                           <TableCell
                             onClick={() => dispatch(studentsInfoTables())}
@@ -314,7 +314,7 @@ const TeacherTables = () => {
               justifyContent: "center",
             }}
           >
-            <H3>Bunday o'qituvchi topilmadi</H3>
+            <H3>{t("teachersEditNotFound")}</H3>
           </Box>
         )}
       </Box>
