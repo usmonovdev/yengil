@@ -1,0 +1,61 @@
+import React, { useState } from "react";
+import PropTypes from "prop-types";
+import { Box, Button, TextField, Typography } from "@mui/material";
+import { H3 } from "../../../ui/typography";
+
+function TabPanel(props) {
+  const { children, value, index, ...other } = props;
+
+  return (
+    <div
+      role="tabpanel"
+      hidden={value !== index}
+      id={`simple-tabpanel-${index}`}
+      aria-labelledby={`simple-tab-${index}`}
+      {...other}
+      style={{ width: "30%" }}
+    >
+      {value === index && (
+        <Box sx={{ p: 3 }}>
+          <Typography>{children}</Typography>
+        </Box>
+      )}
+    </div>
+  );
+}
+
+const AdvancePay = ({ value, index }) => {
+  const [input, setInput] = useState();
+
+  return (
+    <TabPanel value={value} index={index}>
+      <H3>Xabar Matni</H3>
+      <Box
+        sx={{
+          width: "100%",
+          height: "400px",
+          display: "flex",
+          flexDirection: "column",
+          marginTop: "20px",
+          gap: "15px",
+          alignItems: "flex-end",
+        }}
+      >
+        <TextField
+          sx={{ width: "100%" }}
+          id="outlined-multiline-static"
+          multiline
+          onChange={(e) => setInput(e.target.value)}
+          color="blue"
+          rows={11}
+          defaultValue="Assalomu alaykum (STUDENT)! (MARKAZ) o’quv markazida o’qish uchun to’lovingiz tez orada tugaydi. O’qishni davom ettirish uchun to’lovni amalga oshirishingizni so’raymiz."
+        />
+        <Button variant="contained" color="blue">
+          Save
+        </Button>
+      </Box>
+    </TabPanel>
+  );
+};
+
+export default AdvancePay;
