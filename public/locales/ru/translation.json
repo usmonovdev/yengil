@@ -164,5 +164,13 @@
     "teachersEditLabel": "Ежемесячно",
     "teachersEditNotFound": "Такого учителя не нашлось",
     "teacherMoInfo": "Информация об учителе",
-    "teachersDownloadTitle": "Скачать информацию для учителя (Excel)"
+    "teachersDownloadTitle": "Скачать информацию для учителя (Excel)",
+    "settingsAccount": "Счет",
+    "settingsAccountLogo": "Логотип",
+    "settingsAccountCenterName": "Название центра",
+    "settingsAccountPhone": "Телефон",
+    "settingsAccountPassword": "Пароль",
+    "settingsAccountButton": "Сохранить",
+    "settingMessage": "Сообщения",
+    "settingsTheme": "Тема"
 }

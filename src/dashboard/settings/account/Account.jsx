@@ -19,6 +19,7 @@ import { IMaskInput } from "react-imask";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { useTheme } from "@emotion/react";
 import { motion } from "framer-motion";
+import { useTranslation } from "react-i18next";
 
 const TextMaskCustom = React.forwardRef(function TextMaskCustom(props, ref) {
   const { onChange, ...other } = props;
@@ -72,13 +73,13 @@ const Account = ({ value, index }) => {
   const handleMouseDownPassword = (event) => {
     event.preventDefault();
   };
+  const { t } = useTranslation();
 
   return (
     <TabPanel value={value} index={index}>
       <motion.div
         initial={{x: "30%" }}
         animate={{x:-10}}
-        // transition={{ delay: 1 }}
         transition={{ duration: 0.9, delay: 0.1 }}
       >
 
@@ -104,7 +105,7 @@ const Account = ({ value, index }) => {
           >
           <img src={icon} style={{ width: "60px", height: "60px" }} />
         </Box>
-        <H2>Logo</H2>
+        <H2>{t("settingsAccountLogo")}</H2>
         <label htmlFor="logo">
           <EditIcon />
         </label>
@@ -126,13 +127,13 @@ const Account = ({ value, index }) => {
         }}
         >
         <InputComp
-          label={"Markaz nomi"}
+          label={t("settingsAccountCenterName")}
           placeholder={"Buxoro scholl"}
           value={name}
           setValue={setName}
           />
         <InputComp
-          label={"Telefon"}
+          label={t("settingsAccountPhone")}
           placeholder={"+998-90-000-00-00"}
           value={phone}
           setValue={setPhone}
@@ -145,7 +146,7 @@ const Account = ({ value, index }) => {
           onClick={(e) => setPassword(e.target.value)}
           >
           <InputLabel htmlFor="outlined-adornment-password">
-            Password
+            {t("settingsAccountPassword")}
           </InputLabel>
           <OutlinedInput
             id="outlined-adornment-password"
@@ -162,11 +163,11 @@ const Account = ({ value, index }) => {
                 </IconButton>
               </InputAdornment>
             }
-            label="Password*"
+            label={t("settingsAccountPassword")}
             />
         </FormControl>
         <Button variant="contained" color="blue" sx={{ width: "50%" }}>
-          Save
+          {t("settingsAccountButton")}
         </Button>
       </Box>
       </motion.div>

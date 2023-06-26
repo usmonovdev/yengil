@@ -163,5 +163,13 @@
     "teachersEditLabel": "Oylik",
     "teachersEditNotFound": "Bunday o'qituvchi topilmadi",
     "teacherMoInfo": "O'qituvchi haqida ma'lumot",
-    "teachersDownloadTitle": "O'qituvchilar ma'lumotlarini yuklab oling (Excel)"
+    "teachersDownloadTitle": "O'qituvchilar ma'lumotlarini yuklab oling (Excel)",
+    "settingsAccount": "Hisob",
+    "settingsAccountLogo": "Logo",
+    "settingsAccountCenterName": "Markaz nomi",
+    "settingsAccountPhone": "Telefon",
+    "settingsAccountPassword": "Parol",
+    "settingsAccountButton": "Saqlash",
+    "settingMessage": "Xabarlar",
+    "settingsTheme": "Mavzu"
 }

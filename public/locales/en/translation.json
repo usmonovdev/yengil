@@ -164,6 +164,13 @@
     "teachersEditLabel": "Monthly",
     "teachersEditNotFound": "No such teacher was found",
     "teacherMoInfo": "Teacher Info",
-    "teachersDownloadTitle": "Download teachers data (Exel)"
-
+    "teachersDownloadTitle": "Download teachers data (Exel)",
+    "settingsAccount": "Account",
+    "settingsAccountLogo": "Logo",
+    "settingsAccountCenterName": "Center name",
+    "settingsAccountPhone": "Phone",
+    "settingsAccountPassword": "Password",
+    "settingsAccountButton": "Save",
+    "settingMessage": "Messages",
+    "settingsTheme": "Theme"
 }
