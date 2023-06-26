@@ -1,5 +1,5 @@
 import { Box, IconButton, Tooltip, styled, useTheme } from "@mui/material";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { H1, Paragraph } from "../../ui/typography";
 import chatArrow from "../../assets/icons/double-arrow.png";
 import darkChatArrow from "../../assets/dark/double-arrow.png";
@@ -40,6 +40,10 @@ const TopDashboard = ({
   }));
 
   const navigate = useNavigate();
+
+  useEffect(() => {
+    document.title = `Yengil CRM - ${header}`
+  }, [document.title])
 
   return (
     <motion.div

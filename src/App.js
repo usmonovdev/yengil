@@ -1,23 +1,11 @@
 import { CssBaseline, ThemeProvider, createTheme } from "@mui/material";
-import { Route, Routes, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useEffect, useMemo, useState } from "react";
 import { lightBlue, grey, indigo, green } from "@mui/material/colors";
-import Home from "./components/Home";
-import Register from "./components/register/Register";
-import Login from "./components/login/Login";
-import Error from "./components/errorPage/Error";
-import Statistics from "./components/adv/statistics/Statistics";
-import DashboardHome from "./dashboard/home/Home"
 import Dashboard from "./dashboard/Dashboard";
-import Students from "./dashboard/students/Students";
-import Groups from "./dashboard/groups/Groups";
-import Teachers from "./dashboard/teachers/Teachers";
-import Money from "./dashboard/money/Money";
-import Settings from "./dashboard/settings/Settings";
-import DashboardNav from "./dashboard/dashboardNav/Nav"
-import "./app.scss"
 import RoutesHome from "./components/RoutesHome";
+import "./app.scss"
 const { palette } = createTheme();
 const { augmentColor } = palette;
 const createColor = (mainColor) => augmentColor({ color: { main: mainColor } });

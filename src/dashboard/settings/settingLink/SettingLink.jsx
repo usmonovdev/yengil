@@ -50,9 +50,10 @@ export default function SettingLink() {
     <Box sx={{ width: "100%" }}>
       <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
         <Tabs
+          indicatorColor="secondary"
           value={value}
           onChange={handleChange}
-          aria-label="basic tabs example"
+          textColor="secondary"
         >
           <Tab label="Account" {...a11yProps(0)} />
           <Tab label="xabarlar" {...a11yProps(1)} />
