@@ -9,6 +9,7 @@ import ZoomOutMapIcon from "@mui/icons-material/ZoomOutMap";
 import EditMo from "./EditMo";
 import UsersMo from "./UsersMo";
 import DeleteMo from "../../../ui/DeleteMo";
+import { useTranslation } from "react-i18next";
 
 const TableActions = ({ id }) => {
   const [anchorEl, setAnchorEl] = useState(null);
@@ -25,6 +26,7 @@ const TableActions = ({ id }) => {
     setAnchorEl(null);
   };
   const theme = useTheme();
+  const { t } = useTranslation()
   return (
     <>
       <IconButton
@@ -75,7 +77,7 @@ const TableActions = ({ id }) => {
           </IconButton>
         </Box>
       </Menu>
-      <DeleteMo modal={delModal} setModal={setDelModal} text={"Rostdanham ushbu o'qituvchini o'chirib tashlamoqchimisiz?"} />
+      <DeleteMo modal={delModal} setModal={setDelModal} text={t("teachersAction")} />
       <EditMo modal={editMo} setModal={setEditMo}/>
       <UsersMo modal={usersMo} setModal={setUsersMo} id={id}/>
     </>

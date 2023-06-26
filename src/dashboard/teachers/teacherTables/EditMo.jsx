@@ -132,7 +132,7 @@ const EditMo = ({ modal, setModal }) => {
           transition={{ duration: 1, type: "spring", delay: 0.1 }}
         >
           <Box sx={modalStyle}>
-            <H3>Edit Teacher</H3>
+            <H3>{t("teacherEdit")}</H3>
             <InputComp
               placeholder="Azizbek"
               value={name}
@@ -153,7 +153,7 @@ const EditMo = ({ modal, setModal }) => {
               placeholder="50%"
               value={salary}
               setValue={setSalary}
-              label={"Oylik"}
+              label={t("teachersEditLabel")}
               required={true}
               name={name}
             />

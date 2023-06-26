@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { useTheme } from "@emotion/react";
 import { H3, Paragraph } from "../../../ui/typography";
 import DeleteMo from "../../../ui/DeleteMo";
+import { t } from "i18next";
 
 const modalStyle = {
   position: "absolute",
@@ -62,14 +63,14 @@ const UsersMo = ({ modal, setModal }) => {
           transition={{ duration: 1, type: "spring", delay: 0.1 }}
         >
           <Box sx={modalStyle}>
-            <Paragraph>Teacher Info</Paragraph>
+            <Paragraph>{t("teacherMoInfo")}</Paragraph>
             <Box sx={{ display: "flex", flexDirection: "column", gap: "10px" }}>
-              <StyledH3>Name: Usmonov Azizbek</StyledH3>
-              <StyledH3>Group: Matematika</StyledH3>
-              <StyledH3>Lesson Day: Monday</StyledH3>
-              <StyledH3>Tel: +998 90 000 00 00</StyledH3>
-              <StyledH3>Oylik: 50%</StyledH3>
-              <StyledH3>Vaqt: 08:00 / 10:00</StyledH3>
+              <StyledH3>{t("userMoName")}: Usmonov Azizbek</StyledH3>
+              <StyledH3>{t("groupTables")}: Matematika</StyledH3>
+              <StyledH3>{t("groupTablesDay")}: Monday</StyledH3>
+              <StyledH3>{t("gruopOpenPhone")}: +998 90 000 00 00</StyledH3>
+              <StyledH3>{t("teachersEditLabel")}: 50%</StyledH3>
+              <StyledH3>{t("groupTablesClock")}: 08:00 / 10:00</StyledH3>
             </Box>
             <Box
               sx={{
@@ -86,7 +87,7 @@ const UsersMo = ({ modal, setModal }) => {
                   color: "black",
                 }}
               >
-                Canel
+                {t("groupOpenCanel")}
               </Button>
               <DeleteMo />
             </Box>

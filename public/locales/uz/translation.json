@@ -87,6 +87,7 @@
     "studentsGroup": "Guruh",
     "studentsPayment": "To'lov",
     "studentsNotFound": "O’quvchi topilmadi",
+    "studentsDownloadTitle": "O'quvchilarni yuklab oling (Exel)",
     "studentsLabelRowsPerPage": "Har bir sahifadagi qatorlar:",
     "newStudents": "Yangi O’quvchilar",
     "newStudentsAll": "Jami",
@@ -143,6 +144,7 @@
     "groupOpenDabt": "Qarz",
     "groupOpenEdit": "Tahrirlash",
     "groupMore": "Ko'proq",
+    "groupDownloadTitle": "Guruhlar ma'lumotlarini yuklab oling (Excel)",
     "deleteTitleRequest": "Haqiqatan ham soʻrov yuborgan talabani oʻchirib tashlamoqchimisiz?",
     "deleteTitlePending": "Haqiqatan ham kutilayotgan oʻquvchini oʻchirib tashlamoqchimisiz?",
     "deleteTitle": "Bu oʻquvchini oʻchirib tashlamoqchimisiz?",
@@ -155,5 +157,11 @@
     "userMoName": "Ism",
     "userMoDebitTime": "Qarz muddati",
     "userMoTotalDebit": "Umumiy qarz",
-    "userMoPhone": "Telefon"
+    "userMoPhone": "Telefon",
+    "teachersAction": "Haqiqatan ham bu oʻqituvchini oʻchirib tashlamoqchimisiz?",
+    "teacherEdit": "O'qituvchini tahrirlash",
+    "teachersEditLabel": "Oylik",
+    "teachersEditNotFound": "Bunday o'qituvchi topilmadi",
+    "teacherMoInfo": "O'qituvchi haqida ma'lumot",
+    "teachersDownloadTitle": "O'qituvchilar ma'lumotlarini yuklab oling (Excel)"
 }
