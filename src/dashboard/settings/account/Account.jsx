@@ -18,6 +18,7 @@ import InputComp from "../../../ui/InputComp";
 import { IMaskInput } from "react-imask";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { useTheme } from "@emotion/react";
+import { motion } from "framer-motion";
 
 const TextMaskCustom = React.forwardRef(function TextMaskCustom(props, ref) {
   const { onChange, ...other } = props;
@@ -74,6 +75,13 @@ const Account = ({ value, index }) => {
 
   return (
     <TabPanel value={value} index={index}>
+      <motion.div
+        initial={{x: "30%" }}
+        animate={{x:-10}}
+        // transition={{ delay: 1 }}
+        transition={{ duration: 0.9, delay: 0.1 }}
+      >
+
       <Box
         sx={{
           display: "flex",
@@ -82,7 +90,7 @@ const Account = ({ value, index }) => {
           gap: "20px",
           justifyContent: "flex-start",
         }}
-      >
+        >
         <Box
           sx={{
             border: "2px solid #64b5f6",
@@ -93,7 +101,7 @@ const Account = ({ value, index }) => {
             alignItems: "center",
             justifyContent: "center",
           }}
-        >
+          >
           <img src={icon} style={{ width: "60px", height: "60px" }} />
         </Box>
         <H2>Logo</H2>
@@ -105,7 +113,7 @@ const Account = ({ value, index }) => {
           sx={{ display: "none" }}
           inputProps={{ accept: "image/*" }}
           id="logo"
-        />
+          />
       </Box>
       <Box
         sx={{
@@ -116,26 +124,26 @@ const Account = ({ value, index }) => {
           gap: "20px",
           alignItems: "flex-end",
         }}
-      >
+        >
         <InputComp
           label={"Markaz nomi"}
           placeholder={"Buxoro scholl"}
           value={name}
           setValue={setName}
-        />
+          />
         <InputComp
           label={"Telefon"}
           placeholder={"+998-90-000-00-00"}
           value={phone}
           setValue={setPhone}
           inputProps={TextMaskCustom}
-        />
+          />
         <FormControl
           variant="outlined"
           sx={{ width: "100%" }}
           color="blue"
           onClick={(e) => setPassword(e.target.value)}
-        >
+          >
           <InputLabel htmlFor="outlined-adornment-password">
             Password
           </InputLabel>
@@ -149,18 +157,19 @@ const Account = ({ value, index }) => {
                   onClick={handleClickShowPassword}
                   onMouseDown={handleMouseDownPassword}
                   edge="end"
-                >
+                  >
                   {showPassword ? <VisibilityOff /> : <Visibility />}
                 </IconButton>
               </InputAdornment>
             }
             label="Password*"
-          />
+            />
         </FormControl>
         <Button variant="contained" color="blue" sx={{ width: "50%" }}>
           Save
         </Button>
       </Box>
+      </motion.div>
     </TabPanel>
   );
 };
