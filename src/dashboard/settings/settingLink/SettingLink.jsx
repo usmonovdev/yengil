@@ -4,6 +4,7 @@ import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
+import Account from "../account/Account";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -58,9 +59,7 @@ export default function SettingLink() {
           <Tab label="Mavzu" {...a11yProps(2)} />
         </Tabs>
       </Box>
-      <TabPanel value={value} index={0}>
-        Account
-      </TabPanel>
+      <Account value={value} index={0} />
       <TabPanel value={value} index={1}>
         Xabarlar
       </TabPanel>
