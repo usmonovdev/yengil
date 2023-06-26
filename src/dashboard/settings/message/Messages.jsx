@@ -12,6 +12,8 @@ import { H3, Paragraph } from "../../../ui/typography";
 import styled from "@emotion/styled";
 import AdvancePay from "./AdvancePay";
 import Unpaid from "./Unpaid";
+import Paid from "./Paid";
+import Joined from "./Joined";
 
 const IOSSwitch = styled((props) => (
   <Switch focusVisibleClassName=".Mui-focusVisible" disableRipple {...props} />
@@ -134,6 +136,10 @@ TabPanel.propTypes = {
   value: PropTypes.number.isRequired,
 };
 
+const H = styled(H3)(({ theme }) => ({
+  color: "black",
+}));
+
 function a11yProps(index) {
   return {
     id: `vertical-tab-${index}`,
@@ -253,6 +259,38 @@ const Messages = ({ value, index }) => {
         </Tabs>
         <AdvancePay value={values} index={0} />
         <Unpaid value={values} index={1} />
+        <Paid value={values} index={2} />
+        <Joined value={values} index={3} />
+        <Box
+          sx={{
+            margin: "30px",
+            display: "flex",
+            flexDirection: "column",
+            gap: "15px",
+          }}
+        >
+          <H3>Kalit so’zlar</H3>
+          <Box
+            sx={{
+              border: "1px solid gray",
+              width: "400px",
+              height: "340px",
+              padding: "20px",
+              display: "flex",
+              flexDirection: "column",
+              gap: "10px",
+              color: "black",
+            }}
+          >
+            <H>(STUDENT) - Talabaning ismi</H>
+            <H>(GROUP) - Guruh nomi</H>
+            <H>(TEACHER) - O’qituvchining ismi</H>
+            <H>(DAYS) - Dars kunlari</H>
+            <H>(HOURS) - Darsning boshlanish va tugash vaqti</H>
+            <H>(SUM) - To’lov miqdori</H>
+            <H>(MARKAZ) - O’quv markaz</H>
+          </Box>
+        </Box>
       </Box>
     </TabPanel>
   );

@@ -23,7 +23,7 @@ function TabPanel(props) {
   );
 }
 
-const AdvancePay = ({ value, index }) => {
+const Paid = ({ value, index }) => {
   const [input, setInput] = useState();
 
   return (
@@ -47,7 +47,7 @@ const AdvancePay = ({ value, index }) => {
           onChange={(e) => setInput(e.target.value)}
           color="blue"
           rows={11}
-          defaultValue="Assalomu alaykum (STUDENT)! Sizning oylik to’lovdan umumiy qarzdorligingiz (SUM). O’qishni davom ettirishingiz uchun to’lovni amalga oshirishingizni so’raymiz. Hurmat bilan (MARKAZ)."
+          defaultValue="Assalomu alaykum (STUDENT)! (MARKAZ)’da o’qishni davom ettirish uchun to’lovingiz amalga oshirildi. To’lov miqdori (SUM)."
         />
         <Button variant="contained" color="blue">
           Save
@@ -57,4 +57,4 @@ const AdvancePay = ({ value, index }) => {
   );
 };
 
-export default AdvancePay;
+export default Paid;
