@@ -57,6 +57,10 @@ const Color = styled(Box)(({ theme }) => ({
   borderRadius: "5px",
   cursor: "pointer",
   transition: "200ms",
+  '.Mui-focusVisible &': {
+    outline: '2px auto rgba(19,124,189,.6)',
+    outlineOffset: 2,
+  },
 }));
 
 const ColorChecked = styled(Color)(({ theme }) => ({
@@ -80,6 +84,7 @@ const Theme = () => {
                 onClick={() => dispatch(toggleThemeColor(color.color))}
                 key={color.id}
                 value={`first+${color.id}`}
+                sx={{ m: 0 }}
                 checked={color.hex === themeMainColor}
                 control={<Radio sx={{ padding: "0" }} checkedIcon={<ColorChecked sx={{ background: color.color }} />} icon={<Color sx={{ background: color.color }} />} />}
               />
