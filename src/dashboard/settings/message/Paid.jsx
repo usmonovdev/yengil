@@ -31,7 +31,7 @@ const Paid = ({ value, index }) => {
       <H3>Xabar Matni</H3>
       <Box
         sx={{
-          width: "100%",
+          width: { xs: "490%", sm: "350%", md: "150%" },
           height: "400px",
           display: "flex",
           flexDirection: "column",

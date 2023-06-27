@@ -14,6 +14,7 @@ import AdvancePay from "./AdvancePay";
 import Unpaid from "./Unpaid";
 import Paid from "./Paid";
 import Joined from "./Joined";
+import { useTheme } from "@emotion/react";
 
 const IOSSwitch = styled((props) => (
   <Switch focusVisibleClassName=".Mui-focusVisible" disableRipple {...props} />
@@ -29,7 +30,7 @@ const IOSSwitch = styled((props) => (
       transform: "translateX(16px)",
       color: "#fff",
       "& + .MuiSwitch-track": {
-        backgroundColor: theme.palette.mode === "dark" ? "#2ECA45" : "#65C466",
+        backgroundColor: theme.palette.blue.main,
         opacity: 1,
         border: 0,
       },
@@ -66,50 +67,6 @@ const IOSSwitch = styled((props) => (
   },
 }));
 
-const AntSwitch = styled(Switch)(({ theme }) => ({
-  width: 28,
-  height: 16,
-  padding: 0,
-  display: "flex",
-  "&:active": {
-    "& .MuiSwitch-thumb": {
-      width: 15,
-    },
-    "& .MuiSwitch-switchBase.Mui-checked": {
-      transform: "translateX(9px)",
-    },
-  },
-  "& .MuiSwitch-switchBase": {
-    padding: 2,
-    "&.Mui-checked": {
-      transform: "translateX(12px)",
-      color: "#fff",
-      "& + .MuiSwitch-track": {
-        opacity: 1,
-        backgroundColor: theme.palette.mode === "dark" ? "#177ddc" : "#1890ff",
-      },
-    },
-  },
-  "& .MuiSwitch-thumb": {
-    boxShadow: "0 2px 4px 0 rgb(0 35 11 / 20%)",
-    width: 12,
-    height: 12,
-    borderRadius: 6,
-    transition: theme.transitions.create(["width"], {
-      duration: 200,
-    }),
-  },
-  "& .MuiSwitch-track": {
-    borderRadius: 16 / 2,
-    opacity: 1,
-    backgroundColor:
-      theme.palette.mode === "dark"
-        ? "rgba(255,255,255,.35)"
-        : "rgba(0,0,0,.25)",
-    boxSizing: "border-box",
-  },
-}));
-
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
 
@@ -122,7 +79,11 @@ function TabPanel(props) {
       {...other}
     >
       {value === index && (
-        <Box sx={{ p: 3 }}>
+        <Box
+          sx={{
+            p: 3,
+          }}
+        >
           <Typography>{children}</Typography>
         </Box>
       )}
@@ -137,7 +98,7 @@ TabPanel.propTypes = {
 };
 
 const H = styled(H3)(({ theme }) => ({
-  color: "black",
+  color: theme.palette.mode == "light" ? "black" : "white",
 }));
 
 function a11yProps(index) {
@@ -149,6 +110,7 @@ function a11yProps(index) {
 
 const Messages = ({ value, index }) => {
   const [values, setValues] = React.useState(0);
+  const theme = useTheme();
 
   const handleChange = (event, newValue) => {
     setValues(newValue);
@@ -159,9 +121,12 @@ const Messages = ({ value, index }) => {
       <Box
         sx={{
           flexGrow: 1,
-          bgcolor: "background.paper",
+          width: { xs: "100%", md: "100%" },
+          alignItems: { xs: "center", md: "flex-start" },
+          justifyContent: { xs: "center", md: "flex-start" },
+          bgcolor: theme.palette.mode == "light" ? "background.paper" : "#21212121" ,
           display: "flex",
-          height: 500,
+          flexDirection: { xs: "column", md: "row" },
         }}
       >
         <Tabs
@@ -172,7 +137,7 @@ const Messages = ({ value, index }) => {
           aria-label="Vertical tabs example"
           sx={{
             borderRight: 1,
-            width: "30%",
+            width: { sm: "60%", md: "30%" },
             borderColor: "divider",
           }}
         >
@@ -183,9 +148,10 @@ const Messages = ({ value, index }) => {
                 sx={{
                   width: "100%",
                   display: "flex",
+                  flexDirection: { xs: "column", sm: "row" },
                   alignItems: "center",
-                  justifyContent: "space-between",
-                  gap: "30px",
+                  justifyContent: { xs: "center", sm: "space-between" },
+                  gap: "10px",
                 }}
               >
                 <Paragraph>Oldindan to’lov </Paragraph>
@@ -203,9 +169,10 @@ const Messages = ({ value, index }) => {
                 sx={{
                   width: "100%",
                   display: "flex",
+                  flexDirection: { xs: "column", sm: "row" },
                   alignItems: "center",
-                  justifyContent: "space-between",
-                  gap: "30px",
+                  justifyContent: { xs: "center", sm: "space-between" },
+                  gap: "10px",
                 }}
               >
                 <Paragraph>To’lov qilinmadi</Paragraph>
@@ -223,9 +190,10 @@ const Messages = ({ value, index }) => {
                 sx={{
                   width: "100%",
                   display: "flex",
+                  flexDirection: { xs: "column", sm: "row" },
                   alignItems: "center",
-                  justifyContent: "space-between",
-                  gap: "30px",
+                  justifyContent: { xs: "center", sm: "space-between" },
+                  gap: "10px",
                 }}
               >
                 <Paragraph>To’lov qilindi</Paragraph>
@@ -243,9 +211,10 @@ const Messages = ({ value, index }) => {
                 sx={{
                   width: "100%",
                   display: "flex",
+                  flexDirection: { xs: "column", sm: "row" },
                   alignItems: "center",
-                  justifyContent: "space-between",
-                  gap: "30px",
+                  justifyContent: { xs: "center", sm: "space-between" },
+                  gap: "10px",
                 }}
               >
                 <Paragraph>Guruhga qo’shildi</Paragraph>
@@ -257,38 +226,46 @@ const Messages = ({ value, index }) => {
             {...a11yProps(3)}
           />
         </Tabs>
-        <AdvancePay value={values} index={0} />
-        <Unpaid value={values} index={1} />
-        <Paid value={values} index={2} />
-        <Joined value={values} index={3} />
         <Box
           sx={{
-            margin: "30px",
             display: "flex",
-            flexDirection: "column",
-            gap: "15px",
+            width: "100%",
+            flexDirection: { xs: "column", md: "row" },
+            gap: "120px",
           }}
         >
-          <H3>Kalit so’zlar</H3>
+          <AdvancePay value={values} index={0} />
+          <Unpaid value={values} index={1} />
+          <Paid value={values} index={2} />
+          <Joined value={values} index={3} />
           <Box
             sx={{
-              border: "1px solid gray",
-              width: "400px",
-              height: "340px",
-              padding: "20px",
+              margin: "30px",
               display: "flex",
               flexDirection: "column",
-              gap: "10px",
-              color: "black",
+              gap: "15px",
+              width: "30%",
             }}
           >
-            <H>(STUDENT) - Talabaning ismi</H>
-            <H>(GROUP) - Guruh nomi</H>
-            <H>(TEACHER) - O’qituvchining ismi</H>
-            <H>(DAYS) - Dars kunlari</H>
-            <H>(HOURS) - Darsning boshlanish va tugash vaqti</H>
-            <H>(SUM) - To’lov miqdori</H>
-            <H>(MARKAZ) - O’quv markaz</H>
+            <H3>Kalit so’zlar</H3>
+            <Box
+              sx={{
+                border: "1px solid gray",
+                width: { xs: "250%", sm: "250%", md: "150%" },
+                padding: "20px",
+                display: "flex",
+                flexDirection: "column",
+                gap: "10px",
+              }}
+            >
+              <H>(STUDENT) - Talabaning ismi</H>
+              <H>(GROUP) - Guruh nomi</H>
+              <H>(TEACHER) - O’qituvchining ismi</H>
+              <H>(DAYS) - Dars kunlari</H>
+              <H>(HOURS) - Darsning boshlanish va tugash vaqti</H>
+              <H>(SUM) - To’lov miqdori</H>
+              <H>(MARKAZ) - O’quv markaz</H>
+            </Box>
           </Box>
         </Box>
       </Box>

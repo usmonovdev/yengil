@@ -12,7 +12,7 @@ function TabPanel(props) {
       id={`simple-tabpanel-${index}`}
       aria-labelledby={`simple-tab-${index}`}
       {...other}
-      style={{width: "30%"}}
+      style={{ width: "30%" }}
     >
       {value === index && (
         <Box sx={{ p: 3 }}>
@@ -30,7 +30,7 @@ const Unpaid = ({ value, index }) => {
       <H3>Xabar Matni</H3>
       <Box
         sx={{
-          width: "100%",
+          width: { xs: "490%", sm: "350%", md: "150%" },
           height: "400px",
           display: "flex",
           flexDirection: "column",

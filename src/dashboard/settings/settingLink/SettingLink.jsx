@@ -7,6 +7,7 @@ import Box from "@mui/material/Box";
 import Account from "../account/Account";
 import { useTranslation } from "react-i18next";
 import Theme from "../theme/Theme";
+import Messages from "../message/Messages";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -65,9 +66,7 @@ export default function SettingLink() {
         </Tabs>
       </Box>
       <Account value={value} index={0} />
-      <TabPanel value={value} index={1}>
-        Xabarlar
-      </TabPanel>
+      <Messages value={value} index={1} />
       <TabPanel value={value} index={2}>
         <Theme />
       </TabPanel>
