@@ -15,6 +15,7 @@ function App() {
   const state = useSelector(state => state.Token)
   const darkMode = useSelector(state => state.isDarkMode)
   const themeColor = useSelector(state => state.themeMainColor)
+  const font = useSelector(state => state.themeFont)
   const navigate = useNavigate()
 
   const getTokens = (mode) => ({
@@ -78,11 +79,11 @@ function App() {
     },
     shadows: Array(25).fill('none'),
     typography: {
-      fontFamily: '"Raleway", sans-serif',
+      fontFamily: `${font}, sans-serif`,
       fontWeightLight: 200,
     },
   });
-  const theme = useMemo(() => createTheme(getTokens(mode)), [mode, themeColor])
+  const theme = useMemo(() => createTheme(getTokens(mode)), [mode, themeColor, font])
 
   useMemo(() => {
     if (darkMode) {

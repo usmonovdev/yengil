@@ -6,10 +6,12 @@ import {
   Radio,
   RadioGroup,
   styled,
+  useTheme,
 } from "@mui/material";
 import {
   cyan,
   green,
+  grey,
   lightBlue,
   orange,
   purple,
@@ -17,6 +19,10 @@ import {
 } from "@mui/material/colors";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleThemeColor } from "../../../store/themeSlice";
+import CheckIcon from "@mui/icons-material/Check";
+import Language from "./Language";
+import Dark from "./Dark";
+import Font from "./Font";
 
 const mainColors = [
   {
@@ -57,41 +63,68 @@ const Color = styled(Box)(({ theme }) => ({
   borderRadius: "5px",
   cursor: "pointer",
   transition: "200ms",
-  '.Mui-focusVisible &': {
-    outline: '2px auto rgba(19,124,189,.6)',
-    outlineOffset: 2,
+  "input:hover ~ &": {
+    transform: "scale(1.1)",
   },
 }));
 
 const ColorChecked = styled(Color)(({ theme }) => ({
-  border: "2px solid black"
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
 }));
 
 const Theme = () => {
   const dispatch = useDispatch();
-  const themeMainColor = useSelector(state => state.themeMainColor)
+  const themeMainColor = useSelector((state) => state.themeMainColor);
+  const theme = useTheme();
+  console.log(theme.palette);
+
   return (
-    <Box sx={{ display: "flex", flexDirection: "column", gap: "10px" }}>
-      <H3>Asosiy rang</H3>
-      <Box>
-        <RadioGroup
-          name="use-radio-group"
-          sx={{ display: "flex", flexDirection: "row", gap: "10px" }}
-        >
-          {mainColors.map((color) => {
-            return (
-              <FormControlLabel
-                onClick={() => dispatch(toggleThemeColor(color.color))}
-                key={color.id}
-                value={`first+${color.id}`}
-                sx={{ m: 0 }}
-                checked={color.hex === themeMainColor}
-                control={<Radio sx={{ padding: "0" }} checkedIcon={<ColorChecked sx={{ background: color.color }} />} icon={<Color sx={{ background: color.color }} />} />}
-              />
-            );
-          })}
-        </RadioGroup>
+    <Box sx={{ display: "flex", flexDirection: "column", gap: "20px", p: 0 }}>
+      <Language />
+      <Dark />
+      <Box sx={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+        <H3>Asosiy rang</H3>
+        <Box>
+          <RadioGroup
+            name="use-radio-group"
+            sx={{ display: "flex", flexDirection: "row", gap: "10px" }}
+          >
+            {mainColors.map((color) => {
+              return (
+                <FormControlLabel
+                  onClick={() => dispatch(toggleThemeColor(color.color))}
+                  key={color.id}
+                  value={`first+${color.id}`}
+                  sx={{ m: 0 }}
+                  checked={color.hex === themeMainColor}
+                  control={
+                    <Radio
+                      sx={{ padding: "0" }}
+                      checkedIcon={
+                        <ColorChecked
+                          aria-label="color-selected"
+                          sx={{ background: color.color }}
+                        >
+                          <CheckIcon sx={{ color: grey[100] }} />
+                        </ColorChecked>
+                      }
+                      icon={
+                        <Color
+                          aria-label="color-not-selected"
+                          sx={{ background: color.color }}
+                        />
+                      }
+                    />
+                  }
+                />
+              );
+            })}
+          </RadioGroup>
+        </Box>
       </Box>
+      <Font />
     </Box>
   );
 };
