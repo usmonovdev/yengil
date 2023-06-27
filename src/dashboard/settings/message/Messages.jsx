@@ -151,11 +151,11 @@ const Messages = () => {
             display: "flex",
             flexDirection: "column",
             gap: "10px",
-            ".css-lfwcke-MuiTabs-flexContainer": {
-              display: "flex",
-              flexDirection: "column",
-              gap: "10px",
-            },
+            // ".css-lfwcke-MuiTabs-flexContainer": {
+            //   display: "flex",
+            //   flexDirection: "column",
+            //   gap: "10px",
+            // },
           }}
         >
           {tabsData.map((tab, index) => {
@@ -166,6 +166,7 @@ const Messages = () => {
                   maxHeight: "100%",
                   bgcolor: "action.hover",
                   borderRadius: "5px 0 0 5px",
+                  marginBottom: "8px"
                 }}
                 label={
                   <Box
