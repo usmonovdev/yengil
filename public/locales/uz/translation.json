@@ -171,5 +171,8 @@
     "settingsAccountPassword": "Parol",
     "settingsAccountButton": "Saqlash",
     "settingMessage": "Xabarlar",
-    "settingsTheme": "Mavzu"
+    "settingsTheme": "Mavzu",
+    "settingsThemeMainColor": "Asosiy rang",
+    "settingsThemeFont": "Shrift oilasi",
+    "settingsThemeLanguage": "Til"
 }

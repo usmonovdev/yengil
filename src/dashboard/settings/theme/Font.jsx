@@ -4,6 +4,7 @@ import { H3 } from "../../../ui/typography";
 import { grey } from "@mui/material/colors";
 import { useDispatch } from "react-redux";
 import { toggleFont } from "../../../store/themeSlice";
+import { useTranslation } from "react-i18next";
 
 const FontBox = styled(Box)(({ theme }) => ({
   width: "fit-content",
@@ -54,9 +55,10 @@ const fonts = [
 const Font = () => {
   const dispatch = useDispatch()
   const theme = useTheme()
+  const { t } = useTranslation();
   return (
     <Box sx={{ display: "flex", flexDirection: "column", gap: "10px" }}>
-      <H3>Shrift oilasi</H3>
+      <H3>{t("settingsThemeFont")}</H3>
       <Box>
       <RadioGroup
           name="use-radio-group"

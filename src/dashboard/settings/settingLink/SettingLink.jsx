@@ -61,8 +61,8 @@ export default function SettingLink() {
           textColor="secondary"
         >
           <Tab label={t("settingsAccount")} {...a11yProps(0)} />
-          <Tab label="xabarlar" {...a11yProps(1)} />
-          <Tab label="Mavzu" {...a11yProps(2)} />
+          <Tab label={t("settingMessage")} {...a11yProps(1)} />
+          <Tab label={t("settingsTheme")} {...a11yProps(2)} />
         </Tabs>
       </Box>
       <Account value={value} index={0} />

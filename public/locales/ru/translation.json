@@ -172,5 +172,8 @@
     "settingsAccountPassword": "Пароль",
     "settingsAccountButton": "Сохранить",
     "settingMessage": "Сообщения",
-    "settingsTheme": "Тема"
+    "settingsTheme": "Тема",
+    "settingsThemeMainColor": "Основной цвет",
+    "settingsThemeFont": "Семейство шрифтов",
+    "settingsThemeLanguage": "Язык"
 }
