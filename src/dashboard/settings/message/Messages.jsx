@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Box,
   FormControlLabel,
@@ -7,7 +7,6 @@ import {
   Tabs,
   Typography,
 } from "@mui/material";
-import PropTypes from "prop-types";
 import { H3, Paragraph } from "../../../ui/typography";
 import styled from "@emotion/styled";
 import AdvancePay from "./AdvancePay";
@@ -67,6 +66,33 @@ const IOSSwitch = styled((props) => (
   },
 }));
 
+const StyledP = styled(Paragraph)(({ theme }) => ({
+  width: "100%",
+  height: "fit-content",
+  background: theme.palette.action.hover,
+  padding: "10px",
+  borderRadius: "5px",
+}));
+
+const tabsData = [
+  {
+    title: "Oldindan to’lov",
+    id: 1,
+  },
+  {
+    title: "To’lov qilinmadi",
+    id: 2,
+  },
+  {
+    title: "To’lov qilindi",
+    id: 3,
+  },
+  {
+    title: "Guruhga qo’shildi",
+    id: 4,
+  },
+];
+
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
 
@@ -74,32 +100,15 @@ function TabPanel(props) {
     <div
       role="tabpanel"
       hidden={value !== index}
-      id={`vertical-tabpanel-${index}`}
-      aria-labelledby={`vertical-tab-${index}`}
+      id={`simple-tabpanel-${index}`}
+      aria-labelledby={`simple-tab-${index}`}
       {...other}
+      style={{ width: "100%" }}
     >
-      {value === index && (
-        <Box
-          sx={{
-            p: 3,
-          }}
-        >
-          <Typography>{children}</Typography>
-        </Box>
-      )}
+      {value === index && <Box sx={{ padding: { xs: "20px 0 0 0", md: "0 20px 0 20px" }}}>{children}</Box>}
     </div>
   );
 }
-
-TabPanel.propTypes = {
-  children: PropTypes.node,
-  index: PropTypes.number.isRequired,
-  value: PropTypes.number.isRequired,
-};
-
-const H = styled(H3)(({ theme }) => ({
-  color: theme.palette.mode == "light" ? "black" : "white",
-}));
 
 function a11yProps(index) {
   return {
@@ -108,8 +117,8 @@ function a11yProps(index) {
   };
 }
 
-const Messages = ({ value, index }) => {
-  const [values, setValues] = React.useState(0);
+const Messages = () => {
+  const [values, setValues] = useState(0);
   const theme = useTheme();
 
   const handleChange = (event, newValue) => {
@@ -117,159 +126,116 @@ const Messages = ({ value, index }) => {
   };
 
   return (
-    <TabPanel value={value} index={1}>
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: {xs: "column", md: "row"},
+        justifyContent: "space-between",
+        marginTop: "20px"
+      }}
+    >
       <Box
         sx={{
-          flexGrow: 1,
-          width: { xs: "100%", md: "100%" },
-          alignItems: { xs: "center", md: "flex-start" },
-          justifyContent: { xs: "center", md: "flex-start" },
-          bgcolor: theme.palette.mode == "light" ? "background.paper" : "#21212121" ,
-          display: "flex",
-          flexDirection: { xs: "column", md: "row" },
+          width: { sm: "100%", md: "30%" },
         }}
       >
         <Tabs
           orientation="vertical"
-          variant="scrollable"
           value={values}
           onChange={handleChange}
-          aria-label="Vertical tabs example"
+          aria-label="tab-box"
+          textColor="secondary"
+          indicatorColor="secondary"
           sx={{
-            borderRight: 1,
-            width: { sm: "60%", md: "30%" },
-            borderColor: "divider",
+            width: "100%",
+            display: "flex",
+            flexDirection: "column",
+            gap: "10px",
+            ".css-lfwcke-MuiTabs-flexContainer": {
+              display: "flex",
+              flexDirection: "column",
+              gap: "10px",
+            },
           }}
         >
-          <Tab
-            sx={{ mt: 1 }}
-            label={
-              <Box
+          {tabsData.map((tab, index) => {
+            return (
+              <Tab
                 sx={{
-                  width: "100%",
-                  display: "flex",
-                  flexDirection: { xs: "column", sm: "row" },
-                  alignItems: "center",
-                  justifyContent: { xs: "center", sm: "space-between" },
-                  gap: "10px",
+                  maxWidth: "100%",
+                  maxHeight: "100%",
+                  bgcolor: "action.hover",
+                  borderRadius: "5px 0 0 5px",
                 }}
-              >
-                <Paragraph>Oldindan to’lov </Paragraph>
-                <FormControlLabel
-                  control={<IOSSwitch sx={{ m: "0 0 0 0" }} defaultChecked />}
-                />
-              </Box>
-            }
-            {...a11yProps(0)}
-          />
-          <Tab
-            sx={{ mt: 1 }}
-            label={
-              <Box
-                sx={{
-                  width: "100%",
-                  display: "flex",
-                  flexDirection: { xs: "column", sm: "row" },
-                  alignItems: "center",
-                  justifyContent: { xs: "center", sm: "space-between" },
-                  gap: "10px",
-                }}
-              >
-                <Paragraph>To’lov qilinmadi</Paragraph>
-                <FormControlLabel
-                  control={<IOSSwitch sx={{ m: "0 0 0 0" }} defaultChecked />}
-                />
-              </Box>
-            }
-            {...a11yProps(1)}
-          />
-          <Tab
-            sx={{ mt: 1 }}
-            label={
-              <Box
-                sx={{
-                  width: "100%",
-                  display: "flex",
-                  flexDirection: { xs: "column", sm: "row" },
-                  alignItems: "center",
-                  justifyContent: { xs: "center", sm: "space-between" },
-                  gap: "10px",
-                }}
-              >
-                <Paragraph>To’lov qilindi</Paragraph>
-                <FormControlLabel
-                  control={<IOSSwitch sx={{ m: "0 0 0 0" }} defaultChecked />}
-                />
-              </Box>
-            }
-            {...a11yProps(2)}
-          />
-          <Tab
-            sx={{ mt: 1 }}
-            label={
-              <Box
-                sx={{
-                  width: "100%",
-                  display: "flex",
-                  flexDirection: { xs: "column", sm: "row" },
-                  alignItems: "center",
-                  justifyContent: { xs: "center", sm: "space-between" },
-                  gap: "10px",
-                }}
-              >
-                <Paragraph>Guruhga qo’shildi</Paragraph>
-                <FormControlLabel
-                  control={<IOSSwitch sx={{ m: "0 0 0 0" }} defaultChecked />}
-                />
-              </Box>
-            }
-            {...a11yProps(3)}
-          />
+                label={
+                  <Box
+                    sx={{
+                      width: "100%",
+                      display: "flex",
+                      flexDirection: "row",
+                      alignItems: "center",
+                      justifyContent: "space-between",
+                      gap: "10px",
+                    }}
+                  >
+                    <Paragraph>{tab.title}</Paragraph>
+                    <FormControlLabel control={<IOSSwitch defaultChecked />} />
+                  </Box>
+                }
+                {...a11yProps(index)}
+              />
+            );
+          })}
         </Tabs>
+      </Box>
+      <Box
+        sx={{
+          display: "flex",
+          width: { sm: "100%", md: "30%" },
+          flexDirection: "row",
+          gap: "120px",
+        }}
+      >
+        <TabPanel value={values} index={0}>
+          <AdvancePay />
+        </TabPanel>
+        <TabPanel value={values} index={1}>
+          <Unpaid />
+        </TabPanel>
+        <TabPanel value={values} index={2}>
+          <Paid />
+        </TabPanel>
+        <TabPanel value={values} index={3}>
+          <Joined />
+        </TabPanel>
+      </Box>
+      <Box
+        sx={{
+          padding: { xs: "0", md: "0 20px 0 20px" },
+          display: "flex",
+          flexDirection: "column",
+          gap: "15px",
+          width: { sm: "100%", md: "30%" },
+        }}
+      >
+        <H3>Kalit so’zlar</H3>
         <Box
           sx={{
             display: "flex",
-            width: "100%",
-            flexDirection: { xs: "column", md: "row" },
-            gap: "120px",
+            flexDirection: "column",
+            gap: "10px",
           }}
         >
-          <AdvancePay value={values} index={0} />
-          <Unpaid value={values} index={1} />
-          <Paid value={values} index={2} />
-          <Joined value={values} index={3} />
-          <Box
-            sx={{
-              margin: "30px",
-              display: "flex",
-              flexDirection: "column",
-              gap: "15px",
-              width: "30%",
-            }}
-          >
-            <H3>Kalit so’zlar</H3>
-            <Box
-              sx={{
-                border: "1px solid gray",
-                width: { xs: "250%", sm: "250%", md: "150%" },
-                padding: "20px",
-                display: "flex",
-                flexDirection: "column",
-                gap: "10px",
-              }}
-            >
-              <H>(STUDENT) - Talabaning ismi</H>
-              <H>(GROUP) - Guruh nomi</H>
-              <H>(TEACHER) - O’qituvchining ismi</H>
-              <H>(DAYS) - Dars kunlari</H>
-              <H>(HOURS) - Darsning boshlanish va tugash vaqti</H>
-              <H>(SUM) - To’lov miqdori</H>
-              <H>(MARKAZ) - O’quv markaz</H>
-            </Box>
-          </Box>
+          <StyledP>(STUDENT) - Talabaning ismi</StyledP>
+          <StyledP>(GROUP) - Guruh nomi</StyledP>
+          <StyledP>(TEACHER) - O’qituvchining ismi</StyledP>
+          <StyledP>(DAYS) - Dars kunlari</StyledP>
+          <StyledP>(HOURS) - Darsning boshlanish va tugash vaqti</StyledP>
+          <StyledP>(SUM) - To’lov miqdori</StyledP>
+          <StyledP>(MARKAZ) - O’quv markaz</StyledP>
         </Box>
       </Box>
-    </TabPanel>
+    </Box>
   );
 };
 

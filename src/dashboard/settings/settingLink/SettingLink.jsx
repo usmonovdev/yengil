@@ -22,7 +22,7 @@ function TabPanel(props) {
     >
       {value === index && (
         <Box sx={{ p: 1 }}>
-          <Typography>{children}</Typography>
+          {children}
         </Box>
       )}
     </div>
@@ -65,8 +65,12 @@ export default function SettingLink() {
           <Tab label="Mavzu" {...a11yProps(2)} />
         </Tabs>
       </Box>
-      <Account value={value} index={0} />
-      <Messages value={value} index={1} />
+      <TabPanel value={value} index={0}>
+        <Account />
+      </TabPanel>
+      <TabPanel value={value} index={1}>
+        <Messages />
+      </TabPanel>
       <TabPanel value={value} index={2}>
         <Theme />
       </TabPanel>

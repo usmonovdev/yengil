@@ -1,37 +1,16 @@
 import React, { useState } from "react";
-import { Box, Button, TextField, Typography } from "@mui/material";
+import { Box, Button, TextField } from "@mui/material";
 import { H3 } from "../../../ui/typography";
 
-function TabPanel(props) {
-  const { children, value, index, ...other } = props;
-
-  return (
-    <div
-      role="tabpanel"
-      hidden={value !== index}
-      id={`simple-tabpanel-${index}`}
-      aria-labelledby={`simple-tab-${index}`}
-      {...other}
-      style={{ width: "30%" }}
-    >
-      {value === index && (
-        <Box sx={{ p: 3 }}>
-          <Typography>{children}</Typography>
-        </Box>
-      )}
-    </div>
-  );
-}
-
-const Paid = ({ value, index }) => {
+const Paid = () => {
   const [input, setInput] = useState();
 
   return (
-    <TabPanel value={value} index={index}>
+    <Box sx={{ width: "100%" }}>
       <H3>Xabar Matni</H3>
       <Box
         sx={{
-          width: { xs: "490%", sm: "350%", md: "150%" },
+          width: "100%",
           height: "400px",
           display: "flex",
           flexDirection: "column",
@@ -53,7 +32,7 @@ const Paid = ({ value, index }) => {
           Save
         </Button>
       </Box>
-    </TabPanel>
+    </Box>
   );
 };
 
