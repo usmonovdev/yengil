@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import {
   Box,
   FormControlLabel,
@@ -14,6 +14,7 @@ import Unpaid from "./Unpaid";
 import Paid from "./Paid";
 import Joined from "./Joined";
 import { useTheme } from "@emotion/react";
+import { useInView } from "framer-motion";
 
 const IOSSwitch = styled((props) => (
   <Switch focusVisibleClassName=".Mui-focusVisible" disableRipple {...props} />
@@ -105,7 +106,11 @@ function TabPanel(props) {
       {...other}
       style={{ width: "100%" }}
     >
-      {value === index && <Box sx={{ padding: { xs: "20px 0 0 0", md: "0 20px 0 20px" }}}>{children}</Box>}
+      {value === index && (
+        <Box sx={{ padding: { xs: "20px 0 0 0", md: "0 20px 0 20px" } }}>
+          {children}
+        </Box>
+      )}
     </div>
   );
 }
@@ -119,6 +124,8 @@ function a11yProps(index) {
 
 const Messages = () => {
   const [values, setValues] = useState(0);
+  const ref = useRef();
+  const isInView = useInView(ref, { once: true });
   const theme = useTheme();
 
   const handleChange = (event, newValue) => {
@@ -129,15 +136,19 @@ const Messages = () => {
     <Box
       sx={{
         display: "flex",
-        flexDirection: {xs: "column", md: "row"},
+        flexDirection: { xs: "column", md: "row" },
         justifyContent: "space-between",
-        marginTop: "20px"
+        marginTop: "20px",
       }}
     >
       <Box
         sx={{
           width: { sm: "100%", md: "30%" },
+          transform: isInView ? "none" : "translateY(40px)",
+          opacity: isInView ? 1 : 0,
+          transition: "all 0.5s cubic-bezier(0.17, 0.55, 0.55, 1)",
         }}
+        ref={ref}
       >
         <Tabs
           orientation="vertical"
@@ -151,11 +162,6 @@ const Messages = () => {
             display: "flex",
             flexDirection: "column",
             gap: "10px",
-            // ".css-lfwcke-MuiTabs-flexContainer": {
-            //   display: "flex",
-            //   flexDirection: "column",
-            //   gap: "10px",
-            // },
           }}
         >
           {tabsData.map((tab, index) => {
@@ -166,7 +172,7 @@ const Messages = () => {
                   maxHeight: "100%",
                   bgcolor: "action.hover",
                   borderRadius: "5px 0 0 5px",
-                  marginBottom: "8px"
+                  marginBottom: "8px",
                 }}
                 label={
                   <Box
@@ -180,7 +186,7 @@ const Messages = () => {
                     }}
                   >
                     <Paragraph>{tab.title}</Paragraph>
-                    <FormControlLabel control={<IOSSwitch defaultChecked />} />
+                    <FormControlLabel sx={{ zIndex: "1000" }} control={<IOSSwitch defaultChecked />} />
                   </Box>
                 }
                 {...a11yProps(index)}
@@ -217,7 +223,11 @@ const Messages = () => {
           flexDirection: "column",
           gap: "15px",
           width: { sm: "100%", md: "30%" },
+          transform: isInView ? "none" : "translateY(40px)",
+          opacity: isInView ? 1 : 0,
+          transition: "all 0.5s cubic-bezier(0.17, 0.55, 0.55, 1)",
         }}
+        ref={ref}
       >
         <H3>Kalit so’zlar</H3>
         <Box
