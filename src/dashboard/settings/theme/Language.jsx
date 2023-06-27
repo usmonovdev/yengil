@@ -53,9 +53,10 @@ const Language = () => {
   const handleChangeLng = (e) => {
     i18n.changeLanguage(e);
   };
+  const { t } = useTranslation();
   return (
     <Box sx={{ display: "flex", flexDirection: "column", gap: "10px" }}>
-      <H3>Til</H3>
+      <H3>{t("settingsThemeLanguage")}</H3>
       <Box>
         <RadioGroup
           name="use-radio-group"

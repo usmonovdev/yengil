@@ -23,6 +23,7 @@ import CheckIcon from "@mui/icons-material/Check";
 import Language from "./Language";
 import Dark from "./Dark";
 import Font from "./Font";
+import { useTranslation } from "react-i18next";
 
 const mainColors = [
   {
@@ -79,13 +80,14 @@ const Theme = () => {
   const themeMainColor = useSelector((state) => state.themeMainColor);
   const theme = useTheme();
   console.log(theme.palette);
+  const { t } = useTranslation();
 
   return (
     <Box sx={{ display: "flex", flexDirection: "column", gap: "20px", p: 0 }}>
       <Language />
       <Dark />
       <Box sx={{ display: "flex", flexDirection: "column", gap: "10px" }}>
-        <H3>Asosiy rang</H3>
+        <H3>{t("settingsThemeMainColor")}</H3>
         <Box>
           <RadioGroup
             name="use-radio-group"

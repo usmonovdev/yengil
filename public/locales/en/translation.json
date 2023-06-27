@@ -172,5 +172,8 @@
     "settingsAccountPassword": "Password",
     "settingsAccountButton": "Save",
     "settingMessage": "Messages",
-    "settingsTheme": "Theme"
+    "settingsTheme": "Theme",
+    "settingsThemeMainColor": "Main color",
+    "settingsThemeFont": "Font family",
+    "settingsThemeLanguage": "Language"
 }

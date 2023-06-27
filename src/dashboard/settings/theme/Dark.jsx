@@ -3,6 +3,7 @@ import React from "react";
 import { H3 } from "../../../ui/typography";
 import { useDispatch, useSelector } from "react-redux";
 import { asyncToggleTheme } from "../../../store/themeSlice";
+import { useTranslation } from "react-i18next";
 
 const MaterialUISwitch = styled(Switch)(({ theme }) => ({
   width: 70,
@@ -53,9 +54,11 @@ const MaterialUISwitch = styled(Switch)(({ theme }) => ({
 const Dark = () => {
   const { isDarkMode, sidebar } = useSelector((state) => state);
   const dispatch = useDispatch();
+  const { t } = useTranslation();
+  
   return (
     <Box sx={{ display: "flex", flexDirection: "row", alignItems: "center" }}>
-      <H3>Mavzu</H3>
+      <H3>{t("settingsTheme")}</H3>
       <Box>
         <FormControlLabel
           checked={isDarkMode}
