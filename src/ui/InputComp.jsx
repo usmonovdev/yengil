@@ -12,6 +12,7 @@ const InputComp = ({
   error,
   inputProps = null,
   name,
+  disabled = false
 }) => {
   return (
     <>
@@ -19,6 +20,7 @@ const InputComp = ({
         label={label}
         value={value}
         placeholder={placeholder}
+        disabled={disabled}
         type={type}
         variant="outlined"
         color="blue"

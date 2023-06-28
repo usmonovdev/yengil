@@ -1,22 +1,14 @@
 import React, { useRef, useState } from "react";
-import { H2, H3 } from "../../../ui/typography";
+import { H1, H2, H3 } from "../../../ui/typography";
 import {
   Box,
   Button,
   IconButton,
   InputAdornment,
   Select,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TablePagination,
-  TableRow,
   TextField,
   Tooltip,
   styled,
-  tableCellClasses,
 } from "@mui/material";
 import { students } from "../../../localData/studentData";
 import { useTheme } from "@emotion/react";
@@ -31,37 +23,18 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import AddTables from "../addStudentsTables/AddTables";
 import FormControl from "@mui/material/FormControl";
-import StudentsInfo from "../studentsInfo/StudentsInfo";
 import exportD from "../../../assets/dark/export.png";
 import exportW from "../../../assets/icons/export.png";
-import TableActions from "./TableActions";
 import SearchIcon from "@mui/icons-material/Search";
-
-const StyledTableCell = styled(TableCell)(({ theme }) => ({
-  [`&.${tableCellClasses.head}`]: {
-    backgroundColor: theme.palette.blue.main,
-    color: theme.palette.common.white,
-  },
-  [`&.${tableCellClasses.body}`]: {
-    fontSize: 14,
-  },
-}));
-
-const StyledTableRow = styled(TableRow)(({ theme }) => ({
-  "&:nth-of-type(odd)": {
-    backgroundColor: theme.palette.action.hover,
-  },
-  "&:last-child td, &:last-child th": {
-    border: 0,
-  },
-}));
+import TableData from "./TableData";
+import Selected from "./Selected";
 
 const TableStudents = () => {
   const [filteredSt, setFilteredSt] = useState(students);
   const [student, setStudent] = useState(students);
   const [sorting, setSorting] = useState("name");
-  const [page, setPage] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(10);
+  const [selected, setSelected] = useState(false);
+  console.log(selected);
 
   const theme = useTheme();
   const dispatch = useDispatch();
@@ -123,19 +96,9 @@ const TableStudents = () => {
     setSorting(event.target.value);
   };
 
-  const handleChangePage = (event, newPage) => {
-    setPage(newPage);
-  };
-
-  const handleChangeRowsPerPage = (event) => {
-    setRowsPerPage(+event.target.value);
-    setPage(0);
-  };
-
   return (
     <>
       <AddTables />
-      <StudentsInfo />
       <Box
         ref={ref}
         sx={{
@@ -183,118 +146,72 @@ const TableStudents = () => {
             <Img src={theme.palette.mode == "light" ? undov : undovDark} />
           </Tooltip>
         </H3>
-        <form>
-          <Box
-            sx={{
-              display: "flex",
-              gap: "20px",
-              width: "100%",
-              justifyContent: "space-between",
-              flexDirection: { xs: "column", md: "row" },
-            }}
-          >
+        {!selected ? (
+          <form>
             <Box
               sx={{
                 display: "flex",
-                flexDirection: { xs: "column", md: "row" },
                 gap: "20px",
+                width: "100%",
+                justifyContent: "space-between",
+                flexDirection: { xs: "column", md: "row" },
               }}
             >
-              <TextField
-                color="blue"
-                label={t("studentsSearch")}
-                onChange={handleFilter}
-                InputProps={{
-                  startAdornment: (
-                    <InputAdornment position="start">
-                      <SearchIcon />
-                    </InputAdornment>
-                  ),
+              <Box
+                sx={{
+                  display: "flex",
+                  flexDirection: { xs: "column", md: "row" },
+                  gap: "20px",
                 }}
-                variant="outlined"
-              />
-              <FormControl sx={{ width: { xs: "100%" } }} color="blue">
-                <InputLabel id="demo-simple-select-label">
-                  {t("studentsSorting")}
-                </InputLabel>
-                <Select
-                  labelId="demo-simple-select-label"
-                  id="demo-simple-select"
-                  label={t("studentsSorting")}
-                  value={sorting}
-                  onChange={handleChange}
-                >
-                  <MenuItem value="name">{t("addStudentsName")}</MenuItem>
-                  <MenuItem value="group">{t("addStudentsGroup")}</MenuItem>
-                  <MenuItem value="tel">{t("addStudentsTel")}</MenuItem>
-                </Select>
-              </FormControl>
+              >
+                <TextField
+                  color="blue"
+                  label={t("studentsSearch")}
+                  onChange={handleFilter}
+                  InputProps={{
+                    startAdornment: (
+                      <InputAdornment position="start">
+                        <SearchIcon />
+                      </InputAdornment>
+                    ),
+                  }}
+                  variant="outlined"
+                />
+                <FormControl sx={{ width: { xs: "100%" } }} color="blue">
+                  <InputLabel id="demo-simple-select-label">
+                    {t("studentsSorting")}
+                  </InputLabel>
+                  <Select
+                    labelId="demo-simple-select-label"
+                    id="demo-simple-select"
+                    label={t("studentsSorting")}
+                    value={sorting}
+                    onChange={handleChange}
+                  >
+                    <MenuItem value="name">{t("addStudentsName")}</MenuItem>
+                    <MenuItem value="group">{t("addStudentsGroup")}</MenuItem>
+                    <MenuItem value="tel">{t("addStudentsTel")}</MenuItem>
+                  </Select>
+                </FormControl>
+              </Box>
+              <Button
+                variant="contained"
+                color="blue"
+                onClick={() => dispatch(addTablesStudent())}
+              >
+                {t("studentsAdd")}
+              </Button>
             </Box>
-            <Button
-              variant="contained"
-              color="blue"
-              onClick={() => dispatch(addTablesStudent())}
-            >
-              {t("studentsAdd")}
-            </Button>
-          </Box>
-        </form>
+          </form>
+        ) : (
+          <Selected />
+        )}
         {filteredSt.length > 0 ? (
           <>
-            <TableContainer sx={{ borderRadius: "5px" }}>
-              <Table stickyHeader sx={{ minWidth: 700 }}>
-                <TableHead>
-                  <TableRow>
-                    <StyledTableCell align="left">{t("groupTablesId")}</StyledTableCell>
-                    <StyledTableCell align="left">
-                      {t("studentsInfo")}
-                    </StyledTableCell>
-                    <StyledTableCell align="left">
-                      {t("studentsPhone")}
-                    </StyledTableCell>
-                    <StyledTableCell align="left">
-                      {t("studentsGroup")}
-                    </StyledTableCell>
-                    <StyledTableCell align="left">
-                      {t("studentsPayment")}
-                    </StyledTableCell>
-                    <StyledTableCell align="left">{t("groupMore")}</StyledTableCell>
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                  {filteredSt
-                    .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                    .map((users) => {
-                      return (
-                        <StyledTableRow
-                          hover
-                          role="checkbox"
-                          tabIndex={-1}
-                          key={users.id}
-                        >
-                          <TableCell>{users.id}</TableCell>
-                          <TableCell>{users.name}</TableCell>
-                          <TableCell>{users.tel}</TableCell>
-                          <TableCell>{users.group}</TableCell>
-                          <TableCell>{users.payment}</TableCell>
-                          <TableCell>
-                            <TableActions id={users.id} />
-                          </TableCell>
-                        </StyledTableRow>
-                      );
-                    })}
-                </TableBody>
-              </Table>
-            </TableContainer>
-            <TablePagination
-              labelRowsPerPage={t("studentsLabelRowsPerPage")}
-              rowsPerPageOptions={[10, 25, 100]}
-              component="div"
-              count={filteredSt.length}
-              rowsPerPage={rowsPerPage}
-              page={page}
-              onPageChange={handleChangePage}
-              onRowsPerPageChange={handleChangeRowsPerPage}
+            <TableData
+              data={filteredSt}
+              selectedItem={selected}
+              setSelectedItem={setSelected}
             />
           </>
         ) : (

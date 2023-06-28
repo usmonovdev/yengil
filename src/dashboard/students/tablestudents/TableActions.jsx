@@ -7,14 +7,17 @@ import EditIcon from "@mui/icons-material/Edit";
 import { Img } from "./TableStyled";
 import DeleteMo from "./DeleteMo";
 import ZoomOutMapIcon from "@mui/icons-material/ZoomOutMap";
+import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import UsersMo from "./UsersMo";
 import EditMo from "./EditMo";
+import PaidMo from "./PaidMo";
 
 const TableActions = ({ id }) => {
   const [anchorEl, setAnchorEl] = useState(null);
   const [delModal, setDelModal] = useState(false);
   const [editMo, setEditMo] = useState(false);
   const [usersMo, setUsersMo] = useState(false);
+  const [paidMo, setPaidMo] = useState(false);
   const theme = useTheme();
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -66,6 +69,9 @@ const TableActions = ({ id }) => {
           <IconButton onClick={() => setUsersMo(!usersMo)}>
             <ZoomOutMapIcon />
           </IconButton>
+          <IconButton onClick={() => setPaidMo(!paidMo)}>
+            <AttachMoneyIcon />
+          </IconButton>
           <IconButton onClick={() => setEditMo(!editMo)}>
             <EditIcon/>
           </IconButton>
@@ -77,6 +83,7 @@ const TableActions = ({ id }) => {
       <EditMo modal={editMo} setModal={setEditMo}/>
       <DeleteMo modal={delModal} setModal={setDelModal} />
       <UsersMo modal={usersMo} setModal={setUsersMo} id={id} />
+      <PaidMo modal={paidMo} setModal={setPaidMo} />
     </>
   );
 };
