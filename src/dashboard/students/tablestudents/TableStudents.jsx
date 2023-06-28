@@ -146,54 +146,60 @@ const TableStudents = () => {
             <Img src={theme.palette.mode == "light" ? undov : undovDark} />
           </Tooltip>
         </H3>
-        {!selected ? (
-          <form>
+        <form>
+          <Box
+            sx={{
+              display: "flex",
+              gap: "20px",
+              width: "100%",
+              justifyContent: "space-between",
+              flexDirection: { xs: "column", md: "row" },
+            }}
+          >
             <Box
               sx={{
                 display: "flex",
-                gap: "20px",
-                width: "100%",
-                justifyContent: "space-between",
                 flexDirection: { xs: "column", md: "row" },
+                gap: "20px",
               }}
             >
-              <Box
-                sx={{
-                  display: "flex",
-                  flexDirection: { xs: "column", md: "row" },
-                  gap: "20px",
+              <TextField
+                color="blue"
+                label={t("studentsSearch")}
+                onChange={handleFilter}
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <SearchIcon />
+                    </InputAdornment>
+                  ),
                 }}
-              >
-                <TextField
-                  color="blue"
-                  label={t("studentsSearch")}
-                  onChange={handleFilter}
-                  InputProps={{
-                    startAdornment: (
-                      <InputAdornment position="start">
-                        <SearchIcon />
-                      </InputAdornment>
-                    ),
-                  }}
-                  variant="outlined"
-                />
-                <FormControl sx={{ width: { xs: "100%" } }} color="blue">
-                  <InputLabel id="demo-simple-select-label">
-                    {t("studentsSorting")}
-                  </InputLabel>
-                  <Select
-                    labelId="demo-simple-select-label"
-                    id="demo-simple-select"
-                    label={t("studentsSorting")}
-                    value={sorting}
-                    onChange={handleChange}
-                  >
-                    <MenuItem value="name">{t("addStudentsName")}</MenuItem>
-                    <MenuItem value="group">{t("addStudentsGroup")}</MenuItem>
-                    <MenuItem value="tel">{t("addStudentsTel")}</MenuItem>
-                  </Select>
-                </FormControl>
-              </Box>
+                variant="outlined"
+              />
+              <FormControl sx={{ width: { xs: "100%" } }} color="blue">
+                <InputLabel id="demo-simple-select-label">
+                  {t("studentsSorting")}
+                </InputLabel>
+                <Select
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  label={t("studentsSorting")}
+                  value={sorting}
+                  onChange={handleChange}
+                >
+                  <MenuItem value="name">{t("addStudentsName")}</MenuItem>
+                  <MenuItem value="group">{t("addStudentsGroup")}</MenuItem>
+                  <MenuItem value="tel">{t("addStudentsTel")}</MenuItem>
+                </Select>
+              </FormControl>
+            </Box>
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: { xs: "column", sm: "row-reverse" },
+                gap: "20px",
+              }}
+            >
               <Button
                 variant="contained"
                 color="blue"
@@ -201,11 +207,10 @@ const TableStudents = () => {
               >
                 {t("studentsAdd")}
               </Button>
+              {selected && <Selected />}
             </Box>
-          </form>
-        ) : (
-          <Selected />
-        )}
+          </Box>
+        </form>
         {filteredSt.length > 0 ? (
           <>
             <TableData
