@@ -125,7 +125,9 @@ function a11yProps(index) {
 const Messages = () => {
   const [values, setValues] = useState(0);
   const ref = useRef();
+  const messageRef = useRef();
   const isInView = useInView(ref, { once: true });
+  const isInViewMessage = useInView(messageRef, { once: true });
   const theme = useTheme();
 
   const handleChange = (event, newValue) => {
@@ -144,11 +146,11 @@ const Messages = () => {
       <Box
         sx={{
           width: { sm: "100%", md: "30%" },
-          transform: isInView ? "none" : "translateY(40px)",
-          opacity: isInView ? 1 : 0,
+          transform: isInViewMessage ? "none" : "translateY(40px)",
+          opacity: isInViewMessage ? 1 : 0,
           transition: "all 0.5s cubic-bezier(0.17, 0.55, 0.55, 1)",
         }}
-        ref={ref}
+        ref={messageRef}
       >
         <Tabs
           orientation="vertical"
