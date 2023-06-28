@@ -36,64 +36,62 @@ const StyledH3 = styled(H3)(({ theme }) => ({
 const UsersMo = ({ modal, setModal }) => {
   const theme = useTheme();
   return (
-    <div>
-      <Modal
-        disableScrollLock
-        open={modal}
-        aria-labelledby="parent-modal-title"
-        aria-describedby="parent-modal-description"
+    <Modal
+      disableScrollLock
+      open={modal}
+      aria-labelledby="parent-modal-title"
+      aria-describedby="parent-modal-description"
+    >
+      <motion.div
+        initial={{
+          opacity: 0,
+          scale: 0,
+          top: "50%",
+          left: "50%",
+          position: "absolute",
+          width: "100%",
+        }}
+        animate={{
+          opacity: 1,
+          scale: 1,
+          translateX: "-50%",
+          translateY: "-50%",
+          width: "100%",
+        }}
+        transition={{ duration: 1, type: "spring", delay: 0.1 }}
       >
-        <motion.div
-          initial={{
-            opacity: 0,
-            scale: 0,
-            top: "50%",
-            left: "50%",
-            position: "absolute",
-            width: "100%",
-          }}
-          animate={{
-            opacity: 1,
-            scale: 1,
-            translateX: "-50%",
-            translateY: "-50%",
-            width: "100%",
-          }}
-          transition={{ duration: 1, type: "spring", delay: 0.1 }}
-        >
-          <Box sx={modalStyle}>
-            <Paragraph>People Info</Paragraph>
-            <Box sx={{ display: "flex", flexDirection: "column", gap: "10px" }}>
-              <StyledH3>Name: Usmonov Azizbek</StyledH3>
-              <StyledH3>Qarzdorlik vaqti: May</StyledH3>
-              <StyledH3>Group: Matematika</StyledH3>
-              <StyledH3>Lesson Day: Monday</StyledH3>
-              <StyledH3>Tel: +998 90 000 00 00</StyledH3>
-              <StyledH3>Vaqt: 08:00 / 10:00</StyledH3>
-            </Box>
-            <Box
-              sx={{
-                display: "flex",
-                justifyContent: "flex-end",
-                marginTop: "10px",
-                gap: "10px",
+        <Box sx={modalStyle}>
+          <Paragraph>People Info</Paragraph>
+          <Box sx={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+            <StyledH3>Name: Usmonov Azizbek</StyledH3>
+            <StyledH3>Qarzdorlik vaqti: May</StyledH3>
+            <StyledH3>Group: Matematika</StyledH3>
+            <StyledH3>Lesson Day: Monday</StyledH3>
+            <StyledH3>Tel: +998 90 000 00 00</StyledH3>
+            <StyledH3>Vaqt: 08:00 / 10:00</StyledH3>
+          </Box>
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "flex-end",
+              marginTop: "10px",
+              gap: "10px",
+            }}
+          >
+            <Button
+              onClick={() => setModal(!modal)}
+              style={{
+                background: theme.palette.custom.newStudentWhite,
+                color: "black",
               }}
             >
-              <Button
-                onClick={() => setModal(!modal)}
-                style={{
-                  background: theme.palette.custom.newStudentWhite,
-                  color: "black",
-                }}
-              >
-                Canel
-              </Button>
-              <DeleteMo />
-            </Box>
+              Canel
+            </Button>
+            <DeleteMo />
           </Box>
-        </motion.div>
-      </Modal>
-    </div>
+        </Box>
+      </motion.div>
+    </Modal>
   );
 };
 

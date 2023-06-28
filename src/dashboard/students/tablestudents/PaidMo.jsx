@@ -40,104 +40,102 @@ const PaidMo = ({ modal, setModal }) => {
   const theme = useTheme();
 
   return (
-    <>
-      <Modal
-        disableScrollLock
-        sx={{ zIndex: "1000" }}
-        open={modal}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
+    <Modal
+      disableScrollLock
+      sx={{ zIndex: "1000" }}
+      open={modal}
+      aria-labelledby="modal-modal-title"
+      aria-describedby="modal-modal-description"
+    >
+      <motion.div
+        initial={{
+          opacity: 0,
+          scale: 0,
+          top: "50%",
+          left: "50%",
+          position: "absolute",
+          width: "100%",
+        }}
+        animate={{
+          opacity: 1,
+          scale: 1,
+          translateX: "-50%",
+          translateY: "-50%",
+          width: "100%",
+        }}
+        transition={{ duration: 1, type: "spring", delay: 0.1 }}
       >
-        <motion.div
-          initial={{
-            opacity: 0,
-            scale: 0,
-            top: "50%",
-            left: "50%",
-            position: "absolute",
-            width: "100%",
-          }}
-          animate={{
-            opacity: 1,
-            scale: 1,
-            translateX: "-50%",
-            translateY: "-50%",
-            width: "100%",
-          }}
-          transition={{ duration: 1, type: "spring", delay: 0.1 }}
-        >
-          <Box sx={modalStyle}>
-            <H3>Add payment</H3>
-            <InputComp
-              placeholder="Azizbek"
-              value={name}
-              disabled={true}
-              setValue={setName}
-              label={"People"}
-              required={true}
-              name={name}
-            />
-            <InputComp
-              placeholder="700.000"
-              value={quantity}
-              setValue={setQuantity}
-              label={"Quantity"}
-              required={true}
-              name={quantity}
-            />
-            <LocalizationProvider dateAdapter={AdapterDayjs}>
-              <DemoContainer components={["DatePicker", "DatePicker"]}>
-                <DatePicker
-                  sx={{ width: "100%" }}
-                  onChange={(e) => setDate(e)}
-                  label="Day"
-                  defaultValue={dayjs(now)}
-                />
-              </DemoContainer>
-            </LocalizationProvider>
-            <LocalizationProvider dateAdapter={AdapterDayjs}>
-              <DemoContainer components={["TimePicker", "TimePicker"]}>
-                <TimePicker
-                  sx={{ width: "100%" }}
-                  label="Hour"
-                  defaultValue={dayjs("2022-04-17T15:30")}
-                />
-              </DemoContainer>
-            </LocalizationProvider>
-            <InputComp
-              placeholder="To'lov kechikritildi"
-              value={notes}
-              setValue={setNotes}
-              label={t("addStudentsNote")}
-              required={false}
-              name={name}
-            />
-            <Box
-              sx={{
-                display: "flex",
-                flexDirection: "row",
-                justifyContent: "flex-end",
-                gap: "10px",
+        <Box sx={modalStyle}>
+          <H3>Add payment</H3>
+          <InputComp
+            placeholder="Azizbek"
+            value={name}
+            disabled={true}
+            setValue={setName}
+            label={"People"}
+            required={true}
+            name={name}
+          />
+          <InputComp
+            placeholder="700.000"
+            value={quantity}
+            setValue={setQuantity}
+            label={"Quantity"}
+            required={true}
+            name={quantity}
+          />
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
+            <DemoContainer components={["DatePicker", "DatePicker"]}>
+              <DatePicker
+                sx={{ width: "100%" }}
+                onChange={(e) => setDate(e)}
+                label="Day"
+                defaultValue={dayjs(now)}
+              />
+            </DemoContainer>
+          </LocalizationProvider>
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
+            <DemoContainer components={["TimePicker", "TimePicker"]}>
+              <TimePicker
+                sx={{ width: "100%" }}
+                label="Hour"
+                defaultValue={dayjs("2022-04-17T15:30")}
+              />
+            </DemoContainer>
+          </LocalizationProvider>
+          <InputComp
+            placeholder="To'lov kechikritildi"
+            value={notes}
+            setValue={setNotes}
+            label={t("addStudentsNote")}
+            required={false}
+            name={name}
+          />
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "flex-end",
+              gap: "10px",
+            }}
+          >
+            <Button
+              variant="contained"
+              onClick={() => setModal(!modal)}
+              style={{
+                background: theme.palette.custom.newStudentWhite,
+                color: "black",
               }}
             >
-              <Button
-                variant="contained"
-                onClick={() => setModal(!modal)}
-                style={{
-                  background: theme.palette.custom.newStudentWhite,
-                  color: "black",
-                }}
-              >
-                {t("addStudentsClose")}
-              </Button>
-              <Button variant="contained" color="blue">
-                {t("addStudentsSave")}
-              </Button>
-            </Box>
+              {t("addStudentsClose")}
+            </Button>
+            <Button variant="contained" color="blue">
+              {t("addStudentsSave")}
+            </Button>
           </Box>
-        </motion.div>
-      </Modal>
-    </>
+        </Box>
+      </motion.div>
+    </Modal>
   );
 };
 

@@ -68,7 +68,7 @@ const TableData = ({ data, selectedItem, setSelectedItem }) => {
 
   return (
     <>
-      <TableContainer sx={{ borderRadius: "5px" }}>
+      <TableContainer sx={{ borderRadius: "5px", transition: "500ms" }}>
         <Table stickyHeader sx={{ minWidth: 700 }}>
           <TableHead>
             <TableRow>

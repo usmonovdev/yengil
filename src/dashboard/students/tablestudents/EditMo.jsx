@@ -109,7 +109,6 @@ const EditMo = ({ modal, setModal }) => {
   };
 
   return (
-    <>
       <Modal
         disableScrollLock
         sx={{ zIndex: "1000" }}
@@ -245,7 +244,6 @@ const EditMo = ({ modal, setModal }) => {
           </Box>
         </motion.div>
       </Modal>
-    </>
   );
 };
 

@@ -2,7 +2,6 @@ import { Box, Button, Modal, useTheme } from "@mui/material";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 
-
 const style = {
   position: "absolute",
   top: "50%",
@@ -27,56 +26,52 @@ const DeleteMo = ({ modal, setModal }) => {
   const { t } = useTranslation();
 
   return (
-    <>
-      <Modal
-        disableScrollLock
-        open={modal}
-        aria-labelledby="child-modal-title"
-        aria-describedby="child-modal-description"
+    <Modal
+      disableScrollLock
+      open={modal}
+      aria-labelledby="child-modal-title"
+      aria-describedby="child-modal-description"
+    >
+      <motion.div
+        initial={{
+          opacity: 0,
+          scale: 0,
+          top: "50%",
+          left: "50%",
+          position: "absolute",
+          width: "100%",
+        }}
+        animate={{
+          opacity: 1,
+          scale: 1,
+          translateX: "-50%",
+          translateY: "-50%",
+          width: "100%",
+        }}
+        transition={{ duration: 1, type: "spring", delay: 0.1 }}
       >
-        <motion.div
-          initial={{
-            opacity: 0,
-            scale: 0,
-            top: "50%",
-            left: "50%",
-            position: "absolute",
-            width: "100%",
-          }}
-          animate={{
-            opacity: 1,
-            scale: 1,
-            translateX: "-50%",
-            translateY: "-50%",
-            width: "100%",
-          }}
-          transition={{ duration: 1, type: "spring", delay: 0.1 }}
-        >
-          <Box sx={style}>
-            <h2 id="child-modal-title">{t("groupOpenDelete")}</h2>
-            <p id="child-modal-description">
-              {t("groupOpenDeleteDanger")}
-            </p>
-            <Box
-              sx={{ display: "flex", justifyContent: "flex-end", gap: "10px" }}
+        <Box sx={style}>
+          <h2 id="child-modal-title">{t("groupOpenDelete")}</h2>
+          <p id="child-modal-description">{t("groupOpenDeleteDanger")}</p>
+          <Box
+            sx={{ display: "flex", justifyContent: "flex-end", gap: "10px" }}
+          >
+            <Button
+              onClick={() => setModal(!modal)}
+              style={{
+                background: theme.palette.custom.newStudentWhite,
+                color: "black",
+              }}
             >
-              <Button
-                onClick={() => setModal(!modal)}
-                style={{
-                  background: theme.palette.custom.newStudentWhite,
-                  color: "black",
-                }}
-              >
-                {t("groupOpenCanel")}
-              </Button>
-              <Button color="error" variant="contained">
-                {t("groupOpenDelete")}
-              </Button>
-            </Box>
+              {t("groupOpenCanel")}
+            </Button>
+            <Button color="error" variant="contained">
+              {t("groupOpenDelete")}
+            </Button>
           </Box>
-        </motion.div>
-      </Modal>
-    </>
+        </Box>
+      </motion.div>
+    </Modal>
   );
 };
 
