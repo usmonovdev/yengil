@@ -13,6 +13,7 @@ const Statistics = () => {
         alignItems: "center",
         justifyContent: "center",
         flexDirection: { xs: "column", md: "row" },
+        marginBottom: "40px"
       }}
     >
       <Left />

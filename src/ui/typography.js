@@ -39,7 +39,7 @@ export const ColoredSpan = styled("span")(({ theme }) => ({
 }))
 
 export const Span = styled("span")(({ theme }) => ({
-    fontSize: "14px",
-    fontWeight: "200",
+    fontSize: "16px",
+    fontWeight: "400",
     color: theme.palette.white.main
 }))

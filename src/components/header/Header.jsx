@@ -1,19 +1,19 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import language from "../../assets/icons/language.png";
 import darkLanguage from "../../assets/dark/globe.png"
 import FormGroup from "@mui/material/FormGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Switch from "@mui/material/Switch";
-import telegram_icon from "../../assets/icons/telegram.png";
 import { styled, useTheme } from "@mui/material/styles";
 import { Box, Button, Container } from "@mui/material";
 import { Paragraph, StyledAncor, StyledLink } from "../../ui/typography";
 import { motion } from "framer-motion";
-import "./header.scss";
 import ChangeLang from "./ChangeLang";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import { asyncToggleTheme } from "../../store/themeSlice";
+import TelegramIcon from '@mui/icons-material/Telegram';
+import "./header.scss";
 
 const MaterialUISwitch = styled(Switch)(({ theme }) => ({
   width: 70,
@@ -32,7 +32,7 @@ const MaterialUISwitch = styled(Switch)(({ theme }) => ({
       },
       "& + .MuiSwitch-track": {
         opacity: 1,
-        backgroundColor: theme.palette.mode === "dark" ? "#8796A5" : "#aab4be",
+        backgroundColor: theme.palette.grey[400],
       },
     },
   },
@@ -56,7 +56,7 @@ const MaterialUISwitch = styled(Switch)(({ theme }) => ({
   },
   "& .MuiSwitch-track": {
     opacity: 1,
-    backgroundColor: theme.palette.white.main,
+    backgroundColor: theme.palette.grey[400],
     borderRadius: 50 / 2,
   },
 }));
@@ -71,6 +71,7 @@ const HaederBox = styled("div")(({ theme }) => ({
 
 const Header = () => {
   const theme = useTheme();
+  console.log(theme.palette);
   const state = useSelector((state) => state.isDarkMode);
   const dispatch = useDispatch();
   const [langOpen, setLangOpen] = useState(false);
@@ -90,7 +91,7 @@ const Header = () => {
                 disableElevation
                 sx={{ display: "flex", gap: "10px" }}
               >
-                <img src={telegram_icon} width="30px" />
+                <TelegramIcon color="blue" fontSize="large" />
                 <Paragraph className="telegram-text">{t("join-telegram")}</Paragraph>
               </Button>
             </StyledAncor>

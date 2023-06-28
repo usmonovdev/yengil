@@ -3,20 +3,17 @@ import { H1, H3, Paragraph } from "../ui/typography";
 import { Box, Button, Container } from "@mui/material";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
-import Section from "./section/Section";
 import Comment from "./comment/Comment";
 import LocalRegister from "./localRegister/LocalRegister";
-import { Link } from "react-router-dom";
 import Advertising from "./adv/Advertising";
-import Header from "./header/Header";
 import Footer from "./footer/Footer";
-import "./home.scss";
 import { useDispatch } from "react-redux";
 import { setToken } from "../store/themeSlice";
+import "./home.scss";
 
 const Home = () => {
   const { t } = useTranslation();
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   return (
     <>
       <Container>
@@ -52,19 +49,17 @@ const Home = () => {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.6, type: "spring", delay: 0.4 }}
           >
-            {/* <Link to={"/register"} style={{ textDecoration: "none" }}> */}
-              <Button
-                variant="contained"
-                color="blue"
-                sx={{
-                  color: "#fff",
-                  boxShadow: "0px 15px 50px 0px rgba(0,12,33,0.2)",
-                }}
-                onClick={()=> dispatch(setToken(true))}
-              >
-                {t("button")}
-              </Button>
-            {/* </Link> */}
+            <Button
+              variant="contained"
+              color="blue"
+              sx={{
+                color: "#fff",
+                boxShadow: "0px 15px 50px 0px rgba(0,12,33,0.2)",
+              }}
+              onClick={() => dispatch(setToken(true))}
+            >
+              {t("button")}
+            </Button>
           </motion.div>
           <Paragraph>{t("button-title")}</Paragraph>
         </Box>
@@ -72,7 +67,6 @@ const Home = () => {
           <LocalRegister />
           <Comment />
           <Advertising />
-          <Section />
         </Box>
       </Container>
       <Footer />

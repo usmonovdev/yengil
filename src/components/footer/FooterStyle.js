@@ -3,7 +3,7 @@ import styled from "@emotion/styled";
 export const Styledfooter = styled("footer")(({ theme }) => ({
     width: "100%",
     height: "100%",
-    background: theme.palette.custom.bunting,
+    background: theme.palette.blue.main,
     padding: "20px 0"
 }))
 
@@ -21,7 +21,7 @@ export const Img = styled('img')(({ theme }) => ({
 }))
 
 export const FooterContainer = styled("div")(({ theme }) => ({
-    background: theme.palette.custom.midnight,
+    background: theme.palette.blue.dark,
     width: "100%",
     minheight: "40px",
     padding: "20px 0",
