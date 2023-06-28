@@ -1,4 +1,4 @@
-import { CssBaseline, ThemeProvider, createTheme } from "@mui/material";
+import { CssBaseline, ThemeProvider, createTheme, useTheme } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useEffect, useMemo, useState } from "react";
@@ -17,6 +17,8 @@ function App() {
   const themeColor = useSelector(state => state.themeMainColor)
   const font = useSelector(state => state.themeFont)
   const navigate = useNavigate()
+  const themed = useTheme()
+  console.log(themed.palette);
 
   const getTokens = (mode) => ({
     palette: {
@@ -66,9 +68,27 @@ function App() {
       MuiCssBaseline: {
         styleOverrides: (theme) => ({
           body: {
+            width: "100vw",
+            hegiht: "100vh",
+            overflowX: "hidden",
             backgroundColor: theme.palette.custom.background,
+          },
+          "::-webkit-scrollbar": {
+            width: "8px",
+          },
+          "::-webkit-scrollbar-thumb": {
+            borderRadius: "4px",
+            backgroundColor: theme.palette.blue.main
+          },
+          "::-webkit-scrollbar-thumb:hover": {
+            borderRadius: "4px",
+            backgroundColor: theme.palette.blue.dark
+          },
+          "*": {
+            margin: "0",
+            padding: "0"
           }
-        })
+        }),
       },
       MuiAlert: {
         styleOverrides: {

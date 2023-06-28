@@ -5,32 +5,6 @@
 // Large devices (laptops/desktops, 992px and up): 992px
 // Extra large devices (large laptops and desktops, 1200px and up): 1200px
 
-* {
-    margin: 0;
-    padding: 0;
-}
-
-:root {
-    --main: #00a3ff;
-    --white: #f9f9f9;
-    --white--opacity: #21212155;
-}
-
-body {
-    width: 100vw;
-    height: 100vh;
-    overflow-x: hidden;
-}
-
-::-webkit-scrollbar {
-    width: 6px;
-}
-
-::-webkit-scrollbar-thumb {
-    border-radius: 4px;
-    background: var(--main); 
-}
-
 .text-center {
     text-align: center;
 }
