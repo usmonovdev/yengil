@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import { H3 } from "../../../ui/typography";
 import {
   Box,
@@ -24,6 +24,7 @@ import Language from "./Language";
 import Dark from "./Dark";
 import Font from "./Font";
 import { useTranslation } from "react-i18next";
+import { useInView } from "framer-motion";
 
 const mainColors = [
   {
@@ -78,12 +79,24 @@ const ColorChecked = styled(Color)(({ theme }) => ({
 const Theme = () => {
   const dispatch = useDispatch();
   const themeMainColor = useSelector((state) => state.themeMainColor);
-  const theme = useTheme();
-  console.log(theme.palette);
   const { t } = useTranslation();
+  const ref = useRef();
+  const isInView = useInView(ref, { once: true });
 
   return (
-    <Box sx={{ display: "flex", flexDirection: "column", gap: "20px", p: 0 }}>
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        gap: "20px",
+        p: 0,
+        transform: isInView ? "none" : "translateY(40px)",
+        opacity: isInView ? 1 : 0,
+        transition: "all 0.5s cubic-bezier(0.17, 0.55, 0.55, 1)",
+        marginTop: "20px"
+      }}
+      ref={ref}
+    >
       <Language />
       <Dark />
       <Box sx={{ display: "flex", flexDirection: "column", gap: "10px" }}>
