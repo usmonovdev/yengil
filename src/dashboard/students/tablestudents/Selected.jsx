@@ -5,11 +5,14 @@ import { H3White } from "../../../ui/typography";
 import DeleteIcon from "@mui/icons-material/Delete";
 import DeleteMo from "../../../ui/DeleteGrMo";
 import MessageIcon from '@mui/icons-material/Message';
-import PaidMo from "./PaidMo";
+import { useSelector } from "react-redux";
+import SendMsg from "../../../ui/SendMsg";
 
 const Selected = () => {
   const [delModal, setDelModal] = useState(false);
   const [paidMo, setPaidMo] = useState(false);
+  const [msgMo, setMsgMo] = useState(false)
+  const selected = useSelector(state => state.selected)
   return (
     <>
     <motion.div
@@ -29,7 +32,7 @@ const Selected = () => {
           gap: "20px"
         }}
       >
-        <H3White>Selected - 1</H3White>
+        <H3White>Selected - {selected}</H3White>
         <Box
           sx={{
             padding: "4px",
@@ -38,7 +41,7 @@ const Selected = () => {
             gap: "4px",
           }}
         >
-          <IconButton onClick={() => setPaidMo(!paidMo)}>
+          <IconButton onClick={() => setMsgMo(!msgMo)}>
             <MessageIcon sx={{ color: "common.white" }} />
           </IconButton>
           <IconButton onClick={() => setDelModal(!delModal)}>
@@ -48,7 +51,7 @@ const Selected = () => {
       </Box>
     </motion.div>
     <DeleteMo modal={delModal} setModal={setDelModal} text="Are you sure you want to delete this Students?" />
-    <PaidMo modal={paidMo} setModal={setPaidMo} />
+    <SendMsg modal={msgMo} setModal={setMsgMo} />
     </>
   );
 };

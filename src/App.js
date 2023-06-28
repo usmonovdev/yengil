@@ -25,6 +25,7 @@ function App() {
         {
           blue: createColor(themeColor),
           white: createColor(grey[800]),
+          alsoWhite: createColor(grey[100]),
           primary: {
             main: indigo[700],
           },
@@ -43,6 +44,7 @@ function App() {
         } : {
           blue: createColor(themeColor),
           white: createColor(grey[100]),
+          alsoWhite: createColor(grey[100]),
           primary: {
             main: '#000',
           },

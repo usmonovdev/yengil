@@ -61,7 +61,6 @@ const AddTables = () => {
   const now = dayjs();
   const { addStudentTables } = useSelector((state) => state);
   const dispatch = useDispatch();
-  const theme = useTheme();
   const { t } = useTranslation();
   const [group, setGroup] = useState("");
   const handleGroup = (event) => {
@@ -176,10 +175,7 @@ const AddTables = () => {
               <Button
                 variant="contained"
                 onClick={() => dispatch(addTablesStudent())}
-                style={{
-                  background: theme.palette.custom.newStudentWhite,
-                  color: "black",
-                }}
+                color="alsoWhite"
               >
                 {t("addStudentsClose")}
               </Button>

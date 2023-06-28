@@ -12,13 +12,19 @@ import {
 import TableActions from "./TableActions";
 import { useTranslation } from "react-i18next";
 import { StyledTableCell, StyledTableRow } from "../../../ui/StyledTable";
+import { useDispatch } from "react-redux";
+import { getSelectedLngth } from "../../../store/themeSlice";
 
 const TableData = ({ data, selectedItem, setSelectedItem }) => {
   const { t } = useTranslation();
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const [selected, setSelected] = useState([]);
-  console.log(selected.length);
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(getSelectedLngth(selected.length))
+  }, [selected])
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
