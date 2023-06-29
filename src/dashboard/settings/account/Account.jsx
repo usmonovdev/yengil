@@ -9,9 +9,10 @@ import {
   InputLabel,
   OutlinedInput,
   TextField,
+  useTheme,
 } from "@mui/material";
 import AddAPhotoIcon from "@mui/icons-material/AddAPhoto";
-import { H3 } from "../../../ui/typography";
+import { H3, H3White } from "../../../ui/typography";
 import icon from "../../../assets/icons/icon-72x72.png";
 import InputComp from "../../../ui/InputComp";
 import { IMaskInput } from "react-imask";
@@ -174,9 +175,9 @@ const Account = () => {
             justifyContent: "space-between",
           }}
         >
-          <H3 style={{ textTransform: "uppercase" }}>Chiqish</H3>
+          <H3White sx={{ textTransform: "uppercase"}}>Chiqish</H3White>
           <IconButton onClick={() => setLogoutMo(!logoutMo)}>
-            <LogoutIcon />
+            <LogoutIcon color="alsoWhite" />
           </IconButton>
         </Box>
       </Box>

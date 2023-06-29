@@ -87,6 +87,19 @@ function App() {
           "*": {
             margin: "0",
             padding: "0"
+          },
+          ".nav-item.active": {
+            position: "relative",
+            "&::before": {
+              content: '""',
+              transition: "200ms",
+              position: "absolute",
+              right: "0",
+              width: "4px",
+              height: "100%",
+              borderRadius: "4px 0 0 4px",
+              backgroundColor: theme.palette.blue.dark
+            }
           }
         }),
       },

@@ -68,129 +68,127 @@ export const AddStudents = () => {
   };
 
   return (
-    <>
-      <Modal
-        disableScrollLock
-        sx={{ zIndex: "1000" }}
-        open={addStudentWait}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
+    <Modal
+      disableScrollLock
+      sx={{ zIndex: "1000" }}
+      open={addStudentWait}
+      aria-labelledby="modal-modal-title"
+      aria-describedby="modal-modal-description"
+    >
+      <motion.div
+        initial={{
+          opacity: 0,
+          scale: 0,
+          top: "50%",
+          left: "50%",
+          position: "absolute",
+          width: "100%",
+        }}
+        animate={{
+          opacity: 1,
+          scale: 1,
+          translateX: "-50%",
+          translateY: "-50%",
+          width: "100%",
+        }}
+        transition={{ duration: 1, type: "spring", delay: 0.1 }}
       >
-        <motion.div
-          initial={{
-            opacity: 0,
-            scale: 0,
-            top: "50%",
-            left: "50%",
-            position: "absolute",
-            width: "100%",
-          }}
-          animate={{
-            opacity: 1,
-            scale: 1,
-            translateX: "-50%",
-            translateY: "-50%",
-            width: "100%",
-          }}
-          transition={{ duration: 1, type: "spring", delay: 0.1 }}
-        >
-          <Box sx={style}>
-            <H3>{t("addStudents")}</H3>
-            <InputComp
-              placeholder="Azizbek"
-              value={name}
-              setValue={setName}
-              label={t("addStudentsName")}
-              required={true}
-              name={name}
-            />
-            <InputComp
-              placeholder="Usmonov"
-              value={firstName}
-              setValue={setFirstNmae}
-              label={t("addStudentsSurname")}
-              required={true}
-              name={name}
-            />
-            <FormControl
-              sx={{ width: { xs: "100%" }, textAlign: "left" }}
-              color="blue"
-              required
+        <Box sx={style}>
+          <H3>{t("addStudents")}</H3>
+          <InputComp
+            placeholder="Azizbek"
+            value={name}
+            setValue={setName}
+            label={t("addStudentsName")}
+            required={true}
+            name={name}
+          />
+          <InputComp
+            placeholder="Usmonov"
+            value={firstName}
+            setValue={setFirstNmae}
+            label={t("addStudentsSurname")}
+            required={true}
+            name={name}
+          />
+          <FormControl
+            sx={{ width: { xs: "100%" }, textAlign: "left" }}
+            color="blue"
+            required
+          >
+            <InputLabel>Guruh</InputLabel>
+            <Select
+              label={t("studentsSorting")}
+              onChange={handleGroup}
+              value={group}
             >
-              <InputLabel>Guruh</InputLabel>
-              <Select
-                label={t("studentsSorting")}
-                onChange={handleGroup}
-                value={group}
-              >
-                <MenuItem value="Matematika">Matematika</MenuItem>
-                <MenuItem value="ona tili">Ona tili</MenuItem>
-                <MenuItem value="dasturlash">Dasturlash</MenuItem>
-                <MenuItem value="fizika">Fizika</MenuItem>
-                <MenuItem value="ingliz tili">Ingliz tili</MenuItem>
-              </Select>
-            </FormControl>
-            <InputComp
-              placeholder="+99890-000-00-00"
-              value={phone}
-              setValue={setPhone}
-              label={t("addStudentsTel")}
-              inputProps={TextMaskCustom}
-              required={true}
-              name={name}
-            />
-            <InputComp
-              placeholder="@t_samandar_t"
-              value={telegram}
-              setValue={setTelegram}
-              label={t("addStudentsTelegram")}
-              required={true}
-              name={name}
-            />
-            <InputComp
-              placeholder="Matematika"
-              value={notes}
-              setValue={setNotes}
-              label={t("addStudentsNote")}
-              required={true}
-              name={name}
-            />
-            <LocalizationProvider dateAdapter={AdapterDayjs}>
-              <DemoContainer components={["DatePicker", "DatePicker"]}>
-                <DatePicker
-                  slotProps={{ color: "blue" }}
-                  sx={{ width: "100%" }}
-                  onChange={(e) => setDate(e)}
-                  label="Controlled picker"
-                  defaultValue={dayjs(now)}
-                />
-              </DemoContainer>
-            </LocalizationProvider>
-            <Box
-              sx={{
-                display: "flex",
-                flexDirection: "row",
-                justifyContent: "flex-end",
-                gap: "10px",
+              <MenuItem value="Matematika">Matematika</MenuItem>
+              <MenuItem value="ona tili">Ona tili</MenuItem>
+              <MenuItem value="dasturlash">Dasturlash</MenuItem>
+              <MenuItem value="fizika">Fizika</MenuItem>
+              <MenuItem value="ingliz tili">Ingliz tili</MenuItem>
+            </Select>
+          </FormControl>
+          <InputComp
+            placeholder="+99890-000-00-00"
+            value={phone}
+            setValue={setPhone}
+            label={t("addStudentsTel")}
+            inputProps={TextMaskCustom}
+            required={true}
+            name={name}
+          />
+          <InputComp
+            placeholder="@t_samandar_t"
+            value={telegram}
+            setValue={setTelegram}
+            label={t("addStudentsTelegram")}
+            required={true}
+            name={name}
+          />
+          <InputComp
+            placeholder="Matematika"
+            value={notes}
+            setValue={setNotes}
+            label={t("addStudentsNote")}
+            required={true}
+            name={name}
+          />
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
+            <DemoContainer components={["DatePicker", "DatePicker"]}>
+              <DatePicker
+                slotProps={{ color: "blue" }}
+                sx={{ width: "100%" }}
+                onChange={(e) => setDate(e)}
+                label="Controlled picker"
+                defaultValue={dayjs(now)}
+              />
+            </DemoContainer>
+          </LocalizationProvider>
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "flex-end",
+              gap: "10px",
+            }}
+          >
+            <Button
+              variant="contained"
+              onClick={() => dispatch(addWaitStudent())}
+              style={{
+                background: theme.palette.custom.newStudentWhite,
+                color: "black",
               }}
             >
-              <Button
-                variant="contained"
-                onClick={() => dispatch(addWaitStudent())}
-                style={{
-                  background: theme.palette.custom.newStudentWhite,
-                  color: "black",
-                }}
-              >
-                {t("addStudentsClose")}
-              </Button>
-              <Button variant="contained" color="blue">
-                {t("addStudentsSave")}
-              </Button>
-            </Box>
+              {t("addStudentsClose")}
+            </Button>
+            <Button variant="contained" color="blue">
+              {t("addStudentsSave")}
+            </Button>
           </Box>
-        </motion.div>
-      </Modal>
-    </>
+        </Box>
+      </motion.div>
+    </Modal>
   );
 };

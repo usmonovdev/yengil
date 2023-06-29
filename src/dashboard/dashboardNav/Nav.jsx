@@ -7,7 +7,6 @@ import { motion } from "framer-motion";
 import { dashboardData } from "../../localData/dashboardData";
 import { NavLink } from "react-router-dom";
 import { useState } from "react";
-import "./nav.scss";
 
 const LinksBox = styled(Button)(({ theme }) => ({
   width: "100%",

@@ -1,11 +1,10 @@
-import { Box, IconButton, Tooltip } from "@mui/material";
+import { Box } from "@mui/material";
 import React, { useState } from "react";
 import { H3 } from "../../../ui/typography";
 import { useTranslation } from "react-i18next";
-import arrow from "../../../assets/icons/arrow-right.png";
-import DeleteIcon from "@mui/icons-material/Delete";
 import styled from "@emotion/styled";
 import DeleteMo from "../../../ui/DeleteMo";
+import Waiting from "./actions/Waiting";
 
 const StyledH3 = styled(H3)(({ theme }) => ({
   opacity: "60%",
@@ -55,80 +54,7 @@ const WaitingStudents = ({ data }) => {
                         gap: "10px",
                       }}
                     >
-                      <Box
-                        sx={{
-                          width: "25px",
-                          height: "25px",
-                          cursor: "pointer",
-                          borderRadius: "50%",
-                          bgcolor: "custom.newStudentWhite",
-                          transform: {
-                            xs: "rotate(-90deg)",
-                            sm: "rotate(-90deg)",
-                            md: "rotate(180deg)",
-                          },
-                        }}
-                      >
-                        <Tooltip
-                          disableFocusListener
-                          disableTouchListener
-                          title={t("newStudentsRequestersTooltip")}
-                          sx={{ position: "relative" }}
-                          arrow
-                        >
-                          <img width="100%" src={arrow} />
-                        </Tooltip>
-                      </Box>
-                      <Box
-                        sx={{
-                          width: "25px",
-                          height: "25px",
-                          cursor: "pointer",
-                          borderRadius: "50%",
-                          bgcolor: "blue.main",
-                          transform: {
-                            xs: "rotate(90deg)",
-                            sm: "rotate(90deg)",
-                            md: "rotate(0deg)",
-                          },
-                        }}
-                      >
-                        <Tooltip
-                          disableFocusListener
-                          disableTouchListener
-                          title={t("newStudentsReadyTooltip")}
-                          sx={{ position: "relative" }}
-                          arrow
-                        >
-                          <img width="100%" src={arrow} />
-                        </Tooltip>
-                      </Box>
-                      <Box
-                        sx={{
-                          width: "25px",
-                          height: "25px",
-                          cursor: "pointer",
-                          display: "flex",
-                          justifyContent: "center",
-                          alignItems: "center",
-                          borderRadius: "50%",
-                        }}
-                      >
-                        <Tooltip
-                          disableFocusListener
-                          disableTouchListener
-                          title={t("groupOpenDelete")}
-                          sx={{ position: "relative" }}
-                          arrow
-                        >
-                          <IconButton
-                            size="small"
-                            onClick={() => setDelModal2(!delModal2)}
-                          >
-                            <DeleteIcon sx={{ color: "gray" }} />
-                          </IconButton>
-                        </Tooltip>
-                      </Box>
+                      <Waiting />
                     </Box>
                   </Box>
                   <Box

@@ -102,7 +102,7 @@ const NewStudents = () => {
 
   return (
     <>
-      {addStudentWait && <AddStudents />}
+      <AddStudents />
       <div
         ref={ref}
         style={{
@@ -271,7 +271,7 @@ const NewStudents = () => {
                 sx={{
                   width: "100%",
                   height: "10px",
-                  bgcolor: "custom.bunting",
+                  bgcolor: "blue.dark",
                   borderRadius: "4px",
                 }}
               ></Box>

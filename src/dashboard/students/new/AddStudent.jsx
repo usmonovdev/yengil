@@ -1,11 +1,10 @@
-import { Box, IconButton, Tooltip } from "@mui/material";
+import { Box } from "@mui/material";
 import React, { useState } from "react";
 import { H3 } from "../../../ui/typography";
-import DeleteIcon from "@mui/icons-material/Delete";
 import styled from "@emotion/styled";
 import { useTranslation } from "react-i18next";
-import arrow from "../../../assets/icons/arrow-right.png";
 import DeleteMo from "../../../ui/DeleteMo";
+import NewActions from "./actions/NewActions";
 
 const StyledH3 = styled(H3)(({ theme }) => ({
   opacity: "60%",
@@ -56,82 +55,7 @@ const AddStudent = ({ data }) => {
                           gap: "10px",
                         }}
                       >
-                        <Box
-                          sx={{
-                            width: "25px",
-                            height: "25px",
-                            cursor: "pointer",
-                            borderRadius: "50%",
-                            bgcolor: "custom.newStudentWhite",
-                            display: "flex",
-                            flexDirection: "row",
-                            transform: {
-                              xs: "rotate(90deg)",
-                              sm: "rotate(90deg)",
-                              md: "rotate(0deg)",
-                            },
-                          }}
-                        >
-                          <Tooltip
-                            disableFocusListener
-                            disableTouchListener
-                            title={t("newStudentsWaitingTooltip")}
-                            sx={{ position: "relative" }}
-                            arrow
-                          >
-                            <img width="100%" src={arrow} />
-                          </Tooltip>
-                        </Box>
-                        <Box
-                          sx={{
-                            width: "25px",
-                            height: "25px",
-                            cursor: "pointer",
-                            borderRadius: "50%",
-                            bgcolor: "blue.main",
-                            transform: {
-                              xs: "rotate(90deg)",
-                              sm: "rotate(90deg)",
-                              md: "rotate(0deg)",
-                            },
-                          }}
-                        >
-                          <Tooltip
-                            disableFocusListener
-                            disableTouchListener
-                            title={t("newStudentsReadyTooltip")}
-                            sx={{ position: "relative" }}
-                            arrow
-                          >
-                            <img width="100%" src={arrow} />
-                          </Tooltip>
-                        </Box>
-                        <Box
-                          sx={{
-                            width: "25px",
-                            height: "25px",
-                            cursor: "pointer",
-                            display: "flex",
-                            justifyContent: "center",
-                            alignItems: "center",
-                            borderRadius: "50%",
-                          }}
-                        >
-                          <Tooltip
-                            disableFocusListener
-                            disableTouchListener
-                            title={t("groupOpenDelete")}
-                            sx={{ position: "relative" }}
-                            arrow
-                          >
-                            <IconButton
-                              size="small"
-                              onClick={() => setDelModal(!delModal)}
-                            >
-                              <DeleteIcon sx={{ color: "gray" }} />
-                            </IconButton>
-                          </Tooltip>
-                        </Box>
+                        <NewActions />
                       </Box>
                     </Box>
                     <Box
