@@ -151,7 +151,7 @@ const MoneyTables = () => {
             alignItems: "center",
           }}
         >
-          <H2>Foyda</H2>
+          <H2>{t("dashboardMoneyBenefit")}</H2>
           <Tooltip title="Download profit data (Exel)" arrow>
             <IconButton
               sx={{ height: "fit-content", width: "fit-content" }}
@@ -166,7 +166,7 @@ const MoneyTables = () => {
             </IconButton>
           </Tooltip>
         </Box>
-        <Paragraph>Umumiy foyda - 50.000.000</Paragraph>
+        <Paragraph>{t("dashboardMoneyBenefitTitle")} - 50.000.000</Paragraph>
         <form>
           <Box
             sx={{
@@ -204,11 +204,11 @@ const MoneyTables = () => {
                   onChange={handleChange}
                   value={sorting}
                 >
-                  <MenuItem value="name">Kim tomonidan</MenuItem>
-                  <MenuItem value="tel">Telefon</MenuItem>
-                  <MenuItem value="cash">Summa</MenuItem>
-                  <MenuItem value="date">Kun</MenuItem>
-                  <MenuItem value="clock">Soat</MenuItem>
+                  <MenuItem value="name">{t("moneyBenefitTable")}</MenuItem>
+                  <MenuItem value="tel">{t("userMoPhone")}</MenuItem>
+                  <MenuItem value="cash">{t("moneyBenefitSumma")}</MenuItem>
+                  <MenuItem value="date">{t("groupOpenDay")}</MenuItem>
+                  <MenuItem value="clock">{t("groupTablesClock")}</MenuItem>
                 </Select>
               </FormControl>
             </Box>
@@ -222,13 +222,13 @@ const MoneyTables = () => {
                   <TableRow>
                     <StyledTableCell align="left">ID</StyledTableCell>
                     <StyledTableCell align="left">
-                      Kim tomonidan
+                    {t("moneyBenefitTable")}
                     </StyledTableCell>
-                    <StyledTableCell align="left">Telefon</StyledTableCell>
-                    <StyledTableCell align="left">Summa</StyledTableCell>
-                    <StyledTableCell align="left">Kun</StyledTableCell>
-                    <StyledTableCell align="left">Soat</StyledTableCell>
-                    <StyledTableCell align="left">More</StyledTableCell>
+                    <StyledTableCell align="left">{t("userMoPhone")}</StyledTableCell>
+                    <StyledTableCell align="left">{t("moneyBenefitSumma")}</StyledTableCell>
+                    <StyledTableCell align="left">{t("groupOpenDay")}</StyledTableCell>
+                    <StyledTableCell align="left">{t("groupTablesClock")}</StyledTableCell>
+                    <StyledTableCell align="left">{t("groupMore")}</StyledTableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
@@ -280,7 +280,7 @@ const MoneyTables = () => {
               justifyContent: "center",
             }}
           >
-            <H3>Bunday ma'lumot topilmadi</H3>
+            <H3>{t("moneyNotFound")}</H3>
           </Box>
         )}
       </Box>

@@ -206,13 +206,10 @@ const AddTeacher = () => {
                 gap: "10px",
               }}
             >
-              <Button
+                <Button
                 variant="contained"
                 onClick={() => dispatch(addTecherTables())}
-                style={{
-                  background: theme.palette.custom.newStudentWhite,
-                  color: "black",
-                }}
+                color="alsoWhite"
               >
                 {t("addStudentsClose")}
               </Button>

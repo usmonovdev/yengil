@@ -156,7 +156,7 @@ const SalaryTables = () => {
             alignItems: "center",
           }}
         >
-          <H2>Oyliklar</H2>
+          <H2>{t("moneySalary")}</H2>
           <Tooltip title="Download salary data (Exel)" arrow>
             <IconButton
               sx={{ height: "fit-content", width: "fit-content" }}
@@ -171,7 +171,7 @@ const SalaryTables = () => {
             </IconButton>
           </Tooltip>
         </Box>
-        <Paragraph>Umumiy Oylik - 13.000.000</Paragraph>
+        <Paragraph>{t("moneySalaryTitle")} - 13.000.000</Paragraph>
         <form>
           <Box
             sx={{
@@ -209,11 +209,11 @@ const SalaryTables = () => {
                   onChange={handleChange}
                   value={sorting}
                 >
-                  <MenuItem value="name">Ism Familiya</MenuItem>
-                  <MenuItem value="tel">Telefon</MenuItem>
-                  <MenuItem value="teachers_salary">Xodim uchun</MenuItem>
-                  <MenuItem value="center_salary">Markaz uchun</MenuItem>
-                  <MenuItem value="jobs">Kasbi</MenuItem>
+                  <MenuItem value="name">{t("groupOpenName")}</MenuItem>
+                  <MenuItem value="tel">{t("userMoPhone")}</MenuItem>
+                  <MenuItem value="teachers_salary">{t("moneySalaryEmployee")}</MenuItem>
+                  <MenuItem value="center_salary">{t("moneySalaryCenter")}</MenuItem>
+                  <MenuItem value="jobs">{t("moneySalaryOccupation")}</MenuItem>
                 </Select>
               </FormControl>
             </Box>
@@ -232,13 +232,13 @@ const SalaryTables = () => {
               <Table stickyHeader sx={{ minWidth: 700 }}>
                 <TableHead>
                   <TableRow>
-                    <StyledTableCell align="left">ID</StyledTableCell>
-                    <StyledTableCell align="left">Ism Familiya</StyledTableCell>
-                    <StyledTableCell align="left">Telefon</StyledTableCell>
-                    <StyledTableCell align="left">Xodim uchun</StyledTableCell>
-                    <StyledTableCell align="left">Markaz uchun</StyledTableCell>
-                    <StyledTableCell align="left">Kasbi</StyledTableCell>
-                    <StyledTableCell align="left">More</StyledTableCell>
+                    <StyledTableCell align="left">{t("groupTablesId")}</StyledTableCell>
+                    <StyledTableCell align="left">{t("groupOpenName")}</StyledTableCell>
+                    <StyledTableCell align="left">{t("userMoPhone")}</StyledTableCell>
+                    <StyledTableCell align="left">{t("moneySalaryEmployee")}</StyledTableCell>
+                    <StyledTableCell align="left">{t("moneySalaryCenter")}</StyledTableCell>
+                    <StyledTableCell align="left">{t("moneySalaryOccupation")}</StyledTableCell>
+                    <StyledTableCell align="left">{t("groupMore")}</StyledTableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
@@ -290,7 +290,7 @@ const SalaryTables = () => {
               justifyContent: "center",
             }}
           >
-            <H3>Bunday ma'lumot topilmadi</H3>
+            <H3>{t("moneyNotFound")}</H3>
           </Box>
         )}
       </Box>

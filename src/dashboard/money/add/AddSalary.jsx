@@ -135,10 +135,7 @@ const AddSalary = () => {
               <Button
                 variant="contained"
                 onClick={() => dispatch(addSalatyTables())}
-                style={{
-                  background: theme.palette.custom.newStudentWhite,
-                  color: "black",
-                }}
+                color="alsoWhite"
               >
                 {t("addStudentsClose")}
               </Button>
