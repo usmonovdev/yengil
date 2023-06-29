@@ -11,12 +11,8 @@ import {
   Select,
   useTheme,
 } from "@mui/material";
-import dayjs from "dayjs";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
-import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
-import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { H3 } from "../../../ui/typography";
 import { IMaskInput } from "react-imask";
 import PropTypes from "prop-types";
@@ -59,7 +55,7 @@ const modalStyle = {
   gap: "15px",
 };
 
-const days = [
+const courses = [
   "Fizika",
   "Matematika",
   "Ona tili",
@@ -79,12 +75,8 @@ function getStyles(name, personName, theme) {
 
 const EditMo = ({ modal, setModal }) => {
   const [name, setName] = useState("");
-  const [firstName, setFirstNmae] = useState("");
-  const [phone, setPhone] = useState("");
-  const [telegram, setTelegram] = useState("");
-  const [date, setDate] = useState("");
+  const [phone, setPhone] = useState("+998");
   const [notes, setNotes] = useState("");
-  const now = dayjs();
 
   const { t } = useTranslation();
   const theme = useTheme();
@@ -137,18 +129,10 @@ const EditMo = ({ modal, setModal }) => {
           <Box sx={modalStyle}>
             <H3>{t("studentsEdit")}</H3>
             <InputComp
-              placeholder="Azizbek"
+              placeholder="Usmonov Azizbek"
               value={name}
               setValue={setName}
-              label={t("addStudentsName")}
-              required={true}
-              name={name}
-            />
-            <InputComp
-              placeholder="Usmonov"
-              value={firstName}
-              setValue={setFirstNmae}
-              label={t("addStudentsSurname")}
+              label={'Ism Familiya'}
               required={true}
               name={name}
             />
@@ -161,17 +145,15 @@ const EditMo = ({ modal, setModal }) => {
               name={name}
               inputProps={TextMaskCustom}
             />
-            <FormControl sx={{ width: "100%" }} color="blue">
-              <InputLabel id="demo-multiple-chip-label">{t("groupTables")}</InputLabel>
+            <FormControl sx={{ width: "100%" }} color="blue" required>
+              <InputLabel>{t("groupTables")}</InputLabel>
               <Select
                 sx={{ zIndex: "1500" }}
-                labelId="demo-multiple-chip-label"
-                id="demo-multiple-chip"
                 multiple
                 value={personName}
                 onChange={handleGetGroups}
                 input={
-                  <OutlinedInput id="select-multiple-chip" label="Guruh" />
+                  <OutlinedInput label={t("groupTables")} />
                 }
                 renderValue={(selected) => (
                   <Box sx={{ display: "flex", flexWrap: "wrap", gap: 0.5 }}>
@@ -182,7 +164,7 @@ const EditMo = ({ modal, setModal }) => {
                 )}
                 MenuProps={MenuProps}
               >
-                {days.map((name) => (
+                {courses.map((name) => (
                   <MenuItem
                     key={name}
                     value={name}
@@ -194,29 +176,10 @@ const EditMo = ({ modal, setModal }) => {
               </Select>
             </FormControl>
             <InputComp
-              placeholder="@t_samandar_t"
-              value={telegram}
-              setValue={setTelegram}
-              label={t("addStudentsTelegram")}
-              required={true}
-              name={name}
-            />
-            <LocalizationProvider dateAdapter={AdapterDayjs}>
-              <DemoContainer components={["DatePicker", "DatePicker"]}>
-                <DatePicker
-                  sx={{ width: "100%" }}
-                  onChange={(e) => setDate(e)}
-                  label={t("groupOpenDay")}
-                  defaultValue={dayjs(now)}
-                />
-              </DemoContainer>
-            </LocalizationProvider>
-            <InputComp
               placeholder="Matematika"
               value={notes}
               setValue={setNotes}
               label={t("addStudentsNote")}
-              required={true}
               name={name}
             />
             <Box

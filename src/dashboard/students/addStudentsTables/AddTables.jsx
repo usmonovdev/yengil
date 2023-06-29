@@ -1,21 +1,13 @@
 import React, { useState } from "react";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import { H3 } from "../../../ui/typography";
 import InputComp from "../../../ui/InputComp";
-import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
-import { DatePicker } from "@mui/x-date-pickers/DatePicker";
-import { Telegram } from "@mui/icons-material";
-import { useTheme } from "@emotion/react";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import { motion } from "framer-motion";
 import { addTablesStudent } from "../../../store/themeSlice";
-import dayjs from "dayjs";
 import { IMaskInput } from "react-imask";
 import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 
@@ -53,12 +45,8 @@ const TextMaskCustom = React.forwardRef(function TextMaskCustom(props, ref) {
 
 const AddTables = () => {
   const [name, setName] = useState("");
-  const [firstName, setFirstNmae] = useState("");
   const [phone, setPhone] = useState("");
-  const [telegram, setTelegram] = useState("");
-  const [date, setDate] = useState("");
   const [notes, setNotes] = useState("");
-  const now = dayjs();
   const { addStudentTables } = useSelector((state) => state);
   const dispatch = useDispatch();
   const { t } = useTranslation();
@@ -100,15 +88,7 @@ const AddTables = () => {
               placeholder="Azizbek"
               value={name}
               setValue={setName}
-              label={t("addStudentsName")}
-              required={true}
-              name={name}
-            />
-            <InputComp
-              placeholder="Usmonov"
-              value={firstName}
-              setValue={setFirstNmae}
-              label={t("addStudentsSurname")}
+              label={"Ism Familiya"}
               required={true}
               name={name}
             />
@@ -133,35 +113,17 @@ const AddTables = () => {
             <InputComp
               placeholder="+99890-000-00-00"
               value={phone}
+              inputProps={TextMaskCustom}
               setValue={setPhone}
               label={t("addStudentsTel")}
               required={true}
               name={name}
             />
             <InputComp
-              placeholder="@t_samandar_t"
-              value={telegram}
-              setValue={setTelegram}
-              label={t("addStudentsTelegram")}
-              required={true}
-              name={name}
-            />
-            <LocalizationProvider dateAdapter={AdapterDayjs}>
-              <DemoContainer components={["DatePicker", "DatePicker"]}>
-                <DatePicker
-                  sx={{ width: "100%" }}
-                  onChange={(e) => setDate(e)}
-                  label={t("groupOpenDay")}
-                  defaultValue={dayjs(now)}
-                />
-              </DemoContainer>
-            </LocalizationProvider>
-            <InputComp
               placeholder="Matematika"
               value={notes}
               setValue={setNotes}
               label={t("addStudentsNote")}
-              required={true}
               name={name}
             />
             <Box

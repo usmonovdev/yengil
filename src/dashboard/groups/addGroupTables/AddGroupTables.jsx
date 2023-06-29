@@ -4,7 +4,7 @@ import Button from "@mui/material/Button";
 import Modal from "@mui/material/Modal";
 import { H3 } from "../../../ui/typography";
 import InputComp from "../../../ui/InputComp";
-import { DemoContainer, DemoItem } from "@mui/x-date-pickers/internals/demo";
+import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
@@ -12,9 +12,8 @@ import { useTheme } from "@emotion/react";
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
 import { useDispatch, useSelector } from "react-redux";
-import { addGroupTables, addWaitStudent } from "../../../store/themeSlice";
-import dayjs, { Dayjs } from "dayjs";
-import { IMaskInput } from "react-imask";
+import { addGroupTables } from "../../../store/themeSlice";
+import dayjs from "dayjs";
 import {
   Chip,
   FormControl,
@@ -40,29 +39,6 @@ const style = {
   flexDirection: "column",
   gap: "15px",
 };
-
-const teachers = [
-  "Mirzaqulov Abbos",
-  "Turg'unboev Samandar",
-  "Abduqayumov Abror",
-  "Usmonov Azizbek",
-];
-
-const TextMaskCustom = React.forwardRef(function TextMaskCustom(props, ref) {
-  const { onChange, ...other } = props;
-  return (
-    <IMaskInput
-      {...other}
-      mask="+{998} (00) 000 00 00"
-      definitions={{
-        _: /[1-9]/,
-      }}
-      inputRef={ref}
-      onAccept={(value) => onChange({ target: { name: props.name, value } })}
-      overwrite
-    />
-  );
-});
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -200,16 +176,14 @@ const AddGroupTables = () => {
               required={true}
               name={name}
             />
-            <FormControl sx={{ width: "100%" }} color="blue">
-              <InputLabel id="demo-multiple-chip-label">{t("groupOpenDay")}</InputLabel>
+            <FormControl sx={{ width: "100%" }} color="blue" required>
+              <InputLabel>{t("groupOpenDay")}</InputLabel>
               <Select
-                labelId="demo-multiple-chip-label"
-                id="demo-multiple-chip"
                 multiple
                 value={personName}
                 onChange={handleChange}
                 input={
-                  <OutlinedInput id="select-multiple-chip" label="Kunlar" />
+                  <OutlinedInput label="Kunlar" />
                 }
                 renderValue={(selected) => (
                   <Box sx={{ display: "flex", flexWrap: "wrap", gap: 0.5 }}>
@@ -241,7 +215,7 @@ const AddGroupTables = () => {
               >
                 <TimePicker
                   views={["hours", "minutes"]}
-                  label={t("groupOpenLessonTime")}
+                  label={`${t("groupOpenLessonTime")}*`}
                   onChange={(e) => setClock(e)}
                 />
               </DemoContainer>
@@ -251,7 +225,7 @@ const AddGroupTables = () => {
                 <DatePicker
                   sx={{ width: "100%" }}
                   onChange={(e) => setDate(e)}
-                  label={t("groupAddTime")}
+                  label={`${t("groupAddTime")}*`}
                   defaultValue={dayjs(now)}
                 />
               </DemoContainer>
@@ -261,7 +235,6 @@ const AddGroupTables = () => {
               value={notes}
               setValue={setNotes}
               label={t("groupAddComent")}
-              required={true}
               name={name}
             />
             <Box

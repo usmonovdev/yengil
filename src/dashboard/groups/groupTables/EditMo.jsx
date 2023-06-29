@@ -224,6 +224,14 @@ const EditMo = ({ modal, setModal }) => {
                 ))}
               </Select>
             </FormControl>
+            <InputComp
+              placeholder="500.000 so'm"
+              value={price}
+              setValue={setPrice}
+              label={t("groupEditMo")}
+              required={true}
+              name={name}
+            />
             <LocalizationProvider dateAdapter={AdapterDayjs}>
               <DemoContainer
                 components={[
@@ -234,25 +242,17 @@ const EditMo = ({ modal, setModal }) => {
               >
                 <TimePicker
                   views={["hours", "minutes"]}
-                  label={t("groupOpenLessonTime")}
+                  label={`${t("groupOpenLessonTime")}*`}
                   onChange={(e) => setClock(e)}
                 />
               </DemoContainer>
             </LocalizationProvider>
-            <InputComp
-              placeholder="500.000 so'm"
-              value={price}
-              setValue={setPrice}
-              label={t("groupEditMo")}
-              required={true}
-              name={name}
-            />
             <LocalizationProvider dateAdapter={AdapterDayjs}>
               <DemoContainer components={["DatePicker", "DatePicker"]}>
                 <DatePicker
                   sx={{ width: "100%" }}
                   onChange={(e) => setDate(e)}
-                  label={t("groupStart")}
+                  label={`${t("groupStart")}*`}
                   defaultValue={dayjs(now)}
                 />
               </DemoContainer>

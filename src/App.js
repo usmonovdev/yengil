@@ -88,6 +88,10 @@ function App() {
             margin: "0",
             padding: "0"
           },
+          "::selection": {
+            backgroundColor: theme.palette.blue.main,
+            color: theme.palette.alsoWhite.main
+          },
           ".nav-item.active": {
             position: "relative",
             "&::before": {

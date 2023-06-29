@@ -4,16 +4,10 @@ import Button from "@mui/material/Button";
 import Modal from "@mui/material/Modal";
 import { H3 } from "../../../ui/typography";
 import InputComp from "../../../ui/InputComp";
-import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
-import { DatePicker } from "@mui/x-date-pickers/DatePicker";
-import { useTheme } from "@emotion/react";
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
 import { useDispatch, useSelector } from "react-redux";
 import { addWaitStudent } from "../../../store/themeSlice";
-import dayjs, { Dayjs } from "dayjs";
 import { IMaskInput } from "react-imask";
 import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 
@@ -51,17 +45,12 @@ const TextMaskCustom = React.forwardRef(function TextMaskCustom(props, ref) {
 
 export const AddStudents = () => {
   const [name, setName] = useState("");
-  const [firstName, setFirstNmae] = useState("");
-  const [phone, setPhone] = useState("");
-  const [date, setDate] = useState("");
+  const [phone, setPhone] = useState("+998");
   const [group, setGroup] = useState("");
-  const [telegram, setTelegram] = useState("");
   const [notes, setNotes] = useState("");
-  const theme = useTheme();
   const { t } = useTranslation();
   const { addStudentWait } = useSelector((state) => state);
   const dispatch = useDispatch();
-  const now = dayjs();
 
   const handleGroup = (event) => {
     setGroup(event.target.value);
@@ -97,18 +86,10 @@ export const AddStudents = () => {
           <Box sx={style}>
             <H3>{t("addStudents")}</H3>
             <InputComp
-              placeholder="Azizbek"
+              placeholder="Usmonov Azizbek"
               value={name}
               setValue={setName}
-              label={t("addStudentsName")}
-              required={true}
-              name={name}
-            />
-            <InputComp
-              placeholder="Usmonov"
-              value={firstName}
-              setValue={setFirstNmae}
-              label={t("addStudentsSurname")}
+              label={"Ism Familiya"}
               required={true}
               name={name}
             />
@@ -140,32 +121,12 @@ export const AddStudents = () => {
               name={name}
             />
             <InputComp
-              placeholder="@t_samandar_t"
-              value={telegram}
-              setValue={setTelegram}
-              label={t("addStudentsTelegram")}
-              required={true}
-              name={name}
-            />
-            <InputComp
               placeholder="Matematika"
               value={notes}
               setValue={setNotes}
               label={t("addStudentsNote")}
-              required={true}
               name={name}
             />
-            <LocalizationProvider dateAdapter={AdapterDayjs}>
-              <DemoContainer components={["DatePicker", "DatePicker"]}>
-                <DatePicker
-                  slotProps={{ color: "blue" }}
-                  sx={{ width: "100%" }}
-                  onChange={(e) => setDate(e)}
-                  label={t("studentsControll")}
-                  defaultValue={dayjs(now)}
-                />
-              </DemoContainer>
-            </LocalizationProvider>
             <Box
               sx={{
                 display: "flex",

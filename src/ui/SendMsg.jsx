@@ -3,6 +3,7 @@ import { Box, Button, Chip, Modal, TextField } from "@mui/material";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { H3, Paragraph } from "./typography";
+import Keywords from "./Keywords";
 
 const modalStyle = {
   position: "absolute",
@@ -23,6 +24,7 @@ const modalStyle = {
 const SendMsg = ({ modal, setModal }) => {
   const { t } = useTranslation();
   const [msg, setMsg] = useState("");
+  const [keyword, setKeyword] = useState(false)
 
   const handleDelete = () => {};
   return (
@@ -61,12 +63,19 @@ const SendMsg = ({ modal, setModal }) => {
             onChange={(e) => setMsg(e.target.value)}
             color="blue"
             rows={5}
-            defaultValue={"Assalomu alaykum ..."}
+            defaultValue={"Assalomu alaykum..."}
           />
-          <Box sx={{ display: "flex", flexDirection: "row", justifyContent: "flex-start", alignItems: "center", flexWrap: "wrap", gap: "10px" }}>
-            <Paragraph>
-              Tanlandi (10):
-            </Paragraph>
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "flex-start",
+              alignItems: "center",
+              flexWrap: "wrap",
+              gap: "10px",
+            }}
+          >
+            <Paragraph>Tanlandi (10):</Paragraph>
             <Chip label="Deletable" onDelete={handleDelete} />
             <Chip label="Deletable" onDelete={handleDelete} />
             <Chip label="Deletable" onDelete={handleDelete} />
@@ -85,21 +94,31 @@ const SendMsg = ({ modal, setModal }) => {
             sx={{
               display: "flex",
               flexDirection: "row",
-              justifyContent: "flex-end",
+              justifyContent: "space-between",
               gap: "10px",
             }}
           >
-            <Button
-              variant="contained"
-              onClick={() => setModal(!modal)}
-              color="alsoWhite"
+            <Button variant="contained" color="blue" onClick={() => setKeyword(!keyword)}>Keywords</Button>
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "row",
+                gap: "10px",
+              }}
             >
-              {t("addStudentsClose")}
-            </Button>
-            <Button variant="contained" color="blue">
-              Send
-            </Button>
+              <Button
+                variant="contained"
+                onClick={() => setModal(!modal)}
+                color="alsoWhite"
+              >
+                {t("addStudentsClose")}
+              </Button>
+              <Button variant="contained" color="blue">
+                Send
+              </Button>
+            </Box>
           </Box>
+          <Keywords modal={keyword} setModal={setKeyword} />
         </Box>
       </motion.div>
     </Modal>
