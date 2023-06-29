@@ -158,7 +158,7 @@ const Cost = () => {
               alignItems: "center",
             }}
           >
-            <H2>Xarajatlar</H2>
+            <H2>{t("moneyCosts")}</H2>
             <Tooltip title="Download cost data (Exel)" arrow>
               <IconButton
                 sx={{ height: "fit-content", width: "fit-content" }}
@@ -173,7 +173,7 @@ const Cost = () => {
               </IconButton>
             </Tooltip>
           </Box>
-          <Paragraph>Umumiy xarajat - 500.000</Paragraph>
+          <Paragraph>{t("moneyCostsTitle")} - 500.000</Paragraph>
           <form>
             <Box
               sx={{
@@ -211,11 +211,11 @@ const Cost = () => {
                     onChange={handleChange}
                     value={sorting}
                   >
-                    <MenuItem value="name">Kim tomonidan</MenuItem>
-                    <MenuItem value="reason">Sababi</MenuItem>
-                    <MenuItem value="cash">Summa</MenuItem>
-                    <MenuItem value="date">Kun</MenuItem>
-                    <MenuItem value="clock">Soat</MenuItem>
+                    <MenuItem value="name">{t("moneyBenefitTable")}</MenuItem>
+                    <MenuItem value="reason">{t("monneyCostsReason")}</MenuItem>
+                    <MenuItem value="cash">{t("moneyBenefitSumma")}</MenuItem>
+                    <MenuItem value="date">{t("groupOpenDay")}</MenuItem>
+                    <MenuItem value="clock">{t("newStudentsSortingTime")}</MenuItem>
                   </Select>
                 </FormControl>
               </Box>
@@ -234,15 +234,15 @@ const Cost = () => {
                 <Table stickyHeader sx={{ minWidth: 700 }}>
                   <TableHead>
                     <TableRow>
-                      <StyledTableCell align="left">ID</StyledTableCell>
+                      <StyledTableCell align="left">{t("groupTablesId")}</StyledTableCell>
                       <StyledTableCell align="left">
-                        Kim tomonidan
+                        {t("moneyBenefitTable")}
                       </StyledTableCell>
-                      <StyledTableCell align="left">Sababi</StyledTableCell>
-                      <StyledTableCell align="left">Summa</StyledTableCell>
-                      <StyledTableCell align="left">Kun</StyledTableCell>
-                      <StyledTableCell align="left">Soat</StyledTableCell>
-                      <StyledTableCell align="left">More</StyledTableCell>
+                      <StyledTableCell align="left">{t("monneyCostsReason")}</StyledTableCell>
+                      <StyledTableCell align="left">{t("moneyBenefitSumma")}</StyledTableCell>
+                      <StyledTableCell align="left">{t("groupOpenDay")}</StyledTableCell>
+                      <StyledTableCell align="left">{t("newStudentsSortingTime")}</StyledTableCell>
+                      <StyledTableCell align="left">{t("groupMore")}</StyledTableCell>
                     </TableRow>
                   </TableHead>
                   <TableBody>

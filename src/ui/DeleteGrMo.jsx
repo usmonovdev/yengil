@@ -58,11 +58,9 @@ const DeleteGrMo = ({ modal, setModal, text = "Aniqmi?" }) => {
               sx={{ display: "flex", justifyContent: "flex-end", gap: "10px" }}
             >
               <Button
+                variant="contained"
                 onClick={() => setModal(!modal)}
-                style={{
-                  background: theme.palette.custom.newStudentWhite,
-                  color: "black",
-                }}
+                color="alsoWhite"
               >
                 {t("groupOpenCanel")}
               </Button>

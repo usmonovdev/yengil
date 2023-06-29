@@ -58,10 +58,8 @@ const DeleteMo = ({ modal, setModal }) => {
           >
             <Button
               onClick={() => setModal(!modal)}
-              style={{
-                background: theme.palette.custom.newStudentWhite,
-                color: "black",
-              }}
+              variant="contained"
+              color="alsoWhite"
             >
               {t("groupOpenCanel")}
             </Button>

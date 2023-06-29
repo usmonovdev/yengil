@@ -177,10 +177,7 @@ export const AddStudents = () => {
               <Button
                 variant="contained"
                 onClick={() => dispatch(addWaitStudent())}
-                style={{
-                  background: theme.palette.custom.newStudentWhite,
-                  color: "black",
-                }}
+                color="alsoWhite"
               >
                 {t("addStudentsClose")}
               </Button>

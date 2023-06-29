@@ -5,14 +5,16 @@ import { useSelector } from "react-redux";
 import MoneyTables from "./money/MoneyTables";
 import SalaryTables from "./salary/SalaryTables";
 import Cost from "./cost/Cost";
+import { useTranslation } from "react-i18next";
 
 const Money = () => {
   const { sidebar } = useSelector((state) => state);
+  const { t } = useTranslation();
   return (
     <Box sx={{ width: "100%" }}>
       <TopDashboard
-        header={"Moliya"}
-        title={"Foyda va harajatlar"}
+        header={t("dashboardMoney")}
+        title={t("dashboardMoneyTitle")}
         prew={"/dashboard/teachers"}
         next={"/dashboard/settings"}
       />
