@@ -83,11 +83,10 @@ function getStyles(name, personName, theme) {
 
 const AddTeacher = () => {
   const [name, setName] = useState("");
-  const [fistName, setfistName] = useState("");
   const [phone, setPhone] = useState("");
   const [salary, setSalary] = useState("");
   const [notes, setNotes] = useState("");
-  const [group, setGroup] = useState("");
+  const [group, setGroup] = useState([]);
   const theme = useTheme();
   const { t } = useTranslation();
   const { addTablesTeacher } = useSelector((state) => state);
@@ -99,6 +98,7 @@ const AddTeacher = () => {
       target: { value },
     } = event;
     setPersonName(typeof value === "string" ? value.split(",") : value);
+    setGroup(event.target.value)
   };
   return (
     <>
@@ -129,17 +129,9 @@ const AddTeacher = () => {
           <Box sx={style}>
             <H3>{t("teacherAdd")}</H3>
             <InputComp
-              placeholder="Azizbek"
+              placeholder="Usmonov Azizbek"
               value={name}
               setValue={setName}
-              label={t("userMoName")}
-              required={true}
-              name={name}
-            />
-            <InputComp
-              placeholder="Usmonov"
-              value={fistName}
-              setValue={setfistName}
               label={t("addStudentsSurname")}
               required={true}
               name={name}
@@ -162,14 +154,18 @@ const AddTeacher = () => {
               name={name}
             />
             <FormControl sx={{ width: "100%" }} color="blue">
-              <InputLabel id="demo-multiple-chip-label">{t("newStudentsSortingGroup")}</InputLabel>
+              <InputLabel id="demo-multiple-chip-label" required={true}>
+                {t("newStudentsSortingGroup")}
+              </InputLabel>
               <Select
                 labelId="demo-multiple-chip-label"
                 id="demo-multiple-chip"
                 multiple
                 value={personName}
                 onChange={handleChange}
-                input={<OutlinedInput id="select-multiple-chip" label="Guruh" />}
+                input={
+                  <OutlinedInput id="select-multiple-chip" label="Guruh" />
+                }
                 renderValue={(selected) => (
                   <Box sx={{ display: "flex", flexWrap: "wrap", gap: 0.5 }}>
                     {selected.map((value) => (
@@ -195,7 +191,6 @@ const AddTeacher = () => {
               value={notes}
               setValue={setNotes}
               label={t("groupAddComent")}
-              required={true}
               name={name}
             />
             <Box
@@ -206,7 +201,7 @@ const AddTeacher = () => {
                 gap: "10px",
               }}
             >
-                <Button
+              <Button
                 variant="contained"
                 onClick={() => dispatch(addTecherTables())}
                 color="alsoWhite"
