@@ -118,7 +118,7 @@ const Ready = () => {
             <Tooltip
               disableFocusListener
               disableTouchListener
-              title={"Add in students"}
+              title={t("addStudentsAdd")}
               sx={{ position: "relative" }}
               arrow
             >
@@ -129,7 +129,7 @@ const Ready = () => {
             <Tooltip
               disableFocusListener
               disableTouchListener
-              title={"Delete"}
+              title={t("groupOpenDelete")}
               sx={{ position: "relative" }}
               arrow
             >

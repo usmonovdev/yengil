@@ -7,6 +7,7 @@ import EditIcon from "@mui/icons-material/Edit";
 import DeleteMo from "../../../ui/DeleteMo";
 import ZoomOutMapIcon from "@mui/icons-material/ZoomOutMap";
 import UsersMo from "./UsersMo";
+import { useTranslation } from "react-i18next";
 
 const TableActions = ({ id }) => {
   const [anchorEl, setAnchorEl] = useState(null);
@@ -21,6 +22,8 @@ const TableActions = ({ id }) => {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+  const {t} = useTranslation()
   return (
     <>
       <IconButton
@@ -71,7 +74,7 @@ const TableActions = ({ id }) => {
       <DeleteMo
         modal={delModal}
         setModal={setDelModal}
-        text={"Haqiqatdan ham siz ushbu ma'lumotni o'chirmoqchimisiz?"}
+        text={t("moneyBenefitTitle")}
       />
       <UsersMo modal={usersMo} setModal={setUsersMo} id={id} />
     </>

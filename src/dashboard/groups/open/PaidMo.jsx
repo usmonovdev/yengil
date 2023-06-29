@@ -66,13 +66,13 @@ const PaidMo = ({ modal, setModal }) => {
         transition={{ duration: 1, type: "spring", delay: 0.1 }}
       >
         <Box sx={modalStyle}>
-          <H3>Add payment</H3>
+          <H3>{t("moneyAdd")}</H3>
           <InputComp
             placeholder="Azizbek"
             value={name}
             disabled={true}
             setValue={setName}
-            label={"People"}
+            label={t("groupOpenPeople")}
             required={true}
             name={name}
           />
@@ -80,7 +80,7 @@ const PaidMo = ({ modal, setModal }) => {
             placeholder="700.000"
             value={quantity}
             setValue={setQuantity}
-            label={"Quantity"}
+            label={t("groupOpenQuantity")}
             required={true}
             name={quantity}
           />
@@ -89,7 +89,7 @@ const PaidMo = ({ modal, setModal }) => {
               <DatePicker
                 sx={{ width: "100%" }}
                 onChange={(e) => setDate(e)}
-                label="Day"
+                label={t("groupOpenDay")}
                 defaultValue={dayjs(now)}
               />
             </DemoContainer>
@@ -98,13 +98,13 @@ const PaidMo = ({ modal, setModal }) => {
             <DemoContainer components={["TimePicker", "TimePicker"]}>
               <TimePicker
                 sx={{ width: "100%" }}
-                label="Hour"
+                label={t("groupOpenHour")}
                 defaultValue={dayjs("2022-04-17T15:30")}
               />
             </DemoContainer>
           </LocalizationProvider>
           <InputComp
-            placeholder="To'lov kechikritildi"
+            placeholder={t("groupOpenDelayed")}
             value={notes}
             setValue={setNotes}
             label={t("addStudentsNote")}
@@ -122,10 +122,7 @@ const PaidMo = ({ modal, setModal }) => {
             <Button
               variant="contained"
               onClick={() => setModal(!modal)}
-              style={{
-                background: theme.palette.custom.newStudentWhite,
-                color: "black",
-              }}
+              color="alsoWhite"
             >
               {t("addStudentsClose")}
             </Button>

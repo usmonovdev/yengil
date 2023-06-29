@@ -146,12 +146,12 @@ const AddGroupTables = () => {
           transition={{ duration: 1, type: "spring", delay: 0.1 }}
         >
           <Box sx={style}>
-            <H3>Add Group</H3>
+            <H3>{t("groupAdd")}</H3>
             <InputComp
               placeholder="Dasturchilar"
               value={name}
               setValue={setName}
-              label={"Guruh Nomi"}
+              label={t("groupTablesName")}
               required={true}
               name={name}
             />
@@ -160,7 +160,7 @@ const AddGroupTables = () => {
               color="blue"
               required
             >
-              <InputLabel>Kurslar</InputLabel>
+              <InputLabel>{t("groupAddCourse")}</InputLabel>
               <Select
                 label={t("studentsSorting")}
                 onChange={handleGroup}
@@ -178,7 +178,7 @@ const AddGroupTables = () => {
               color="blue"
               required
             >
-              <InputLabel>Teacher</InputLabel>
+              <InputLabel>{t("groupOpenTeacher")}</InputLabel>
               <Select
                 label={"Teacher"}
                 onChange={(e) => setTeacher(e.target.value)}
@@ -196,12 +196,12 @@ const AddGroupTables = () => {
               placeholder="500.000 so'm"
               value={price}
               setValue={setPrice}
-              label={"Price"}
+              label={t("groupEditMo")}
               required={true}
               name={name}
             />
             <FormControl sx={{ width: "100%" }} color="blue">
-              <InputLabel id="demo-multiple-chip-label">Kunlar</InputLabel>
+              <InputLabel id="demo-multiple-chip-label">{t("groupOpenDay")}</InputLabel>
               <Select
                 labelId="demo-multiple-chip-label"
                 id="demo-multiple-chip"
@@ -241,7 +241,7 @@ const AddGroupTables = () => {
               >
                 <TimePicker
                   views={["hours", "minutes"]}
-                  label={"Dars vaqti"}
+                  label={t("groupOpenLessonTime")}
                   onChange={(e) => setClock(e)}
                 />
               </DemoContainer>
@@ -251,16 +251,16 @@ const AddGroupTables = () => {
                 <DatePicker
                   sx={{ width: "100%" }}
                   onChange={(e) => setDate(e)}
-                  label="Boshlanish sanasi"
+                  label={t("groupAddTime")}
                   defaultValue={dayjs(now)}
                 />
               </DemoContainer>
             </LocalizationProvider>
             <InputComp
-              placeholder="Matematikaga yozildi"
+              placeholder={t("groupAddEnroll")}
               value={notes}
               setValue={setNotes}
-              label={"Komentariya"}
+              label={t("groupAddComent")}
               required={true}
               name={name}
             />
@@ -275,10 +275,7 @@ const AddGroupTables = () => {
               <Button
                 variant="contained"
                 onClick={() => dispatch(addGroupTables())}
-                style={{
-                  background: theme.palette.custom.newStudentWhite,
-                  color: "black",
-                }}
+                color="alsoWhite"
               >
                 {t("addStudentsClose")}
               </Button>

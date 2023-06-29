@@ -118,7 +118,7 @@ const NewActions = () => {
             <Tooltip
               disableFocusListener
               disableTouchListener
-              title={"Delete"}
+              title={t("groupOpenDelete")}
               sx={{ position: "relative" }}
               arrow
             >

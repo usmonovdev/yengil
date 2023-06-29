@@ -135,7 +135,7 @@ const EditMo = ({ modal, setModal }) => {
           transition={{ duration: 1, type: "spring", delay: 0.1 }}
         >
           <Box sx={modalStyle}>
-            <H3>Edit People</H3>
+            <H3>{t("studentsEdit")}</H3>
             <InputComp
               placeholder="Azizbek"
               value={name}
@@ -162,7 +162,7 @@ const EditMo = ({ modal, setModal }) => {
               inputProps={TextMaskCustom}
             />
             <FormControl sx={{ width: "100%" }} color="blue">
-              <InputLabel id="demo-multiple-chip-label">Guruh</InputLabel>
+              <InputLabel id="demo-multiple-chip-label">{t("groupTables")}</InputLabel>
               <Select
                 sx={{ zIndex: "1500" }}
                 labelId="demo-multiple-chip-label"
@@ -206,7 +206,7 @@ const EditMo = ({ modal, setModal }) => {
                 <DatePicker
                   sx={{ width: "100%" }}
                   onChange={(e) => setDate(e)}
-                  label="Day"
+                  label={t("groupOpenDay")}
                   defaultValue={dayjs(now)}
                 />
               </DemoContainer>
@@ -230,10 +230,7 @@ const EditMo = ({ modal, setModal }) => {
               <Button
                 variant="contained"
                 onClick={() => setModal(!modal)}
-                style={{
-                  background: theme.palette.custom.newStudentWhite,
-                  color: "black",
-                }}
+                color="alsoWhite"
               >
                 {t("addStudentsClose")}
               </Button>

@@ -5,10 +5,12 @@ import { H3White } from "../../../ui/typography";
 import DeleteIcon from "@mui/icons-material/Delete";
 import DeleteMo from "../../../ui/DeleteGrMo";
 import { useSelector } from "react-redux";
+import { useTranslation } from "react-i18next";
 
 const Selected = () => {
   const [delModal, setDelModal] = useState(false);
   const selected = useSelector((state) => state.selected);
+  const { t } = useTranslation()
   return (
     <>
       <motion.div
@@ -28,7 +30,7 @@ const Selected = () => {
             gap: "20px",
           }}
         >
-          <H3White>Selected - {selected}</H3White>
+          <H3White>{t("groupSelected")} - {selected}</H3White>
           <Box
             sx={{
               padding: "4px",
@@ -46,7 +48,7 @@ const Selected = () => {
       <DeleteMo
         modal={delModal}
         setModal={setDelModal}
-        text="Are you sure you want to delete this Students?"
+        text={t("groupOpenDeleteDanger")}
       />
     </>
   );

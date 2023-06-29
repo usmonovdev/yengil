@@ -260,7 +260,7 @@ const GroupTables = () => {
               justifyContent: "center",
             }}
           >
-            <H3>Bunday guruh topilmadi</H3>
+            <H3>{t("groupNotFound")}</H3>
           </Box>
         )}
       </Box>

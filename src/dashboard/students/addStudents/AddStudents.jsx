@@ -117,7 +117,7 @@ export const AddStudents = () => {
               color="blue"
               required
             >
-              <InputLabel>Guruh</InputLabel>
+              <InputLabel>{t("addStudentsGroup")}</InputLabel>
               <Select
                 label={t("studentsSorting")}
                 onChange={handleGroup}
@@ -161,7 +161,7 @@ export const AddStudents = () => {
                   slotProps={{ color: "blue" }}
                   sx={{ width: "100%" }}
                   onChange={(e) => setDate(e)}
-                  label="Controlled picker"
+                  label={t("studentsControll")}
                   defaultValue={dayjs(now)}
                 />
               </DemoContainer>
@@ -177,10 +177,7 @@ export const AddStudents = () => {
               <Button
                 variant="contained"
                 onClick={() => dispatch(addWaitStudent())}
-                style={{
-                  background: theme.palette.custom.newStudentWhite,
-                  color: "black",
-                }}
+                color="alsoWhite"
               >
                 {t("addStudentsClose")}
               </Button>

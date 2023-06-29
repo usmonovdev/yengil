@@ -158,7 +158,7 @@ const EditMo = ({ modal, setModal }) => {
               name={name}
             />
             <FormControl sx={{ width: "100%" }} color="blue">
-              <InputLabel id="demo-multiple-chip-label">Guruh</InputLabel>
+              <InputLabel id="demo-multiple-chip-label">{t("addStudentsGroup")}</InputLabel>
               <Select
                 sx={{ zIndex: "1500" }}
                 labelId="demo-multiple-chip-label"
@@ -225,10 +225,7 @@ const EditMo = ({ modal, setModal }) => {
               <Button
                 variant="contained"
                 onClick={() => setModal(!modal)}
-                style={{
-                  background: theme.palette.custom.newStudentWhite,
-                  color: "black",
-                }}
+                color="alsoWhite"
               >
                 {t("addStudentsClose")}
               </Button>

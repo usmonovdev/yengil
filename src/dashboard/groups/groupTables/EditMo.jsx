@@ -154,7 +154,7 @@ const EditMo = ({ modal, setModal }) => {
               placeholder="Dasturlash"
               value={name}
               setValue={setName}
-              label={"Group Name"}
+              label={t("groupTablesName")}
               required={true}
               name={name}
             />
@@ -234,7 +234,7 @@ const EditMo = ({ modal, setModal }) => {
               >
                 <TimePicker
                   views={["hours", "minutes"]}
-                  label={"Dars vaqti"}
+                  label={t("groupOpenLessonTime")}
                   onChange={(e) => setClock(e)}
                 />
               </DemoContainer>
@@ -243,7 +243,7 @@ const EditMo = ({ modal, setModal }) => {
               placeholder="500.000 so'm"
               value={price}
               setValue={setPrice}
-              label={"Price"}
+              label={t("groupEditMo")}
               required={true}
               name={name}
             />
@@ -252,7 +252,7 @@ const EditMo = ({ modal, setModal }) => {
                 <DatePicker
                   sx={{ width: "100%" }}
                   onChange={(e) => setDate(e)}
-                  label="Group start in"
+                  label={t("groupStart")}
                   defaultValue={dayjs(now)}
                 />
               </DemoContainer>
@@ -275,10 +275,7 @@ const EditMo = ({ modal, setModal }) => {
               <Button
                 variant="contained"
                 onClick={() => setModal(!modal)}
-                style={{
-                  background: theme.palette.custom.newStudentWhite,
-                  color: "black",
-                }}
+                color="alsoWhite"
               >
                 {t("addStudentsClose")}
               </Button>

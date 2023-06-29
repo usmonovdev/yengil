@@ -185,7 +185,7 @@ const GroupDiscount = () => {
                         <TableCell>{users.phone}</TableCell>
                         <TableCell sx={{ width: "20%" }}>
                           <TextField
-                            label="Summa"
+                            label={t("moneyBenefitSumma")}
                             placeholder={"240.000"}
                             type={"number"}
                             variant="outlined"
@@ -219,7 +219,7 @@ const GroupDiscount = () => {
               color="blue"
               sx={{ width: { xs: "100%", md: "10%" } }}
             >
-              Save
+              {t("addStudentsSave")}
             </Button>
           </div>
         </>

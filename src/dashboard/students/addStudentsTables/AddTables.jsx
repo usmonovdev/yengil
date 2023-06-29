@@ -117,7 +117,7 @@ const AddTables = () => {
               color="blue"
               required
             >
-              <InputLabel>Guruh</InputLabel>
+              <InputLabel>{t("groupTables")}</InputLabel>
               <Select
                 label={t("studentsSorting")}
                 onChange={handleGroup}
@@ -151,7 +151,7 @@ const AddTables = () => {
                 <DatePicker
                   sx={{ width: "100%" }}
                   onChange={(e) => setDate(e)}
-                  label="Day"
+                  label={t("groupOpenDay")}
                   defaultValue={dayjs(now)}
                 />
               </DemoContainer>

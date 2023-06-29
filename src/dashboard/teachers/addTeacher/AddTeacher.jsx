@@ -127,12 +127,12 @@ const AddTeacher = () => {
           transition={{ duration: 1, type: "spring", delay: 0.1 }}
         >
           <Box sx={style}>
-            <H3>Add Teachers</H3>
+            <H3>{t("teacherAdd")}</H3>
             <InputComp
               placeholder="Azizbek"
               value={name}
               setValue={setName}
-              label={"Ism"}
+              label={t("userMoName")}
               required={true}
               name={name}
             />
@@ -140,7 +140,7 @@ const AddTeacher = () => {
               placeholder="Usmonov"
               value={fistName}
               setValue={setfistName}
-              label={"Familiya"}
+              label={t("addStudentsSurname")}
               required={true}
               name={name}
             />
@@ -148,7 +148,7 @@ const AddTeacher = () => {
               placeholder="+99890-000-00-00"
               value={phone}
               setValue={setPhone}
-              label={"Telefon"}
+              label={t("addStudentsTel")}
               inputProps={TextMaskCustom}
               required={true}
               name={name}
@@ -157,12 +157,12 @@ const AddTeacher = () => {
               placeholder="50%"
               value={salary}
               setValue={setSalary}
-              label={"Oylik (%)"}
+              label={t("moneySalary")}
               required={true}
               name={name}
             />
             <FormControl sx={{ width: "100%" }} color="blue">
-              <InputLabel id="demo-multiple-chip-label">Guruh</InputLabel>
+              <InputLabel id="demo-multiple-chip-label">{t("newStudentsSortingGroup")}</InputLabel>
               <Select
                 labelId="demo-multiple-chip-label"
                 id="demo-multiple-chip"
@@ -191,10 +191,10 @@ const AddTeacher = () => {
               </Select>
             </FormControl>
             <InputComp
-              placeholder="Daturlashdan dars beradi"
+              placeholder={t("teacherOpen")}
               value={notes}
               setValue={setNotes}
-              label={"Komentariya"}
+              label={t("groupAddComent")}
               required={true}
               name={name}
             />

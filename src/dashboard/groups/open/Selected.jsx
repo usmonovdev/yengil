@@ -7,6 +7,7 @@ import DeleteMo from "../../../ui/DeleteGrMo";
 import MessageIcon from "@mui/icons-material/Message";
 import { useSelector } from "react-redux";
 import SendMsg from "../../../ui/SendMsg";
+import { t } from "i18next";
 
 const Selected = () => {
   const [delModal, setDelModal] = useState(false);
@@ -32,7 +33,7 @@ const Selected = () => {
             gap: "20px",
           }}
         >
-          <H3White>Selected - {selected}</H3White>
+          <H3White>{t("groupSelected")} - {selected}</H3White>
           <Box
             sx={{
               padding: "4px",
@@ -53,7 +54,7 @@ const Selected = () => {
       <DeleteMo
         modal={delModal}
         setModal={setDelModal}
-        text="Are you sure you want to delete this Students?"
+        text={t("groupOpenDeleteDanger")}
       />
       <SendMsg modal={msgMo} setModal={setMsgMo} />
     </>

@@ -82,12 +82,12 @@ const AddSalary = () => {
           transition={{ duration: 1, type: "spring", delay: 0.1 }}
         >
           <Box sx={style}>
-            <H3>Oylik</H3>
+            <H3>{t("moneySalary")}</H3>
             <InputComp
               placeholder="Mirzaqulov Abbos"
               value={name}
               setValue={setName}
-              label={"Ism Familiya"}
+              label={t("groupOpenName")}
               required={true}
               name={name}
             />
@@ -95,7 +95,7 @@ const AddSalary = () => {
               placeholder="6.000.000"
               value={reason}
               setValue={setReason}
-              label={"Xodim uchun"}
+              label={t("moneySalaryEmployee")}
               required={true}
               name={name}
             />
@@ -103,7 +103,7 @@ const AddSalary = () => {
               placeholder="6.000.000"
               value={price}
               setValue={setPrice}
-              label={"Markaz uchun"}
+              label={t("moneySalaryCenter")}
               required={true}
               name={name}
             />
@@ -111,7 +111,7 @@ const AddSalary = () => {
               placeholder="O'qituvchi"
               value={jobs}
               setValue={setJobs}
-              label={"Kasbi"}
+              label={t("moneySalaryOccupation")}
               required={true}
               name={name}
             />
@@ -119,7 +119,7 @@ const AddSalary = () => {
               placeholder="+998900000000"
               value={phone}
               setValue={setPhone}
-              label={"Telefon"}
+              label={t("userMoPhone")}
               required={true}
               name={name}
               inputProps={TextMaskCustom}

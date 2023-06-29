@@ -90,12 +90,12 @@ const AddCost = () => {
           transition={{ duration: 1, type: "spring", delay: 0.1 }}
         >
           <Box sx={style}>
-            <H3>Xarajat qo'shish</H3>
+            <H3>{t("moneyAddCost")}</H3>
             <InputComp
               placeholder="Mirzaqulov Abbos"
               value={name}
               setValue={setName}
-              label={"Kim ishlatdi"}
+              label={t("moneyUsed")}
               required={true}
               name={name}
             />
@@ -103,7 +103,7 @@ const AddCost = () => {
               placeholder="Arenda"
               value={reason}
               setValue={setReason}
-              label={"Sababi"}
+              label={t("monneyCostsReason")}
               required={true}
               name={name}
             />
@@ -111,7 +111,7 @@ const AddCost = () => {
               placeholder="3.200.000"
               value={price}
               setValue={setPrice}
-              label={"Qancha ishlatdi"}
+              label={t("moneyHowUsed")}
               required={true}
               name={name}
             />
@@ -120,7 +120,7 @@ const AddCost = () => {
                 <DatePicker
                   sx={{ width: "100%" }}
                   onChange={(e) => setDate(e)}
-                  label="Kuni"
+                  label={t("groupOpenDay")}
                   defaultValue={dayjs(now)}
                 />
               </DemoContainer>
@@ -135,7 +135,7 @@ const AddCost = () => {
               >
                 <TimePicker
                   views={["hours", "minutes"]}
-                  label={"Soati"}
+                  label={t("groupOpenHour")}
                   onChange={(e) => setClock(e)}
                 />
               </DemoContainer>
@@ -144,7 +144,7 @@ const AddCost = () => {
               placeholder="+998900000000"
               value={phone}
               setValue={setPhone}
-              label={"Telefon"}
+              label={t("gruopOpenPhone")}
               required={true}
               name={name}
               inputProps={TextMaskCustom}
