@@ -24,7 +24,7 @@ import { useTranslation } from "react-i18next";
 import { H2, H3, Paragraph } from "../../../ui/typography";
 import { group } from "../../../localData/groupData";
 import { useTheme } from "@emotion/react";
-import SearchIcon from '@mui/icons-material/Search';
+import SearchIcon from "@mui/icons-material/Search";
 import { useInView } from "framer-motion";
 import { useDispatch, useSelector } from "react-redux";
 import { addGroupTables } from "../../../store/themeSlice";
@@ -32,7 +32,8 @@ import AddGroupTables from "../addGroupTables/AddGroupTables";
 import exportD from "../../../assets/dark/export.png";
 import exportW from "../../../assets/icons/export.png";
 import { exportToExel } from "../../../utils/ExelExport";
-import TableActions from "./TableActions";
+import Selected from "./Selected";
+import TableData from "./TableData";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -59,6 +60,7 @@ const GroupTables = () => {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const [sorting, setSorting] = useState("name");
+  const [selected, setSelected] = useState(false);
   const dispatch = useDispatch();
   const { addTablesGroup } = useSelector((state) => state);
 
@@ -172,7 +174,9 @@ const GroupTables = () => {
             </IconButton>
           </Tooltip>
         </Box>
-        <Paragraph>{t("groupTablesAll")} - {group.length}</Paragraph>
+        <Paragraph>
+          {t("groupTablesAll")} - {group.length}
+        </Paragraph>
         <form>
           <Box
             sx={{
@@ -204,9 +208,7 @@ const GroupTables = () => {
                 variant="outlined"
               />
               <FormControl sx={{ width: { xs: "100%" } }} color="blue">
-                <InputLabel>
-                  {t("studentsSorting")}
-                </InputLabel>
+                <InputLabel>{t("studentsSorting")}</InputLabel>
                 <Select
                   label={t("studentsSorting")}
                   onChange={handleChange}
@@ -220,77 +222,30 @@ const GroupTables = () => {
                 </Select>
               </FormControl>
             </Box>
-            <Button
-              variant="contained"
-              color="blue"
-              onClick={() => dispatch(addGroupTables())}
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: { xs: "column", sm: "row-reverse" },
+                gap: "20px",
+              }}
             >
-              {t("studentsAdd")}
-            </Button>
+              <Button
+                variant="contained"
+                color="blue"
+                onClick={() => dispatch(addGroupTables())}
+              >
+                {t("studentsAdd")}
+              </Button>
+              {selected && <Selected />}
+            </Box>
           </Box>
         </form>
         {filteredSt.length > 0 ? (
           <>
-            <TableContainer sx={{ borderRadius: "5px" }}>
-              <Table stickyHeader sx={{ minWidth: 700 }}>
-                <TableHead>
-                  <TableRow>
-                    <StyledTableCell align="left">
-                      {t("groupTablesId")}
-                    </StyledTableCell>
-                    <StyledTableCell align="left">
-                      {t("groupTablesName")}
-                    </StyledTableCell>
-                    <StyledTableCell align="left">
-                      {t("groupTablesTeacher")}
-                    </StyledTableCell>
-                    <StyledTableCell align="left">
-                      {t("groupTablesDay")}
-                    </StyledTableCell>
-                    <StyledTableCell align="left">
-                      {t("groupTablesPayment")}
-                    </StyledTableCell>
-                    <StyledTableCell align="left">
-                      {t("groupTablesClock")}
-                    </StyledTableCell>
-                    <StyledTableCell align="left">{t("groupMore")}</StyledTableCell>
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                  {filteredSt
-                    .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                    .map((users) => {
-                      return (
-                        <StyledTableRow
-                          hover
-                          role="checkbox"
-                          tabIndex={-1}
-                          key={users.id}
-                        >
-                          <TableCell>{users.id}</TableCell>
-                          <TableCell>{users.group}</TableCell>
-                          <TableCell>{users.name}</TableCell>
-                          <TableCell>{users.day}</TableCell>
-                          <TableCell>{users.payment}</TableCell>
-                          <TableCell>{users.clock}</TableCell>
-                          <TableCell>
-                            <TableActions id={users.id} />
-                          </TableCell>
-                        </StyledTableRow>
-                      );
-                    })}
-                </TableBody>
-              </Table>
-            </TableContainer>
-            <TablePagination
-              labelRowsPerPage={t("studentsLabelRowsPerPage")}
-              rowsPerPageOptions={[10, 25, 100]}
-              component="div"
-              count={filteredSt.length}
-              rowsPerPage={rowsPerPage}
-              page={page}
-              onPageChange={handleChangePage}
-              onRowsPerPageChange={handleChangeRowsPerPage}
+            <TableData
+              data={filteredSt}
+              selectedItem={selected}
+              setSelectedItem={setSelected}
             />
           </>
         ) : (

@@ -94,6 +94,9 @@ const TableStActions = () => {
         <IconButton>
           <Img src={editD} />
         </IconButton>
+        <IconButton onClick={() => setPaidMo(!paidMo)}>
+          <AttachMoneyIcon />
+        </IconButton>
         <IconButton onClick={handleOpen}>
           <Img src={delD} />
         </IconButton>
