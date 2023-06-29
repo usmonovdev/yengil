@@ -80,7 +80,7 @@ const TableData = ({ data, selectedItem, setSelectedItem }) => {
             <TableRow>
               <StyledTableCell align="left">
                 <Checkbox
-                  color="white"
+                  color="alsoWhite"
                   onChange={handleSelectAllClick}
                   inputProps={{
                     "aria-label": "select all desserts",

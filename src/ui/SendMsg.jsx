@@ -1,8 +1,8 @@
-import React from "react";
-import { Box, Button, Modal } from "@mui/material";
+import React, { useState } from "react";
+import { Box, Button, Chip, Modal, TextField } from "@mui/material";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
-import { H3 } from "./typography";
+import { H3, Paragraph } from "./typography";
 
 const modalStyle = {
   position: "absolute",
@@ -22,6 +22,9 @@ const modalStyle = {
 
 const SendMsg = ({ modal, setModal }) => {
   const { t } = useTranslation();
+  const [msg, setMsg] = useState("");
+
+  const handleDelete = () => {};
   return (
     <Modal
       disableScrollLock
@@ -49,7 +52,35 @@ const SendMsg = ({ modal, setModal }) => {
         transition={{ duration: 1, type: "spring", delay: 0.1 }}
       >
         <Box sx={modalStyle}>
-          <H3>Edit People</H3>
+          <H3>Send Message</H3>
+          <TextField
+            sx={{ width: "100%" }}
+            id="outlined-multiline-static"
+            label={"Message"}
+            multiline
+            onChange={(e) => setMsg(e.target.value)}
+            color="blue"
+            rows={5}
+            defaultValue={"Assalomu alaykum ..."}
+          />
+          <Box sx={{ display: "flex", flexDirection: "row", justifyContent: "flex-start", alignItems: "center", flexWrap: "wrap", gap: "10px" }}>
+            <Paragraph>
+              Tanlandi (10):
+            </Paragraph>
+            <Chip label="Deletable" onDelete={handleDelete} />
+            <Chip label="Deletable" onDelete={handleDelete} />
+            <Chip label="Deletable" onDelete={handleDelete} />
+            <Chip label="Deletable" onDelete={handleDelete} />
+            <Chip label="Deletable" onDelete={handleDelete} />
+            <Chip label="Deletable" onDelete={handleDelete} />
+            <Chip label="Deletable" onDelete={handleDelete} />
+            <Chip label="Deletable" onDelete={handleDelete} />
+            <Chip label="Deletable" onDelete={handleDelete} />
+            <Chip label="Deletable" onDelete={handleDelete} />
+            <Chip label="Deletable" onDelete={handleDelete} />
+            <Chip label="Deletable" onDelete={handleDelete} />
+            <Chip label="Deletable" onDelete={handleDelete} />
+          </Box>
           <Box
             sx={{
               display: "flex",
