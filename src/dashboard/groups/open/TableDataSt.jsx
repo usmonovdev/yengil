@@ -20,7 +20,7 @@ import TableActions from "./TableActions";
 import { useTranslation } from "react-i18next";
 import { StyledTableCell, StyledTableRow } from "../../../ui/StyledTable";
 import { useDispatch } from "react-redux";
-import { addTablesStudent, getSelectedLngth } from "../../../store/themeSlice";
+import { getSelectedLngth } from "../../../store/themeSlice";
 import SearchIcon from "@mui/icons-material/Search";
 import { H3 } from "../../../ui/typography";
 import Selected from "./Selected";

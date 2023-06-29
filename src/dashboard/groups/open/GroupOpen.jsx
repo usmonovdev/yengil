@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import { Box, Button } from "@mui/material";
+import { Box, Button, IconButton, Tooltip } from "@mui/material";
 import { useParams } from "react-router-dom";
 import { useInView } from "framer-motion";
 import TopDashboard from "../../topDashboard/TopDashboard";
@@ -12,6 +12,10 @@ import DeleteMo from "../../../ui/DeleteMo";
 import EditMo from "../groupTables/EditMo";
 import TableDataSt from "./TableDataSt";
 import { useTranslation } from "react-i18next";
+import { exportToExel } from "../../../utils/ExelExport";
+import exportD from "../../../assets/dark/export.png";
+import exportW from "../../../assets/icons/export.png";
+import { useTheme } from "@emotion/react";
 
 const GroupOpen = () => {
   const { id } = useParams();
@@ -21,6 +25,7 @@ const GroupOpen = () => {
   const [selected, setSelected] = useState(false);
   const [btn, setBtn] = useState(false);
   const { t } = useTranslation();
+  const theme = useTheme();
 
   const [open, setOpen] = useState(false);
   const [editMo, setEditMo] = useState(false);
@@ -77,20 +82,56 @@ const GroupOpen = () => {
             </Box>
           </Box>
           <Box sx={{ display: "flex", gap: "15px" }}>
-            <Button
-              color="blue"
-              variant={`${btn ? "outlined" : "contained"}`}
-              onClick={() => setBtn(false)}
-            >
-              {t("groupOpenStudents")}
-            </Button>
-            <Button
-              color="blue"
-              variant={`${btn ? "contained" : "outlined"}`}
-              onClick={() => setBtn(true)}
-            >
-              {t("groupOpenDiscount")}
-            </Button>
+            {btn ? (
+              <>
+                <Button
+                  color="blue"
+                  variant={`${btn ? "outlined" : "contained"}`}
+                  onClick={() => setBtn(false)}
+                >
+                  {t("groupOpenStudents")}
+                </Button>
+                <Button
+                  color="blue"
+                  variant={`${btn ? "contained" : "outlined"}`}
+                  onClick={() => setBtn(true)}
+                >
+                  {t("groupOpenDiscount")}
+                </Button>
+              </>
+            ) : (
+              <>
+                <Button
+                  color="blue"
+                  variant={`${btn ? "outlined" : "contained"}`}
+                  onClick={() => setBtn(false)}
+                >
+                  {t("groupOpenStudents")}
+                </Button>
+                <Button
+                  color="blue"
+                  variant={`${btn ? "contained" : "outlined"}`}
+                  onClick={() => setBtn(true)}
+                >
+                  {t("groupOpenDiscount")}
+                </Button>
+                <Tooltip title={t("groupOpenDiscount")} arrow>
+                  <IconButton
+                    sx={{ height: "fit-content", width: "fit-content" }}
+                    onClick={() =>
+                      exportToExel("GroupStudent (Yengil App)", studentData)
+                    }
+                  >
+                    <img
+                      src={theme.palette.mode == "light" ? exportW : exportD}
+                      alt=""
+                      width="20px"
+                      height="20px"
+                    />
+                  </IconButton>
+                </Tooltip>
+              </>
+            )}
           </Box>
           {btn ? (
             <GroupDiscount />

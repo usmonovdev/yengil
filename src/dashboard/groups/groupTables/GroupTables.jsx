@@ -8,17 +8,8 @@ import {
   InputLabel,
   MenuItem,
   Select,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TablePagination,
-  TableRow,
   TextField,
   Tooltip,
-  styled,
-  tableCellClasses,
 } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import { H2, H3, Paragraph } from "../../../ui/typography";
@@ -34,25 +25,6 @@ import exportW from "../../../assets/icons/export.png";
 import { exportToExel } from "../../../utils/ExelExport";
 import Selected from "./Selected";
 import TableData from "./TableData";
-
-const StyledTableCell = styled(TableCell)(({ theme }) => ({
-  [`&.${tableCellClasses.head}`]: {
-    backgroundColor: theme.palette.blue.main,
-    color: theme.palette.common.white,
-  },
-  [`&.${tableCellClasses.body}`]: {
-    fontSize: 14,
-  },
-}));
-
-const StyledTableRow = styled(TableRow)(({ theme }) => ({
-  "&:nth-of-type(odd)": {
-    backgroundColor: theme.palette.action.hover,
-  },
-  "&:last-child td, &:last-child th": {
-    border: 0,
-  },
-}));
 
 const GroupTables = () => {
   const [filteredSt, setFilteredSt] = useState(group);
@@ -120,15 +92,6 @@ const GroupTables = () => {
 
   const handleChange = (event) => {
     setSorting(event.target.value);
-  };
-
-  const handleChangePage = (event, newPage) => {
-    setPage(newPage);
-  };
-
-  const handleChangeRowsPerPage = (event) => {
-    setRowsPerPage(+event.target.value);
-    setPage(0);
   };
 
   const { t } = useTranslation();
