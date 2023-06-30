@@ -1,6 +1,6 @@
 import Fon from "../../assets/icons/icon.png";
 import styled from "@emotion/styled";
-import { Box, Button, Switch } from "@mui/material";
+import { Box, Button, Switch, Tooltip } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleSidebar } from "../../store/themeSlice";
 import { motion } from "framer-motion";
@@ -72,7 +72,9 @@ const Nav = () => {
                 }
               >
                 <LinksBox key={nav.id} onClick={() => handleImg(nav.id)}>
-                  <Image src={nav.img} alt={nav.name} />
+                  <Tooltip title={nav.name} arrow>
+                    <Image src={nav.img} alt={nav.name} />
+                  </Tooltip>
                 </LinksBox>
               </NavLink>
             );
