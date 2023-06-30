@@ -1,4 +1,3 @@
-import Fon from "../../assets/icons/icon.png";
 import styled from "@emotion/styled";
 import { Box, Button, Switch, Tooltip } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
@@ -7,6 +6,7 @@ import { motion } from "framer-motion";
 import { dashboardData } from "../../localData/dashboardData";
 import { NavLink } from "react-router-dom";
 import { useState } from "react";
+import Actions from "./Actions";
 
 const LinksBox = styled(Button)(({ theme }) => ({
   width: "100%",
@@ -86,11 +86,11 @@ const Nav = () => {
             flexDirection: "column",
             gap: "20px",
             alignItems: "center",
+            marginBottom: "10px",
+            position: "relative",
           }}
         >
-          <div>
-            <img src={Fon} style={{ width: "40px", marginBottom: "10px" }} />
-          </div>
+          <Actions />
         </Box>
       </NavbarBox>
     </motion.div>
