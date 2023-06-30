@@ -25,7 +25,7 @@ const Home = () => {
   const theme = useTheme();
 
   const StatBox = styled("div")(({ theme }) => ({
-    width:"100%",
+    width: "100%",
     display: "flex",
     flexDirection: "column",
     justifyContent: "space-between",
@@ -47,13 +47,13 @@ const Home = () => {
           position: "relative",
           top: "50px",
           left: `${sidebar ? "90px" : "0"}`,
-          padding: "15px"
+          padding: "15px",
         }}
       >
         <StatBox>
           <motion.div
             initial={{ opacity: 0, translateY: 10 }}
-            animate={{ opacity: 1, translateY: 0,  }}
+            animate={{ opacity: 1, translateY: 0 }}
             transition={{ duration: 1, type: "spring", delay: 0.4 }}
           >
             <Divs>
@@ -62,13 +62,15 @@ const Home = () => {
                   style={{ display: "flex", gap: "10px", alignItems: "center" }}
                 >
                   {t("dashboardMainProfit")}
-                  <Tooltip 
+                  <Tooltip
                     disableFocusListener
                     disableTouchListener
                     title={t("dashboardMainProfitDanger")}
                     arrow
                   >
-                    <Img src={theme.palette.mode == "dark" ? darkUndov : undov} />
+                    <Img
+                      src={theme.palette.mode == "dark" ? darkUndov : undov}
+                    />
                   </Tooltip>
                 </H3>
                 <Span>
@@ -81,7 +83,7 @@ const Home = () => {
                   width: "fit-content",
                   height: "30px",
                   borderRadius: "5px",
-                  fontSize: {xs:"10px !important", md:"16px"}
+                  fontSize: { xs: "10px !important", md: "16px" },
                 }}
               >
                 {t("dashboardMainGeneralBenefit")}: "20.000.000"
@@ -89,8 +91,8 @@ const Home = () => {
               <Span
                 style={{
                   background: theme.palette.custom.lightGray,
-                  width: {xs:"100%",md:"fit-content"},
-                  fontSize: {xs:"10px !important", sm:"16px"},
+                  width: { xs: "100%", md: "fit-content" },
+                  fontSize: { xs: "10px !important", sm: "16px" },
                   height: "30px",
                   display: "flex",
                   alignItems: "center",
@@ -135,7 +137,6 @@ const Home = () => {
             animate={{ opacity: 1, translateY: 0 }}
             transition={{ duration: 1.5, type: "spring", delay: 0.4 }}
           >
-
             <Divs>
               <Div>
                 <H3
@@ -148,7 +149,9 @@ const Home = () => {
                     title={t("dashboardMainPaymentsDanger")}
                     arrow
                   >
-                    <Img src={theme.palette.mode == "dark" ? darkUndov : undov} />
+                    <Img
+                      src={theme.palette.mode == "dark" ? darkUndov : undov}
+                    />
                   </Tooltip>
                 </H3>
                 <Span>
@@ -168,7 +171,9 @@ const Home = () => {
                 {t("dashboardMainPaymentsGeneralBenefit")}: "20.000.000"
               </Span>
               <TolovRechart />
-              <div style={{ display: "flex", flexDirection: "row", gap: "20px" }}>
+              <div
+                style={{ display: "flex", flexDirection: "row", gap: "20px" }}
+              >
                 <Span
                   style={{
                     background: theme.palette.custom.lightGray,
@@ -231,7 +236,8 @@ const Home = () => {
                   paddingLeft: "10px",
                 }}
               >
-                {t("dashboardMainPaymentsLeftNumber")}: {t("dashboardMainPaymentsTitle")}
+                {t("dashboardMainPaymentsLeftNumber")}:{" "}
+                {t("dashboardMainPaymentsTitle")}
               </Span>
               <Span
                 style={{
@@ -246,7 +252,8 @@ const Home = () => {
                   paddingLeft: "10px",
                 }}
               >
-                {t("dashboardMainPaymentsSubNumber")}: {t("dashboardMainPaymentsTitle")}
+                {t("dashboardMainPaymentsSubNumber")}:{" "}
+                {t("dashboardMainPaymentsTitle")}
               </Span>
               <Span style={{ textAlign: "end" }}>
                 {t("dashboardMainPaymentsAmount")}
@@ -254,11 +261,10 @@ const Home = () => {
             </Divs>
           </motion.div>
           <motion.div
-            initial={{ opacity: 0, translateY: 10}}
+            initial={{ opacity: 0, translateY: 10 }}
             animate={{ opacity: 1, translateY: 0 }}
             transition={{ duration: 2, type: "spring", delay: 0.4 }}
           >
-
             <Divs>
               <Div>
                 <H3
@@ -271,7 +277,9 @@ const Home = () => {
                     title={t("dashboardmainNewStudentsDanger")}
                     arrow
                   >
-                    <Img src={theme.palette.mode == "dark" ? darkUndov : undov} />
+                    <Img
+                      src={theme.palette.mode == "dark" ? darkUndov : undov}
+                    />
                   </Tooltip>
                 </H3>
                 <Span>
