@@ -77,7 +77,7 @@ const FoydaRecharts = () => {
             <Area
               type="monotone"
               dataKey="uv"
-              stroke="#8884d8"
+              stroke={theme.palette.blue.dark}
               fill={theme.palette.blue.main}
             />
           </AreaChart>

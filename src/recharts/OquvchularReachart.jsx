@@ -78,7 +78,7 @@ const OquvchilarReachart = () => {
         <Area
           type="monotone"
           dataKey="uv"
-          stroke="#039be5"
+          stroke={theme.palette.blue.dark}
           fill={theme.palette.blue.main}
         />
       </AreaChart>
