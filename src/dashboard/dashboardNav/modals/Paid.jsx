@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import { Box, Button, Modal } from "@mui/material";
+import { Autocomplete, Box, Button, Modal, TextField } from "@mui/material";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { H3 } from "../../../ui/typography";
 import InputComp from "../../../ui/InputComp";
+import { students } from "../../../localData/studentData";
 
 const modalStyle = {
   position: "absolute",
@@ -21,7 +22,7 @@ const modalStyle = {
   gap: "15px",
 };
 
-const PaidMo = ({ modal, setModal }) => {
+const Paid = ({ modal, setModal }) => {
   const [name, setName] = useState("Usmonov Azizbek");
   const [quantity, setQuantity] = useState("");
   const [notes, setNotes] = useState("");
@@ -56,14 +57,23 @@ const PaidMo = ({ modal, setModal }) => {
       >
         <Box sx={modalStyle}>
           <H3>{t("moneyAdd")}</H3>
-          <InputComp
-            placeholder="Azizbek"
-            value={name}
-            disabled={true}
-            setValue={setName}
-            label={t("groupOpenPeople")}
-            required={true}
-            name={name}
+          <Autocomplete
+            disablePortal
+            options={students.map((name) => name.name)}
+            fullWidth
+            blurOnSelect={"mouse"}
+            renderInput={(params) => (
+              <TextField
+                value={name}
+                placeholder="Usmonov Azizbek"
+                onChange={(e) => setName(e.target.value)}
+                required={true}
+                fullWidth
+                color="blue"
+                {...params}
+                label={t("groupOpenPeople")}
+              />
+            )}
           />
           <InputComp
             placeholder="700.000"
@@ -106,4 +116,4 @@ const PaidMo = ({ modal, setModal }) => {
   );
 };
 
-export default PaidMo;
+export default Paid;

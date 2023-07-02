@@ -1,8 +1,5 @@
-import { Box, IconButton, Menu, Tooltip } from "@mui/material";
+import { Box, IconButton, Menu, Tooltip, useTheme } from "@mui/material";
 import React, { useState } from "react";
-import studentimg from "../../assets/dark/students.png";
-import teachers from "../../assets/dark/teachers.png";
-import groups from "../../assets/dark/groups.png";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import { useDispatch } from "react-redux";
 import {
@@ -10,11 +7,21 @@ import {
   addNavStudents,
   addNavTeachers,
 } from "../../store/themeSlice";
+import studentD from "../../assets/dark/students.png";
+import studentW from "../../assets/icons/students.png";
+import teachersD from "../../assets/dark/teachers.png";
+import teachersW from "../../assets/icons/teachers.png";
+import groupsD from "../../assets/dark/groups.png";
+import groupsW from "../../assets/icons/groups.png";
+import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
+import Paid from "./modals/Paid"
 
 const Actions = () => {
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
   const dispatch = useDispatch();
+  const [paid, setPaid] = useState(false)
+  const theme = useTheme();
 
   const handleClose = () => {
     setAnchorEl(null);
@@ -58,7 +65,10 @@ const Actions = () => {
             onClick={() => dispatch(addNavStudents())}
           >
             <IconButton>
-              <img width="20px" src={studentimg} />
+              <img
+                width="20px"
+                src={theme.palette.mode == "dark" ? studentD : studentW}
+              />
             </IconButton>
           </Tooltip>
 
@@ -68,7 +78,10 @@ const Actions = () => {
             onClick={() => dispatch(addNavTeachers())}
           >
             <IconButton>
-              <img width="20px" src={teachers} />
+              <img
+                width="20px"
+                src={theme.palette.mode == "dark" ? teachersD : teachersW}
+              />
             </IconButton>
           </Tooltip>
 
@@ -78,11 +91,25 @@ const Actions = () => {
             onClick={() => dispatch(addNavGroup())}
           >
             <IconButton>
-              <img width="20px" src={groups} />
+              <img
+                width="20px"
+                src={theme.palette.mode == "dark" ? groupsD : groupsW}
+              />
+            </IconButton>
+          </Tooltip>
+
+          <Tooltip
+            arrow
+            title="To'lov qo'shish"
+            onClick={() => setPaid(!paid)}
+          >
+            <IconButton>
+              <AttachMoneyIcon />
             </IconButton>
           </Tooltip>
         </Box>
       </Menu>
+      <Paid modal={paid} setModal={setPaid} />
     </>
   );
 };
