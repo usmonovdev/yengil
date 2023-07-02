@@ -186,7 +186,7 @@ const TableStudents = () => {
                   value={sorting}
                   onChange={handleChange}
                 >
-                  <MenuItem value="name">{t("addStudentsName")}</MenuItem>
+                  <MenuItem value="name">{t("addStudentsSurname")}</MenuItem>
                   <MenuItem value="group">{t("addStudentsGroup")}</MenuItem>
                   <MenuItem value="tel">{t("addStudentsTel")}</MenuItem>
                 </Select>
