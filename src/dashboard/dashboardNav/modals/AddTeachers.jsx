@@ -13,7 +13,7 @@ import {
 import { motion } from "framer-motion";
 import { H3 } from "../../../ui/typography";
 import InputComp from "../../../ui/InputComp";
-import { addTecherTables } from "../../../store/themeSlice";
+import { addNavTeachers } from "../../../store/themeSlice";
 import { useTheme } from "@emotion/react";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
@@ -73,7 +73,7 @@ function getStyles(name, personName, theme) {
   };
 }
 
-const AddTeacher = () => {
+const AddTeachers = () => {
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [salary, setSalary] = useState("");
@@ -81,7 +81,7 @@ const AddTeacher = () => {
   const [group, setGroup] = useState([]);
   const theme = useTheme();
   const { t } = useTranslation();
-  const { addTablesTeacher } = useSelector((state) => state);
+  const { addTeachersNav } = useSelector((state) => state);
   const dispatch = useDispatch();
   const [personName, setPersonName] = React.useState([]);
 
@@ -96,7 +96,7 @@ const AddTeacher = () => {
     <>
       <Modal
         sx={{ zIndex: "1000" }}
-        open={addTablesTeacher}
+        open={addTeachersNav}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
@@ -195,7 +195,7 @@ const AddTeacher = () => {
             >
               <Button
                 variant="contained"
-                onClick={() => dispatch(addTecherTables())}
+                onClick={() => dispatch(addNavTeachers())}
                 color="alsoWhite"
               >
                 {t("addStudentsClose")}
@@ -211,4 +211,4 @@ const AddTeacher = () => {
   );
 };
 
-export default AddTeacher;
+export default AddTeachers;

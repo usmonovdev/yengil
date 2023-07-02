@@ -1,23 +1,15 @@
 import React, { useState } from "react";
-import {
-  Box,
-  Button,
-  Chip,
-  FormControl,
-  InputLabel,
-  MenuItem,
-  Modal,
-  OutlinedInput,
-  Select,
-} from "@mui/material";
-import { motion } from "framer-motion";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import Modal from "@mui/material/Modal";
 import { H3 } from "../../../ui/typography";
 import InputComp from "../../../ui/InputComp";
-import { addTecherTables } from "../../../store/themeSlice";
-import { useTheme } from "@emotion/react";
 import { useTranslation } from "react-i18next";
+import { motion } from "framer-motion";
 import { useDispatch, useSelector } from "react-redux";
+import { addNavStudents } from "../../../store/themeSlice";
 import { IMaskInput } from "react-imask";
+import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 
 const style = {
   position: "absolute",
@@ -51,52 +43,25 @@ const TextMaskCustom = React.forwardRef(function TextMaskCustom(props, ref) {
   );
 });
 
-const ITEM_HEIGHT = 48;
-const ITEM_PADDING_TOP = 8;
-const MenuProps = {
-  PaperProps: {
-    style: {
-      maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
-      width: 250,
-    },
-  },
-};
-
-const names = ["Fizika", "Dasturlash", "Matematika", "Ingliz tili", "React"];
-
-function getStyles(name, personName, theme) {
-  return {
-    fontWeight:
-      personName.indexOf(name) === -1
-        ? theme.typography.fontWeightRegular
-        : theme.typography.fontWeightMedium,
-  };
-}
-
-const AddTeacher = () => {
+const AddStudent = () => {
   const [name, setName] = useState("");
-  const [phone, setPhone] = useState("");
-  const [salary, setSalary] = useState("");
+  const [phone, setPhone] = useState("+998");
+  const [group, setGroup] = useState("");
   const [notes, setNotes] = useState("");
-  const [group, setGroup] = useState([]);
-  const theme = useTheme();
   const { t } = useTranslation();
-  const { addTablesTeacher } = useSelector((state) => state);
+  const { addStudentNav } = useSelector((state) => state);
   const dispatch = useDispatch();
-  const [personName, setPersonName] = React.useState([]);
 
-  const handleChange = (event) => {
-    const {
-      target: { value },
-    } = event;
-    setPersonName(typeof value === "string" ? value.split(",") : value);
+  const handleGroup = (event) => {
     setGroup(event.target.value);
   };
+
   return (
     <>
       <Modal
+        disableScrollLock
         sx={{ zIndex: "1000" }}
-        open={addTablesTeacher}
+        open={addStudentNav}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
@@ -119,15 +84,33 @@ const AddTeacher = () => {
           transition={{ duration: 1, type: "spring", delay: 0.1 }}
         >
           <Box sx={style}>
-            <H3>{t("teacherAdd")}</H3>
+            <H3>{t("addStudents")}</H3>
             <InputComp
               placeholder="Usmonov Azizbek"
               value={name}
               setValue={setName}
-              label={t("addStudentsSurname")}
+              label={"Ism Familiya"}
               required={true}
               name={name}
             />
+            <FormControl
+              sx={{ width: { xs: "100%" }, textAlign: "left" }}
+              color="blue"
+              required
+            >
+              <InputLabel>{t("addStudentsGroup")}</InputLabel>
+              <Select
+                label={t("studentsSorting")}
+                onChange={handleGroup}
+                value={group}
+              >
+                <MenuItem value="Matematika">Matematika</MenuItem>
+                <MenuItem value="ona tili">Ona tili</MenuItem>
+                <MenuItem value="dasturlash">Dasturlash</MenuItem>
+                <MenuItem value="fizika">Fizika</MenuItem>
+                <MenuItem value="ingliz tili">Ingliz tili</MenuItem>
+              </Select>
+            </FormControl>
             <InputComp
               placeholder="+99890-000-00-00"
               value={phone}
@@ -138,51 +121,10 @@ const AddTeacher = () => {
               name={name}
             />
             <InputComp
-              placeholder="50%"
-              value={salary}
-              setValue={setSalary}
-              label={t("moneySalary")}
-              required={true}
-              name={name}
-            />
-            <FormControl sx={{ width: "100%" }} color="blue">
-              <InputLabel id="demo-multiple-chip-label" required={true}>
-                {t("newStudentsSortingGroup")}
-              </InputLabel>
-              <Select
-                labelId="demo-multiple-chip-label"
-                id="demo-multiple-chip"
-                multiple
-                value={personName}
-                onChange={handleChange}
-                input={
-                  <OutlinedInput id="select-multiple-chip" label="Guruh" />
-                }
-                renderValue={(selected) => (
-                  <Box sx={{ display: "flex", flexWrap: "wrap", gap: 0.5 }}>
-                    {selected.map((value) => (
-                      <Chip key={value} label={value} />
-                    ))}
-                  </Box>
-                )}
-                MenuProps={MenuProps}
-              >
-                {names.map((name) => (
-                  <MenuItem
-                    key={name}
-                    value={name}
-                    style={getStyles(name, personName, theme)}
-                  >
-                    {name}
-                  </MenuItem>
-                ))}
-              </Select>
-            </FormControl>
-            <InputComp
-              placeholder={t("teacherOpen")}
+              placeholder="Matematika"
               value={notes}
               setValue={setNotes}
-              label={t("groupAddComent")}
+              label={t("addStudentsNote")}
               name={name}
             />
             <Box
@@ -195,7 +137,7 @@ const AddTeacher = () => {
             >
               <Button
                 variant="contained"
-                onClick={() => dispatch(addTecherTables())}
+                onClick={() => dispatch(addNavStudents())}
                 color="alsoWhite"
               >
                 {t("addStudentsClose")}
@@ -211,4 +153,4 @@ const AddTeacher = () => {
   );
 };
 
-export default AddTeacher;
+export default AddStudent;

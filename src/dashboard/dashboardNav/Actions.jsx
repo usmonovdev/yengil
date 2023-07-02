@@ -5,10 +5,16 @@ import teachers from "../../assets/dark/teachers.png";
 import groups from "../../assets/dark/groups.png";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import { useDispatch } from "react-redux";
+import {
+  addNavGroup,
+  addNavStudents,
+  addNavTeachers,
+} from "../../store/themeSlice";
 
 const Actions = () => {
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
+  const dispatch = useDispatch();
 
   const handleClose = () => {
     setAnchorEl(null);
@@ -21,7 +27,7 @@ const Actions = () => {
   return (
     <>
       <IconButton onClick={handleClick}>
-        <AddCircleOutlineIcon fontSize="large" />
+        <AddCircleOutlineIcon fontSize="large" color="alsoWhite" />
       </IconButton>
       <Menu
         disableScrollLock={true}
@@ -46,19 +52,31 @@ const Actions = () => {
             gap: "4px",
           }}
         >
-          <Tooltip arrow title="Student qo'shish">
+          <Tooltip
+            arrow
+            title="Student qo'shish"
+            onClick={() => dispatch(addNavStudents())}
+          >
             <IconButton>
               <img width="20px" src={studentimg} />
             </IconButton>
           </Tooltip>
 
-          <Tooltip arrow title="Ustoz qo'shish">
+          <Tooltip
+            arrow
+            title="Ustoz qo'shish"
+            onClick={() => dispatch(addNavTeachers())}
+          >
             <IconButton>
               <img width="20px" src={teachers} />
             </IconButton>
           </Tooltip>
 
-          <Tooltip arrow title="Guruh qo'shish">
+          <Tooltip
+            arrow
+            title="Guruh qo'shish"
+            onClick={() => dispatch(addNavGroup())}
+          >
             <IconButton>
               <img width="20px" src={groups} />
             </IconButton>

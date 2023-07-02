@@ -34,7 +34,6 @@ const TableStudents = () => {
   const [student, setStudent] = useState(students);
   const [sorting, setSorting] = useState("name");
   const [selected, setSelected] = useState(false);
-  console.log(selected);
 
   const theme = useTheme();
   const dispatch = useDispatch();

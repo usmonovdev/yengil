@@ -7,6 +7,9 @@ import { dashboardData } from "../../localData/dashboardData";
 import { NavLink } from "react-router-dom";
 import { useState } from "react";
 import Actions from "./Actions";
+import AddStudent from "./modals/AddStudent";
+import AddTeachers from "./modals/AddTeachers";
+import AddGroup from "./modals/AddGroup";
 
 const LinksBox = styled(Button)(({ theme }) => ({
   width: "100%",
@@ -93,6 +96,9 @@ const Nav = () => {
           <Actions />
         </Box>
       </NavbarBox>
+      <AddStudent />
+      <AddTeachers />
+      <AddGroup />
     </motion.div>
   );
 };

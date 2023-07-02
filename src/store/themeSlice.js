@@ -16,7 +16,10 @@ export const themeSlice = createSlice({
         addTablesSalary: false,
         studentsInfo: false,
         cost: false,
-        selected: 0
+        selected: 0,
+        addStudentNav: false,
+        addTeachersNav: false,
+        addGroupNav: false
     },
     reducers: {
         toggleTheme: (state) => {
@@ -59,6 +62,15 @@ export const themeSlice = createSlice({
         },
         getSelectedLngth: (state, action) => {
             state.selected = action.payload
+        },
+        addNavStudents: (state, action) => {
+            state.addStudentNav = !state.addStudentNav
+        },
+        addNavTeachers: (state, action) => {
+            state.addTeachersNav = !state.addTeachersNav
+        },
+        addNavGroup: (state, action) => {
+            state.addGroupNav = !state.addGroupNav
         }
     }
 })
@@ -69,5 +81,5 @@ export const asyncToggleTheme = () => (dispatch) => {
     dispatch(toggleTheme());
 };
 
-export const { addSalatyTables, addTecherTables, addGroupTables, toggleTheme, toggleSidebar, setToken, studentsInfoTables, addWaitStudent, addTablesStudent, addCost, toggleThemeColor, toggleFont, getSelectedLngth } = themeSlice.actions
+export const { addSalatyTables, addTecherTables, addGroupTables, toggleTheme, toggleSidebar, setToken, studentsInfoTables, addWaitStudent, addTablesStudent, addCost, toggleThemeColor, toggleFont, getSelectedLngth, addNavStudents, addNavTeachers, addNavGroup } = themeSlice.actions
 export default themeSlice.reducer
