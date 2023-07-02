@@ -67,19 +67,18 @@ const Nav = () => {
         >
           {dashboardData.map((nav) => {
             return (
-              <NavLink
-                to={nav.link}
-                key={nav.id}
-                className={({ isActive }) =>
-                  isActive ? "nav-item active" : "nav-item"
-                }
-              >
-                <LinksBox key={nav.id} onClick={() => handleImg(nav.id)}>
-                  <Tooltip title={nav.name} arrow>
+              <Tooltip title={nav.name} arrow key={nav.id}>
+                <NavLink
+                  to={nav.link}
+                  className={({ isActive }) =>
+                    isActive ? "nav-item active" : "nav-item"
+                  }
+                >
+                  <LinksBox key={nav.id} onClick={() => handleImg(nav.id)}>
                     <Image src={nav.img} alt={nav.name} />
-                  </Tooltip>
-                </LinksBox>
-              </NavLink>
+                  </LinksBox>
+                </NavLink>
+              </Tooltip>
             );
           })}
         </Box>
