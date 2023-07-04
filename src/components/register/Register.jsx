@@ -5,11 +5,11 @@ import { motion } from "framer-motion";
 import { H1, H3, Span, StyledLink } from "../../ui/typography";
 import { useTranslation } from "react-i18next";
 import undov from "../../assets/icons/undov.png";
-import undovDark from '../../assets/dark/undov-white.png';
+import undovDark from "../../assets/dark/undov-white.png";
 import { Div, Img, RegisterBox } from "./Registerstyled";
 
 const Register = () => {
-  const theme = useTheme()
+  const theme = useTheme();
   const { t } = useTranslation();
   const [phone, setPhone] = useState("");
   const [name, setName] = useState("");
@@ -22,10 +22,12 @@ const Register = () => {
       transition={{ duration: 0.6, type: "spring", delay: 0.4 }}
     >
       <RegisterBox>
-        <H1 className="register-heading" style={{ padding: "1rem" }}>{t("register")}</H1>
+        <H1 className="register-heading" style={{ padding: "1rem" }}>
+          {t("register")}
+        </H1>
         <Box
           sx={{
-            width: { xs: "90%", md: "60%" },
+            width: { xs: "90%", md: "50%" },
             margin: "0 auto",
             display: "flex",
             alignItems: "center",
@@ -92,10 +94,8 @@ const Register = () => {
           >
             {t("register")}
           </Button>
-          <H3>{t("login1")}{" "}
-            <StyledLink to={"/login"} >
-              {t("login")}
-            </StyledLink>
+          <H3>
+            {t("login1")} <StyledLink to={"/login"}>{t("login")}</StyledLink>
           </H3>
         </Box>
       </RegisterBox>

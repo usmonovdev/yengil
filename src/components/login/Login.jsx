@@ -1,22 +1,31 @@
-import React, { useState } from 'react'
+import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { Box, Button, FormControl, IconButton, Input, InputAdornment, InputLabel, OutlinedInput, Tooltip } from '@mui/material';
-import { H1, H3, StyledLink } from '../../ui/typography';
-import { t } from 'i18next';
-import InputComp from '../../ui/InputComp';
-import { useTranslation } from 'react-i18next';
-import { Div, Img, RegisterBox } from '../register/Registerstyled';
-import { LoginBox } from './Loginstyled';
-import { Link } from 'react-router-dom';
-import koz from "../../assets/icons/koz.png"
-import darkKoz from "../../assets/dark/darkKoz.png"
-import { useTheme } from '@emotion/react';
-import Visibility from '@mui/icons-material/Visibility';
-import VisibilityOff from '@mui/icons-material/VisibilityOff';
-
+import {
+  Box,
+  Button,
+  FormControl,
+  IconButton,
+  Input,
+  InputAdornment,
+  InputLabel,
+  OutlinedInput,
+  Tooltip,
+} from "@mui/material";
+import { H1, H3, StyledLink } from "../../ui/typography";
+import { t } from "i18next";
+import InputComp from "../../ui/InputComp";
+import { useTranslation } from "react-i18next";
+import { Div, Img, RegisterBox } from "../register/Registerstyled";
+import { LoginBox } from "./Loginstyled";
+import { Link } from "react-router-dom";
+import koz from "../../assets/icons/koz.png";
+import darkKoz from "../../assets/dark/darkKoz.png";
+import { useTheme } from "@emotion/react";
+import Visibility from "@mui/icons-material/Visibility";
+import VisibilityOff from "@mui/icons-material/VisibilityOff";
 
 const Login = () => {
-  const theme = useTheme()
+  const theme = useTheme();
   const { t } = useTranslation();
   const [phone, setPhone] = useState("");
   const [paswword, setPaswword] = useState("");
@@ -33,12 +42,13 @@ const Login = () => {
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.6, type: "spring", delay: 0.4 }}
     >
-
       <LoginBox>
-        <H1 className="register-heading" style={{ padding: "1rem" }}>{t("login")}</H1>
+        <H1 className="register-heading" style={{ padding: "1rem" }}>
+          {t("login")}
+        </H1>
         <Box
           sx={{
-            width: { xs: "90%", md: "60%" },
+            width: { xs: "90%", md: "50%" },
             margin: "0 auto",
             display: "flex",
             alignItems: "center",
@@ -53,14 +63,15 @@ const Login = () => {
             label={t("register-phone")}
             required={true}
           />
-          <FormControl variant="outlined" sx={{ width: "100%", }} color='blue'>
-            <InputLabel htmlFor="outlined-adornment-password">{t("register-paswword")} *</InputLabel>
+          <FormControl variant="outlined" sx={{ width: "100%" }} color="blue">
+            <InputLabel htmlFor="outlined-adornment-password">
+              {t("register-paswword")} *
+            </InputLabel>
             <OutlinedInput
               id="outlined-adornment-password"
-              type={showPassword ? 'text' : 'password'}
+              type={showPassword ? "text" : "password"}
               endAdornment={
-                <InputAdornment position="end"
-                >
+                <InputAdornment position="end">
                   <IconButton
                     aria-label="toggle password visibility"
                     onClick={handleClickShowPassword}
@@ -71,7 +82,7 @@ const Login = () => {
                   </IconButton>
                 </InputAdornment>
               }
-              label="Password*"
+              label={t("register-paswword")}
             />
           </FormControl>
 
@@ -87,16 +98,14 @@ const Login = () => {
             {t("login")}
           </Button>
 
-          <H3>{t("register1")}{" "}
-            <StyledLink to={"/register"} >
-              {t("register")}
-            </StyledLink>
+          <H3>
+            {t("register1")}{" "}
+            <StyledLink to={"/register"}>{t("register")}</StyledLink>
           </H3>
-
         </Box>
       </LoginBox>
     </motion.div>
-  )
-}
+  );
+};
 
-export default Login
+export default Login;
