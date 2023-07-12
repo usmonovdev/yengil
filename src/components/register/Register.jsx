@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import InputComp from "../../ui/InputComp";
 import { Box, Button, Tooltip, useTheme } from "@mui/material";
 import { motion } from "framer-motion";
@@ -7,6 +7,7 @@ import { useTranslation } from "react-i18next";
 import undov from "../../assets/icons/undov.png";
 import undovDark from "../../assets/dark/undov-white.png";
 import { Div, Img, RegisterBox } from "./Registerstyled";
+import axios from "../../utils/api"
 
 const Register = () => {
   const theme = useTheme();
@@ -15,6 +16,13 @@ const Register = () => {
   const [name, setName] = useState("");
   const [paswword, setPaswword] = useState("");
   const [paswwordProvided, setPaswwordProvided] = useState("");
+
+  const handleRegister = () => {
+    try {
+      
+    } catch (error) {}
+  };
+
   return (
     <motion.div
       initial={{ opacity: 0, scale: 0.7 }}
@@ -84,6 +92,7 @@ const Register = () => {
             </Tooltip>
           </Div>
           <Button
+            onClick={handleRegister}
             variant="contained"
             color="blue"
             sx={{
