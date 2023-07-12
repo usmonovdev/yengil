@@ -13,12 +13,13 @@ const createColor = (mainColor) => augmentColor({ color: { main: mainColor } });
 function App() {
   const [mode, setMode] = useState("light")
   const { Token } = useSelector(state => state.theme)
+  const red = useSelector(state => state)
+  console.log(red);
   const { isDarkMode } = useSelector(state => state.theme)
   const { themeMainColor } = useSelector(state => state.theme)
   const { themeFont } = useSelector(state => state.theme)
   const navigate = useNavigate()
   const themed = useTheme()
-  console.log(themed.palette);
 
   const getTokens = (mode) => ({
     palette: {

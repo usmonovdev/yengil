@@ -67,7 +67,7 @@ const Nav = () => {
         >
           {dashboardData.map((nav) => {
             return (
-              <Tooltip title={nav.name} arrow key={nav.id}>
+              <Tooltip title={nav.name} arrow key={nav.id} placement="right">
                 <NavLink
                   to={nav.link}
                   className={({ isActive }) =>
