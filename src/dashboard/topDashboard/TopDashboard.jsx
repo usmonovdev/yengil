@@ -23,7 +23,7 @@ const TopDashboard = ({
 }) => {
   const theme = useTheme();
   const dispatch = useDispatch();
-  const state = useSelector((state) => state.sidebar);
+  const { sidebar } = useSelector((state) => state.theme);
 
   const HeaderBox = styled("div")(({ theme }) => ({
     background: theme.palette.custom.headerOpacity,
@@ -34,7 +34,7 @@ const TopDashboard = ({
     justifyContent: "space-between",
     position: "fixed",
     gap: "20px",
-    left: `${state ? "90px" : "0px"}`,
+    left: `${sidebar ? "90px" : "0px"}`,
     backdropFilter: "blur(5px)",
     zIndex: "1000",
   }));
@@ -42,8 +42,8 @@ const TopDashboard = ({
   const navigate = useNavigate();
 
   useEffect(() => {
-    document.title = `Yengil CRM - ${header}`
-  }, [document.title])
+    document.title = `Yengil CRM - ${header}`;
+  }, [document.title]);
 
   return (
     <motion.div
@@ -65,7 +65,7 @@ const TopDashboard = ({
             variant="text"
             sx={{
               marginLeft: "10px",
-              transform: `${state ? "rotate(180deg)" : "rotate(0deg)"}`,
+              transform: `${sidebar ? "rotate(180deg)" : "rotate(0deg)"}`,
             }}
           >
             <Image

@@ -47,7 +47,7 @@ const AddTables = () => {
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [notes, setNotes] = useState("");
-  const { addStudentTables } = useSelector((state) => state);
+  const { addStudentTables } = useSelector((state) => state.theme);
   const dispatch = useDispatch();
   const { t } = useTranslation();
   const [group, setGroup] = useState("");

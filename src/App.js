@@ -12,10 +12,10 @@ const createColor = (mainColor) => augmentColor({ color: { main: mainColor } });
 
 function App() {
   const [mode, setMode] = useState("light")
-  const state = useSelector(state => state.Token)
-  const darkMode = useSelector(state => state.isDarkMode)
-  const themeColor = useSelector(state => state.themeMainColor)
-  const font = useSelector(state => state.themeFont)
+  const { Token } = useSelector(state => state.theme)
+  const { isDarkMode } = useSelector(state => state.theme)
+  const { themeMainColor } = useSelector(state => state.theme)
+  const { themeFont } = useSelector(state => state.theme)
   const navigate = useNavigate()
   const themed = useTheme()
   console.log(themed.palette);
@@ -25,14 +25,14 @@ function App() {
       mode,
       ...(mode === "light" ?
         {
-          blue: createColor(themeColor),
+          blue: createColor(themeMainColor),
           white: createColor(grey[800]),
           alsoWhite: createColor(grey[100]),
           primary: {
             main: indigo[700],
           },
           secondary: {
-            main: themeColor,
+            main: themeMainColor,
           },
           custom: {
             background: grey[50],
@@ -44,14 +44,14 @@ function App() {
             newStudentWhite: "#8B8B8B"
           }
         } : {
-          blue: createColor(themeColor),
+          blue: createColor(themeMainColor),
           white: createColor(grey[100]),
           alsoWhite: createColor(grey[100]),
           primary: {
             main: '#000',
           },
           secondary: {
-            main: themeColor,
+            main: themeMainColor,
           },
           custom: {
             background: grey[900],
@@ -118,28 +118,28 @@ function App() {
     },
     shadows: Array(25).fill('none'),
     typography: {
-      fontFamily: `${font}, sans-serif`,
+      fontFamily: `${themeFont}, sans-serif`,
       fontWeightLight: 200,
     },
   });
-  const theme = useMemo(() => createTheme(getTokens(mode)), [mode, themeColor, font])
+  const theme = useMemo(() => createTheme(getTokens(mode)), [mode, themeMainColor, themeFont])
 
   useMemo(() => {
-    if (darkMode) {
+    if (isDarkMode) {
       setMode("dark");
     } else {
       setMode("light");
     }
-  }, [darkMode]);
+  }, [isDarkMode]);
 
   useEffect(() => {
-    state ? navigate("/dashboard/home") : navigate("/")
-  }, [state])
+    Token ? navigate("/dashboard/home") : navigate("/")
+  }, [Token])
 
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      {state ? <>
+      {Token ? <>
         <Dashboard />
       </> : <>
         <RoutesHome />

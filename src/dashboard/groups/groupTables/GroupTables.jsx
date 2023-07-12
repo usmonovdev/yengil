@@ -34,7 +34,7 @@ const GroupTables = () => {
   const [sorting, setSorting] = useState("name");
   const [selected, setSelected] = useState(false);
   const dispatch = useDispatch();
-  const { addTablesGroup } = useSelector((state) => state);
+  const { addTablesGroup } = useSelector((state) => state.theme);
 
   const handleFilter = (event) => {
     if (sorting === "name") {

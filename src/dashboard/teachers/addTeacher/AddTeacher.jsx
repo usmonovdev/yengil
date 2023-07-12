@@ -81,7 +81,7 @@ const AddTeacher = () => {
   const [group, setGroup] = useState([]);
   const theme = useTheme();
   const { t } = useTranslation();
-  const { addTablesTeacher } = useSelector((state) => state);
+  const { addTablesTeacher } = useSelector((state) => state.theme);
   const dispatch = useDispatch();
   const [personName, setPersonName] = React.useState([]);
 

@@ -8,7 +8,7 @@ import { useSelector } from "react-redux";
 
 const Selected = () => {
   const [delModal, setDelModal] = useState(false);
-  const selected = useSelector((state) => state.selected);
+  const { selected } = useSelector((state) => state.theme);
   return (
     <>
       <motion.div

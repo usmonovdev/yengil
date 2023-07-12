@@ -49,7 +49,7 @@ const AddStudent = () => {
   const [group, setGroup] = useState("");
   const [notes, setNotes] = useState("");
   const { t } = useTranslation();
-  const { addStudentNav } = useSelector((state) => state);
+  const { addStudentNav } = useSelector((state) => state.theme);
   const dispatch = useDispatch();
 
   const handleGroup = (event) => {

@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { H3White } from "../../../ui/typography";
 import DeleteIcon from "@mui/icons-material/Delete";
 import DeleteMo from "../../../ui/DeleteGrMo";
-import MessageIcon from '@mui/icons-material/Message';
+import MessageIcon from "@mui/icons-material/Message";
 import { useSelector } from "react-redux";
 import SendMsg from "../../../ui/SendMsg";
 import { t } from "i18next";
@@ -12,47 +12,53 @@ import { t } from "i18next";
 const Selected = () => {
   const [delModal, setDelModal] = useState(false);
   const [paidMo, setPaidMo] = useState(false);
-  const [msgMo, setMsgMo] = useState(false)
-  const selected = useSelector(state => state.selected)
+  const [msgMo, setMsgMo] = useState(false);
+  const { selected } = useSelector((state) => state.theme);
   return (
     <>
-    <motion.div
-      initial={{ opacity: 0, translateY: -10 }}
-      animate={{ opacity: 1, translateY: 0 }}
-      transition={{ duration: 0.9, type: "spring" }}
-    >
-      <Box
-        sx={{
-          bgcolor: "blue.main",
-          height: "100%",
-          borderRadius: "5px",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-          padding: "0px 10px",
-          gap: "20px"
-        }}
+      <motion.div
+        initial={{ opacity: 0, translateY: -10 }}
+        animate={{ opacity: 1, translateY: 0 }}
+        transition={{ duration: 0.9, type: "spring" }}
       >
-        <H3White>{t("groupSelected")} - {selected}</H3White>
         <Box
           sx={{
-            padding: "4px",
+            bgcolor: "blue.main",
+            height: "100%",
+            borderRadius: "5px",
             display: "flex",
-            flexDirection: "row",
-            gap: "4px",
+            alignItems: "center",
+            justifyContent: "space-between",
+            padding: "0px 10px",
+            gap: "20px",
           }}
         >
-          <IconButton onClick={() => setMsgMo(!msgMo)}>
-            <MessageIcon sx={{ color: "common.white" }} />
-          </IconButton>
-          <IconButton onClick={() => setDelModal(!delModal)}>
-            <DeleteIcon sx={{ color: "red" }} />
-          </IconButton>
+          <H3White>
+            {t("groupSelected")} - {selected}
+          </H3White>
+          <Box
+            sx={{
+              padding: "4px",
+              display: "flex",
+              flexDirection: "row",
+              gap: "4px",
+            }}
+          >
+            <IconButton onClick={() => setMsgMo(!msgMo)}>
+              <MessageIcon sx={{ color: "common.white" }} />
+            </IconButton>
+            <IconButton onClick={() => setDelModal(!delModal)}>
+              <DeleteIcon sx={{ color: "red" }} />
+            </IconButton>
+          </Box>
         </Box>
-      </Box>
-    </motion.div>
-    <DeleteMo modal={delModal} setModal={setDelModal} text={t("deleteTitle")}/>
-    <SendMsg modal={msgMo} setModal={setMsgMo} />
+      </motion.div>
+      <DeleteMo
+        modal={delModal}
+        setModal={setDelModal}
+        text={t("deleteTitle")}
+      />
+      <SendMsg modal={msgMo} setModal={setMsgMo} />
     </>
   );
 };

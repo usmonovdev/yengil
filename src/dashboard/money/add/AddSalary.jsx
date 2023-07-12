@@ -51,7 +51,7 @@ const AddSalary = () => {
   const [reason, setReason] = useState("");
   const theme = useTheme();
   const { t } = useTranslation();
-  const { addTablesSalary } = useSelector((state) => state);
+  const { addTablesSalary } = useSelector((state) => state.theme);
   const dispatch = useDispatch();
 
   return (

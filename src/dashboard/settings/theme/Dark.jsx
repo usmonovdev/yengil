@@ -52,7 +52,7 @@ const MaterialUISwitch = styled(Switch)(({ theme }) => ({
 }));
 
 const Dark = () => {
-  const { isDarkMode, sidebar } = useSelector((state) => state);
+  const { isDarkMode, sidebar } = useSelector((state) => state.theme);
   const dispatch = useDispatch();
   const { t } = useTranslation();
   

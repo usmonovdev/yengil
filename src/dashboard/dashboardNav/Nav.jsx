@@ -31,7 +31,7 @@ const Image = styled("img")(({ theme }) => ({
 
 const Nav = () => {
   const [active, setActive] = useState(1);
-  const { sidebar } = useSelector((state) => state);
+  const { sidebar } = useSelector((state) => state.theme);
   const dispatch = useDispatch();
 
   const NavbarBox = styled("div")(({ theme }) => ({

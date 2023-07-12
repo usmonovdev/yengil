@@ -78,7 +78,7 @@ const ColorChecked = styled(Color)(({ theme }) => ({
 
 const Theme = () => {
   const dispatch = useDispatch();
-  const themeMainColor = useSelector((state) => state.themeMainColor);
+  const { themeMainColor } = useSelector((state) => state.theme);
   const { t } = useTranslation();
   const ref = useRef();
   const isInView = useInView(ref, { once: true });
@@ -93,7 +93,7 @@ const Theme = () => {
         transform: isInView ? "none" : "translateY(40px)",
         opacity: isInView ? 1 : 0,
         transition: "all 0.5s cubic-bezier(0.17, 0.55, 0.55, 1)",
-        marginTop: "20px"
+        marginTop: "20px",
       }}
       ref={ref}
     >

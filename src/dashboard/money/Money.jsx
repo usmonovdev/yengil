@@ -8,7 +8,7 @@ import Cost from "./cost/Cost";
 import { useTranslation } from "react-i18next";
 
 const Money = () => {
-  const { sidebar } = useSelector((state) => state);
+  const { sidebar } = useSelector((state) => state.theme);
   const { t } = useTranslation();
   return (
     <Box sx={{ width: "100%" }}>

@@ -58,7 +58,7 @@ const AddCost = () => {
   const [reason, setReason] = useState("");
   const theme = useTheme();
   const { t } = useTranslation();
-  const { cost } = useSelector((state) => state);
+  const { cost } = useSelector((state) => state.theme);
   const dispatch = useDispatch();
   const now = dayjs();
 

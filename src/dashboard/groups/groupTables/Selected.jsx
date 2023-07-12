@@ -9,8 +9,8 @@ import { useTranslation } from "react-i18next";
 
 const Selected = () => {
   const [delModal, setDelModal] = useState(false);
-  const selected = useSelector((state) => state.selected);
-  const { t } = useTranslation()
+  const { selected } = useSelector((state) => state.theme);
+  const { t } = useTranslation();
   return (
     <>
       <motion.div
@@ -30,7 +30,9 @@ const Selected = () => {
             gap: "20px",
           }}
         >
-          <H3White>{t("groupSelected")} - {selected}</H3White>
+          <H3White>
+            {t("groupSelected")} - {selected}
+          </H3White>
           <Box
             sx={{
               padding: "4px",

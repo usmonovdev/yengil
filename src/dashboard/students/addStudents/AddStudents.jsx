@@ -49,7 +49,7 @@ export const AddStudents = () => {
   const [group, setGroup] = useState("");
   const [notes, setNotes] = useState("");
   const { t } = useTranslation();
-  const { addStudentWait } = useSelector((state) => state);
+  const { addStudentWait } = useSelector((state) => state.theme);
   const dispatch = useDispatch();
 
   const handleGroup = (event) => {

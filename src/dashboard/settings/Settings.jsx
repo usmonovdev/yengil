@@ -7,7 +7,7 @@ import { useSelector } from "react-redux";
 
 const Settings = () => {
   const { t } = useTranslation();
-  const { sidebar } = useSelector((state) => state);
+  const { sidebar } = useSelector((state) => state.theme);
   return (
     <Box sx={{ width: "100%" }}>
       <TopDashboard

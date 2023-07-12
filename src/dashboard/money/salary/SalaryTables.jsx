@@ -61,7 +61,7 @@ const SalaryTables = () => {
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const [sorting, setSorting] = useState("name");
   const dispatch = useDispatch();
-  const { addTablesSalary } = useSelector((state) => state);
+  const { addTablesSalary } = useSelector((state) => state.theme);
 
   const handleFilter = (event) => {
     if (sorting === "name") {

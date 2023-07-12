@@ -17,7 +17,7 @@ import { useTranslation } from "react-i18next";
 
 const Home = () => {
   const { t } = useTranslation();
-  const { sidebar } = useSelector((state) => state);
+  const { sidebar } = useSelector((state) => state.theme);
   const data = new Date();
   const date = data.getDate();
   const month = data.getMonth();

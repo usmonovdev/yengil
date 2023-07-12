@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import language from "../../assets/icons/language.png";
-import darkLanguage from "../../assets/dark/globe.png"
+import darkLanguage from "../../assets/dark/globe.png";
 import FormGroup from "@mui/material/FormGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Switch from "@mui/material/Switch";
@@ -12,7 +12,7 @@ import ChangeLang from "./ChangeLang";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import { asyncToggleTheme } from "../../store/themeSlice";
-import TelegramIcon from '@mui/icons-material/Telegram';
+import TelegramIcon from "@mui/icons-material/Telegram";
 import "./header.scss";
 
 const MaterialUISwitch = styled(Switch)(({ theme }) => ({
@@ -72,7 +72,7 @@ const HaederBox = styled("div")(({ theme }) => ({
 const Header = () => {
   const theme = useTheme();
   console.log(theme.palette);
-  const state = useSelector((state) => state.isDarkMode);
+  const { isDarkMode } = useSelector((state) => state.theme);
   const dispatch = useDispatch();
   const [langOpen, setLangOpen] = useState(false);
   const { t } = useTranslation();
@@ -92,7 +92,9 @@ const Header = () => {
                 sx={{ display: "flex", gap: "10px" }}
               >
                 <TelegramIcon color="blue" fontSize="large" />
-                <Paragraph className="telegram-text">{t("join-telegram")}</Paragraph>
+                <Paragraph className="telegram-text">
+                  {t("join-telegram")}
+                </Paragraph>
               </Button>
             </StyledAncor>
           </motion.div>
@@ -101,9 +103,15 @@ const Header = () => {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5, type: "spring" }}
           >
-            <FormGroup sx={{ display: "flex", flexDirection: "row", alignItems: "center" }}>
+            <FormGroup
+              sx={{
+                display: "flex",
+                flexDirection: "row",
+                alignItems: "center",
+              }}
+            >
               <FormControlLabel
-                checked={state}
+                checked={isDarkMode}
                 onClick={() => dispatch(asyncToggleTheme())}
                 control={<MaterialUISwitch />}
               />
@@ -117,7 +125,9 @@ const Header = () => {
               >
                 <Button onClick={() => setLangOpen(!langOpen)}>
                   <img
-                    src={theme.palette.mode == "light" ? language : darkLanguage}
+                    src={
+                      theme.palette.mode == "light" ? language : darkLanguage
+                    }
                     alt=""
                     width="30px"
                     style={{ opacity: "40%" }}
@@ -126,13 +136,10 @@ const Header = () => {
                 <ChangeLang open={langOpen} setOpen={setLangOpen} />
               </Box>
               <StyledLink to="/login">
-              <Button
-                variant="text"
-                disableElevation
-                >
-                <Paragraph>{t("login")}</Paragraph>
-              </Button>
-                </StyledLink>
+                <Button variant="text" disableElevation>
+                  <Paragraph>{t("login")}</Paragraph>
+                </Button>
+              </StyledLink>
             </FormGroup>
           </motion.div>
         </div>

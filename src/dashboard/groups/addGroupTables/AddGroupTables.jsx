@@ -80,7 +80,7 @@ const AddGroupTables = () => {
   const [group, setGroup] = useState("");
   const theme = useTheme();
   const { t } = useTranslation();
-  const { addTablesGroup } = useSelector((state) => state);
+  const { addTablesGroup } = useSelector((state) => state.theme);
   const dispatch = useDispatch();
   const now = dayjs();
   const handleGroup = (event) => {

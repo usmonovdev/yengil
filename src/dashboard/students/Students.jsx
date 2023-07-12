@@ -8,7 +8,7 @@ import NewStudents from "./new/NewStudents";
 
 const Students = () => {
   const { t } = useTranslation();
-  const { sidebar } = useSelector((state) => state);
+  const { sidebar } = useSelector((state) => state.theme);
 
   return (
     <Box sx={{ width: "100%" }}>
