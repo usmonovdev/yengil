@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, useTheme } from "@mui/material";
+import { Container } from "@mui/material";
 import { H3, Span, StyledAncor, StyledLink } from "../../ui/typography";
 import telegramicon from "../../assets/icons/telegramicon.png";
 import instagramicon from "../../assets/icons/instagramicon.png";
@@ -8,8 +8,6 @@ import { Div, FooterContainer, Img, Styledfooter } from "./FooterStyle.js";
 
 const Footer = () => {
   const { t } = useTranslation();
-  const theme = useTheme()
-  console.log(theme.palette);
   return (
     <>
       <Styledfooter>

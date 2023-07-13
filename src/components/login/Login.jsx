@@ -5,37 +5,52 @@ import {
   Button,
   FormControl,
   IconButton,
-  Input,
   InputAdornment,
   InputLabel,
   OutlinedInput,
-  Tooltip,
 } from "@mui/material";
 import { H1, H3, StyledLink } from "../../ui/typography";
-import { t } from "i18next";
 import InputComp from "../../ui/InputComp";
 import { useTranslation } from "react-i18next";
-import { Div, Img, RegisterBox } from "../register/Registerstyled";
 import { LoginBox } from "./Loginstyled";
-import { Link } from "react-router-dom";
-import koz from "../../assets/icons/koz.png";
-import darkKoz from "../../assets/dark/darkKoz.png";
-import { useTheme } from "@emotion/react";
+import { useNavigate } from "react-router-dom";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
+import axios from "../../utils/api"
+import { POST_SIGNIN_EDU } from "../../utils/constants";
+import { useDispatch, useSelector } from "react-redux";
+import { loginEdusuc, registerEduFail, registerEduStart, registerEduSuc } from "../../store/eduSlice";
 
 const Login = () => {
-  const theme = useTheme();
   const { t } = useTranslation();
   const [phone, setPhone] = useState("");
-  const [paswword, setPaswword] = useState("");
-  const [showPassword, setShowPassword] = React.useState(false);
-
-  const handleClickShowPassword = () => setShowPassword((show) => !show);
+  const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
 
   const handleMouseDownPassword = (event) => {
     event.preventDefault();
   };
+
+  const state = useSelector(state => state.edu)
+  console.log(state);
+
+  const handleLogin = async () => {
+    try {
+      dispatch(registerEduStart())
+      const response = await axios.post(POST_SIGNIN_EDU, {
+        phone: phone,
+        password: password
+      })
+      setPhone("")
+      setPassword("")
+      dispatch(loginEdusuc(response.data))
+      navigate("/login")
+    } catch (error) {
+      dispatch(registerEduFail(error.message))
+    }
+  }
   return (
     <motion.div
       initial={{ opacity: 0, scale: 0.7 }}
@@ -68,13 +83,15 @@ const Login = () => {
               {t("register-paswword")} *
             </InputLabel>
             <OutlinedInput
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
               id="outlined-adornment-password"
               type={showPassword ? "text" : "password"}
               endAdornment={
                 <InputAdornment position="end">
                   <IconButton
                     aria-label="toggle password visibility"
-                    onClick={handleClickShowPassword}
+                    onClick={() => setShowPassword(!showPassword)}
                     onMouseDown={handleMouseDownPassword}
                     edge="end"
                   >
@@ -87,6 +104,7 @@ const Login = () => {
           </FormControl>
 
           <Button
+          onClick={handleLogin}
             variant="contained"
             color="blue"
             sx={{
@@ -98,7 +116,7 @@ const Login = () => {
             {t("login")}
           </Button>
 
-          <H3>
+          <H3 sx={{ textAlign: "center" }}>
             {t("register1")}{" "}
             <StyledLink to={"/register"}>{t("register")}</StyledLink>
           </H3>

@@ -61,7 +61,7 @@ const Home = () => {
               {t("button")}
             </Button>
           </motion.div>
-          <Paragraph>{t("button-title")}</Paragraph>
+          {/* <Paragraph>{t("button-title")}</Paragraph> */}
         </Box>
         <Box sx={{ display: "flex", flexDirection: "column", gap: "140px" }}>
           <LocalRegister />

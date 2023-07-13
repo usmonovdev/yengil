@@ -18,6 +18,13 @@ export const eduSlice = createSlice({
             state.education = action.payload
             state.isFailure = null
         },
+        loginEdusuc: (state, action) => {
+            state.isLoading = false
+            state.isSuccess = true
+            state.education = action.payload
+            localStorage.setItem("TOKEN", action.payload.token)
+            state.isFailure = null
+        },
         registerEduFail: (state, action) => {
             state.isLoading = false
             state.education = []
@@ -27,5 +34,5 @@ export const eduSlice = createSlice({
     }
 })
 
-export const { registerEduStart, registerEduSuc, registerEduFail } = eduSlice.actions
+export const { registerEduStart, registerEduSuc, loginEdusuc, registerEduFail } = eduSlice.actions
 export default eduSlice.reducer

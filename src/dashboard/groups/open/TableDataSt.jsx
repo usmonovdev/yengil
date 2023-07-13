@@ -30,7 +30,6 @@ const TableDataSt = ({ data, selectedItem, setSelectedItem }) => {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const [selected, setSelected] = useState([]);
-  console.log(selected);
   const dispatch = useDispatch();
   const [sorting, setSorting] = useState("name");
   const [filteredSt, setFilteredSt] = useState(data);

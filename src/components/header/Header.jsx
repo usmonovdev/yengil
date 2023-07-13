@@ -71,7 +71,6 @@ const HaederBox = styled("div")(({ theme }) => ({
 
 const Header = () => {
   const theme = useTheme();
-  console.log(theme.palette);
   const { isDarkMode } = useSelector((state) => state.theme);
   const dispatch = useDispatch();
   const [langOpen, setLangOpen] = useState(false);

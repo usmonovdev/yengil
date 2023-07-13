@@ -20,9 +20,10 @@ const Register = () => {
   const [name, setName] = useState("");
   const [paswword, setPaswword] = useState("");
   const dispatch = useDispatch()
+  const navigate = useNavigate()
+
   const state = useSelector(state => state.edu)
   console.log(state);
-  const navigate = useNavigate()
 
   const handleRegister = async () => {
     try {
@@ -107,7 +108,7 @@ const Register = () => {
           >
             {t("register")}
           </Button>
-          <H3>
+          <H3 sx={{ textAlign: "center" }}>
             {t("login1")} <StyledLink to={"/login"}>{t("login")}</StyledLink>
           </H3>
         </Box>
