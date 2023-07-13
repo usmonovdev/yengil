@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { H1, H2, H3 } from "../../../ui/typography";
 import {
   Box,
@@ -10,12 +10,12 @@ import {
   Tooltip,
   styled,
 } from "@mui/material";
-import { students } from "../../../localData/studentData";
+// import { students } from "../../../localData/studentData";
 import { useTheme } from "@emotion/react";
 import { exportToExel } from "../../../utils/ExelExport";
 import { useTranslation } from "react-i18next";
 import { useInView } from "framer-motion";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addTablesStudent } from "../../../store/themeSlice";
 import undov from "../../../assets/icons/undov.png";
 import undovDark from "../../../assets/dark/undov-white.png";
@@ -28,12 +28,19 @@ import exportW from "../../../assets/icons/export.png";
 import SearchIcon from "@mui/icons-material/Search";
 import TableData from "./TableData";
 import Selected from "./Selected";
+import { stuFail, stuStart, stuSuc } from "../../../store/stuSlice";
+import axios from "../../../utils/api";
+import { GET_STUDENT } from "../../../utils/constants";
 
 const TableStudents = () => {
+  const { students } = useSelector((state) => state.stu);
   const [filteredSt, setFilteredSt] = useState(students);
   const [student, setStudent] = useState(students);
   const [sorting, setSorting] = useState("name");
   const [selected, setSelected] = useState(false);
+  const edu_id = localStorage.getItem("EDU_ID");
+
+  useEffect(() => {}, [filteredSt]);
 
   const theme = useTheme();
   const dispatch = useDispatch();
@@ -52,7 +59,7 @@ const TableStudents = () => {
       if (event.target.value.length > 0) {
         setFilteredSt(
           student.filter((f) =>
-            f.name.toLowerCase().includes(event.target.value)
+            f.full_name.toLowerCase().includes(event.target.value)
           )
         );
       } else {
@@ -72,7 +79,7 @@ const TableStudents = () => {
       if (event.target.value.length > 0) {
         setFilteredSt(
           student.filter((f) =>
-            f.tel.toLowerCase().includes(event.target.value)
+            f.phone.toLowerCase().includes(event.target.value)
           )
         );
       } else {
@@ -90,6 +97,24 @@ const TableStudents = () => {
       }
     }
   };
+
+  const getTeach = async () => {
+    try {
+      dispatch(stuStart());
+      const response = await axios.get(GET_STUDENT, {
+        params: {
+          edu_center_id: edu_id,
+        },
+      });
+      dispatch(stuSuc(response.data));
+    } catch (error) {
+      dispatch(stuFail(error.response?.data.message[0]));
+    }
+  };
+
+  useEffect(() => {
+    getTeach();
+  }, []);
 
   const handleChange = (event) => {
     setSorting(event.target.value);
@@ -134,7 +159,7 @@ const TableStudents = () => {
           </Tooltip>
         </Box>
         <H3 style={{ display: "flex", gap: "10px", alignItems: "center" }}>
-          {t("studentsAll")} - 1000
+          {t("studentsAll")} - {filteredSt.length}
           <Tooltip
             disableFocusListener
             disableTouchListener
