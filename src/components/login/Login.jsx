@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import {
   Box,
   Button,
+  // LoadingButton,
   FormControl,
   IconButton,
   InputAdornment,
@@ -16,41 +17,45 @@ import { LoginBox } from "./Loginstyled";
 import { useNavigate } from "react-router-dom";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
-import axios from "../../utils/api"
+import axios from "../../utils/api";
 import { POST_SIGNIN_EDU } from "../../utils/constants";
 import { useDispatch, useSelector } from "react-redux";
-import { loginEdusuc, registerEduFail, registerEduStart, registerEduSuc } from "../../store/eduSlice";
+import {
+  loginEdusuc,
+  registerEduFail,
+  registerEduStart,
+  registerEduSuc,
+} from "../../store/eduSlice";
+import { LoadingButton } from "@mui/lab";
 
 const Login = () => {
   const { t } = useTranslation();
   const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-  const dispatch = useDispatch()
-  const navigate = useNavigate()
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { isLoading } = useSelector((state) => state.edu);
 
   const handleMouseDownPassword = (event) => {
     event.preventDefault();
   };
 
-  const state = useSelector(state => state.edu)
-  console.log(state);
-
   const handleLogin = async () => {
     try {
-      dispatch(registerEduStart())
+      dispatch(registerEduStart());
       const response = await axios.post(POST_SIGNIN_EDU, {
         phone: phone,
-        password: password
-      })
-      setPhone("")
-      setPassword("")
-      dispatch(loginEdusuc(response.data))
-      navigate("/login")
+        password: password,
+      });
+      setPhone("");
+      setPassword("");
+      dispatch(loginEdusuc(response.data));
+      navigate("/login");
     } catch (error) {
-      dispatch(registerEduFail(error.message))
+      dispatch(registerEduFail(error.message));
     }
-  }
+  };
   return (
     <motion.div
       initial={{ opacity: 0, scale: 0.7 }}
@@ -103,8 +108,9 @@ const Login = () => {
             />
           </FormControl>
 
-          <Button
-          onClick={handleLogin}
+          <LoadingButton
+            loading={isLoading}
+            onClick={handleLogin}
             variant="contained"
             color="blue"
             sx={{
@@ -114,7 +120,7 @@ const Login = () => {
             }}
           >
             {t("login")}
-          </Button>
+          </LoadingButton>
 
           <H3 sx={{ textAlign: "center" }}>
             {t("register1")}{" "}
