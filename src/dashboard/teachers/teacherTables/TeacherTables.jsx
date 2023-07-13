@@ -20,7 +20,6 @@ import search from "../../../assets/icons/search.png";
 import searchDark from "../../../assets/dark/darkSearch.png";
 import { useInView } from "framer-motion";
 import { useDispatch, useSelector } from "react-redux";
-import { addTecherTables } from "../../../store/themeSlice";
 import exportD from "../../../assets/dark/export.png";
 import exportW from "../../../assets/icons/export.png";
 import { useTranslation } from "react-i18next";
@@ -45,7 +44,7 @@ const TeacherTables = () => {
   const [sorting, setSorting] = useState("name");
   const dispatch = useDispatch();
   const { t } = useTranslation();
-  const { addTablesTeacher } = useSelector((state) => state);
+  const [addTeach, setAddTeach] = useState(false)
   const state = useSelector((state) => state);
   console.log(state);
   const edu_id = localStorage.getItem("EDU_ID")
@@ -99,10 +98,10 @@ const TeacherTables = () => {
       dispatch(startGetTeach());
       const response = await axios.get(GET_TEACHER, {
         params: {
-          id: edu_id
+          edu_center_id: edu_id
         }
       });
-      console.log(response);
+      console.log(response, "teachers");
       dispatch(successGetTeach(response.data));
     } catch (error) {
       console.log(error);
@@ -120,7 +119,7 @@ const TeacherTables = () => {
 
   return (
     <>
-      {addTablesTeacher && <AddTeacher />}
+      <AddTeacher modal={addTeach} setModal={setAddTeach} />
       <Box
         ref={ref}
         sx={{
@@ -221,7 +220,7 @@ const TeacherTables = () => {
               <Button
                 variant="contained"
                 color="blue"
-                onClick={() => dispatch(addTecherTables())}
+                onClick={() => setAddTeach(true)}
               >
                 {t("studentsAdd")}
               </Button>

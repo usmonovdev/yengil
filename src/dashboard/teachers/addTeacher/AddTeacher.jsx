@@ -13,11 +13,11 @@ import {
 import { motion } from "framer-motion";
 import { H3 } from "../../../ui/typography";
 import InputComp from "../../../ui/InputComp";
-import { addTecherTables } from "../../../store/themeSlice";
 import { useTheme } from "@emotion/react";
 import { useTranslation } from "react-i18next";
-import { useDispatch, useSelector } from "react-redux";
 import { IMaskInput } from "react-imask";
+import axios from "../../../utils/api"
+import { POST_TEACHER } from "../../../utils/constants";
 
 const style = {
   position: "absolute",
@@ -73,7 +73,7 @@ function getStyles(name, personName, theme) {
   };
 }
 
-const AddTeacher = () => {
+const AddTeacher = ({ modal, setModal }) => {
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [salary, setSalary] = useState("");
@@ -81,9 +81,9 @@ const AddTeacher = () => {
   const [group, setGroup] = useState([]);
   const theme = useTheme();
   const { t } = useTranslation();
-  const { addTablesTeacher } = useSelector((state) => state.theme);
-  const dispatch = useDispatch();
-  const [personName, setPersonName] = React.useState([]);
+  const [personName, setPersonName] = useState([]);
+  const edu_id = localStorage.getItem("EDU_ID")
+  console.log(edu_id);
 
   const handleChange = (event) => {
     const {
@@ -92,11 +92,27 @@ const AddTeacher = () => {
     setPersonName(typeof value === "string" ? value.split(",") : value);
     setGroup(event.target.value);
   };
+
+  const handleAddTeach = async () => {
+    try {
+      const response = await axios.post(POST_TEACHER, {
+        full_name: "Usmonov Azizbek",
+        phone: "+998911667364",
+        salary: 50,
+        note: "React",
+        edu_center_id: edu_id
+      })
+      console.log(response, "add teacher");
+    } catch (error) {
+      
+    }
+  }
+
   return (
     <>
       <Modal
         sx={{ zIndex: "1000" }}
-        open={addTablesTeacher}
+        open={modal}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
@@ -195,12 +211,12 @@ const AddTeacher = () => {
             >
               <Button
                 variant="contained"
-                onClick={() => dispatch(addTecherTables())}
+                onClick={() => setModal(!modal)}
                 color="alsoWhite"
               >
                 {t("addStudentsClose")}
               </Button>
-              <Button variant="contained" color="blue">
+              <Button variant="contained" color="blue" onClick={handleAddTeach}>
                 {t("addStudentsSave")}
               </Button>
             </Box>
