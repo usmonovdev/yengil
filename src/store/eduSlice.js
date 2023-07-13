@@ -9,16 +9,18 @@ export const eduSlice = createSlice({
         education: []
     },
     reducers: {
-        registerEduStart: (state, action) => {
+        registerEduStart: (state) => {
             state.isLoading = true
         },
         registerEduSuc: (state, action) => {
             state.isLoading = false
             state.isSuccess = true
             state.education = action.payload
+            state.isFailure = null
         },
         registerEduFail: (state, action) => {
             state.isLoading = false
+            state.education = []
             state.isFailure = action.payload
             state.isSuccess = false
         }

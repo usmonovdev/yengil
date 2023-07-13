@@ -8,6 +8,10 @@ import undov from "../../assets/icons/undov.png";
 import undovDark from "../../assets/dark/undov-white.png";
 import { Div, Img, RegisterBox } from "./Registerstyled";
 import axios from "../../utils/api"
+import { POST_CREATE_EDU } from "../../utils/constants";
+import { useDispatch, useSelector } from "react-redux";
+import { registerEduFail, registerEduStart, registerEduSuc } from "../../store/eduSlice";
+import { useNavigate } from "react-router-dom";
 
 const Register = () => {
   const theme = useTheme();
@@ -15,12 +19,27 @@ const Register = () => {
   const [phone, setPhone] = useState("");
   const [name, setName] = useState("");
   const [paswword, setPaswword] = useState("");
-  const [paswwordProvided, setPaswwordProvided] = useState("");
+  const dispatch = useDispatch()
+  const state = useSelector(state => state.edu)
+  console.log(state);
+  const navigate = useNavigate()
 
-  const handleRegister = () => {
+  const handleRegister = async () => {
     try {
-      
-    } catch (error) {}
+      dispatch(registerEduStart())
+      const response = await axios.post(POST_CREATE_EDU, {
+        name: name,
+        phone: phone,
+        password: paswword
+      })
+      setPhone("")
+      setName("")
+      setPaswword("")
+      dispatch(registerEduSuc(response.data))
+      navigate("/login")
+    } catch (error) {
+      dispatch(registerEduFail(error.message))
+    }
   };
 
   return (
@@ -49,6 +68,7 @@ const Register = () => {
             setValue={setName}
             label={t("register-name")}
             required={true}
+            type="text"
           />
           <InputComp
             placeholder="+998 78 777 11 00"
@@ -56,7 +76,7 @@ const Register = () => {
             setValue={setPhone}
             label={t("register-phone")}
             required={true}
-            type={"number"}
+            type={"phone"}
           />
           <Div>
             <InputComp
@@ -71,22 +91,6 @@ const Register = () => {
               disableTouchListener
               title={t("register-tooltip")}
               sx={{ position: "relative" }}
-            >
-              <Img src={theme.palette.mode == "light" ? undov : undovDark} />
-            </Tooltip>
-          </Div>
-          <Div>
-            <InputComp
-              placeholder="12345678"
-              value={paswwordProvided}
-              setValue={setPaswwordProvided}
-              label={t("register-provided")}
-              required={true}
-            />
-            <Tooltip
-              disableFocusListener
-              disableTouchListener
-              title={t("register-provided")}
             >
               <Img src={theme.palette.mode == "light" ? undov : undovDark} />
             </Tooltip>
