@@ -51,6 +51,7 @@ const Login = () => {
       setPhone("");
       setPassword("");
       dispatch(loginEdusuc(response.data));
+      localStorage.setItem("EDU_ID", response?.data.eduCenter.id)
       navigate("/login");
     } catch (error) {
       dispatch(registerEduFail(error.response.data.message[0]));

@@ -28,7 +28,8 @@ const DeleteMo = ({ modal, setModal, text = "Aniqmi?" }) => {
   const navigate = useNavigate()
 
   const handleOut = () => {
-    localStorage.setItem("TOKEN", "")
+    localStorage.removeItem("TOKEN")
+    localStorage.removeItem("EDU_ID")
     navigate("/")
   }
 

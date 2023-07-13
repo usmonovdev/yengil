@@ -1,6 +1,6 @@
 import { teacher } from "../../../localData/teacherData";
 import { exportToExel } from "../../../utils/ExelExport";
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
   Box,
   Button,
@@ -10,12 +10,8 @@ import {
   InputLabel,
   MenuItem,
   Select,
-  TableCell,
-  TableRow,
   TextField,
   Tooltip,
-  styled,
-  tableCellClasses,
 } from "@mui/material";
 import { H2, H3, Paragraph } from "../../../ui/typography";
 import { Img } from "../../students/tablestudents/TableStyled";
@@ -31,6 +27,13 @@ import { useTranslation } from "react-i18next";
 import AddTeacher from "../addTeacher/AddTeacher";
 import Selected from "./Selected";
 import TableData from "./TableData";
+import {
+  failGetTeach,
+  startGetTeach,
+  successGetTeach,
+} from "../../../store/teachSlice";
+import axios from "../../../utils/api";
+import { GET_TEACHER } from "../../../utils/constants";
 
 const TeacherTables = () => {
   const [selected, setSelected] = useState(false);
@@ -43,6 +46,9 @@ const TeacherTables = () => {
   const dispatch = useDispatch();
   const { t } = useTranslation();
   const { addTablesTeacher } = useSelector((state) => state);
+  const state = useSelector((state) => state);
+  console.log(state);
+  const edu_id = localStorage.getItem("EDU_ID")
 
   const handleFilter = (event) => {
     if (sorting === "name") {
@@ -87,6 +93,26 @@ const TeacherTables = () => {
       }
     }
   };
+
+  const getTeach = async () => {
+    try {
+      dispatch(startGetTeach());
+      const response = await axios.get(GET_TEACHER, {
+        params: {
+          id: edu_id
+        }
+      });
+      console.log(response);
+      dispatch(successGetTeach(response.data));
+    } catch (error) {
+      console.log(error);
+      dispatch(failGetTeach(error.response?.data.message[0]));
+    }
+  };
+
+  useEffect(() => {
+    getTeach();
+  }, []);
 
   const handleChange = (event) => {
     setSorting(event.target.value);

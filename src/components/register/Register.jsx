@@ -51,10 +51,10 @@ const Register = () => {
       setPhone("");
       setName("");
       setPaswword("");
-      dispatch(registerEduSuc(response.data));
+      dispatch(registerEduSuc(response?.data));
       navigate("/login");
     } catch (error) {
-      dispatch(registerEduFail(error.response.data.message[0]));
+      dispatch(registerEduFail(error.response?.data?.message[0]));
       setOpen(true);
     }
   };
