@@ -25,6 +25,7 @@ import {
   registerEduSuc,
 } from "../../store/eduSlice";
 import { useNavigate } from "react-router-dom";
+import { LoadingButton } from "@mui/lab";
 
 const Register = () => {
   const theme = useTheme();
@@ -129,7 +130,8 @@ const Register = () => {
                 <Img src={theme.palette.mode == "light" ? undov : undovDark} />
               </Tooltip>
             </Div>
-            <Button
+            <LoadingButton
+              loading={state.isLoading}
               onClick={handleRegister}
               variant="contained"
               color="blue"
@@ -142,7 +144,7 @@ const Register = () => {
               autoHideDuration={6000}
             >
               {t("register")}
-            </Button>
+            </LoadingButton>
             <H3 sx={{ textAlign: "center" }}>
               {t("login1")} <StyledLink to={"/login"}>{t("login")}</StyledLink>
             </H3>

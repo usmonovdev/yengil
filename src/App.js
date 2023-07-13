@@ -12,7 +12,6 @@ const createColor = (mainColor) => augmentColor({ color: { main: mainColor } });
 
 function App() {
   const [mode, setMode] = useState("light")
-  const { Token } = useSelector(state => state.theme)
   const { isDarkMode } = useSelector(state => state.theme)
   const { themeMainColor } = useSelector(state => state.theme)
   const { themeFont } = useSelector(state => state.theme)
@@ -122,6 +121,8 @@ function App() {
   });
   const theme = useMemo(() => createTheme(getTokens(mode)), [mode, themeMainColor, themeFont])
 
+  const eduToken = localStorage.getItem("TOKEN")
+
   useMemo(() => {
     if (isDarkMode) {
       setMode("dark");
@@ -131,13 +132,13 @@ function App() {
   }, [isDarkMode]);
 
   useEffect(() => {
-    Token ? navigate("/dashboard/home") : navigate("/")
-  }, [Token])
+    eduToken ? navigate("/dashboard/home") : navigate("/")
+  }, [eduToken])
 
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      {Token ? <>
+      {eduToken ? <>
         <Dashboard />
       </> : <>
         <RoutesHome />

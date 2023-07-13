@@ -3,8 +3,6 @@ import { motion } from "framer-motion";
 import {
   Alert,
   Box,
-  Button,
-  // LoadingButton,
   FormControl,
   IconButton,
   InputAdornment,
@@ -26,7 +24,6 @@ import {
   loginEdusuc,
   registerEduFail,
   registerEduStart,
-  registerEduSuc,
 } from "../../store/eduSlice";
 import { LoadingButton } from "@mui/lab";
 
@@ -38,8 +35,7 @@ const Login = () => {
   const [open, setOpen] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { isLoading } = useSelector((state) => state.edu);
-  const { isFailure } = useSelector((state) => state.edu);
+  const { isLoading, isFailure } = useSelector((state) => state.edu);
 
   const handleMouseDownPassword = (event) => {
     event.preventDefault();

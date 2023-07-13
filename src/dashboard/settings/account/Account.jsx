@@ -20,7 +20,7 @@ import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { useInView } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import LogoutIcon from "@mui/icons-material/Logout";
-import DeleteMo from "../../../ui/DeleteMo";
+import DeleteMo from "./DeleteMo";
 
 const TextMaskCustom = React.forwardRef(function TextMaskCustom(props, ref) {
   const { onChange, ...other } = props;
