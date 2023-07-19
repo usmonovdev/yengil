@@ -1,4 +1,3 @@
-import { teacher } from "../../../localData/teacherData";
 import { exportToExel } from "../../../utils/ExelExport";
 import React, { useEffect, useRef, useState } from "react";
 import {
@@ -39,14 +38,14 @@ const TeacherTables = () => {
   const theme = useTheme();
   const ref = useRef();
   const isInView = useInView(ref, { once: true });
-  const [filteredSt, setFilteredSt] = useState(teacher);
-  const [student, setStudent] = useState(teacher);
-  const [sorting, setSorting] = useState("name");
   const dispatch = useDispatch();
+  const { teachers } = useSelector((state) => state.teach);
+  console.log(teachers);
+  const [filteredSt, setFilteredSt] = useState(teachers);
+  const [student, setStudent] = useState(teachers);
+  const [sorting, setSorting] = useState("name");
   const { t } = useTranslation();
   const [addTeach, setAddTeach] = useState(false)
-  const state = useSelector((state) => state);
-  console.log(state);
   const edu_id = localStorage.getItem("EDU_ID")
 
   const handleFilter = (event) => {
@@ -54,7 +53,7 @@ const TeacherTables = () => {
       if (event.target.value.length > 0) {
         setFilteredSt(
           student.filter((f) =>
-            f.name.toLowerCase().includes(event.target.value)
+            f.full_name.toLowerCase().includes(event.target.value)
           )
         );
       } else {
@@ -74,7 +73,7 @@ const TeacherTables = () => {
       if (event.target.value.length > 0) {
         setFilteredSt(
           student.filter((f) =>
-            f.tel.toLowerCase().includes(event.target.value)
+            f.phone.toLowerCase().includes(event.target.value)
           )
         );
       } else {
@@ -101,10 +100,8 @@ const TeacherTables = () => {
           edu_center_id: edu_id
         }
       });
-      console.log(response, "teachers");
       dispatch(successGetTeach(response.data));
     } catch (error) {
-      console.log(error);
       dispatch(failGetTeach(error.response?.data.message[0]));
     }
   };
@@ -112,6 +109,7 @@ const TeacherTables = () => {
   useEffect(() => {
     getTeach();
   }, []);
+
 
   const handleChange = (event) => {
     setSorting(event.target.value);
@@ -144,7 +142,7 @@ const TeacherTables = () => {
           <Tooltip title={t("teachersDownloadTitle")} arrow>
             <IconButton
               sx={{ height: "fit-content", width: "fit-content" }}
-              onClick={() => exportToExel("Teacher (Yengil App)", teacher)}
+              onClick={() => exportToExel("Teacher (Yengil App)", teachers)}
             >
               <img
                 src={theme.palette.mode == "light" ? exportW : exportD}
@@ -156,7 +154,7 @@ const TeacherTables = () => {
           </Tooltip>
         </Box>
         <Paragraph>
-          {t("groupTablesAll")} - {teacher.length}
+          {t("groupTablesAll")} - {teachers.length}
         </Paragraph>
         <form>
           <Box

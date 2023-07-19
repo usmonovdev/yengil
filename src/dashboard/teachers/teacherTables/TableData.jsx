@@ -128,12 +128,12 @@ const TableData = ({ data, selectedItem, setSelectedItem }) => {
                       />
                       {users.id}
                     </TableCell>
-                    <TableCell>{users.name}</TableCell>
-                    <TableCell>{users.tel}</TableCell>
+                    <TableCell>{users.full_name}</TableCell>
+                    <TableCell>{users.phone}</TableCell>
                     <TableCell>
                       {t("groupTablesAll")} - {users.group}
                     </TableCell>
-                    <TableCell>{users.salary}</TableCell>
+                    <TableCell>{users.salary}%</TableCell>
                     <TableCell>
                       <TableActions id={users.id} />
                     </TableCell>

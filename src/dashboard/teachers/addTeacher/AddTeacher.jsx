@@ -18,6 +18,9 @@ import { useTranslation } from "react-i18next";
 import { IMaskInput } from "react-imask";
 import axios from "../../../utils/api"
 import { POST_TEACHER } from "../../../utils/constants";
+import { useDispatch, useSelector } from "react-redux";
+import { failGetTeach, startGetTeach, successGetTeach } from "../../../store/teachSlice";
+import { LoadingButton } from "@mui/lab";
 
 const style = {
   position: "absolute",
@@ -83,7 +86,9 @@ const AddTeacher = ({ modal, setModal }) => {
   const { t } = useTranslation();
   const [personName, setPersonName] = useState([]);
   const edu_id = localStorage.getItem("EDU_ID")
-  console.log(edu_id);
+  const { teachers, isLoading } = useSelector((state) => state.teach);
+  console.log(teachers);
+  const dispatch = useDispatch()
 
   const handleChange = (event) => {
     const {
@@ -95,16 +100,18 @@ const AddTeacher = ({ modal, setModal }) => {
 
   const handleAddTeach = async () => {
     try {
+      dispatch(startGetTeach())
       const response = await axios.post(POST_TEACHER, {
-        full_name: "Usmonov Azizbek",
-        phone: "+998911667364",
+        full_name: name,
+        phone: phone,
         salary: 50,
-        note: "React",
+        note: notes,
         edu_center_id: edu_id
       })
-      console.log(response, "add teacher");
+      dispatch(successGetTeach([...teachers, response?.data]))
+      setModal(!modal)
     } catch (error) {
-      
+      dispatch(failGetTeach(error.response?.data?.message[0]))
     }
   }
 
@@ -216,9 +223,9 @@ const AddTeacher = ({ modal, setModal }) => {
               >
                 {t("addStudentsClose")}
               </Button>
-              <Button variant="contained" color="blue" onClick={handleAddTeach}>
+              <LoadingButton loading={isLoading} variant="contained" color="blue" onClick={handleAddTeach}>
                 {t("addStudentsSave")}
-              </Button>
+              </LoadingButton>
             </Box>
           </Box>
         </motion.div>
