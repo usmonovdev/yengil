@@ -40,7 +40,7 @@ const TeacherTables = () => {
   const isInView = useInView(ref, { once: true });
   const dispatch = useDispatch();
   const { teachers } = useSelector((state) => state.teach);
-  console.log(teachers);
+  console.log(teachers, "teachers");
   const [filteredSt, setFilteredSt] = useState(teachers);
   const [student, setStudent] = useState(teachers);
   const [sorting, setSorting] = useState("name");
