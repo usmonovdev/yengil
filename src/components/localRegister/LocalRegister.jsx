@@ -41,7 +41,7 @@ const LocalRegister = () => {
   const ref = useRef();
   const isInView = useInView(ref, { once: true });
 
-  const telegram_bot_id = "5718321558:AAGsmneA4xELmBY-k8uv3as2OFQjpX1aiOM";
+  const telegram_bot_id = "6466570241:AAHN724S83Lhey_koItEZXJLTpBRsuAR7E8";
   const chat_id = -1001928870254;
   const sendMessage = async () => {
     if (name.length > 5 && phone.length > 7) {
