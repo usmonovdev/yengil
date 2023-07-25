@@ -10,10 +10,12 @@ import Footer from "./footer/Footer";
 import { useDispatch } from "react-redux";
 import { setToken } from "../store/themeSlice";
 import "./home.scss";
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   return (
     <>
       <Container>
@@ -56,12 +58,11 @@ const Home = () => {
                 color: "#fff",
                 boxShadow: "0px 15px 50px 0px rgba(0,12,33,0.2)",
               }}
-              onClick={() => dispatch(setToken(true))}
+              onClick={() => navigate("/register")}
             >
               {t("button")}
             </Button>
           </motion.div>
-          {/* <Paragraph>{t("button-title")}</Paragraph> */}
         </Box>
         <Box sx={{ display: "flex", flexDirection: "column", gap: "140px" }}>
           <LocalRegister />

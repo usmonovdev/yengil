@@ -39,8 +39,7 @@ const TeacherTables = () => {
   const ref = useRef();
   const isInView = useInView(ref, { once: true });
   const dispatch = useDispatch();
-  const { teachers } = useSelector((state) => state.teach);
-  console.log(teachers, "teachers");
+  const { teachers, isLoading } = useSelector((state) => state.teach);
   const [filteredSt, setFilteredSt] = useState(teachers);
   const [student, setStudent] = useState(teachers);
   const [sorting, setSorting] = useState("name");
@@ -246,7 +245,7 @@ const TeacherTables = () => {
               justifyContent: "center",
             }}
           >
-            <H3>{t("studentsNotFound")}</H3>
+            <H3>{filteredSt.length < 0 ? <>{t("studentsNotFound")}</> : "Loading..."}</H3>
           </Box>
         )}
       </Box>
