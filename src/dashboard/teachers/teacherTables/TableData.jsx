@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   Checkbox,
+  Skeleton,
   Table,
   TableBody,
   TableCell,
@@ -18,6 +19,7 @@ import { getSelectedLngth } from "../../../store/themeSlice";
 const TableData = ({ data, selectedItem, setSelectedItem }) => {
   const { t } = useTranslation();
   const [page, setPage] = useState(0);
+  const { isLoading } = useSelector((state) => state.teach);
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const [selected, setSelected] = useState([]);
   const dispatch = useDispatch();
@@ -81,6 +83,7 @@ const TableData = ({ data, selectedItem, setSelectedItem }) => {
             <TableRow>
               <StyledTableCell align="left">
                 <Checkbox
+                  disabled={isLoading}
                   color="alsoWhite"
                   onChange={handleSelectAllClick}
                   inputProps={{
@@ -105,41 +108,73 @@ const TableData = ({ data, selectedItem, setSelectedItem }) => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {data
-              .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-              .map((users) => {
-                const isItemSelected = isSelected(users.id);
-                return (
-                  <StyledTableRow
-                    hover
-                    role="checkbox"
-                    tabIndex={-1}
-                    key={users.id}
-                    selected={isItemSelected}
-                  >
-                    <TableCell>
-                      <Checkbox
-                        color="blue"
-                        indeterminate={
-                          selected.length > 0 && selected.length < users.length
-                        }
-                        checked={isItemSelected}
-                        onClick={() => handleClick(users.id)}
-                      />
-                      {users.id}
-                    </TableCell>
-                    <TableCell>{users.full_name}</TableCell>
-                    <TableCell>{users.phone}</TableCell>
-                    <TableCell>
-                      {t("groupTablesAll")} - {users.group}
-                    </TableCell>
-                    <TableCell>{users.salary}%</TableCell>
-                    <TableCell>
-                      <TableActions id={users.id} />
-                    </TableCell>
-                  </StyledTableRow>
-                );
-              })}
+            {data.length < 1 ? (
+              <>
+                {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((data) => {
+                  return (
+                    <StyledTableRow key={data} role="checkbox" tabIndex={-1}>
+                      <TableCell sx={{ padding: 0 }}>
+                        <Skeleton variant="rectangular" height={66} />
+                      </TableCell>
+                      <TableCell sx={{ padding: 0 }}>
+                        <Skeleton variant="rectangular" height={66} />
+                      </TableCell>
+                      <TableCell sx={{ padding: 0 }}>
+                        <Skeleton variant="rectangular" height={66} />
+                      </TableCell>
+                      <TableCell sx={{ padding: 0 }}>
+                        <Skeleton variant="rectangular" height={66} />
+                      </TableCell>
+                      <TableCell sx={{ padding: 0 }}>
+                        <Skeleton variant="rectangular" height={66} />
+                      </TableCell>
+                      <TableCell sx={{ padding: 0 }}>
+                        <Skeleton variant="rectangular" height={66} />
+                      </TableCell>
+                    </StyledTableRow>
+                  );
+                })}
+              </>
+            ) : (
+              <>
+                {data
+                  .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                  .map((users) => {
+                    const isItemSelected = isSelected(users.id);
+                    return (
+                      <StyledTableRow
+                        hover
+                        role="checkbox"
+                        tabIndex={-1}
+                        key={users.id}
+                        selected={isItemSelected}
+                      >
+                        <TableCell>
+                          <Checkbox
+                            color="blue"
+                            indeterminate={
+                              selected.length > 0 &&
+                              selected.length < users.length
+                            }
+                            checked={isItemSelected}
+                            onClick={() => handleClick(users.id)}
+                          />
+                          {users.id}
+                        </TableCell>
+                        <TableCell>{users.full_name}</TableCell>
+                        <TableCell>{users.phone}</TableCell>
+                        <TableCell>
+                          {t("groupTablesAll")} - {users.group}
+                        </TableCell>
+                        <TableCell>{users.salary}%</TableCell>
+                        <TableCell>
+                          <TableActions id={users.id} />
+                        </TableCell>
+                      </StyledTableRow>
+                    );
+                  })}
+              </>
+            )}
           </TableBody>
         </Table>
       </TableContainer>

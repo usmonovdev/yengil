@@ -39,65 +39,19 @@ const TeacherTables = () => {
   const ref = useRef();
   const isInView = useInView(ref, { once: true });
   const dispatch = useDispatch();
-  const { teachers, isLoading } = useSelector((state) => state.teach);
-  const [filteredSt, setFilteredSt] = useState(teachers);
-  const [student, setStudent] = useState(teachers);
+  const { teachers } = useSelector((state) => state.teach);
   const [sorting, setSorting] = useState("name");
   const { t } = useTranslation();
-  const [addTeach, setAddTeach] = useState(false)
-  const edu_id = localStorage.getItem("EDU_ID")
-
-  const handleFilter = (event) => {
-    if (sorting === "name") {
-      if (event.target.value.length > 0) {
-        setFilteredSt(
-          student.filter((f) =>
-            f.full_name.toLowerCase().includes(event.target.value)
-          )
-        );
-      } else {
-        setFilteredSt(student);
-      }
-    } else if (sorting === "group") {
-      if (event.target.value.length > 0) {
-        setFilteredSt(
-          student.filter((f) =>
-            f.group.toLowerCase().includes(event.target.value)
-          )
-        );
-      } else {
-        setFilteredSt(student);
-      }
-    } else if (sorting == "tel") {
-      if (event.target.value.length > 0) {
-        setFilteredSt(
-          student.filter((f) =>
-            f.phone.toLowerCase().includes(event.target.value)
-          )
-        );
-      } else {
-        setFilteredSt(student);
-      }
-    } else if (sorting == "salary") {
-      if (event.target.value.length > 0) {
-        setFilteredSt(
-          student.filter((f) =>
-            f.salary.toLowerCase().includes(event.target.value)
-          )
-        );
-      } else {
-        setFilteredSt(student);
-      }
-    }
-  };
+  const [addTeach, setAddTeach] = useState(false);
+  const edu_id = localStorage.getItem("EDU_ID");
 
   const getTeach = async () => {
     try {
       dispatch(startGetTeach());
       const response = await axios.get(GET_TEACHER, {
         params: {
-          edu_center_id: edu_id
-        }
+          edu_center_id: edu_id,
+        },
       });
       dispatch(successGetTeach(response.data));
     } catch (error) {
@@ -108,7 +62,6 @@ const TeacherTables = () => {
   useEffect(() => {
     getTeach();
   }, []);
-
 
   const handleChange = (event) => {
     setSorting(event.target.value);
@@ -173,13 +126,14 @@ const TeacherTables = () => {
               }}
             >
               <TextField
+                disabled
                 color="blue"
                 label={t("studentsSearch")}
-                onChange={handleFilter}
                 InputProps={{
                   startAdornment: (
                     <InputAdornment position="start">
                       <Img
+                        className="!h-fit"
                         src={
                           theme.palette.mode == "light" ? search : searchDark
                         }
@@ -189,7 +143,7 @@ const TeacherTables = () => {
                 }}
                 variant="outlined"
               />
-              <FormControl sx={{ width: { xs: "100%" } }} color="blue">
+              <FormControl sx={{ width: { xs: "100%" } }} color="blue" disabled>
                 <InputLabel id="demo-simple-select-label">
                   {t("studentsSorting")}
                 </InputLabel>
@@ -225,29 +179,11 @@ const TeacherTables = () => {
             </Box>
           </Box>
         </form>
-        {filteredSt.length > 0 ? (
-          <>
-            <TableData
-              data={filteredSt}
-              selectedItem={selected}
-              setSelectedItem={setSelected}
-            />
-          </>
-        ) : (
-          <Box
-            sx={{
-              bgcolor: "action.hover",
-              borderRadius: "5px",
-              width: "100%",
-              height: "200px",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          >
-            <H3>{filteredSt.length < 0 ? <>{t("studentsNotFound")}</> : "Loading..."}</H3>
-          </Box>
-        )}
+        <TableData
+          data={teachers}
+          selectedItem={selected}
+          setSelectedItem={setSelected}
+        />
       </Box>
     </>
   );

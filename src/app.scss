@@ -4,6 +4,9 @@
 // Medium devices (landscape tablets, 768px and up): 768px
 // Large devices (laptops/desktops, 992px and up): 992px
 // Extra large devices (large laptops and desktops, 1200px and up): 1200px
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 .text-center {
     text-align: center;
