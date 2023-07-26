@@ -210,5 +210,8 @@
     "settingsTheme": "Mavzu",
     "settingsThemeMainColor": "Asosiy rang",
     "settingsThemeFont": "Shrift oilasi",
-    "settingsThemeLanguage": "Til"
+    "settingsThemeLanguage": "Til",
+    "table-not-found": {
+        "teachers": "O'qituvchilar topilmadi!"
+    }
 }

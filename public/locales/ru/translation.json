@@ -210,5 +210,8 @@
     "settingsTheme": "Тема",
     "settingsThemeMainColor": "Основной цвет",
     "settingsThemeFont": "Семейство шрифтов",
-    "settingsThemeLanguage": "Язык"
+    "settingsThemeLanguage": "Язык",
+    "table-not-found": {
+        "teachers": "Teachers not found!"
+    }
 }

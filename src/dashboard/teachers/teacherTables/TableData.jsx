@@ -3,7 +3,6 @@ import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import {
   Checkbox,
-  Skeleton,
   Table,
   TableBody,
   TableCell,
@@ -15,13 +14,17 @@ import {
 import TableActions from "./TableActions";
 import { StyledTableCell, StyledTableRow } from "../../../ui/StyledTable";
 import { getSelectedLngth } from "../../../store/themeSlice";
+import TableLoading from "../../../ui/TableLoading";
+import TableNoData from "../../../ui/TableNoData";
+import AddTeacher from "../addTeacher/AddTeacher";
 
 const TableData = ({ data, selectedItem, setSelectedItem }) => {
   const { t } = useTranslation();
-  const [page, setPage] = useState(0);
   const { isLoading } = useSelector((state) => state.teach);
+  const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const [selected, setSelected] = useState([]);
+  const [addTeach, setAddTeach] = useState(false);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -77,117 +80,114 @@ const TableData = ({ data, selectedItem, setSelectedItem }) => {
 
   return (
     <>
-      <TableContainer sx={{ borderRadius: "5px" }}>
-        <Table stickyHeader sx={{ minWidth: 700 }}>
-          <TableHead>
-            <TableRow>
-              <StyledTableCell align="left">
-                <Checkbox
-                  disabled={isLoading}
-                  color="alsoWhite"
-                  onChange={handleSelectAllClick}
-                  inputProps={{
-                    "aria-label": "select all desserts",
-                  }}
-                />
-                {t("groupTablesId")}
-              </StyledTableCell>
-              <StyledTableCell align="left">
-                {t("groupOpenName")}
-              </StyledTableCell>
-              <StyledTableCell align="left">
-                {t("gruopOpenPhone")}
-              </StyledTableCell>
-              <StyledTableCell align="left">{t("groupTables")}</StyledTableCell>
-              <StyledTableCell align="left">
-                {t("teachersEditLabel")}
-              </StyledTableCell>
-              <StyledTableCell align="left">
-                {t("groupOpenEdit")}
-              </StyledTableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {data.length < 1 ? (
-              <>
-                {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((data) => {
-                  return (
-                    <StyledTableRow key={data} role="checkbox" tabIndex={-1}>
-                      <TableCell sx={{ padding: 0 }}>
-                        <Skeleton variant="rectangular" height={66} />
-                      </TableCell>
-                      <TableCell sx={{ padding: 0 }}>
-                        <Skeleton variant="rectangular" height={66} />
-                      </TableCell>
-                      <TableCell sx={{ padding: 0 }}>
-                        <Skeleton variant="rectangular" height={66} />
-                      </TableCell>
-                      <TableCell sx={{ padding: 0 }}>
-                        <Skeleton variant="rectangular" height={66} />
-                      </TableCell>
-                      <TableCell sx={{ padding: 0 }}>
-                        <Skeleton variant="rectangular" height={66} />
-                      </TableCell>
-                      <TableCell sx={{ padding: 0 }}>
-                        <Skeleton variant="rectangular" height={66} />
-                      </TableCell>
-                    </StyledTableRow>
-                  );
-                })}
-              </>
-            ) : (
-              <>
-                {data
-                  .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                  .map((users) => {
-                    const isItemSelected = isSelected(users.id);
-                    return (
-                      <StyledTableRow
-                        hover
-                        role="checkbox"
-                        tabIndex={-1}
-                        key={users.id}
-                        selected={isItemSelected}
-                      >
-                        <TableCell>
-                          <Checkbox
-                            color="blue"
-                            indeterminate={
-                              selected.length > 0 &&
-                              selected.length < users.length
-                            }
-                            checked={isItemSelected}
-                            onClick={() => handleClick(users.id)}
-                          />
-                          {users.id}
-                        </TableCell>
-                        <TableCell>{users.full_name}</TableCell>
-                        <TableCell>{users.phone}</TableCell>
-                        <TableCell>
-                          {t("groupTablesAll")} - {users.group}
-                        </TableCell>
-                        <TableCell>{users.salary}%</TableCell>
-                        <TableCell>
-                          <TableActions id={users.id} />
-                        </TableCell>
-                      </StyledTableRow>
-                    );
-                  })}
-              </>
-            )}
-          </TableBody>
-        </Table>
-      </TableContainer>
-      <TablePagination
-        labelRowsPerPage={t("studentsLabelRowsPerPage")}
-        rowsPerPageOptions={[10, 25, 100]}
-        component="div"
-        count={data.length}
-        rowsPerPage={rowsPerPage}
-        page={page}
-        onPageChange={handleChangePage}
-        onRowsPerPageChange={handleChangeRowsPerPage}
-      />
+      {isLoading ? (
+        <>
+          <TableLoading />
+        </>
+      ) : (
+        <>
+          {data.length < 1 ? (
+            <>
+              <TableNoData
+                modal={addTeach}
+                setModal={setAddTeach}
+                title="table-not-found.teachers"
+              />
+              <AddTeacher modal={addTeach} setModal={setAddTeach} />
+            </>
+          ) : (
+            <>
+              <TableContainer sx={{ borderRadius: "5px" }}>
+                <Table stickyHeader sx={{ minWidth: 700 }}>
+                  <TableHead>
+                    <TableRow>
+                      <StyledTableCell align="left">
+                        <Checkbox
+                          disabled={isLoading}
+                          color="alsoWhite"
+                          onChange={handleSelectAllClick}
+                          inputProps={{
+                            "aria-label": "select all desserts",
+                          }}
+                        />
+                        {t("groupTablesId")}
+                      </StyledTableCell>
+                      <StyledTableCell align="left">
+                        {t("groupOpenName")}
+                      </StyledTableCell>
+                      <StyledTableCell align="left">
+                        {t("gruopOpenPhone")}
+                      </StyledTableCell>
+                      <StyledTableCell align="left">
+                        {t("groupTables")}
+                      </StyledTableCell>
+                      <StyledTableCell align="left">
+                        {t("teachersEditLabel")}
+                      </StyledTableCell>
+                      <StyledTableCell align="left">
+                        {t("groupOpenEdit")}
+                      </StyledTableCell>
+                    </TableRow>
+                  </TableHead>
+                  <TableBody>
+                    <>
+                      {data
+                        .slice(
+                          page * rowsPerPage,
+                          page * rowsPerPage + rowsPerPage
+                        )
+                        .map((users) => {
+                          const isItemSelected = isSelected(users.id);
+                          return (
+                            <StyledTableRow
+                              hover
+                              role="checkbox"
+                              tabIndex={-1}
+                              key={users.id}
+                              selected={isItemSelected}
+                            >
+                              <TableCell>
+                                <Checkbox
+                                  color="blue"
+                                  indeterminate={
+                                    selected.length > 0 &&
+                                    selected.length < users.length
+                                  }
+                                  checked={isItemSelected}
+                                  onClick={() => handleClick(users.id)}
+                                />
+                                {users.id}
+                              </TableCell>
+                              <TableCell>{users.full_name}</TableCell>
+                              <TableCell>{users.phone}</TableCell>
+                              <TableCell>
+                                {t("groupTablesAll")} - {users.group}
+                              </TableCell>
+                              <TableCell>{users.salary}%</TableCell>
+                              <TableCell>
+                                <TableActions id={users.id} />
+                              </TableCell>
+                            </StyledTableRow>
+                          );
+                        })}
+                    </>
+                  </TableBody>
+                </Table>
+              </TableContainer>
+              <TablePagination
+                labelRowsPerPage={t("studentsLabelRowsPerPage")}
+                rowsPerPageOptions={[10, 25, 100]}
+                component="div"
+                count={data.length}
+                rowsPerPage={rowsPerPage}
+                page={page}
+                onPageChange={handleChangePage}
+                onRowsPerPageChange={handleChangeRowsPerPage}
+              />
+            </>
+          )}
+        </>
+      )}
     </>
   );
 };
