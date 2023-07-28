@@ -6,7 +6,7 @@ import { useTranslation } from "react-i18next";
 
 const TableNoData = ({ modal, setModal, title }) => {
   const { palette } = useTheme();
-  const { t } = useTranslation()
+  const { t } = useTranslation();
   return (
     <Box className="flex flex-col items-center gap-[20px] p-4">
       <img

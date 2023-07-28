@@ -39,11 +39,12 @@ const TeacherTables = () => {
   const ref = useRef();
   const isInView = useInView(ref, { once: true });
   const dispatch = useDispatch();
-  const { teachers } = useSelector((state) => state.teach);
+  const { teachers, isLoading } = useSelector((state) => state.teach);
   const [sorting, setSorting] = useState("name");
   const { t } = useTranslation();
   const [addTeach, setAddTeach] = useState(false);
   const edu_id = localStorage.getItem("EDU_ID");
+  console.log(teachers);
 
   const getTeach = async () => {
     try {
@@ -106,7 +107,13 @@ const TeacherTables = () => {
           </Tooltip>
         </Box>
         <Paragraph>
-          {t("groupTablesAll")} - {teachers.length}
+          {isLoading ? (
+            <p>Loading...</p>
+          ) : (
+            <>
+              {t("groupTablesAll")} - {teachers.length}
+            </>
+          )}
         </Paragraph>
         <form>
           <Box

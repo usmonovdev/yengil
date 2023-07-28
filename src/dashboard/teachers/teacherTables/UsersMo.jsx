@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "@emotion/styled";
 import { Box, Button, Modal } from "@mui/material";
 import { motion } from "framer-motion";
@@ -6,6 +6,7 @@ import { useTheme } from "@emotion/react";
 import { H3, Paragraph } from "../../../ui/typography";
 import DeleteMo from "../../../ui/DeleteMo";
 import { t } from "i18next";
+import axios from "axios";
 
 const modalStyle = {
   position: "absolute",
@@ -34,8 +35,25 @@ const StyledH3 = styled(H3)(({ theme }) => ({
   textAlign: "left"
 }));
 
-const UsersMo = ({ modal, setModal }) => {
+const UsersMo = ({ modal, setModal, id, link }) => {
   const theme = useTheme();
+
+  const getTeacher = async () => {
+    try {
+      const response = await axios.get(link, {
+        params: {
+          id: id
+        }
+      })
+      console.log(response.data);
+    } catch (error) {
+      console.log("error");
+    }
+  }
+
+  useEffect(() => {
+    getTeacher()
+  }, [id])
 
   return (
     <div>

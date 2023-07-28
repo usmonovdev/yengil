@@ -10,8 +10,10 @@ import EditMo from "./EditMo";
 import UsersMo from "./UsersMo";
 import DeleteMo from "../../../ui/DeleteMo";
 import { useTranslation } from "react-i18next";
+import { DEL_TEACHER_BY_ID, GET_TEACHER_BY_ID } from "../../../utils/constants";
 
 const TableActions = ({ id }) => {
+  console.log(id);
   const [anchorEl, setAnchorEl] = useState(null);
   const [delModal, setDelModal] = useState(false);
   const [editMo, setEditMo] = useState(false);
@@ -77,9 +79,9 @@ const TableActions = ({ id }) => {
           </IconButton>
         </Box>
       </Menu>
-      <DeleteMo modal={delModal} setModal={setDelModal} text={t("teachersAction")} />
+      <DeleteMo modal={delModal} setModal={setDelModal} text={"teachersAction"} id={id} link={DEL_TEACHER_BY_ID} />
       <EditMo modal={editMo} setModal={setEditMo}/>
-      <UsersMo modal={usersMo} setModal={setUsersMo} id={id}/>
+      <UsersMo modal={usersMo} setModal={setUsersMo} id={id} link={GET_TEACHER_BY_ID}/>
     </>
   );
 };

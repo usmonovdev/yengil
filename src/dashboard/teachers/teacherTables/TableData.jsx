@@ -25,6 +25,7 @@ const TableData = ({ data, selectedItem, setSelectedItem }) => {
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const [selected, setSelected] = useState([]);
   const [addTeach, setAddTeach] = useState(false);
+  const [id, setId] = useState("");
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -119,7 +120,7 @@ const TableData = ({ data, selectedItem, setSelectedItem }) => {
                         {t("gruopOpenPhone")}
                       </StyledTableCell>
                       <StyledTableCell align="left">
-                        {t("groupTables")}
+                        {t("groupTables")} ({t("groupTablesAll")})
                       </StyledTableCell>
                       <StyledTableCell align="left">
                         {t("teachersEditLabel")}
@@ -160,12 +161,10 @@ const TableData = ({ data, selectedItem, setSelectedItem }) => {
                               </TableCell>
                               <TableCell>{users.full_name}</TableCell>
                               <TableCell>{users.phone}</TableCell>
-                              <TableCell>
-                                {t("groupTablesAll")} - {users.group}
-                              </TableCell>
+                              <TableCell>{users.group}0</TableCell>
                               <TableCell>{users.salary}%</TableCell>
-                              <TableCell>
-                                <TableActions id={users.id} />
+                              <TableCell onClick={() => setId(users.id)}>
+                                <TableActions id={id} />
                               </TableCell>
                             </StyledTableRow>
                           );
