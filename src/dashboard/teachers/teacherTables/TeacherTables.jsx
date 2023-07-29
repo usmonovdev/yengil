@@ -32,6 +32,7 @@ import {
 } from "../../../store/teachSlice";
 import axios from "../../../utils/api";
 import { GET_TEACHER } from "../../../utils/constants";
+import CloudDownloadIcon from '@mui/icons-material/CloudDownload';
 
 const TeacherTables = () => {
   const [selected, setSelected] = useState(false);
@@ -94,15 +95,11 @@ const TeacherTables = () => {
           <H2>{t("dashboardTeachers")}</H2>
           <Tooltip title={t("teachersDownloadTitle")} arrow>
             <IconButton
+              disabled={teachers.length <= 0}
               sx={{ height: "fit-content", width: "fit-content" }}
               onClick={() => exportToExel("Teacher (Yengil App)", teachers)}
             >
-              <img
-                src={theme.palette.mode == "light" ? exportW : exportD}
-                alt=""
-                width="20px"
-                height="20px"
-              />
+              <CloudDownloadIcon />
             </IconButton>
           </Tooltip>
         </Box>
