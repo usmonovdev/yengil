@@ -1,12 +1,12 @@
-import React, { useEffect } from "react";
+import React, { forwardRef, useImperativeHandle, useState } from "react";
 import styled from "@emotion/styled";
-import { Box, Button, Modal } from "@mui/material";
+import { Box, Button, Modal, Skeleton } from "@mui/material";
 import { motion } from "framer-motion";
 import { useTheme } from "@emotion/react";
 import { H3, Paragraph } from "../../../ui/typography";
 import DeleteMo from "../../../ui/DeleteMo";
 import { t } from "i18next";
-import axios from "axios";
+import axios from "../../../utils/api";
 
 const modalStyle = {
   position: "absolute",
@@ -32,33 +32,33 @@ const StyledH3 = styled(H3)(({ theme }) => ({
   width: "100%",
   padding: "4px",
   borderRadius: "5px",
-  textAlign: "left"
+  textAlign: "left",
 }));
 
-const UsersMo = ({ modal, setModal, id, link }) => {
+const UsersMo = forwardRef((props, ref) => {
+  const { link, id } = props;
   const theme = useTheme();
+  const [user, setUser] = useState();
+  const [usersMo, setUsersMo] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
-  const getTeacher = async () => {
-    try {
-      const response = await axios.get(link, {
-        params: {
-          id: id
-        }
-      })
-      console.log(response.data);
-    } catch (error) {
-      console.log("error");
-    }
-  }
-
-  useEffect(() => {
-    getTeacher()
-  }, [id])
-
+  useImperativeHandle(ref, () => ({
+    async handleGetUser() {
+      setUsersMo(!usersMo);
+      try {
+        setIsLoading(true);
+        const { data } = await axios.get(link + "/" + id);
+        setUser(data);
+        setIsLoading(false);
+      } catch (error) {
+        console.log("error");
+      }
+    },
+  }));
   return (
     <div>
       <Modal
-        open={modal}
+        open={usersMo}
         aria-labelledby="parent-modal-title"
         aria-describedby="parent-modal-description"
       >
@@ -82,14 +82,27 @@ const UsersMo = ({ modal, setModal, id, link }) => {
         >
           <Box sx={modalStyle}>
             <Paragraph>{t("teacherMoInfo")}</Paragraph>
-            <Box sx={{ display: "flex", flexDirection: "column", gap: "10px" }}>
-              <StyledH3>{t("userMoName")}: Usmonov Azizbek</StyledH3>
-              <StyledH3>{t("groupTables")}: Matematika</StyledH3>
-              <StyledH3>{t("groupTablesDay")}: Monday</StyledH3>
-              <StyledH3>{t("gruopOpenPhone")}: +998 90 000 00 00</StyledH3>
-              <StyledH3>{t("teachersEditLabel")}: 50%</StyledH3>
-              <StyledH3>{t("groupTablesClock")}: 08:00 / 10:00</StyledH3>
-            </Box>
+            {isLoading ? (
+              <>
+                <Skeleton variant="h3" sx={{ borderRadius: '5px', height: '38px' }} />
+                <Skeleton variant="h3" sx={{ borderRadius: '5px', height: '38px' }} />
+                <Skeleton variant="h3" sx={{ borderRadius: '5px', height: '38px' }} />
+              </>
+            ) : (
+              <Box
+                sx={{ display: "flex", flexDirection: "column", gap: "10px" }}
+              >
+                <StyledH3>
+                  {t("userMoName")}: {user?.full_name}
+                </StyledH3>
+                <StyledH3>
+                  {t("gruopOpenPhone")}: {user?.phone}
+                </StyledH3>
+                <StyledH3>
+                  {t("teachersEditLabel")}: {user?.salary}%
+                </StyledH3>
+              </Box>
+            )}
             <Box
               sx={{
                 display: "flex",
@@ -99,11 +112,9 @@ const UsersMo = ({ modal, setModal, id, link }) => {
               }}
             >
               <Button
-                onClick={() => setModal(!modal)}
-                style={{
-                  background: theme.palette.custom.newStudentWhite,
-                  color: "black",
-                }}
+                onClick={() => setUsersMo(!usersMo)}
+                color="alsoWhite"
+                variant="contained"
               >
                 {t("groupOpenCanel")}
               </Button>
@@ -115,6 +126,6 @@ const UsersMo = ({ modal, setModal, id, link }) => {
       </Modal>
     </div>
   );
-};
+});
 
 export default UsersMo;
