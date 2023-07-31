@@ -1,4 +1,4 @@
-import { Box, Button, Modal, useTheme } from "@mui/material";
+import { Box, Button, Modal } from "@mui/material";
 import axios from "axios";
 import { motion } from "framer-motion";
 import { useState } from "react";
@@ -25,20 +25,19 @@ const style = {
 };
 
 const DeleteMo = ({ modal, setModal, text = "Aniqmi?", link, id }) => {
-  const theme = useTheme();
   const { t } = useTranslation();
-  const [loading, setLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
-  // const handleDelete = async () => {
-  //   try {
-  //     setLoading(true);
-  //     const response = await axios.get(`https://nest-yengil-app-54jp.onrender.com/api/teacher/${id}`);
-  //     setLoading(false)
-  //     console.log(response);
-  //   } catch (error) {
-  //     console.log("error in deleting data");
-  //   }
-  // };
+  const handleDeleteUser = async () => {
+    try {
+      setIsLoading(true);
+      await axios.delete(link + "/" + id);
+      setIsLoading(false)
+      setModal(false)
+    } catch (error) {
+      console.log("error in deleting data");
+    }
+  };
 
   return (
     <>
@@ -79,7 +78,7 @@ const DeleteMo = ({ modal, setModal, text = "Aniqmi?", link, id }) => {
               >
                 {t("groupOpenCanel")}
               </Button>
-              <LoadingButton loading={loading} color="error" variant="contained">
+              <LoadingButton loading={isLoading} color="error" variant="contained" onClick={handleDeleteUser}>
                 {t("groupOpenDelete")}
               </LoadingButton>
             </Box>
