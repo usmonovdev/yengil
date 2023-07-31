@@ -9,15 +9,14 @@ import ZoomOutMapIcon from "@mui/icons-material/ZoomOutMap";
 import EditMo from "./EditMo";
 import UsersMo from "./UsersMo";
 import DeleteMo from "../../../ui/DeleteMo";
-import { DEL_TEACHER_BY_ID, GET_TEACHER_BY_ID } from "../../../utils/constants";
+import { DEL_TEACHER_BY_ID, GET_TEACHER_BY_ID, PATCH_UPDATE_TEACHER_BY_ID } from "../../../utils/constants";
 
 const TableActions = ({ id }) => {
   const [anchorEl, setAnchorEl] = useState(null);
   const [delModal, setDelModal] = useState(false);
   const [editMo, setEditMo] = useState(false);
-
-  const userRef = useRef()
-
+  const userRef = useRef();
+  const editRef = useRef();
   const theme = useTheme();
   const open = Boolean(anchorEl);
 
@@ -71,7 +70,7 @@ const TableActions = ({ id }) => {
           <IconButton onClick={() => userRef.current.handleGetUser()}>
             <ZoomOutMapIcon />
           </IconButton>
-          <IconButton onClick={() => setEditMo(!editMo)}>
+          <IconButton onClick={() => editRef.current.handleEditUser()}>
             <EditIcon />
           </IconButton>
           <IconButton onClick={() => setDelModal(!delModal)}>
@@ -79,9 +78,15 @@ const TableActions = ({ id }) => {
           </IconButton>
         </Box>
       </Menu>
-      <DeleteMo modal={delModal} setModal={setDelModal} text={"teachersAction"} id={id} link={DEL_TEACHER_BY_ID} />
-      <EditMo modal={editMo} setModal={setEditMo}/>
-      <UsersMo ref={userRef} link={GET_TEACHER_BY_ID} id={id}/>
+      <DeleteMo
+        modal={delModal}
+        setModal={setDelModal}
+        text={"teachersAction"}
+        id={id}
+        link={DEL_TEACHER_BY_ID}
+      />
+      <EditMo ref={editRef} link={PATCH_UPDATE_TEACHER_BY_ID} id={id} />
+      <UsersMo ref={userRef} link={GET_TEACHER_BY_ID} id={id} />
     </>
   );
 };

@@ -1,23 +1,13 @@
-import React, { useState } from "react";
-import {
-  Box,
-  Button,
-  Chip,
-  FormControl,
-  InputLabel,
-  MenuItem,
-  Modal,
-  OutlinedInput,
-  Select,
-  useTheme,
-} from "@mui/material";
-import dayjs from "dayjs";
+import React, { forwardRef, useImperativeHandle, useState } from "react";
+import { Box, Button, Modal, Skeleton } from "@mui/material";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { H3 } from "../../../ui/typography";
 import { IMaskInput } from "react-imask";
 import PropTypes from "prop-types";
 import InputComp from "../../../ui/InputComp";
+import axios from "../../../utils/api";
+import { LoadingButton } from "@mui/lab";
 
 const TextMaskCustom = React.forwardRef(function TextMaskCustom(props, ref) {
   const { onChange, ...other } = props;
@@ -56,60 +46,61 @@ const modalStyle = {
   gap: "15px",
 };
 
-const ITEM_HEIGHT = 48;
-const ITEM_PADDING_TOP = 8;
-const MenuProps = {
-  PaperProps: {
-    style: {
-      maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
-      width: 250,
-    },
-  },
-};
+const EditMo = forwardRef((props, ref) => {
+  const { link, id } = props;
+  const { t } = useTranslation();
 
-const days = [
-  "Fizika",
-  "Matematika",
-  "Ona tili",
-  "React",
-  "Dasturlash",
-  "Ingliz tili",
-];
+  const [editMo, setEditMo] = useState(false);
 
-function getStyles(name, personName, theme) {
-  return {
-    fontWeight:
-      personName.indexOf(name) === -1
-        ? theme.typography.fontWeightRegular
-        : theme.typography.fontWeightMedium,
-  };
-}
-
-const EditMo = ({ modal, setModal }) => {
-  const [name, setName] = useState("");
-  const [firstName, setFirstNmae] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [fullName, setFullName] = useState("");
   const [phone, setPhone] = useState("");
   const [telegram, setTelegram] = useState("");
   const [salary, setSalary] = useState("");
   const [notes, setNotes] = useState("");
-  const now = dayjs();
 
-  const { t } = useTranslation();
-  const theme = useTheme();
-  const [personName, setPersonName] = useState([]);
+  const [saving, setSaving] = useState(false);
 
-  const handleGetGroups = (event) => {
-    const {
-      target: { value },
-    } = event;
-    setPersonName(typeof value === "string" ? value.split(",") : value);
+  useImperativeHandle(ref, () => ({
+    async handleEditUser() {
+      setEditMo(!editMo);
+      try {
+        setIsLoading(true);
+        const { data } = await axios.get(link + "/" + id);
+        setFullName(data.full_name);
+        setSalary(data.salary);
+        setPhone(data.phone);
+        setNotes(data.note);
+        setTelegram(data.telegram);
+        setIsLoading(false);
+      } catch (error) {
+        console.log("error");
+      }
+    },
+  }));
+
+  const handleUpdateData = async () => {
+    try {
+      setSaving(true);
+      await axios.patch(link + "/" + id, {
+        full_name: fullName,
+        phone: phone,
+        salary: salary,
+        telegram: telegram,
+        note: notes,
+      });
+      setSaving(false);
+      setEditMo(false)
+    } catch (error) {
+      console.log(error, "error");
+    }
   };
 
   return (
     <>
       <Modal
         sx={{ zIndex: "1000" }}
-        open={modal}
+        open={editMo}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
@@ -133,87 +124,87 @@ const EditMo = ({ modal, setModal }) => {
         >
           <Box sx={modalStyle}>
             <H3>{t("teacherEdit")}</H3>
-            <InputComp
-              placeholder="Azizbek"
-              value={name}
-              setValue={setName}
-              label={t("addStudentsName")}
-              required={true}
-              name={name}
-            />
-            <InputComp
-              placeholder="Usmonov"
-              value={firstName}
-              setValue={setFirstNmae}
-              label={t("addStudentsSurname")}
-              required={true}
-              name={name}
-            />
-            <InputComp
-              placeholder="50%"
-              value={salary}
-              setValue={setSalary}
-              label={t("teachersEditLabel")}
-              required={true}
-              name={name}
-            />
-            <FormControl sx={{ width: "100%" }} color="blue">
-              <InputLabel id="demo-multiple-chip-label">{t("addStudentsGroup")}</InputLabel>
-              <Select
-                sx={{ zIndex: "1500" }}
-                labelId="demo-multiple-chip-label"
-                id="demo-multiple-chip"
-                multiple
-                value={personName}
-                onChange={handleGetGroups}
-                input={
-                  <OutlinedInput id="select-multiple-chip" label="Guruh" />
-                }
-                renderValue={(selected) => (
-                  <Box sx={{ display: "flex", flexWrap: "wrap", gap: 0.5 }}>
-                    {selected.map((value) => (
-                      <Chip key={value} label={value} />
-                    ))}
-                  </Box>
-                )}
-                MenuProps={MenuProps}
-              >
-                {days.map((name) => (
-                  <MenuItem
-                    key={name}
-                    value={name}
-                    style={getStyles(name, personName, theme)}
-                  >
-                    {name}
-                  </MenuItem>
-                ))}
-              </Select>
-            </FormControl>
-            <InputComp
-              placeholder="+99890-000-00-00"
-              value={phone}
-              setValue={setPhone}
-              label={t("addStudentsTel")}
-              required={true}
-              name={name}
-              inputProps={TextMaskCustom}
-            />
-            <InputComp
-              placeholder="@t_samandar_t"
-              value={telegram}
-              setValue={setTelegram}
-              label={t("addStudentsTelegram")}
-              required={true}
-              name={name}
-            />
-            <InputComp
-              placeholder="Matematika"
-              value={notes}
-              setValue={setNotes}
-              label={t("addStudentsNote")}
-              required={true}
-              name={name}
-            />
+            {isLoading ? (
+              <>
+                <Skeleton
+                  sx={{
+                    borderRadius: "5px",
+                    height: "55px",
+                    transform: "scale(1,1)",
+                  }}
+                />
+                <Skeleton
+                  sx={{
+                    borderRadius: "5px",
+                    height: "55px",
+                    transform: "scale(1,1)",
+                  }}
+                />
+                <Skeleton
+                  sx={{
+                    borderRadius: "5px",
+                    height: "55px",
+                    transform: "scale(1,1)",
+                  }}
+                />
+                <Skeleton
+                  sx={{
+                    borderRadius: "5px",
+                    height: "55px",
+                    transform: "scale(1,1)",
+                  }}
+                />
+                <Skeleton
+                  sx={{
+                    borderRadius: "5px",
+                    height: "55px",
+                    transform: "scale(1,1)",
+                  }}
+                />
+              </>
+            ) : (
+              <>
+                <InputComp
+                  placeholder="Usmonov"
+                  value={fullName}
+                  setValue={setFullName}
+                  label={t("addStudentsSurname")}
+                  required={true}
+                  name={"full_name"}
+                />
+                <InputComp
+                  placeholder="50"
+                  value={salary}
+                  setValue={setSalary}
+                  label={`${t("teachersEditLabel")} (%)`}
+                  required={true}
+                  name={"salary"}
+                />
+                <InputComp
+                  placeholder="+99890-000-00-00"
+                  value={phone}
+                  setValue={setPhone}
+                  label={t("addStudentsTel")}
+                  required={true}
+                  name={"phone"}
+                  inputProps={TextMaskCustom}
+                />
+                <InputComp
+                  placeholder="@telegram_username"
+                  value={telegram}
+                  setValue={setTelegram}
+                  label={t("addStudentsTelegram")}
+                  name={"telegram"}
+                />
+                <InputComp
+                  placeholder="Matematika"
+                  value={notes}
+                  setValue={setNotes}
+                  label={t("addStudentsNote")}
+                  name={"note"}
+                />
+              </>
+            )}
             <Box
               sx={{
                 display: "flex",
@@ -224,20 +215,25 @@ const EditMo = ({ modal, setModal }) => {
             >
               <Button
                 variant="contained"
-                onClick={() => setModal(!modal)}
+                onClick={() => setEditMo(!editMo)}
                 color="alsoWhite"
               >
                 {t("addStudentsClose")}
               </Button>
-              <Button variant="contained" color="blue">
+              <LoadingButton
+                loading={saving}
+                variant="contained"
+                color="blue"
+                onClick={handleUpdateData}
+              >
                 {t("addStudentsSave")}
-              </Button>
+              </LoadingButton>
             </Box>
           </Box>
         </motion.div>
       </Modal>
     </>
   );
-};
+});
 
 export default EditMo;
