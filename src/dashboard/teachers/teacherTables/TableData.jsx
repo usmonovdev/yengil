@@ -25,7 +25,6 @@ const TableData = ({ data, selectedItem, setSelectedItem }) => {
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const [selected, setSelected] = useState([]);
   const [addTeach, setAddTeach] = useState(false);
-  const [id, setId] = useState("");
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -136,7 +135,7 @@ const TableData = ({ data, selectedItem, setSelectedItem }) => {
                         .slice(
                           page * rowsPerPage,
                           page * rowsPerPage + rowsPerPage
-                        )
+                        ).sort((a, b) => a + b)
                         .map((users) => {
                           const isItemSelected = isSelected(users.id);
                           return (
@@ -163,8 +162,8 @@ const TableData = ({ data, selectedItem, setSelectedItem }) => {
                               <TableCell>{users.phone}</TableCell>
                               <TableCell>{users.group}0</TableCell>
                               <TableCell>{users.salary}%</TableCell>
-                              <TableCell onClick={() => setId(users.id)}>
-                                <TableActions id={id} />
+                              <TableCell>
+                                <TableActions id={users.id} />
                               </TableCell>
                             </StyledTableRow>
                           );

@@ -121,7 +121,6 @@ const UsersMo = forwardRef((props, ref) => {
               <DeleteMo />
             </Box>
           </Box>
-          ;
         </motion.div>
       </Modal>
     </div>

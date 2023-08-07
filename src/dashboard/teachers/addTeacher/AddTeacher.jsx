@@ -1,26 +1,28 @@
 import React, { useState } from "react";
 import {
+  Alert,
   Box,
   Button,
-  Chip,
   FormControl,
-  InputLabel,
-  MenuItem,
   Modal,
-  OutlinedInput,
-  Select,
+  Snackbar,
+  TextField,
 } from "@mui/material";
 import { motion } from "framer-motion";
 import { H3 } from "../../../ui/typography";
 import InputComp from "../../../ui/InputComp";
-import { useTheme } from "@emotion/react";
 import { useTranslation } from "react-i18next";
 import { IMaskInput } from "react-imask";
-import axios from "../../../utils/api"
+import axios from "../../../utils/api";
 import { POST_TEACHER } from "../../../utils/constants";
 import { useDispatch, useSelector } from "react-redux";
-import { failGetTeach, startGetTeach, successGetTeach } from "../../../store/teachSlice";
+import {
+  failGetTeach,
+  startGetTeach,
+  successGetTeach,
+} from "../../../store/teachSlice";
 import { LoadingButton } from "@mui/lab";
+import { useForm } from "react-hook-form";
 
 const style = {
   position: "absolute",
@@ -54,69 +56,69 @@ const TextMaskCustom = React.forwardRef(function TextMaskCustom(props, ref) {
   );
 });
 
-const ITEM_HEIGHT = 48;
-const ITEM_PADDING_TOP = 8;
-const MenuProps = {
-  PaperProps: {
-    style: {
-      maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
-      width: 250,
-    },
-  },
-};
-
-const names = ["Fizika", "Dasturlash", "Matematika", "Ingliz tili", "React"];
-
-function getStyles(name, personName, theme) {
-  return {
-    fontWeight:
-      personName.indexOf(name) === -1
-        ? theme.typography.fontWeightRegular
-        : theme.typography.fontWeightMedium,
-  };
-}
-
 const AddTeacher = ({ modal, setModal }) => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    defaultValues: {
+      name: "",
+      phone: "",
+      salary: "",
+      notes: "",
+    },
+  });
+  const { t } = useTranslation();
+  const edu_id = localStorage.getItem("EDU_ID");
+  const dispatch = useDispatch();
+
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [salary, setSalary] = useState("");
   const [notes, setNotes] = useState("");
-  const [group, setGroup] = useState([]);
-  const theme = useTheme();
-  const { t } = useTranslation();
-  const [personName, setPersonName] = useState([]);
-  const edu_id = localStorage.getItem("EDU_ID")
-  const { teachers, isLoading } = useSelector((state) => state.teach);
-  console.log(teachers);
-  const dispatch = useDispatch()
+  const [open, setOpen] = useState(false);
 
-  const handleChange = (event) => {
-    const {
-      target: { value },
-    } = event;
-    setPersonName(typeof value === "string" ? value.split(",") : value);
-    setGroup(event.target.value);
-  };
+  const { teachers, isLoading, isFailure } = useSelector(
+    (state) => state.teach
+  );
+  console.log(isFailure);
 
   const handleAddTeach = async () => {
     try {
-      dispatch(startGetTeach())
+      dispatch(startGetTeach());
       const response = await axios.post(POST_TEACHER, {
         full_name: name,
         phone: phone,
         salary: 50,
         note: notes,
-        edu_center_id: edu_id
-      })
-      dispatch(successGetTeach([...teachers, response?.data]))
-      setModal(!modal)
+        edu_center_id: edu_id,
+      });
+      dispatch(successGetTeach([...teachers, response?.data]));
+      setModal(!modal);
     } catch (error) {
-      dispatch(failGetTeach(error.response?.data?.message[0]))
+      dispatch(failGetTeach(error.response?.data?.message[0]));
     }
-  }
+  };
+
+  const handleClose = (reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+    setOpen(false);
+  };
+
+  const onSubmit = (data) => {
+    console.log(data);
+  };
 
   return (
     <>
+      <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+        <Alert onClose={handleClose} severity="success" sx={{ width: "100%" }}>
+          Error
+        </Alert>
+      </Snackbar>
       <Modal
         sx={{ zIndex: "1000" }}
         open={modal}
@@ -142,91 +144,90 @@ const AddTeacher = ({ modal, setModal }) => {
           transition={{ duration: 1, type: "spring", delay: 0.1 }}
         >
           <Box sx={style}>
-            <H3>{t("teacherAdd")}</H3>
-            <InputComp
-              placeholder="Usmonov Azizbek"
-              value={name}
-              setValue={setName}
-              label={t("addStudentsSurname")}
-              required={true}
-              name={name}
-            />
-            <InputComp
-              placeholder="+99890-000-00-00"
-              value={phone}
-              setValue={setPhone}
-              label={t("addStudentsTel")}
-              inputProps={TextMaskCustom}
-              required={true}
-              name={name}
-            />
-            <InputComp
-              placeholder="50%"
-              value={salary}
-              setValue={setSalary}
-              label={t("moneySalary")}
-              required={true}
-              name={name}
-            />
-            <FormControl sx={{ width: "100%" }} color="blue">
-              <InputLabel id="demo-multiple-chip-label" required={true}>
-                {t("newStudentsSortingGroup")}
-              </InputLabel>
-              <Select
-                labelId="demo-multiple-chip-label"
-                id="demo-multiple-chip"
-                multiple
-                value={personName}
-                onChange={handleChange}
-                input={
-                  <OutlinedInput id="select-multiple-chip" label="Guruh" />
-                }
-                renderValue={(selected) => (
-                  <Box sx={{ display: "flex", flexWrap: "wrap", gap: 0.5 }}>
-                    {selected.map((value) => (
-                      <Chip key={value} label={value} />
-                    ))}
-                  </Box>
-                )}
-                MenuProps={MenuProps}
-              >
-                {names.map((name) => (
-                  <MenuItem
-                    key={name}
-                    value={name}
-                    style={getStyles(name, personName, theme)}
-                  >
-                    {name}
-                  </MenuItem>
-                ))}
-              </Select>
-            </FormControl>
-            <InputComp
-              placeholder={t("teacherOpen")}
-              value={notes}
-              setValue={setNotes}
-              label={t("groupAddComent")}
-              name={name}
-            />
-            <Box
-              sx={{
-                display: "flex",
-                flexDirection: "row",
-                justifyContent: "flex-end",
-                gap: "10px",
-              }}
+            <FormControl
+              sx={{ display: "flex", flexDirection: "column", gap: "15px" }}
+              onSubmit={handleSubmit(handleAddTeach)}
             >
-              <Button
-                variant="contained"
-                onClick={() => setModal(!modal)}
-                color="alsoWhite"
+              <H3>{t("teacherAdd")}</H3>
+              <InputComp
+                placeholder="Usmonov Azizbek"
+                value={name}
+                setValue={setName}
+                label={t("addStudentsSurname")}
+                required={true}
+                name={"name"}
+              />
+              <InputComp
+                placeholder="+99890-000-00-00"
+                value={phone}
+                setValue={setPhone}
+                label={t("addStudentsTel")}
+                inputProps={TextMaskCustom}
+                required={true}
+                name={"phone"}
+              />
+              <InputComp
+                placeholder="50%"
+                value={salary}
+                setValue={setSalary}
+                label={t("moneySalary")}
+                required={true}
+                name={"salary"}
+              />
+              <InputComp
+                placeholder={t("teacherOpen")}
+                value={notes}
+                setValue={setNotes}
+                label={t("groupAddComent")}
+                name={"note"}
+              />
+              <Box
+                sx={{
+                  display: "flex",
+                  flexDirection: "row",
+                  justifyContent: "flex-end",
+                  gap: "10px",
+                }}
               >
-                {t("addStudentsClose")}
-              </Button>
-              <LoadingButton loading={isLoading} variant="contained" color="blue" onClick={handleAddTeach}>
-                {t("addStudentsSave")}
-              </LoadingButton>
-            </Box>
+                <Button
+                  variant="contained"
+                  onClick={() => setModal(!modal)}
+                  color="alsoWhite"
+                >
+                  {t("addStudentsClose")}
+                </Button>
+                <LoadingButton
+                  type="submit"
+                  loading={isLoading}
+                  variant="contained"
+                  color="blue"
+                  onClick={handleAddTeach}
+                >
+                  {t("addStudentsSave")}
+                </LoadingButton>
+              </Box>
+            </FormControl>
+            {/* <form onSubmit={handleSubmit(onSubmit)}>
+              <TextField
+                label="Name"
+                type="email"
+                {...register("name", {
+                  required: "Name is required!",
+                })}
+                error={!!errors.name}
+                helperText={errors.name?.message}
+              />
+              <TextField
+                label="Note"
+                type="text"
+                {...register("notes", {
+                  required: "Note is required!",
+                })}
+                error={!!errors.notes}
+                helperText={errors.notes?.message}
+              />
+              <Button>Login</Button>
+            </form> */}
           </Box>
         </motion.div>
       </Modal>

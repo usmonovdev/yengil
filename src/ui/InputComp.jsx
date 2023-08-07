@@ -12,7 +12,8 @@ const InputComp = ({
   error,
   inputProps = null,
   name,
-  disabled = false
+  disabled = false,
+  helperText
 }) => {
   return (
     <>
@@ -33,6 +34,7 @@ const InputComp = ({
         InputProps={{
           inputComponent: inputProps,
         }}
+        helperText={helperText}
       />
     </>
   );
