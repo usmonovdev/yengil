@@ -35,17 +35,16 @@ import { GET_TEACHER } from "../../../utils/constants";
 import CloudDownloadIcon from '@mui/icons-material/CloudDownload';
 
 const TeacherTables = () => {
-  const [selected, setSelected] = useState(false);
   const theme = useTheme();
   const ref = useRef();
-  const isInView = useInView(ref, { once: true });
+  const { t } = useTranslation();
   const dispatch = useDispatch();
+  const isInView = useInView(ref, { once: true });
+  const [selected, setSelected] = useState(false);
   const { teachers, isLoading } = useSelector((state) => state.teach);
   const [sorting, setSorting] = useState("name");
-  const { t } = useTranslation();
   const [addTeach, setAddTeach] = useState(false);
   const edu_id = localStorage.getItem("EDU_ID");
-  console.log(teachers);
 
   const getTeach = async () => {
     try {

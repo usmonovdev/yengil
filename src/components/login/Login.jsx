@@ -70,7 +70,7 @@ const Login = () => {
   return (
     <>
       <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
-        <Alert onClose={handleClose} severity="error" sx={{ width: "100%" }}>
+        <Alert onClose={handleClose} variant="filled" severity="error" sx={{ width: "100%" }}>
           {isFailure}
         </Alert>
       </Snackbar>

@@ -85,19 +85,29 @@ const AddTeacher = ({ modal, setModal }) => {
   console.log(isFailure);
 
   const handleAddTeach = async () => {
-    try {
-      dispatch(startGetTeach());
-      const response = await axios.post(POST_TEACHER, {
-        full_name: name,
-        phone: phone,
-        salary: 50,
-        note: notes,
-        edu_center_id: edu_id,
-      });
-      dispatch(successGetTeach([...teachers, response?.data]));
-      setModal(!modal);
-    } catch (error) {
-      dispatch(failGetTeach(error.response?.data?.message[0]));
+    if (name.length && phone.length && salary.length && notes.length) {
+      try {
+        dispatch(startGetTeach());
+        const response = await axios.post(POST_TEACHER, {
+          full_name: name,
+          phone: phone,
+          salary: 50,
+          note: notes,
+          edu_center_id: edu_id,
+        });
+        dispatch(successGetTeach([...teachers, response?.data]));
+        setModal(!modal);
+        setName("");
+        setPhone("");
+        setSalary("");
+        setNotes("");
+      } catch (error) {
+        dispatch(failGetTeach(error.response?.data?.message[0]));
+        setOpen(true)
+      }
+    } else {
+      console.log("Error");
+      setOpen(true)
     }
   };
 
@@ -108,15 +118,11 @@ const AddTeacher = ({ modal, setModal }) => {
     setOpen(false);
   };
 
-  const onSubmit = (data) => {
-    console.log(data);
-  };
-
   return (
     <>
       <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
-        <Alert onClose={handleClose} severity="success" sx={{ width: "100%" }}>
-          Error
+        <Alert onClose={handleClose} variant="filled" severity="error" sx={{ width: "100%" }}>
+          {isFailure == null ? "Inputs is empty!" : isFailure}
         </Alert>
       </Snackbar>
       <Modal

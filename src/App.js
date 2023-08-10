@@ -2,7 +2,7 @@ import { CssBaseline, ThemeProvider, createTheme, useTheme } from "@mui/material
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useEffect, useMemo, useState } from "react";
-import { grey, indigo, green } from "@mui/material/colors";
+import { grey, indigo, green, red } from "@mui/material/colors";
 import Dashboard from "./dashboard/Dashboard";
 import RoutesHome from "./components/RoutesHome";
 import "./app.scss"
