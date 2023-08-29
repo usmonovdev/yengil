@@ -1,6 +1,6 @@
 import axios from "axios";
 
-axios.defaults.baseURL = "https://nest-yengil-app.onrender.com/api"
+axios.defaults.baseURL = "https://yengil-app.onrender.com/api"
 
 // axios.interceptors.request.use(parametr => {
 //     const token = JSON.parse(localStorage.getItem("TOKEN"))
